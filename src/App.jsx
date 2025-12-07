@@ -17,12 +17,11 @@ import {
   Zap,
   Globe, 
   Code,
-  Mail // Added Mail icon import
+  Mail 
 } from 'lucide-react';
 
 // --- Internal Asset Generation ---
-// This ensures the icon always displays, even if the user hasn't converted the .icns to .png yet.
-// It generates a Hermès Orange icon with a waveform, matching the brand identity.
+// Fallback SVG if image is missing
 const generateFallbackIcon = () => {
   const svgString = `
     <svg width="128" height="128" viewBox="0 0 128 128" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -57,10 +56,22 @@ const ResoLanding = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  // Image Error Handler: Replaces broken PNG with generated SVG
+  // Image Error Handler
   const handleImageError = (e) => {
-    e.target.onerror = null; // Prevent infinite loop
+    e.target.onerror = null;
     e.target.src = generateFallbackIcon();
+  };
+
+  // --- ANALYTICS HANDLER ---
+  const handleDownload = () => {
+    console.log("Tracking download event...");
+    // GA4 Event Trigger
+    if (typeof window.gtag === 'function') {
+      window.gtag('event', 'file_download', {
+        'file_name': 'Reso-1.0.dmg',
+        'file_extension': 'dmg'
+      });
+    }
   };
 
   return (
@@ -91,8 +102,11 @@ const ResoLanding = () => {
           <div className="hidden md:flex items-center gap-8 text-sm text-gray-300 font-medium">
             <a href="#design" className="hover:text-white transition-colors">Design</a>
             <a href="#contact" className="hover:text-white transition-colors">Contact</a>
-            {/* Navbar Download button scrolls to bottom section for details */}
-            <a href="#download" className="bg-white text-black px-4 py-2 rounded-full hover:bg-gray-200 transition-colors flex items-center gap-2">
+            {/* Navbar Download button */}
+            <a 
+              href="#download" 
+              className="bg-white text-black px-4 py-2 rounded-full hover:bg-gray-200 transition-colors flex items-center gap-2"
+            >
               <Download size={16} />
               Download
             </a>
@@ -401,6 +415,7 @@ const ResoLanding = () => {
             <a 
               href="/Reso-1.0.dmg" 
               download 
+              onClick={handleDownload}
               className="px-10 py-4 bg-white text-black rounded-full font-bold text-lg hover:bg-gray-200 transition-transform hover:scale-105 shadow-xl shadow-white/10 flex items-center justify-center gap-3 mx-auto"
             >
               <Download size={20} />
