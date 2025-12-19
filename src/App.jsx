@@ -815,12 +815,33 @@ const ResoLanding = () => {
 
       {/* --- FOOTER --- */}
       <footer id="contact" className="py-12 px-6 border-t border-gray-200 bg-gray-50 text-xs text-gray-500 relative z-10">
-        <div className="max-w-6xl mx-auto flex flex-col md:flex-row justify-between items-center gap-6">
-          <div className="flex items-center gap-3">
-            <div className="w-5 h-5 opacity-40 grayscale hover:grayscale-0 transition-all">
-                <AppIcon className="w-full h-full rounded-[4px]" />
+        <div className="max-w-6xl mx-auto flex flex-col md:flex-row justify-between items-start gap-8">
+          <div className="flex flex-col gap-6">
+            {/* Newsletter Signup Form */}
+            <div className="space-y-3">
+              <h3 className="text-sm font-bold text-gray-900">Join the Reso Insider.</h3>
+              <p className="text-xs text-gray-500">Get productivity tips and update news. No spam.</p>
+              <form className="flex gap-2" onSubmit={(e) => e.preventDefault()}>
+                <input
+                  type="email"
+                  placeholder="Enter your email"
+                  className="flex-1 px-4 py-2 text-sm border border-gray-200 rounded-lg bg-white text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-transparent"
+                />
+                <button
+                  type="submit"
+                  className="px-6 py-2 bg-orange-500 text-white text-sm font-medium rounded-lg hover:bg-orange-600 transition-colors"
+                >
+                  Subscribe
+                </button>
+              </form>
             </div>
-            <span>&copy; 2025 DZG STUDIO LLC.</span>
+            {/* Copyright */}
+            <div className="flex items-center gap-3">
+              <div className="w-5 h-5 opacity-40 grayscale hover:grayscale-0 transition-all">
+                  <AppIcon className="w-full h-full rounded-[4px]" />
+              </div>
+              <span>&copy; 2025 DZG STUDIO LLC.</span>
+            </div>
           </div>
           <div className="flex items-center gap-8">
              <a href="/privacy.html" target="_blank" rel="noreferrer" className="hover:text-gray-900 transition-colors">Privacy Policy</a>
@@ -830,7 +851,7 @@ const ResoLanding = () => {
                 <Twitter size={16} />
                 <span>@DzgStudio</span>
              </a>
-             <a href="mailto:dev@dzgapp.com" className="flex items-center gap-2 hover:text-gray-900 transition-colors">
+             <a href="https://tally.so/r/obDo51" target="_blank" rel="noreferrer" className="flex items-center gap-2 hover:text-gray-900 transition-colors">
                 <Mail size={16} />
                 <span>Support</span>
              </a>
