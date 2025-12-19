@@ -375,6 +375,12 @@ const ResoLanding = () => {
         'value': 1
       });
     }
+    const link = document.createElement('a');
+    link.href = '/Reso.dmg';
+    link.download = 'Reso.dmg';
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
   };
 
   const CurrentScenario = scenariosData[activeScenario].component;
@@ -397,8 +403,8 @@ const ResoLanding = () => {
             <a href="#stats" className="hover:text-gray-900 transition-colors">Benefits</a>
             <a href="#pricing" className="hover:text-gray-900 transition-colors">Pricing</a>
             <a 
-              href="#download" 
-              className="text-white bg-orange-500 hover:bg-orange-600 px-6 py-2 rounded-full transition-all shadow-md hover:shadow-lg transform hover:-translate-y-0.5"
+              onClick={handleDownload}
+              className="text-white bg-orange-500 hover:bg-orange-600 px-6 py-2 rounded-full transition-all shadow-md hover:shadow-lg transform hover:-translate-y-0.5 cursor-pointer"
             >
               Start Free Trial
             </a>
@@ -422,8 +428,8 @@ const ResoLanding = () => {
           
           <div className="flex flex-col items-center gap-6">
             <a 
-              href="#download" 
-              className="inline-flex px-8 py-4 bg-orange-500 text-white rounded-full font-bold text-lg hover:bg-orange-600 transition-all shadow-xl hover:shadow-2xl hover:-translate-y-0.5 items-center gap-2"
+              onClick={handleDownload}
+              className="inline-flex px-8 py-4 bg-orange-500 text-white rounded-full font-bold text-lg hover:bg-orange-600 transition-all shadow-xl hover:shadow-2xl hover:-translate-y-0.5 items-center gap-2 cursor-pointer"
             >
               Start Free Trial
               <ArrowRight size={18} />
@@ -745,8 +751,8 @@ const ResoLanding = () => {
              <li className="flex gap-3"><Check size={16} className="text-orange-500" /> Free updates for v1.x</li>
            </ul>
            <a 
-              href="#download"
-              className="block w-full py-4 bg-[#F97316] text-white rounded-xl font-bold hover:bg-[#ea580c] transition-colors shadow-lg hover:shadow-xl transform hover:-translate-y-0.5"
+              onClick={handleDownload}
+              className="block w-full py-4 bg-[#F97316] text-white rounded-xl font-bold hover:bg-[#ea580c] transition-colors shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 cursor-pointer"
            >
              Start Free Trial
            </a>
