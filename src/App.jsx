@@ -603,14 +603,14 @@ const ResoLanding = () => {
                 </div>
                 <h3 className="text-4xl font-bold text-gray-900 leading-tight">Speed vs Fidelity.</h3>
                 <p className="text-lg text-gray-500 leading-relaxed">
-                   Switch between <strong>Turbo</strong> model for instant chat replies and <strong>Pro</strong> model for high-fidelity document drafting.
+                   Switch between <strong>Standard</strong> model for instant chat replies and <strong>Pro</strong> model for high-fidelity document drafting.
                 </p>
              </div>
              <div className="flex-1 flex justify-center">
                 <div className="bg-white rounded-3xl p-10 border border-gray-200 shadow-xl w-full max-w-sm flex items-center justify-center h-64">
                    <div className="bg-gray-100 p-2 rounded-xl flex gap-1 shadow-inner">
                       <div className="px-4 py-2 bg-white rounded-lg shadow-sm text-xs font-bold text-gray-800 flex items-center gap-2">
-                         <Zap size={14} className="text-orange-500" /> Turbo
+                         <Zap size={14} className="text-orange-500" /> Standard
                       </div>
                       <div className="px-4 py-2 text-xs font-medium text-gray-500 flex items-center gap-2">
                          <Brain size={14} /> Pro
