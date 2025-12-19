@@ -559,22 +559,35 @@ const ResoLanding = () => {
           <div className="flex flex-col md:flex-row-reverse items-center gap-16">
              <div className="flex-1 space-y-6">
                 <div className="inline-flex items-center gap-2 px-3 py-1 bg-blue-100 text-blue-700 rounded-full text-xs font-bold uppercase tracking-wider">
-                  02. Intelligence
+                  02. Context Priming
                 </div>
                 <h3 className="text-4xl font-bold text-gray-900 leading-tight">It reads the room.</h3>
                 <p className="text-lg text-gray-500 leading-relaxed">
-                   Reso formats text differently based on your active app. It uses CamelCase for variables in VS Code, but keeps it casual in Slack.
+                   Reso reads your active window to bias the model. It recognizes your unique variable names in Xcode and project jargon in Slack, ensuring 100% accuracy.
                 </p>
              </div>
              <div className="flex-1 flex justify-center">
-                <div className="bg-white rounded-3xl p-8 border border-gray-200 shadow-xl w-full max-w-sm flex gap-4 h-64 items-center justify-center">
-                   <div className="w-1/2 h-40 bg-[#1e1e1e] rounded-lg p-3 flex flex-col gap-2 shadow-sm transform -rotate-2">
-                      <div className="flex gap-1"><div className="w-1.5 h-1.5 bg-red-500 rounded-full"></div></div>
-                      <div className="font-mono text-[8px] text-blue-300">const <span className="text-yellow-300">api</span> = ...</div>
+                <div className="bg-gray-50 rounded-3xl p-8 border border-gray-200 shadow-inner w-full max-w-sm flex flex-col gap-6 h-80 items-center justify-center relative overflow-hidden">
+                   {/* Card 1: Without */}
+                   <div className="w-full bg-white rounded-xl border border-gray-200 p-4 shadow-sm opacity-60 flex flex-col gap-1.5 transform scale-95">
+                      <div className="text-[10px] uppercase font-bold text-gray-400 tracking-wider">Without Context</div>
+                      <div className="font-mono text-sm text-gray-500">Fix the race condition in auth.ts</div>
                    </div>
-                   <div className="w-1/2 h-40 bg-gray-100 rounded-lg p-3 flex flex-col gap-2 shadow-sm transform rotate-2 border border-gray-200">
-                      <div className="flex gap-1"><div className="w-1.5 h-1.5 bg-gray-400 rounded-full"></div></div>
-                      <div className="font-sans text-[8px] text-gray-800">Hey team! 🚀</div>
+                   
+                   {/* Arrow Down */}
+                   <div className="text-gray-300">
+                      <ArrowRightIcon size={20} className="transform rotate-90" />
+                   </div>
+
+                   {/* Card 2: With Reso */}
+                   <div className="w-full bg-white rounded-xl border-l-4 border-blue-500 p-5 shadow-lg transform hover:scale-[1.02] transition-transform">
+                      <div className="flex justify-between items-center mb-2">
+                         <div className="text-[10px] uppercase font-bold text-blue-600 tracking-wider">With Reso</div>
+                         <CheckCircle2 size={14} className="text-blue-500" />
+                      </div>
+                      <div className="font-mono text-sm text-gray-900">
+                         Fix the <span className="bg-blue-50 text-blue-700 px-1 rounded font-semibold border border-blue-100">raceCondition</span> in <span className="bg-blue-50 text-blue-700 px-1 rounded font-semibold border border-blue-100">Auth.ts</span>
+                      </div>
                    </div>
                 </div>
              </div>
@@ -609,17 +622,39 @@ const ResoLanding = () => {
                 </div>
                 <h3 className="text-4xl font-bold text-gray-900 leading-tight">Speed vs Fidelity.</h3>
                 <p className="text-lg text-gray-500 leading-relaxed">
-                   Switch between <strong>Standard</strong> model for instant chat replies and <strong>Pro</strong> model for high-fidelity document drafting.
+                   Switch between <strong>Standard</strong> model for instant speed (perfect for chats) and <strong>Pro</strong> model for high-fidelity document drafting.
                 </p>
              </div>
              <div className="flex-1 flex justify-center">
-                <div className="bg-white rounded-3xl p-10 border border-gray-200 shadow-xl w-full max-w-sm flex items-center justify-center h-64">
-                   <div className="bg-gray-100 p-2 rounded-xl flex gap-1 shadow-inner">
-                      <div className="px-4 py-2 bg-white rounded-lg shadow-sm text-xs font-bold text-gray-800 flex items-center gap-2">
-                         <Zap size={14} className="text-orange-500" /> Standard
+                <div className="bg-white rounded-3xl border border-gray-200 shadow-lg flex flex-col p-8 relative overflow-hidden w-full max-w-sm h-80">
+                   {/* Background Grid */}
+                   <div className="absolute inset-0 opacity-[0.03]" style={{backgroundImage: 'linear-gradient(#000 1px, transparent 1px), linear-gradient(90deg, #000 1px, transparent 1px)', backgroundSize: '20px 20px'}}></div>
+
+                   {/* Standard Mode */}
+                   <div className="flex-1 flex flex-col justify-center gap-3">
+                      <div className="flex justify-between items-center">
+                         <span className="text-xs font-bold text-gray-400 uppercase tracking-widest">Standard Mode</span>
+                         <span className="px-2 py-0.5 bg-orange-100 text-orange-700 text-[10px] font-bold rounded-full">INSTANT</span>
                       </div>
-                      <div className="px-4 py-2 text-xs font-medium text-gray-500 flex items-center gap-2">
-                         <Brain size={14} /> Pro
+                      <div className="h-12 flex items-end gap-1.5 opacity-80">
+                         {[...Array(15)].map((_, i) => (
+                            <div key={i} className="w-full bg-orange-400 rounded-t-sm" style={{height: `${30 + Math.random() * 40}%`}}></div>
+                         ))}
+                      </div>
+                   </div>
+
+                   <div className="h-px w-full bg-gray-100 my-2"></div>
+
+                   {/* Pro Mode */}
+                   <div className="flex-1 flex flex-col justify-center gap-3">
+                      <div className="flex justify-between items-center">
+                         <span className="text-xs font-bold text-gray-400 uppercase tracking-widest">Pro Mode</span>
+                         <span className="px-2 py-0.5 bg-purple-100 text-purple-700 text-[10px] font-bold rounded-full">HIGH FIDELITY</span>
+                      </div>
+                      <div className="h-16 flex items-end gap-[2px]">
+                         {[...Array(30)].map((_, i) => (
+                            <div key={i} className="w-full bg-purple-600 rounded-t-sm" style={{height: `${20 + Math.random() * 80}%`}}></div>
+                         ))}
                       </div>
                    </div>
                 </div>
@@ -634,20 +669,35 @@ const ResoLanding = () => {
                 </div>
                 <h3 className="text-4xl font-bold text-gray-900 leading-tight">100% Offline.</h3>
                 <p className="text-lg text-gray-500 leading-relaxed">
-                   Your voice data never leaves your Apple Silicon chip. Processed completely offline for maximum security.
+                   100% Offline on Apple Silicon. Your voice data never leaves your Mac. Zero data egress.
                 </p>
              </div>
              <div className="flex-1 flex justify-center">
-                <div className="bg-white rounded-3xl p-10 border border-gray-200 shadow-xl w-full max-w-sm flex items-center justify-center h-64">
-                   <div className="flex flex-col items-center gap-4">
-                      <div className="w-16 h-16 bg-green-50 rounded-2xl flex items-center justify-center">
-                         <Lock size={32} className="text-green-600" />
+                <div className="bg-gray-900 rounded-3xl border border-gray-800 shadow-2xl flex items-center justify-center relative overflow-hidden w-full max-w-sm h-80">
+                   {/* Dark Gradient BG */}
+                   <div className="absolute inset-0 bg-gradient-to-br from-gray-900 via-[#111] to-black"></div>
+                   <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_120%,_var(--tw-gradient-stops))] from-green-900/40 to-transparent"></div>
+                   
+                   {/* The Chip/Vault */}
+                   <div className="relative z-10 w-40 h-40 bg-[#1A1A1A] rounded-[2rem] border border-gray-700 shadow-2xl flex flex-col items-center justify-center gap-3 group">
+                      {/* Inner Glow */}
+                      <div className="absolute inset-0 bg-green-500/5 rounded-[2rem] blur-xl opacity-50 group-hover:opacity-100 transition-opacity"></div>
+                      
+                      {/* Lock Icon */}
+                      <div className="p-4 bg-black/50 rounded-2xl border border-green-500/20 shadow-inner">
+                         <Lock size={32} className="text-green-500 drop-shadow-[0_0_15px_rgba(34,197,94,0.6)]" />
                       </div>
-                      <div className="flex items-center gap-2 px-3 py-1 bg-green-50 rounded-full border border-green-100">
-                         <WifiOff size={12} className="text-green-600" />
-                         <span className="text-xs font-medium text-green-700">Offline</span>
+                      
+                      {/* Status */}
+                      <div className="flex items-center gap-1.5 px-3 py-1 bg-green-900/30 rounded-full border border-green-500/20">
+                         <div className="w-1.5 h-1.5 rounded-full bg-green-500 animate-pulse"></div>
+                         <span className="text-[10px] font-bold text-green-500 uppercase tracking-widest">Secure Core</span>
                       </div>
                    </div>
+
+                   {/* Data Particles (Bouncing back) */}
+                   <div className="absolute top-10 right-10 w-2 h-2 bg-white/20 rounded-full blur-[1px]"></div>
+                   <div className="absolute bottom-20 left-10 w-1.5 h-1.5 bg-white/10 rounded-full blur-[1px]"></div>
                 </div>
              </div>
           </div>
