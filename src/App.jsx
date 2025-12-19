@@ -756,31 +756,6 @@ const ResoLanding = () => {
         </div>
       </section>
 
-      {/* --- DOWNLOAD SECTION --- */}
-      <section id="download" className="py-24 px-6 text-center bg-white border-t border-gray-100">
-        <div className="max-w-3xl mx-auto space-y-8">
-          <h2 className="text-4xl font-bold text-gray-900">Get Reso 1.0</h2>
-          <p className="text-xl text-gray-500 leading-relaxed">
-            Simple. Local. Fast.
-            <br />
-            <span className="text-sm text-gray-400">
-              macOS 12+ • Apple Silicon Only
-            </span>
-          </p>
-
-          <div className="pt-8">
-            <a 
-              href="/Reso.dmg" 
-              download 
-              onClick={handleDownload}
-              className="px-10 py-4 bg-orange-500 text-white rounded-full font-bold text-lg hover:bg-orange-600 transition-all shadow-xl hover:shadow-2xl hover:-translate-y-0.5 flex items-center justify-center gap-3 mx-auto w-fit"
-            >
-              <Download size={20} />
-              Download DMG
-            </a>
-          </div>
-        </div>
-      </section>
 
       {/* --- FOOTER --- */}
       <footer id="contact" className="py-12 px-6 border-t border-gray-200 bg-gray-50 text-xs text-gray-500 relative z-10">
