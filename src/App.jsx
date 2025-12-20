@@ -873,7 +873,7 @@ const ResoLanding = () => {
               />
               <button
                 type="submit"
-                className="px-8 py-3.5 bg-gray-900 text-white font-bold rounded-xl hover:bg-gray-800 transition-all shadow-lg hover:shadow-xl hover:-translate-y-0.5 whitespace-nowrap"
+                className="px-8 py-3.5 bg-orange-500 text-white font-bold rounded-xl hover:bg-orange-600 transition-all shadow-lg hover:shadow-xl hover:-translate-y-0.5 whitespace-nowrap"
               >
                 Subscribe
               </button>
