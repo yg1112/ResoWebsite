@@ -45,7 +45,9 @@ import {
   FileText,
   HelpCircle,
   Plus,
-  Infinity
+  Infinity,
+  Workflow,
+  Hand
 } from 'lucide-react';
 
 // --- Custom Components ---
@@ -797,7 +799,7 @@ const ResoLanding = () => {
             {/* Card 1 */}
             <div className="bg-white p-8 rounded-3xl border border-gray-200 shadow-sm hover:shadow-md transition-shadow">
                <div className="w-12 h-12 bg-orange-50 rounded-xl flex items-center justify-center text-orange-600 mb-6">
-                  <TrendingUp size={24} />
+                  <Zap size={24} />
                </div>
                <h3 className="text-2xl font-bold text-gray-900 mb-2">3.0x Faster</h3>
                <p className="text-gray-500 text-sm mb-6">"Speech input is 3.0x faster than standard keyboard entry for English & Mandarin."</p>
@@ -809,7 +811,7 @@ const ResoLanding = () => {
             {/* Card 2 */}
             <div className="bg-white p-8 rounded-3xl border border-gray-200 shadow-sm hover:shadow-md transition-shadow">
                <div className="w-12 h-12 bg-blue-50 rounded-xl flex items-center justify-center text-blue-600 mb-6">
-                  <Activity size={24} />
+                  <Workflow size={24} />
                </div>
                <h3 className="text-2xl font-bold text-gray-900 mb-2">Cognitive Flow</h3>
                <p className="text-gray-500 text-sm mb-6">"Dictation frees up working memory, allowing for better complex thinking and flow."</p>
@@ -821,7 +823,7 @@ const ResoLanding = () => {
             {/* Card 3 */}
             <div className="bg-white p-8 rounded-3xl border border-gray-200 shadow-sm hover:shadow-md transition-shadow">
                <div className="w-12 h-12 bg-green-50 rounded-xl flex items-center justify-center text-green-600 mb-6">
-                  <Activity size={24} />
+                  <Hand size={24} />
                </div>
                <h3 className="text-2xl font-bold text-gray-900 mb-2">Health & RSI</h3>
                <p className="text-gray-500 text-sm mb-6">"Reduces repetitive strain on wrists and improves posture during long drafting sessions."</p>
