@@ -316,6 +316,10 @@ const ResoLanding = () => {
   const [activeScenario, setActiveScenario] = useState(0);
   const [keyActive, setKeyActive] = useState(false);
 
+  // Newsletter form state
+  const [email, setEmail] = useState('');
+  const [subscribed, setSubscribed] = useState(false);
+
   useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 20);
@@ -381,6 +385,33 @@ const ResoLanding = () => {
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
+  };
+
+  const handleSubscribe = async (e) => {
+    e.preventDefault();
+    if (!email) return;
+
+    const formBody = `email=${encodeURIComponent(email)}&userGroup=Newsletter`;
+
+    try {
+      const response = await fetch("https://app.loops.so/api/newsletter-form/cmjdjf56l00dd0izhwc34oz2l", {
+        method: "POST",
+        body: formBody,
+        headers: {
+          "Content-Type": "application/x-www-form-urlencoded",
+        },
+      });
+      
+      if (response.ok) {
+        setSubscribed(true);
+        setEmail('');
+      } else {
+        alert("Something went wrong. Please try again.");
+      }
+    } catch (error) {
+      console.error("Error:", error);
+      alert("Something went wrong. Please try again.");
+    }
   };
 
   const CurrentScenario = scenariosData[activeScenario].component;
@@ -821,19 +852,27 @@ const ResoLanding = () => {
             <div className="space-y-3">
               <h3 className="text-sm font-bold text-gray-900">Join the Reso Insider.</h3>
               <p className="text-xs text-gray-500">Get productivity tips and update news. No spam.</p>
-              <form className="flex gap-2" onSubmit={(e) => e.preventDefault()}>
-                <input
-                  type="email"
-                  placeholder="Enter your email"
-                  className="flex-1 px-4 py-2 text-sm border border-gray-200 rounded-lg bg-white text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-transparent"
-                />
-                <button
-                  type="submit"
-                  className="px-6 py-2 bg-orange-500 text-white text-sm font-medium rounded-lg hover:bg-orange-600 transition-colors"
-                >
-                  Subscribe
-                </button>
-              </form>
+              {subscribed ? (
+                <div className="px-4 py-2 bg-green-50 border border-green-200 rounded-lg text-sm text-green-700">
+                  Thanks for subscribing! Check your email.
+                </div>
+              ) : (
+                <form className="flex gap-2" onSubmit={handleSubscribe}>
+                  <input
+                    type="email"
+                    placeholder="Enter your email"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                    className="flex-1 px-4 py-2 text-sm border border-gray-200 rounded-lg bg-white text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-transparent"
+                  />
+                  <button
+                    type="submit"
+                    className="px-6 py-2 bg-orange-500 text-white text-sm font-medium rounded-lg hover:bg-orange-600 transition-colors"
+                  >
+                    Subscribe
+                  </button>
+                </form>
+              )}
             </div>
             {/* Copyright */}
             <div className="flex items-center gap-3">
