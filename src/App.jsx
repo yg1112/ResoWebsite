@@ -846,9 +846,9 @@ const ResoLanding = () => {
       {/* --- NEWSLETTER SECTION (Pre-footer) --- */}
       <section className="py-24 px-6 bg-white border-t border-gray-100 relative z-10">
         <div className="max-w-2xl mx-auto text-center">
-          <h2 className="text-3xl font-bold text-gray-900 mb-4">Join the Reso Insider.</h2>
+          <h2 className="text-3xl font-bold text-gray-900 mb-4">Be the first to know</h2>
           <p className="text-gray-500 text-lg mb-8">
-            Get productivity tips and update news. No spam.
+            We'll notify you about new apps and deals, but no spam, we promise.
           </p>
 
           {/* Success State */}
@@ -873,7 +873,7 @@ const ResoLanding = () => {
               />
               <button
                 type="submit"
-                className="px-8 py-3.5 bg-gray-900 text-white font-bold rounded-xl hover:bg-gray-800 transition-all shadow-lg hover:shadow-xl hover:-translate-y-0.5 whitespace-nowrap"
+                className="px-8 py-3.5 bg-orange-500 text-white font-bold rounded-xl hover:bg-orange-600 transition-all shadow-lg hover:shadow-xl hover:-translate-y-0.5 whitespace-nowrap"
               >
                 Subscribe
               </button>
