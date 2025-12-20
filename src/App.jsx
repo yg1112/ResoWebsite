@@ -879,7 +879,7 @@ const ResoLanding = () => {
         <div className="max-w-2xl mx-auto text-center">
           <h2 className="text-xl font-bold text-gray-900 mb-4">Be the first to know</h2>
           <p className="text-gray-500 text-lg mb-8">
-            Receive curated updates on new features and special promotions. We respect your privacy and only send meaningful content.
+            Get the latest apps and deals. We hate spam as much as you do.
           </p>
 
           {/* Success State */}
