@@ -483,6 +483,7 @@ const ResoLanding = () => {
           <div className="hidden md:flex items-center gap-8 text-sm font-medium text-gray-600">
             <a href="#features" className="hover:text-gray-900 transition-colors">Features</a>
             <a href="#stats" className="hover:text-gray-900 transition-colors">Benefits</a>
+            <a href="#faq" className="hover:text-gray-900 transition-colors">FAQ</a>
             <a href="#pricing" className="hover:text-gray-900 transition-colors">Pricing</a>
             <a 
               onClick={handleDownload}
