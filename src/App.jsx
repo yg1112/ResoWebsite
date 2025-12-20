@@ -643,9 +643,9 @@ const ResoLanding = () => {
                 <div className="inline-flex items-center gap-2 px-3 py-1 bg-blue-100 text-blue-700 rounded-full text-xs font-bold uppercase tracking-wider">
                   02. Context Priming
                 </div>
-                <h3 className="text-4xl font-bold text-gray-900 leading-tight">It reads the room.</h3>
+                <h3 className="text-4xl font-bold text-gray-900 leading-tight">Understands your jargon.</h3>
                 <p className="text-lg text-gray-500 leading-relaxed">
-                   Reso reads your active window to bias the model. It recognizes your unique variable names in Xcode and project jargon in Slack, ensuring 100% accuracy.
+                   Prime the model with your own vocabulary. Reso uses the context you provide to recognize unique variable names, project jargon, and ensures higher transcription accuracy.
                 </p>
              </div>
              <div className="flex-1 flex justify-center">
