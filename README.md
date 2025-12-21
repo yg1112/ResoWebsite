@@ -1,3 +1,19 @@
+# 🤖 AI Agent Guide
+
+Before coding, read the [Architecture Map](./STRUCTURE.md).
+
+**Critical Links for AI:**
+- 📋 **Architecture Map**: [STRUCTURE.md](./STRUCTURE.md) — project structure, components, data flow
+- 🚀 **Deployment**: [scripts/deploy.sh](./scripts/deploy.sh) — ONLY source of truth for releases
+- 📝 **Rules**: [.cursorrules](./.cursorrules) — protocol for AI operations
+
+**Producer-Consumer Relationships:**
+- This Website repo (Consumer) ← Reso App repo (Producer)
+  - Displays release information from [Reso App releases](https://github.com/reso-ai/reso_dzgapp)
+  - Updates download links via GitHub Releases API
+
+---
+
 # Asset workflow and favicon generation
 
 Project follows this structure for assets (best practice):

@@ -1,0 +1,19 @@
+# Cursor Rules for Reso Website Project
+
+## Rule 1: Read First
+Before answering any architectural questions or proposing changes, always read `docs/STRUCTURE.md` first to understand the current project architecture.
+
+## Rule 2: Action Protocol
+- Any deployment, build, or release operations MUST be executed through scripts in the `scripts/` directory.
+- Manual operations outside of scripts are strictly prohibited.
+- The ONLY source of truth for deployment is the scripts in `scripts/`.
+
+## Rule 3: Protection
+- NEVER delete or modify the `docs/` directory.
+- NEVER delete or modify the `scripts/` directory.
+- These directories are critical for project maintenance and automation.
+
+## Rule 4: Documentation Sync
+- Whenever a new feature or structural change is made, update `STRUCTURE.md` immediately.
+- Keep architecture documentation synchronized with code changes.
+- Large files must be decomposed following Separation of Concerns principle.
