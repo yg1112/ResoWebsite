@@ -520,7 +520,7 @@ const ResoLanding = () => {
             <a href="#pricing" className="hover:text-gray-900 transition-colors">Pricing</a>
             <a
               id="navPrimaryCta"
-              href="https://github.com/yg1112/reso_dzgapp_website/releases/latest/download/Reso.dmg"
+              href="https://github.com/yg1112/reso/releases/latest/download/Reso.dmg"
               target="_blank"
               rel="noopener noreferrer"
               className="px-4 py-2 rounded-full bg-transparent text-gray-600 hover:text-gray-900 transition-colors cursor-pointer"
@@ -547,7 +547,7 @@ const ResoLanding = () => {
           
           <div className="flex flex-col items-center gap-6">
             <a
-              href="https://github.com/yg1112/reso_dzgapp_website/releases/latest/download/Reso.dmg"
+              href="https://github.com/yg1112/reso/releases/latest/download/Reso.dmg"
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex px-8 py-4 bg-orange-500 text-white rounded-full font-bold text-lg hover:bg-orange-600 transition-all shadow-xl hover:shadow-2xl hover:-translate-y-0.5 items-center gap-2 cursor-pointer"
@@ -968,7 +968,7 @@ const ResoLanding = () => {
              </button>
 
             <a
-              href="https://github.com/yg1112/reso_dzgapp_website/releases/latest/download/Reso.dmg"
+              href="https://github.com/yg1112/reso/releases/latest/download/Reso.dmg"
               target="_blank"
               rel="noopener noreferrer"
               aria-label="Start 7-day free trial"
