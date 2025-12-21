@@ -422,12 +422,38 @@ const ResoLanding = () => {
         'value': 1
       });
     }
-    const link = document.createElement('a');
-    link.href = '/Reso.dmg';
-    link.download = 'Reso.dmg';
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
+    (async () => {
+      const GITHUB_OWNER = 'YOUR_GITHUB_USERNAME'; // <- 替换为你的 GitHub 用户名
+      const GITHUB_REPO = 'YOUR_REPO_NAME'; // <- 替换为你的仓库名
+
+      let cachedDmg = null;
+      async function fetchLatestDmgUrl() {
+        if (cachedDmg) return cachedDmg;
+        try {
+          const res = await fetch(`https://api.github.com/repos/${GITHUB_OWNER}/${GITHUB_REPO}/releases/latest`);
+          if (res.ok) {
+            const data = await res.json();
+            const asset = (data.assets || []).find(a => a.name && a.name.endsWith('.dmg'));
+            if (asset && asset.browser_download_url) {
+              cachedDmg = asset.browser_download_url;
+              return cachedDmg;
+            }
+          }
+        } catch (err) {
+          console.warn('fetchLatestDmgUrl failed', err);
+        }
+        return `https://github.com/${GITHUB_OWNER}/${GITHUB_REPO}/releases/latest/download/Reso.dmg`;
+      }
+
+      const url = await fetchLatestDmgUrl();
+      const link = document.createElement('a');
+      link.href = url;
+      link.rel = 'nofollow';
+      link.download = 'Reso.dmg';
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+    })();
   };
 
   const handleBuy = () => {
@@ -492,7 +518,15 @@ const ResoLanding = () => {
             <a href="#features" className="hover:text-gray-900 transition-colors">Features</a>
             <a href="#faq" className="hover:text-gray-900 transition-colors">FAQ</a>
             <a href="#pricing" className="hover:text-gray-900 transition-colors">Pricing</a>
-            <a id="navPrimaryCta" onClick={handleDownload} className="px-4 py-2 rounded-full bg-transparent text-gray-600 hover:text-gray-900 transition-colors cursor-pointer">Start Free Trial</a>
+            <a
+              id="navPrimaryCta"
+              href="https://github.com/yg1112/reso_dzgapp_website/releases/latest/download/Reso.dmg"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="px-4 py-2 rounded-full bg-transparent text-gray-600 hover:text-gray-900 transition-colors cursor-pointer"
+            >
+              Start Free Trial
+            </a>
           </div>
         </div>
       </nav>
@@ -512,8 +546,10 @@ const ResoLanding = () => {
           </p>
           
           <div className="flex flex-col items-center gap-6">
-            <a 
-              onClick={handleDownload}
+            <a
+              href="https://github.com/yg1112/reso_dzgapp_website/releases/latest/download/Reso.dmg"
+              target="_blank"
+              rel="noopener noreferrer"
               className="inline-flex px-8 py-4 bg-orange-500 text-white rounded-full font-bold text-lg hover:bg-orange-600 transition-all shadow-xl hover:shadow-2xl hover:-translate-y-0.5 items-center gap-2 cursor-pointer"
             >
               Start Free Trial
@@ -931,13 +967,15 @@ const ResoLanding = () => {
                <span>Buy License</span>
              </button>
 
-             <button
-               onClick={handleDownload}
-               aria-label="Start 7-day free trial"
-               className="w-full py-3 px-5 bg-white border border-gray-200 text-gray-700 rounded-2xl font-medium hover:bg-orange-50 hover:text-orange-600 transition-colors"
-             >
-               Or start a 7-day free trial
-             </button>
+            <a
+              href="https://github.com/yg1112/reso_dzgapp_website/releases/latest/download/Reso.dmg"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Start 7-day free trial"
+              className="w-full inline-flex items-center justify-center py-3 px-5 bg-white border border-gray-200 text-gray-700 rounded-2xl font-medium hover:bg-orange-50 hover:text-orange-600 transition-colors"
+            >
+              Or start a 7-day free trial
+            </a>
            </div>
            <p className="text-xs text-gray-400 mt-4 flex items-center justify-center gap-2">
              <Check size={12}/> 30-day money-back guarantee • Secure payment

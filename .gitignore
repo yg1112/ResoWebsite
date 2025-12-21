@@ -1,0 +1,3 @@
+### Ignore build artifacts and binary releases
+*.dmg
+*.dmg
