@@ -438,6 +438,11 @@ const ResoLanding = () => {
     document.body.removeChild(link);
   };
 
+  const handleBuy = () => {
+    // Opens LemonSqueezy checkout
+    window.open('https://reso.lemonsqueezy.com/checkout', '_blank');
+  };
+
   const handleSubscribe = async (e) => {
     e.preventDefault();
     if (!email) return;
@@ -846,11 +851,11 @@ const ResoLanding = () => {
              <div className="space-y-8">
                 <div>
                    <h4 className="font-bold text-gray-900 mb-2 flex items-center gap-2"><HelpCircle size={16} className="text-orange-500"/> Can I use it on multiple Macs?</h4>
-                   <p className="text-gray-600 text-sm leading-relaxed">Yes! Your license allows you to activate Reso on up to 3 personal devices.</p>
+                   <p className="text-gray-600 text-sm leading-relaxed">Yes! Your license allows you to activate Reso on up to 2 personal devices.</p>
                 </div>
                 <div>
                    <h4 className="font-bold text-gray-900 mb-2 flex items-center gap-2"><HelpCircle size={16} className="text-orange-500"/> Is this a subscription?</h4>
-                   <p className="text-gray-600 text-sm leading-relaxed">No. It's a one-time payment for a lifetime license. You own it forever.</p>
+                     <p className="text-gray-600 text-sm leading-relaxed">No, it is not a subscription. You pay once and own the app forever. The license includes 1 year of free updates. After 1 year, you can choose to renew your license to get the latest features, or keep using your last valid version indefinitely without paying anything extra.</p>
                 </div>
              </div>
              <div className="space-y-8">
@@ -862,6 +867,10 @@ const ResoLanding = () => {
                    <h4 className="font-bold text-gray-900 mb-2 flex items-center gap-2"><HelpCircle size={16} className="text-orange-500"/> What is the refund policy?</h4>
                    <p className="text-gray-600 text-sm leading-relaxed">We offer a 30-day money-back guarantee. If you're not happy, just email us.</p>
                 </div>
+                <div>
+                   <h4 className="font-bold text-gray-900 mb-2 flex items-center gap-2"><HelpCircle size={16} className="text-orange-500"/> What happens after 1 year?</h4>
+                   <p className="text-gray-600 text-sm leading-relaxed">The app will continue to work. You just won't receive new feature updates until you renew your license. Renewal is completely optional and will only be required if you want access to future features.</p>
+                 </div>
              </div>
           </div>
         </div>
@@ -873,22 +882,39 @@ const ResoLanding = () => {
            <div className="inline-block p-3 rounded-2xl bg-orange-50 mb-6 text-orange-500 shadow-sm">
              <Infinity size={32} />
            </div>
-           <h2 className="text-3xl font-bold text-gray-900 mb-2">Lifetime License</h2>
+           <h2 className="text-3xl font-bold text-gray-900 mb-2">Perpetual License</h2>
            <div className="flex items-baseline justify-center gap-1 my-6">
              <span className="text-5xl font-bold text-gray-900 tracking-tight">$29.99</span>
-             <span className="text-gray-500 font-medium text-xl">/ once</span>
+             <span className="text-gray-500 font-medium text-xl">/ seat</span>
            </div>
-           <ul className="text-left space-y-3 mb-8 text-gray-500 text-sm max-w-xs mx-auto">
+           <ul className="text-left space-y-3 mb-6 text-gray-500 text-sm max-w-xs mx-auto">
              <li className="flex gap-3"><Check size={16} className="text-orange-500" /> No monthly subscriptions</li>
              <li className="flex gap-3"><Check size={16} className="text-orange-500" /> Unlimited local transcription</li>
-             <li className="flex gap-3"><Check size={16} className="text-orange-500" /> Free updates for v1.x</li>
+             <li className="flex gap-3"><Check size={16} className="text-orange-500" /> Includes 1 year of updates</li>
+             <li className="flex gap-3"><Check size={16} className="text-orange-500" /> Keep your version forever</li>
+             <li className="flex gap-3 text-gray-400"><Check size={16} className="text-orange-200" /> Optional renewal at discounted price</li>
            </ul>
-           <a 
-              onClick={handleDownload}
-              className="block w-full py-4 bg-[#F97316] text-white rounded-xl font-bold hover:bg-[#ea580c] transition-colors shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 cursor-pointer"
-           >
-             Start Free Trial
-           </a>
+
+           <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-3">
+             <button
+               onClick={handleBuy}
+               aria-label="Buy Reso License"
+               className="w-full inline-flex items-center justify-center gap-3 py-3 px-5 bg-gradient-to-r from-orange-500 to-orange-600 text-white rounded-2xl font-semibold shadow-2xl hover:from-orange-600 hover:to-orange-700 transition-all transform hover:-translate-y-0.5"
+             >
+               <CreditCard size={16} />
+               <span>Buy License</span>
+             </button>
+
+             <button
+               onClick={handleDownload}
+               aria-label="Start 7-day free trial"
+               className="w-full py-3 px-5 bg-white border border-gray-200 text-gray-700 rounded-2xl font-medium hover:bg-orange-50 hover:text-orange-600 transition-colors"
+             >
+               Or start a 7-day free trial
+             </button>
+           </div>
+
+           <p className="text-xs text-gray-400 mt-2">One-time payment. Includes 1 year of updates — keep your version forever.</p>
            <p className="text-xs text-gray-400 mt-6 flex items-center justify-center gap-1">
               <Check size={12}/> 30-day money-back guarantee.
            </p>
