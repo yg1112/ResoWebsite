@@ -1,0 +1,78 @@
+import React from 'react';
+
+const ToolLogos = () => (
+  <div className="flex gap-6 sm:gap-10 items-center justify-center">
+    {/* Cursor */}
+    <div className="tool-icon">
+      <img 
+        src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons@latest/icons/cursor.svg" 
+        alt="Cursor" 
+        width="36" 
+        height="36"
+        style={{ filter: 'invert(0)' }}
+      />
+    </div>
+    {/* Linear */}
+    <div className="tool-icon">
+      <img 
+        src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons@latest/icons/linear.svg" 
+        alt="Linear" 
+        width="36" 
+        height="36"
+      />
+    </div>
+    {/* Slack */}
+    <div className="tool-icon">
+      <img 
+        src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons@latest/icons/slack.svg" 
+        alt="Slack" 
+        width="36" 
+        height="36"
+      />
+    </div>
+    {/* Discord */}
+    <div className="tool-icon">
+      <img 
+        src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons@latest/icons/discord.svg" 
+        alt="Discord" 
+        width="36" 
+        height="36"
+      />
+    </div>
+    {/* Notion */}
+    <div className="tool-icon">
+      <img 
+        src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons@latest/icons/notion.svg" 
+        alt="Notion" 
+        width="36" 
+        height="36"
+      />
+    </div>
+    {/* GitHub */}
+    <div className="tool-icon">
+      <img 
+        src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons@latest/icons/github.svg" 
+        alt="GitHub" 
+        width="36" 
+        height="36"
+      />
+    </div>
+
+    <style>{`
+      .tool-icon {
+        opacity: 0.4;
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        cursor: pointer;
+      }
+      .tool-icon:hover {
+        opacity: 1;
+        transform: translateY(-2px);
+      }
+      .tool-icon img {
+        display: block;
+      }
+    `}</style>
+  </div>
+);
+
+export default ToolLogos;
