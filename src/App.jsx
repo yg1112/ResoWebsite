@@ -557,13 +557,13 @@ const ResoLanding = () => {
             
             {/* 1. APP LAYER (Focused View) */}
             <div className="absolute inset-0 z-0 flex flex-col">
-               {/* Fake macOS Menu Bar (top of container) */}
-               <div className="absolute top-0 left-0 right-0 h-8 backdrop-blur-md bg-black/20 flex items-center px-4">
+               {/* Fake macOS Menu Bar (top of container) - subtle status bar with small monochrome icon on right */}
+               <div className="absolute top-0 left-0 right-0 h-7 backdrop-blur-md bg-black/20 flex items-center px-4">
                  <div className="flex-1" />
-                 <div className={"ml-auto flex items-center gap-2 pr-2 transition-all " + (flowState === 1 ? 'text-white animate-pulse' : 'text-white/70')}>
+                 <div className={"ml-auto flex items-center gap-2 pr-2 transition-colors " + (flowState === 1 ? 'text-white animate-pulse' : 'text-white/70')} aria-hidden>
                    {/* Monochrome Reso status icon (native-style) */}
-                   <div className="w-5 h-5 flex items-center justify-center">
-                     <svg width="14" height="14" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                   <div className="w-4 h-4 flex items-center justify-center">
+                     <svg width="12" height="12" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                        <path d="M12 5v14" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
                        <path d="M5 12h14" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
                      </svg>
@@ -576,11 +576,11 @@ const ResoLanding = () => {
                   <CurrentScenario content={flowState >= 4 ? scenariosData[activeScenario].content : null} />
                </div>
 
-               {/* System HUD (outside main window) - bottom-right of container */}
-               <div className={`absolute bottom-4 right-4 transition-opacity duration-300 ${flowState >= 2 ? 'opacity-100' : 'opacity-0 pointer-events-none'}`}>
-                 <div className="bg-black/80 border border-white/10 px-3 py-1 rounded font-mono text-[10px] text-white uppercase flex items-center gap-2">
+               {/* System HUD (outside main window) - placed slightly outside bottom-right so it's clearly not window content */}
+               <div className={`absolute -bottom-4 right-4 transition-opacity duration-300 ${flowState >= 2 ? 'opacity-100' : 'opacity-0 pointer-events-none'}`}>
+                 <div className="bg-black/80 border border-white/10 px-2 py-1 rounded font-mono text-[10px] text-white uppercase flex items-center gap-2 shadow-sm">
                    <span className={`${flowState >= 2 ? 'w-2 h-2 rounded-full bg-green-400 animate-pulse inline-block' : 'w-2 h-2 rounded-full bg-gray-600 inline-block'}`}></span>
-                   <span>NEURAL ENGINE: ACTIVE</span>
+                   <span className="hidden sm:inline">NEURAL ENGINE: ACTIVE</span>
                  </div>
                </div>
             </div>
