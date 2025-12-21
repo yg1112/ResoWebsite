@@ -125,7 +125,7 @@ const DarkMechanicalKey = ({ label, active }) => (
   </div>
 );
 
-// 4. Tool Logos - Using external CDN images for reliability
+// 4. Tool Logos
 const ToolLogos = () => (
   <div className="flex gap-6 sm:gap-10 items-center justify-center">
     {/* Cursor */}
@@ -186,7 +186,7 @@ const ToolLogos = () => (
   </div>
 );
 
-// --- Abstracted App Scenarios (Cleaner, Focused) ---
+// --- Abstracted App Scenarios ---
 
 const AbstractHeader = ({ icon: Icon, title, color }) => (
   <div className="flex items-center gap-3 mb-6 opacity-80">
@@ -194,6 +194,13 @@ const AbstractHeader = ({ icon: Icon, title, color }) => (
       <Icon size={16} />
     </div>
     <span className="text-sm font-medium text-gray-400 tracking-wide">{title}</span>
+  </div>
+);
+
+// 文字出现的淡入上浮动画
+const ContentFadeIn = ({ children }) => (
+  <div className="animate-in fade-in slide-in-from-bottom-2 duration-500 fill-mode-forwards">
+    {children}
   </div>
 );
 
@@ -213,7 +220,7 @@ const Scenarios = {
         <div className="relative">
            <div className="w-full bg-[#1A1D21] border border-gray-700 rounded-xl p-5 min-h-[100px] shadow-2xl relative overflow-hidden group">
               <div className="text-base text-gray-200 leading-relaxed font-light">
-                 {content}
+                 {content ? <ContentFadeIn>{content}</ContentFadeIn> : null}
               </div>
               <div className="absolute bottom-4 right-4 text-gray-500">
                 <Send size={16} />
@@ -239,7 +246,7 @@ const Scenarios = {
         <div className="relative">
            <div className="w-full bg-[#0d1117] border border-gray-700 rounded-lg p-4 min-h-[100px] shadow-2xl">
               <div className="text-base text-gray-300 leading-relaxed font-sans">
-                 {content}
+                 {content ? <ContentFadeIn>{content}</ContentFadeIn> : null}
               </div>
            </div>
            {/* Focus Glow */}
@@ -260,7 +267,7 @@ const Scenarios = {
         <div className="relative">
            <div className="w-full bg-[#1e1e1e] border border-gray-700 rounded-full px-5 py-3 min-h-[50px] shadow-2xl flex items-center">
               <div className="flex-1 text-base text-white">
-                 {content}
+                 {content ? <ContentFadeIn>{content}</ContentFadeIn> : null}
               </div>
               <div className="bg-blue-600 rounded-full p-1.5 ml-3">
                  <ArrowUp size={14} className="text-white" />
@@ -280,7 +287,7 @@ const Scenarios = {
          </div>
          <div className="p-6 min-h-[160px]">
             <div className="text-base text-gray-200 leading-relaxed font-sans">
-               {content}
+               {content ? <ContentFadeIn>{content}</ContentFadeIn> : null}
             </div>
          </div>
          {/* Focus Glow */}
@@ -342,32 +349,14 @@ const scenariosData = [
   }
 ];
 
-// Data Card (Bento Style)
-const DataCard = ({ label, value, sub, icon: Icon }) => (
-  <div className="bg-white border border-gray-200 rounded-2xl p-6 flex flex-col justify-between hover:border-orange-500/20 transition-colors group h-full shadow-lg">
-    <div className="flex justify-between items-start mb-4">
-      <div className="p-2.5 bg-gray-50 rounded-xl text-gray-500 group-hover:text-orange-400 group-hover:bg-orange-50 transition-colors">
-        <Icon size={20} />
-      </div>
-    </div>
-    <div>
-      <div className="text-2xl font-bold text-gray-900 mb-2 tracking-tight">{value}</div>
-      <div className="text-sm font-semibold text-gray-700 mb-1">{label}</div>
-      <div className="text-xs text-gray-500 leading-relaxed">{sub}</div>
-    </div>
-  </div>
-);
-
 const ResoLanding = () => {
   const [isScrolled, setIsScrolled] = useState(false);
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [activeScenario, setActiveScenario] = useState(0);
   
   // Animation States: 0:Idle, 1:Trigger, 2:Listening, 3:Processing, 4:Output
   const [flowState, setFlowState] = useState(0); 
-  const [activeScenario, setActiveScenario] = useState(0);
   const [keyActive, setKeyActive] = useState(false);
 
-  // Newsletter form state
   const [email, setEmail] = useState('');
   const [subscribed, setSubscribed] = useState(false);
 
@@ -379,10 +368,10 @@ const ResoLanding = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  // Main Loop
+  // Main Loop - Refined Timings
   useEffect(() => {
-    let timeout;
     let isMounted = true;
+    const wait = (ms) => new Promise(resolve => setTimeout(resolve, ms));
 
     const runSequence = async () => {
       if (!isMounted) return;
@@ -390,38 +379,41 @@ const ResoLanding = () => {
       setFlowState(0);
       await wait(1000);
       if (!isMounted) return;
-      // 1. TRIGGER
+      
+      // 1. TRIGGER (Double Tap)
+      // 稍微放慢按键间隔 (120ms -> 150ms)，让双击更扎实
       setFlowState(1); 
-      setKeyActive(true); await wait(120); if (!isMounted) return;
-      setKeyActive(false); await wait(120); if (!isMounted) return;
-      setKeyActive(true); await wait(120); if (!isMounted) return;
+      setKeyActive(true); await wait(150);
+      setKeyActive(false); await wait(150);
+      setKeyActive(true); await wait(150);
       setKeyActive(false);
       await wait(400);
       if (!isMounted) return;
+      
       // 2. LISTENING
       setFlowState(2);
-      await wait(1800); 
+      await wait(1500);
       if (!isMounted) return;
+      
       // 3. PROCESSING
+      // 延长处理展示时间 (600ms -> 1200ms)，让用户看清 Offline 字样
       setFlowState(3);
-      await wait(800); 
+      await wait(1200);
       if (!isMounted) return;
+      
       // 4. OUTPUT
       setFlowState(4);
-      await wait(4000); 
+      await wait(2500);
       if (!isMounted) return;
 
       setActiveScenario(prev => (prev + 1) % scenariosData.length);
       runSequence();
     };
+    
     runSequence();
-    return () => {
-        isMounted = false;
-        clearTimeout(timeout);
-    }
+    return () => { isMounted = false; }
   }, []);
 
-  const wait = (ms) => new Promise(resolve => setTimeout(resolve, ms));
   const handleDownload = () => {
     if (typeof window.gtag === 'function') {
       window.gtag('event', 'download', {
@@ -439,11 +431,9 @@ const ResoLanding = () => {
   };
 
   const handleBuy = () => {
-    // Opens LemonSqueezy checkout
     window.open('https://reso.lemonsqueezy.com/checkout', '_blank');
   };
 
-  // Contextual CTA: when pricing is visible, switch navbar CTA to Buy
   useEffect(() => {
     const navBtn = document.getElementById('navPrimaryCta');
     const pricingSection = document.getElementById('pricing');
@@ -472,28 +462,16 @@ const ResoLanding = () => {
   const handleSubscribe = async (e) => {
     e.preventDefault();
     if (!email) return;
-
     const formBody = `email=${encodeURIComponent(email)}&userGroup=Newsletter`;
-
     try {
       const response = await fetch("https://app.loops.so/api/newsletter-form/cmjdjf56l00dd0izhwc34oz2l", {
         method: "POST",
         body: formBody,
-        headers: {
-          "Content-Type": "application/x-www-form-urlencoded",
-        },
+        headers: { "Content-Type": "application/x-www-form-urlencoded" },
       });
-      
-      if (response.ok) {
-        setSubscribed(true);
-        setEmail('');
-      } else {
-        alert("Something went wrong. Please try again.");
-      }
-    } catch (error) {
-      console.error("Error:", error);
-      alert("Something went wrong. Please try again.");
-    }
+      if (response.ok) { setSubscribed(true); setEmail(''); } 
+      else { alert("Something went wrong. Please try again."); }
+    } catch (error) { console.error("Error:", error); alert("Something went wrong. Please try again."); }
   };
 
   const CurrentScenario = scenariosData[activeScenario].component;
@@ -505,7 +483,6 @@ const ResoLanding = () => {
       <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${isScrolled ? 'bg-white/90 backdrop-blur-md border-b border-gray-200' : 'bg-transparent'}`}>
         <div className="max-w-6xl mx-auto px-6 h-20 flex items-center justify-between">
           <div className="flex items-center gap-3 font-bold text-xl tracking-tight">
-            {/* Real App Icon - Navbar */}
             <div className="w-9 h-9">
               <AppIcon className="w-full h-full rounded-[10px] shadow-sm" />
             </div>
@@ -552,45 +529,76 @@ const ResoLanding = () => {
       <section className="px-4 pb-32 relative z-10 bg-white">
         <div className="max-w-4xl mx-auto">
           
-          {/* THE STAGE - DARK MODE WINDOW ON LIGHT BACKGROUND */}
+          {/* THE STAGE */}
           <div className="relative w-full aspect-[16/10] bg-[#1C1C1E] rounded-3xl border border-gray-700/50 shadow-2xl shadow-black/30 overflow-hidden">
             
-            {/* 1. APP LAYER (Focused View) */}
+            {/* 1. APP LAYER */}
             <div className="absolute inset-0 z-0 flex flex-col">
-               {/* Fake macOS Menu Bar (top of container) - subtle status bar with small monochrome icon on right */}
-               <div className="absolute top-0 left-0 right-0 h-7 backdrop-blur-md bg-black/20 flex items-center px-4">
-                 <div className="flex-1" />
-                 <div className={"ml-auto flex items-center gap-2 pr-2 transition-colors " + (flowState === 1 ? 'text-white animate-pulse' : 'text-white/70')} aria-hidden>
-                   {/* Monochrome Reso status icon (native-style) */}
-                   <div className="w-4 h-4 flex items-center justify-center">
-                     <svg width="12" height="12" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                       <path d="M12 5v14" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-                       <path d="M5 12h14" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-                     </svg>
+               {/* [Native Cue] Fake macOS Menu Bar */}
+               <div className="absolute top-0 left-0 right-0 h-7 backdrop-blur-md bg-black/20 flex items-center px-4 justify-between select-none z-20">
+                 {/* Left: Fake Apple Logo & Menu */}
+                 <div className="flex items-center gap-4 text-white/50 text-xs font-medium">
+                    <span className="hover:text-white transition-colors cursor-default"></span>
+                    <span className="font-bold text-white/90 cursor-default">Reso</span>
+                    <span className="hidden sm:inline cursor-default">File</span>
+                    <span className="hidden sm:inline cursor-default">Edit</span>
+                    <span className="hidden sm:inline cursor-default">View</span>
+                 </div>
+
+                 {/* Right: Status Icons */}
+                 <div className="flex items-center gap-3 text-white/60 cursor-default">
+                   {/* Reso Menu Bar Icon (Active State Animation) */}
+                   <div className={`transition-all duration-200 ${flowState >= 1 && flowState <= 3 ? 'text-white scale-110 drop-shadow-[0_0_8px_rgba(255,255,255,0.5)]' : 'text-white/40'}`}>
+                      <AppIcon className="w-3.5 h-3.5 rounded-[2px]" />
                    </div>
+                   <div className="w-px h-3 bg-white/10 mx-1"></div>
+                   <Search size={12} strokeWidth={2.5} />
+                   <div className="flex items-center gap-1">
+                      <span className="text-[10px] font-medium">100%</span>
+                   </div>
+                   <span className="text-[10px] font-medium">Mon 9:41 AM</span>
                  </div>
                </div>
 
-               {/* Scenario Content (Dark Mode) - main window stays clean */}
-               <div className="flex-1 relative bg-[#1C1C1E] pt-2">
-                  <CurrentScenario content={flowState >= 4 ? scenariosData[activeScenario].content : null} />
+               {/* Scenario Content */}
+               <div className="flex-1 relative bg-[#1C1C1E] pt-8">
+                  {/* 使用 key 强制 React 在 activeScenario 变化时重新挂载组件，触发 fade-in 动画 */}
+                  <CurrentScenario 
+                    key={activeScenario}
+                    content={flowState >= 4 ? scenariosData[activeScenario].content : null} 
+                  />
                </div>
 
-               {/* System HUD (outside main window) - placed slightly outside bottom-right so it's clearly not window content */}
-               <div className={`absolute -bottom-4 right-4 transition-opacity duration-300 ${flowState >= 2 ? 'opacity-100' : 'opacity-0 pointer-events-none'}`}>
-                 <div className="bg-black/80 border border-white/10 px-2 py-1 rounded font-mono text-[10px] text-white uppercase flex items-center gap-2 shadow-sm">
-                   <span className={`${flowState >= 2 ? 'w-2 h-2 rounded-full bg-green-400 animate-pulse inline-block' : 'w-2 h-2 rounded-full bg-gray-600 inline-block'}`}></span>
-                   <span className="hidden sm:inline">NEURAL ENGINE: ACTIVE</span>
+               {/* [Local Cue] Smart HUD - 精简版 */}
+               <div className={`absolute bottom-5 right-5 transition-all duration-500 transform ${flowState >= 1 ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-2'}`}>
+                 <div className="flex flex-col items-end gap-1.5">
+                   
+                   {/* State A: Processing (Offline Mode Showcase) - 极简文案 */}
+                   {flowState === 3 ? (
+                      <div className="flex items-center gap-2 px-3 py-1.5 rounded-full bg-orange-500/10 border border-orange-500/20 shadow-lg backdrop-blur-sm animate-in fade-in slide-in-from-bottom-1">
+                        <WifiOff size={12} className="text-orange-400" />
+                        <span className="text-[10px] font-bold text-orange-400 tracking-widest uppercase font-mono">
+                          OFFLINE
+                        </span>
+                      </div>
+                   ) : (
+                   /* State B: Ready (Native Integration Showcase) */
+                      <div className="flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/5 border border-white/10 shadow-lg backdrop-blur-sm">
+                        <div className={`w-1.5 h-1.5 rounded-full ${flowState === 2 ? 'bg-green-500 animate-pulse' : 'bg-gray-500'}`}></div>
+                        <span className="text-[9px] font-bold text-gray-400 tracking-widest uppercase font-mono">
+                          NEURAL ENGINE
+                        </span>
+                      </div>
+                   )}
                  </div>
                </div>
             </div>
 
-            {/* 2. TRIGGER OVERLAY (Centered) */}
+            {/* 2. TRIGGER OVERLAY - 还原旧版 x2 样式 */}
             <div className={`absolute inset-0 flex items-center justify-center transition-all duration-300 z-50 pointer-events-none
                ${flowState === 1 ? 'opacity-100' : 'opacity-0 scale-95'}
             `}>
                <div className="flex flex-col items-center gap-6 p-12 rounded-3xl">
-                  {/* Dark Mode Key for Overlay */}
                   <DarkMechanicalKey label="⌥" active={keyActive} />
                   <div className="px-4 py-1.5 rounded-full bg-black/60 backdrop-blur-md border border-white/10 text-lg text-white font-medium shadow-xl">
                      × 2
@@ -598,25 +606,18 @@ const ResoLanding = () => {
                </div>
             </div>
 
-            {/* 3. RESO PILL (Floating Dynamic Island Style - Dark Mode) */}
+            {/* 3. RESO PILL */}
             <div className={`absolute bottom-16 left-1/2 transform -translate-x-1/2 transition-all duration-500 z-40
                ${(flowState === 2 || flowState === 3) ? 'translate-y-0 opacity-100 scale-100' : 'translate-y-12 opacity-0 scale-95'}
             `}>
-               {/* THE PILL */}
-               <div className="bg-[#151515]/90 backdrop-blur-xl border border-white/10 rounded-full h-14 min-w-[200px] shadow-2xl flex items-center px-2 ring-1 ring-white/5 relative overflow-hidden">
-                  
-                  {/* Internal Padding Container */}
+               <div className="bg-[#151515]/80 backdrop-blur-2xl border border-white/10 rounded-full h-14 min-w-[200px] shadow-2xl flex items-center px-2 ring-1 ring-white/5 relative overflow-hidden">
                   <div className="flex items-center gap-4 px-4 w-full justify-center">
-                    
-                    {/* STATE: LISTENING */}
                     {flowState === 2 && (
                       <>
                         <div className="relative flex items-center justify-center w-3 h-3">
                            <div className="absolute w-full h-full bg-orange-500/40 rounded-full animate-ping"></div>
                            <div className="relative w-2.5 h-2.5 bg-orange-500 rounded-full shadow-[0_0_8px_orange]"></div>
                         </div>
-                        
-                        {/* Audio Waveform */}
                         <div className="flex items-center gap-[3px] h-6">
                            {[...Array(12)].map((_, i) => (
                               <div 
@@ -625,7 +626,7 @@ const ResoLanding = () => {
                                  style={{ 
                                    animationDelay: `${i * 0.05}s`, 
                                    height: '100%',
-                                   backgroundColor: '#F97316', // Orange
+                                   backgroundColor: '#F97316',
                                    opacity: i % 2 === 0 ? 0.8 : 0.4
                                  }}
                               />
@@ -634,7 +635,6 @@ const ResoLanding = () => {
                       </>
                     )}
 
-                    {/* STATE: PROCESSING (Minimal Spinner) */}
                     {flowState === 3 && (
                       <div className="flex items-center gap-3">
                         <Loader2 className="w-5 h-5 text-orange-500 animate-spin" />
@@ -649,7 +649,7 @@ const ResoLanding = () => {
         </div>
       </section>
 
-      {/* --- HERO LOGOS (Trusted by) --- */}
+      {/* --- HERO LOGOS --- */}
       <section className="px-4 pb-8 relative z-10 bg-white">
         <div className="max-w-4xl mx-auto text-center">
           <span className="text-[10px] uppercase tracking-widest text-gray-400 font-semibold">Works seamlessly with</span>
@@ -659,11 +659,11 @@ const ResoLanding = () => {
         </div>
       </section>
 
-      {/* --- FEATURES SECTION (5 Pillars - Z Pattern) --- */}
+      {/* --- FEATURES SECTION --- */}
       <section id="features" className="py-24 px-6 bg-gray-50 border-t border-gray-100">
         <div className="max-w-5xl mx-auto space-y-24">
           
-           {/* Pillar 1: Deep Context (乔布斯式 · 极简有力) */}
+           {/* Pillar 1: Deep Context */}
            <div className="flex flex-col md:flex-row-reverse items-center gap-16">
              <div className="flex-1 space-y-6">
                <div className="inline-flex items-center gap-2 px-3 py-1 bg-blue-100 text-blue-700 rounded-full text-xs font-bold uppercase tracking-wider">
@@ -814,7 +814,7 @@ const ResoLanding = () => {
                       </div>
                    </div>
 
-                   {/* Data Particles (Bouncing back) */}
+                   {/* Data Particles */}
                    <div className="absolute top-10 right-10 w-2 h-2 bg-white/20 rounded-full blur-[1px]"></div>
                    <div className="absolute bottom-20 left-10 w-1.5 h-1.5 bg-white/10 rounded-full blur-[1px]"></div>
                 </div>
@@ -824,7 +824,7 @@ const ResoLanding = () => {
         </div>
       </section>
 
-      {/* --- STATS SECTION (Why Voice?) --- */}
+      {/* --- STATS SECTION --- */}
       <section id="stats" className="py-24 px-6 border-t border-gray-100 bg-white relative z-10">
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-16">
@@ -833,7 +833,6 @@ const ResoLanding = () => {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {/* Card 1 */}
             <div className="bg-white p-8 rounded-3xl border border-gray-200 shadow-sm hover:shadow-md transition-shadow">
                <div className="w-12 h-12 bg-orange-50 rounded-xl flex items-center justify-center text-orange-600 mb-6">
                   <Zap size={24} />
@@ -845,7 +844,6 @@ const ResoLanding = () => {
                </div>
             </div>
 
-            {/* Card 2 */}
             <div className="bg-white p-8 rounded-3xl border border-gray-200 shadow-sm hover:shadow-md transition-shadow">
                <div className="w-12 h-12 bg-blue-50 rounded-xl flex items-center justify-center text-blue-600 mb-6">
                   <Workflow size={24} />
@@ -857,7 +855,6 @@ const ResoLanding = () => {
                </div>
             </div>
 
-            {/* Card 3 */}
             <div className="bg-white p-8 rounded-3xl border border-gray-200 shadow-sm hover:shadow-md transition-shadow">
                <div className="w-12 h-12 bg-green-50 rounded-xl flex items-center justify-center text-green-600 mb-6">
                   <Hand size={24} />
@@ -886,7 +883,7 @@ const ResoLanding = () => {
                 </div>
                 <div>
                    <h4 className="font-bold text-gray-900 mb-2 flex items-center gap-2"><HelpCircle size={16} className="text-orange-500"/> Is this a subscription?</h4>
-                     <p className="text-gray-600 text-sm leading-relaxed">No, it is not a subscription. You pay once and own the app forever. The license includes 1 year of free updates. After 1 year, you can choose to renew your license to get the latest features, or keep using your last valid version indefinitely without paying anything extra.</p>
+                     <p className="text-gray-600 text-sm leading-relaxed">No, it is not a subscription. You pay once and own the app forever. The license includes 1 year of free updates.</p>
                 </div>
              </div>
              <div className="space-y-8">
@@ -900,7 +897,7 @@ const ResoLanding = () => {
                 </div>
                 <div>
                    <h4 className="font-bold text-gray-900 mb-2 flex items-center gap-2"><HelpCircle size={16} className="text-orange-500"/> What happens after 1 year?</h4>
-                   <p className="text-gray-600 text-sm leading-relaxed">The app will continue to work. You just won't receive new feature updates until you renew your license. Renewal is completely optional and will only be required if you want access to future features.</p>
+                   <p className="text-gray-600 text-sm leading-relaxed">The app will continue to work. You just won't receive new feature updates until you renew your license.</p>
                  </div>
              </div>
           </div>
@@ -948,7 +945,7 @@ const ResoLanding = () => {
         </div>
       </section>
 
-      {/* --- NEWSLETTER SECTION (Pre-footer) --- */}
+      {/* --- NEWSLETTER SECTION --- */}
       <section className="py-24 px-6 bg-white border-t border-gray-100 relative z-10">
         <div className="max-w-2xl mx-auto text-center">
           <h2 className="text-xl font-bold text-gray-900 mb-4">Be the first to know</h2>
@@ -956,7 +953,6 @@ const ResoLanding = () => {
             Get the latest apps and deals. We hate spam as much as you do.
           </p>
 
-          {/* Success State */}
           {subscribed ? (
             <div className="flex flex-col items-center justify-center p-6 bg-green-50 rounded-2xl border border-green-100 animate-in fade-in zoom-in duration-300">
               <div className="w-12 h-12 bg-green-100 rounded-full flex items-center justify-center mb-3">
@@ -966,7 +962,6 @@ const ResoLanding = () => {
               <p className="text-gray-500">Thanks for subscribing.</p>
             </div>
           ) : (
-            /* Form State */
             <form onSubmit={handleSubscribe} className="flex flex-col sm:flex-row gap-3 justify-center max-w-md mx-auto">
               <input
                 type="email"
@@ -991,7 +986,6 @@ const ResoLanding = () => {
       <footer id="contact" className="py-12 px-6 border-t border-gray-200 bg-gray-50 text-xs text-gray-500 relative z-10">
         <div className="max-w-6xl mx-auto flex flex-col md:flex-row justify-between items-start gap-8">
           <div className="flex flex-col gap-6">
-            {/* Copyright */}
             <div className="flex items-center gap-3">
               <div className="w-5 h-5 opacity-40 grayscale hover:grayscale-0 transition-all">
                   <AppIcon className="w-full h-full rounded-[4px]" />
@@ -1023,13 +1017,6 @@ const ResoLanding = () => {
         }
         .animate-wave {
           animation: wave 0.8s ease-in-out infinite;
-        }
-        .animate-typewriter {
-          animation: typewriter 0.05s ease-out forwards;
-        }
-        @keyframes typewriter {
-          from { opacity: 0; }
-          to { opacity: 1; }
         }
         .tool-icon {
           opacity: 0.4;
