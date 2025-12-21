@@ -443,6 +443,32 @@ const ResoLanding = () => {
     window.open('https://reso.lemonsqueezy.com/checkout', '_blank');
   };
 
+  // Contextual CTA: when pricing is visible, switch navbar CTA to Buy
+  useEffect(() => {
+    const navBtn = document.getElementById('navPrimaryCta');
+    const pricingSection = document.getElementById('pricing');
+    if (!navBtn || !pricingSection) return;
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          navBtn.textContent = 'Buy License — $29.99';
+          navBtn.onclick = handleBuy;
+          navBtn.classList.add('bg-orange-500','text-white');
+          navBtn.classList.remove('bg-transparent','text-gray-600');
+        } else {
+          navBtn.textContent = 'Start Free Trial';
+          navBtn.onclick = handleDownload;
+          navBtn.classList.remove('bg-orange-500','text-white');
+          navBtn.classList.add('bg-transparent','text-gray-600');
+        }
+      });
+    }, { threshold: 0.2 });
+
+    observer.observe(pricingSection);
+    return () => observer.disconnect();
+  }, []);
+
   const handleSubscribe = async (e) => {
     e.preventDefault();
     if (!email) return;
@@ -487,15 +513,9 @@ const ResoLanding = () => {
           </div>
           <div className="hidden md:flex items-center gap-8 text-sm font-medium text-gray-600">
             <a href="#features" className="hover:text-gray-900 transition-colors">Features</a>
-            <a href="#stats" className="hover:text-gray-900 transition-colors">Benefits</a>
             <a href="#faq" className="hover:text-gray-900 transition-colors">FAQ</a>
             <a href="#pricing" className="hover:text-gray-900 transition-colors">Pricing</a>
-            <a 
-              onClick={handleDownload}
-              className="text-white bg-orange-500 hover:bg-orange-600 px-6 py-2 rounded-full transition-all shadow-md hover:shadow-lg transform hover:-translate-y-0.5 cursor-pointer"
-            >
-              Start Free Trial
-            </a>
+            <a id="navPrimaryCta" onClick={handleDownload} className="px-4 py-2 rounded-full bg-transparent text-gray-600 hover:text-gray-900 transition-colors cursor-pointer">Start Free Trial</a>
           </div>
         </div>
       </nav>
@@ -524,11 +544,6 @@ const ResoLanding = () => {
             </a>
             
             <p className="text-sm text-gray-500 font-mono -mt-3">7-day free trial. No credit card required.</p>
-
-            <div className="flex flex-col items-center gap-4 mt-8">
-              <span className="text-[10px] uppercase tracking-widest text-gray-400 font-semibold">WORKS SEAMLESSLY WITH YOUR FAVORITE TOOLS</span>
-              <ToolLogos />
-            </div>
           </div>
         </div>
       </section>
@@ -542,16 +557,31 @@ const ResoLanding = () => {
             
             {/* 1. APP LAYER (Focused View) */}
             <div className="absolute inset-0 z-0 flex flex-col">
-               {/* App Header Bar Simulation (Dark) */}
-               <div className="h-10 bg-[#2C2C2E] border-b border-white/5 flex items-center px-5 gap-2">
-                  <div className="w-3 h-3 rounded-full bg-red-400"></div>
-                  <div className="w-3 h-3 rounded-full bg-yellow-400"></div>
-                  <div className="w-3 h-3 rounded-full bg-green-400"></div>
+               {/* Fake macOS Menu Bar (top of container) */}
+               <div className="absolute top-0 left-0 right-0 h-8 backdrop-blur-md bg-black/20 flex items-center px-4">
+                 <div className="flex-1" />
+                 <div className={"ml-auto flex items-center gap-2 pr-2 transition-all " + (flowState === 1 ? 'text-white animate-pulse' : 'text-white/70')}>
+                   {/* Monochrome Reso status icon (native-style) */}
+                   <div className="w-5 h-5 flex items-center justify-center">
+                     <svg width="14" height="14" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                       <path d="M12 5v14" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                       <path d="M5 12h14" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                     </svg>
+                   </div>
+                 </div>
                </div>
-               
-               {/* Scenario Content (Dark Mode) */}
-               <div className="flex-1 relative bg-[#1C1C1E]">
+
+               {/* Scenario Content (Dark Mode) - main window stays clean */}
+               <div className="flex-1 relative bg-[#1C1C1E] pt-2">
                   <CurrentScenario content={flowState >= 4 ? scenariosData[activeScenario].content : null} />
+               </div>
+
+               {/* System HUD (outside main window) - bottom-right of container */}
+               <div className={`absolute bottom-4 right-4 transition-opacity duration-300 ${flowState >= 2 ? 'opacity-100' : 'opacity-0 pointer-events-none'}`}>
+                 <div className="bg-black/80 border border-white/10 px-3 py-1 rounded font-mono text-[10px] text-white uppercase flex items-center gap-2">
+                   <span className={`${flowState >= 2 ? 'w-2 h-2 rounded-full bg-green-400 animate-pulse inline-block' : 'w-2 h-2 rounded-full bg-gray-600 inline-block'}`}></span>
+                   <span>NEURAL ENGINE: ACTIVE</span>
+                 </div>
                </div>
             </div>
 
@@ -619,73 +649,74 @@ const ResoLanding = () => {
         </div>
       </section>
 
+      {/* --- HERO LOGOS (Trusted by) --- */}
+      <section className="px-4 pb-8 relative z-10 bg-white">
+        <div className="max-w-4xl mx-auto text-center">
+          <span className="text-[10px] uppercase tracking-widest text-gray-400 font-semibold">Works seamlessly with</span>
+          <div className="mt-4 flex items-center justify-center">
+            <ToolLogos />
+          </div>
+        </div>
+      </section>
+
       {/* --- FEATURES SECTION (5 Pillars - Z Pattern) --- */}
       <section id="features" className="py-24 px-6 bg-gray-50 border-t border-gray-100">
         <div className="max-w-5xl mx-auto space-y-24">
           
-          {/* Pillar 1: Instant Trigger */}
-          <div className="flex flex-col md:flex-row items-center gap-16">
+           {/* Pillar 1: Deep Context (乔布斯式 · 极简有力) */}
+           <div className="flex flex-col md:flex-row-reverse items-center gap-16">
+             <div className="flex-1 space-y-6">
+               <div className="inline-flex items-center gap-2 px-3 py-1 bg-blue-100 text-blue-700 rounded-full text-xs font-bold uppercase tracking-wider">
+                01. Deep Context
+               </div>
+                <h3 className="text-4xl font-bold text-gray-900 leading-tight">It doesn't just listen. It understands.</h3>
+                <p className="text-lg text-gray-500 leading-relaxed">Don't train the model—just steer it. Tell Reso "I'm coding in Swift" or "Q3 Report," and it instantly adapts to your jargon and syntax.</p>
+             </div>
+             <div className="flex-1 flex justify-center">
+               <div className="bg-gray-50 rounded-3xl p-6 border border-gray-200 shadow-inner w-full max-w-2xl flex flex-col gap-4 h-80 items-center justify-center relative overflow-hidden">
+                   <div className="grid grid-cols-2 gap-6 w-full">
+                     <div className="bg-red-50 rounded-xl border border-red-100 p-6 shadow-sm flex flex-col gap-3">
+                       <div className="text-[10px] uppercase font-bold text-red-400 tracking-wider mb-1">Others</div>
+                       <div className="flex flex-col gap-2">
+                         <span className="inline-block px-3 py-1 rounded-full bg-red-50 text-red-600 line-through font-mono text-sm">app dot tea sx</span>
+                         <span className="inline-block px-3 py-1 rounded-full bg-red-50 text-red-600 line-through font-mono text-sm">quarterly e bit da</span>
+                       </div>
+                     </div>
+                     <div className="bg-gradient-to-br from-green-50 to-white rounded-xl border-l-4 border-green-200 p-6 shadow-lg flex flex-col gap-3 items-start">
+                       <div className="flex items-center gap-2 text-[10px] font-bold text-green-600 tracking-wider mb-1"><CheckCircle2 size={14} className="text-green-600"/> <span>Reso</span></div>
+                       <div className="inline-block px-3 py-1 rounded-full bg-green-50 text-green-700 font-mono text-sm">App.tsx</div>
+                       <div className="inline-block px-3 py-1 rounded-full bg-green-50 text-green-700 font-mono text-sm">Quarterly EBITDA</div>
+                     </div>
+                   </div>
+               </div>
+             </div>
+           </div>
+
+           {/* Pillar 2: Instant Trigger */}
+           <div className="flex flex-col md:flex-row items-center gap-16">
              <div className="flex-1 space-y-6">
                 <div className="inline-flex items-center gap-2 px-3 py-1 bg-orange-100 text-orange-700 rounded-full text-xs font-bold uppercase tracking-wider">
-                  01. Trigger
+                  02. Instant Access
                 </div>
-                <h3 className="text-4xl font-bold text-gray-900 leading-tight">Invisible until needed.</h3>
-                <p className="text-lg text-gray-500 leading-relaxed">
-                   Double-tap <code className="bg-white border border-gray-200 px-1.5 rounded font-mono text-sm text-gray-800">Option</code> (⌥ ⌥) to summon Reso instantly. No dock icon cluttering your space.
-                </p>
+               <h3 className="text-4xl font-bold text-gray-900 leading-tight">Invisible until needed.</h3>
+               <p className="text-lg text-gray-500 leading-relaxed">
+                 Double-tap <code className="bg-white border border-gray-200 px-1.5 rounded font-mono text-sm text-gray-800">Option</code> (⌥ ⌥) to summon Reso instantly. No dock icon cluttering your space.
+               </p>
              </div>
              <div className="flex-1 flex justify-center">
-                <div className="bg-white rounded-3xl p-10 border border-gray-200 shadow-xl w-full max-w-sm flex items-center justify-center h-64">
-                   <MechanicalKey label="⌥" active={true} />
-                   <span className="mx-4 text-2xl text-gray-300">+</span>
-                   <MechanicalKey label="⌥" active={true} />
-                </div>
+               <div className="bg-white rounded-3xl p-10 border border-gray-200 shadow-xl w-full max-w-sm flex items-center justify-center h-64">
+                 <MechanicalKey label="⌥" active={true} />
+                 <span className="mx-4 text-2xl text-gray-300">+</span>
+                 <MechanicalKey label="⌥" active={true} />
+               </div>
              </div>
-          </div>
-
-          {/* Pillar 2: Context Intelligence */}
-          <div className="flex flex-col md:flex-row-reverse items-center gap-16">
-             <div className="flex-1 space-y-6">
-                <div className="inline-flex items-center gap-2 px-3 py-1 bg-blue-100 text-blue-700 rounded-full text-xs font-bold uppercase tracking-wider">
-                  02. Context Priming
-                </div>
-                <h3 className="text-4xl font-bold text-gray-900 leading-tight">Understands your jargon.</h3>
-                <p className="text-lg text-gray-500 leading-relaxed">
-                   Prime the model with your own vocabulary. Reso uses the context you provide to recognize unique variable names, project jargon, and ensures higher transcription accuracy.
-                </p>
-             </div>
-             <div className="flex-1 flex justify-center">
-                <div className="bg-gray-50 rounded-3xl p-8 border border-gray-200 shadow-inner w-full max-w-sm flex flex-col gap-6 h-80 items-center justify-center relative overflow-hidden">
-                   {/* Card 1: Without */}
-                   <div className="w-full bg-white rounded-xl border border-gray-200 p-4 shadow-sm opacity-60 flex flex-col gap-1.5 transform scale-95">
-                      <div className="text-[10px] uppercase font-bold text-gray-400 tracking-wider">Without Context</div>
-                      <div className="font-mono text-sm text-gray-500">Fix the race condition in auth.ts</div>
-                   </div>
-                   
-                   {/* Arrow Down */}
-                   <div className="text-gray-300">
-                      <ArrowRightIcon size={20} className="transform rotate-90" />
-                   </div>
-
-                   {/* Card 2: With Reso */}
-                   <div className="w-full bg-white rounded-xl border-l-4 border-blue-500 p-5 shadow-lg transform hover:scale-[1.02] transition-transform">
-                      <div className="flex justify-between items-center mb-2">
-                         <div className="text-[10px] uppercase font-bold text-blue-600 tracking-wider">With Reso</div>
-                         <CheckCircle2 size={14} className="text-blue-500" />
-                      </div>
-                      <div className="font-mono text-sm text-gray-900">
-                         Fix the <span className="bg-blue-50 text-blue-700 px-1 rounded font-semibold border border-blue-100">raceCondition</span> in <span className="bg-blue-50 text-blue-700 px-1 rounded font-semibold border border-blue-100">Auth.ts</span>
-                      </div>
-                   </div>
-                </div>
-             </div>
-          </div>
+           </div>
 
           {/* Pillar 3: The Magic Paste */}
-          <div className="flex flex-col md:flex-row items-center gap-16">
+          <div className="flex flex-col md:flex-row-reverse items-center gap-16">
              <div className="flex-1 space-y-6">
                 <div className="inline-flex items-center gap-2 px-3 py-1 bg-purple-100 text-purple-700 rounded-full text-xs font-bold uppercase tracking-wider">
-                  03. Workflow
+                  03. Direct Input
                 </div>
                 <h3 className="text-4xl font-bold text-gray-900 leading-tight">Direct Insertion.</h3>
                 <p className="text-lg text-gray-500 leading-relaxed">
@@ -703,7 +734,7 @@ const ResoLanding = () => {
           </div>
 
           {/* Pillar 4: Dual Engine Power */}
-          <div className="flex flex-col md:flex-row-reverse items-center gap-16">
+          <div className="flex flex-col md:flex-row items-center gap-16">
              <div className="flex-1 space-y-6">
                 <div className="inline-flex items-center gap-2 px-3 py-1 bg-yellow-100 text-yellow-700 rounded-full text-xs font-bold uppercase tracking-wider">
                   04. Performance
@@ -750,7 +781,7 @@ const ResoLanding = () => {
           </div>
 
           {/* Pillar 5: Local Privacy */}
-          <div className="flex flex-col md:flex-row items-center gap-16">
+          <div className="flex flex-col md:flex-row-reverse items-center gap-16">
              <div className="flex-1 space-y-6">
                 <div className="inline-flex items-center gap-2 px-3 py-1 bg-green-100 text-green-700 rounded-full text-xs font-bold uppercase tracking-wider">
                   05. Privacy
@@ -879,10 +910,8 @@ const ResoLanding = () => {
       {/* --- PRICING SECTION --- */}
       <section id="pricing" className="py-24 px-6 border-t border-gray-200 bg-gray-50 relative z-10 text-center">
         <div className="max-w-xl mx-auto bg-white border border-gray-200 rounded-3xl p-10 hover:border-orange-200 transition-all shadow-xl">
-           <div className="inline-block p-3 rounded-2xl bg-orange-50 mb-6 text-orange-500 shadow-sm">
-             <Infinity size={32} />
-           </div>
-           <h2 className="text-3xl font-bold text-gray-900 mb-2">Perpetual License</h2>
+           <h2 className="text-3xl font-bold text-gray-900 mb-4">Perpetual License</h2>
+           <p className="text-sm text-gray-500 mb-2">Buy it once. Use it for life. The way software used to be.</p>
            <div className="flex items-baseline justify-center gap-1 my-6">
              <span className="text-5xl font-bold text-gray-900 tracking-tight">$29.99</span>
              <span className="text-gray-500 font-medium text-xl">/ seat</span>
@@ -913,10 +942,8 @@ const ResoLanding = () => {
                Or start a 7-day free trial
              </button>
            </div>
-
-           <p className="text-xs text-gray-400 mt-2">One-time payment. Includes 1 year of updates — keep your version forever.</p>
-           <p className="text-xs text-gray-400 mt-6 flex items-center justify-center gap-1">
-              <Check size={12}/> 30-day money-back guarantee.
+           <p className="text-xs text-gray-400 mt-4 flex items-center justify-center gap-2">
+             <Check size={12}/> 30-day money-back guarantee • Secure payment
            </p>
         </div>
       </section>
