@@ -264,7 +264,7 @@ const Features = () => {
               </div>
               <div>
                 <h4 className="font-bold text-gray-900 mb-2 flex items-center gap-2"><HelpCircle size={16} className="text-orange-500"/> Is this a subscription?</h4>
-                <p className="text-gray-600 text-sm leading-relaxed">It's your choice. We offer a flexible Annual Plan ($29.99/year) for continuous updates, or a Lifetime License (currently $79.99 launch price) if you prefer to pay once and own it forever.</p>
+                <p className="text-gray-600 text-sm leading-relaxed">Yes, we offer an Annual Plan at $29.99/year. You get a 7-day free trial to explore all features, and you can cancel anytime with no questions asked.</p>
               </div>
             </div>
             <div className="space-y-8">

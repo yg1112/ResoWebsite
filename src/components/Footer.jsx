@@ -60,62 +60,36 @@ const Footer = () => {
       {/* PRICING SECTION */}
       <section id="pricing" className="py-24 px-6 border-t border-gray-200 bg-gray-50 relative z-10 text-center">
         <div className="max-w-5xl mx-auto">
-          <h2 className="text-4xl font-bold text-gray-900 mb-3">Choose Your Plan</h2>
-          <p className="text-gray-500 mb-12">Flexible pricing that fits your needs</p>
+          <h2 className="text-4xl font-bold text-gray-900 mb-3">Simple, Transparent Pricing</h2>
+          <p className="text-gray-500 mb-12">Start free, then pay only if you love it</p>
           
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto">
-            {/* Annual Plan - Recommended */}
-            <div className="bg-white border-2 border-orange-500 rounded-3xl p-8 hover:shadow-2xl transition-all relative">
-              <div className="absolute -top-3 left-1/2 -translate-x-1/2 bg-orange-500 text-white text-xs font-bold px-4 py-1 rounded-full">
-                RECOMMENDED
+          <div className="flex justify-center">
+            {/* Annual Plan */}
+            <div className="bg-white border-2 border-orange-500 rounded-3xl p-10 hover:shadow-2xl transition-all relative max-w-md w-full">
+              <div className="absolute -top-3 left-1/2 -translate-x-1/2 bg-gradient-to-r from-orange-500 to-orange-600 text-white text-xs font-bold px-4 py-1 rounded-full shadow-lg">
+                7-DAY FREE TRIAL
               </div>
               <h3 className="text-2xl font-bold text-gray-900 mb-2">Annual Plan</h3>
               <div className="flex items-baseline justify-center gap-1 my-6">
                 <span className="text-5xl font-bold text-gray-900 tracking-tight">$29.99</span>
                 <span className="text-gray-500 font-medium text-xl">/ year</span>
               </div>
-              <ul className="text-left space-y-3 mb-8 text-gray-600 text-sm">
-                <li className="flex gap-3"><Check size={16} className="text-orange-500 flex-shrink-0 mt-0.5" /> <span><strong>7-day free trial</strong></span></li>
-                <li className="flex gap-3"><Check size={16} className="text-orange-500 flex-shrink-0 mt-0.5" /> Full access to all features</li>
-                <li className="flex gap-3"><Check size={16} className="text-orange-500 flex-shrink-0 mt-0.5" /> Continuous updates & improvements</li>
-                <li className="flex gap-3"><Check size={16} className="text-orange-500 flex-shrink-0 mt-0.5" /> Cancel anytime</li>
+              <p className="text-sm text-gray-500 mb-6">Less than $2.50/month</p>
+              <ul className="text-left space-y-4 mb-8 text-gray-600">
+                <li className="flex gap-3"><Check size={18} className="text-orange-500 flex-shrink-0 mt-0.5" /> <span><strong>Full access</strong> to all features</span></li>
+                <li className="flex gap-3"><Check size={18} className="text-orange-500 flex-shrink-0 mt-0.5" /> <span><strong>Continuous updates</strong> & improvements</span></li>
+                <li className="flex gap-3"><Check size={18} className="text-orange-500 flex-shrink-0 mt-0.5" /> <span><strong>Priority support</strong> via email</span></li>
+                <li className="flex gap-3"><Check size={18} className="text-orange-500 flex-shrink-0 mt-0.5" /> <span><strong>Cancel anytime</strong> — no questions asked</span></li>
               </ul>
               <div className="flex justify-center">
                 <DownloadButton 
                   variant="primary"
-                  className="w-full justify-center"
+                  className="w-full justify-center text-lg py-4"
                 >
                   Start Free Trial
                 </DownloadButton>
               </div>
-            </div>
-
-            {/* Lifetime Plan */}
-            <div className="bg-white border border-gray-200 rounded-3xl p-8 hover:border-orange-200 hover:shadow-xl transition-all relative">
-              <div className="absolute -top-3 left-1/2 -translate-x-1/2 bg-gradient-to-r from-orange-500 to-red-500 text-white text-xs font-bold px-4 py-1 rounded-full">
-                LIMITED LAUNCH OFFER
-              </div>
-              <h3 className="text-2xl font-bold text-gray-900 mb-2">Lifetime License</h3>
-              <div className="flex items-baseline justify-center gap-2 my-6">
-                <span className="text-2xl font-bold text-gray-400 line-through">$119.99</span>
-                <span className="text-5xl font-bold text-gray-900 tracking-tight">$79.99</span>
-              </div>
-              <p className="text-xs text-orange-600 font-semibold mb-6">Pay once, own forever</p>
-              <ul className="text-left space-y-3 mb-8 text-gray-600 text-sm">
-                <li className="flex gap-3"><Check size={16} className="text-orange-500 flex-shrink-0 mt-0.5" /> <span><strong>One-time payment</strong></span></li>
-                <li className="flex gap-3"><Check size={16} className="text-orange-500 flex-shrink-0 mt-0.5" /> Own it forever</li>
-                <li className="flex gap-3"><Check size={16} className="text-orange-500 flex-shrink-0 mt-0.5" /> All future updates included</li>
-                <li className="flex gap-3"><Check size={16} className="text-orange-500 flex-shrink-0 mt-0.5" /> Early adopter price</li>
-              </ul>
-              <p className="text-xs text-gray-500 italic mb-6 text-center">Price will increase as we add Self-Repair & Context Store features</p>
-              <div className="flex justify-center">
-                <DownloadButton 
-                  variant="secondary"
-                  className="w-full justify-center"
-                >
-                  Get Lifetime Access
-                </DownloadButton>
-              </div>
+              <p className="text-xs text-gray-400 mt-4">No credit card required for trial</p>
             </div>
           </div>
 
