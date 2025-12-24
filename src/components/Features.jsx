@@ -167,7 +167,10 @@ const Features = () => {
             </div>
             <h3 className="text-4xl font-bold text-gray-900 leading-tight">100% Offline.</h3>
             <p className="text-lg text-gray-500 leading-relaxed">
-              100% Offline on Apple Silicon. Your voice data never leaves your Mac. Zero data egress. <strong className="text-gray-700">Verified by Apple. Sandboxed for your security.</strong>
+              All voice processing happens locally on Apple Silicon. Your recordings never leave your Mac. <strong className="text-gray-700">Verified by Apple. Sandboxed for your security.</strong>
+            </p>
+            <p className="text-xs text-gray-400 italic">
+              Optional: You can choose to share anonymous usage statistics to help us improve the app.
             </p>
           </div>
           <div className="flex-1 flex justify-center">
@@ -261,13 +264,13 @@ const Features = () => {
               </div>
               <div>
                 <h4 className="font-bold text-gray-900 mb-2 flex items-center gap-2"><HelpCircle size={16} className="text-orange-500"/> Is this a subscription?</h4>
-                <p className="text-gray-600 text-sm leading-relaxed">It's your choice. We offer a flexible Annual Plan ($29.99/year) for continuous updates, or a Lifetime License ($129.99) if you prefer to pay once and own it forever.</p>
+                <p className="text-gray-600 text-sm leading-relaxed">It's your choice. We offer a flexible Annual Plan ($29.99/year) for continuous updates, or a Lifetime License (currently $79.99 launch price) if you prefer to pay once and own it forever.</p>
               </div>
             </div>
             <div className="space-y-8">
               <div>
                 <h4 className="font-bold text-gray-900 mb-2 flex items-center gap-2"><HelpCircle size={16} className="text-orange-500"/> Does it work offline?</h4>
-                <p className="text-gray-600 text-sm leading-relaxed">100%. All processing happens locally on your Apple Silicon chip. No data ever leaves your Mac.</p>
+                <p className="text-gray-600 text-sm leading-relaxed">Yes! All voice processing happens locally on your Apple Silicon chip. Your recordings and transcriptions stay on your Mac. <span className="text-gray-500 italic">You may optionally share anonymous usage stats to help us improve.</span></p>
               </div>
               <div>
                 <h4 className="font-bold text-gray-900 mb-2 flex items-center gap-2"><HelpCircle size={16} className="text-orange-500"/> What is the refund policy?</h4>
