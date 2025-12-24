@@ -261,7 +261,7 @@ const Features = () => {
               </div>
               <div>
                 <h4 className="font-bold text-gray-900 mb-2 flex items-center gap-2"><HelpCircle size={16} className="text-orange-500"/> Is this a subscription?</h4>
-                <p className="text-gray-600 text-sm leading-relaxed">Yes, simple annual subscription. This allows us to continuously improve the app with new features, maintain the local AI models, and ensure compatibility with the latest macOS versions.</p>
+                <p className="text-gray-600 text-sm leading-relaxed">It's your choice. We offer a flexible Annual Plan ($29.99/year) for continuous updates, or a Lifetime License ($129.99) if you prefer to pay once and own it forever.</p>
               </div>
             </div>
             <div className="space-y-8">

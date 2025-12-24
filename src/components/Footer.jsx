@@ -59,31 +59,68 @@ const Footer = () => {
     <>
       {/* PRICING SECTION */}
       <section id="pricing" className="py-24 px-6 border-t border-gray-200 bg-gray-50 relative z-10 text-center">
-        <div className="max-w-xl mx-auto bg-white border border-gray-200 rounded-3xl p-10 hover:border-orange-200 transition-all shadow-xl">
-          <h2 className="text-3xl font-bold text-gray-900 mb-4">Simple Pricing</h2>
-          <p className="text-sm text-gray-500 mb-2">Simple annual subscription. Cancel anytime.</p>
-          <div className="flex items-baseline justify-center gap-1 my-6">
-            <span className="text-5xl font-bold text-gray-900 tracking-tight">$29.99</span>
-            <span className="text-gray-500 font-medium text-xl">/ year</span>
-          </div>
-          <ul className="text-left space-y-3 mb-6 text-gray-500 text-sm max-w-xs mx-auto">
-            <li className="flex gap-3"><Check size={16} className="text-orange-500" /> 7-day free trial</li>
-            <li className="flex gap-3"><Check size={16} className="text-orange-500" /> Unlimited local transcription</li>
-            <li className="flex gap-3"><Check size={16} className="text-orange-500" /> Continuous updates & improvements</li>
-            <li className="flex gap-3"><Check size={16} className="text-orange-500" /> Cancel anytime</li>
-            <li className="flex gap-3"><Check size={16} className="text-orange-500" /> Secure billing via Apple App Store</li>
-          </ul>
+        <div className="max-w-5xl mx-auto">
+          <h2 className="text-4xl font-bold text-gray-900 mb-3">Choose Your Plan</h2>
+          <p className="text-gray-500 mb-12">Flexible pricing that fits your needs</p>
+          
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto">
+            {/* Annual Plan - Recommended */}
+            <div className="bg-white border-2 border-orange-500 rounded-3xl p-8 hover:shadow-2xl transition-all relative">
+              <div className="absolute -top-3 left-1/2 -translate-x-1/2 bg-orange-500 text-white text-xs font-bold px-4 py-1 rounded-full">
+                RECOMMENDED
+              </div>
+              <h3 className="text-2xl font-bold text-gray-900 mb-2">Annual Plan</h3>
+              <div className="flex items-baseline justify-center gap-1 my-6">
+                <span className="text-5xl font-bold text-gray-900 tracking-tight">$29.99</span>
+                <span className="text-gray-500 font-medium text-xl">/ year</span>
+              </div>
+              <ul className="text-left space-y-3 mb-8 text-gray-600 text-sm">
+                <li className="flex gap-3"><Check size={16} className="text-orange-500 flex-shrink-0 mt-0.5" /> <span><strong>7-day free trial</strong></span></li>
+                <li className="flex gap-3"><Check size={16} className="text-orange-500 flex-shrink-0 mt-0.5" /> Full access to all features</li>
+                <li className="flex gap-3"><Check size={16} className="text-orange-500 flex-shrink-0 mt-0.5" /> Continuous updates & improvements</li>
+                <li className="flex gap-3"><Check size={16} className="text-orange-500 flex-shrink-0 mt-0.5" /> Cancel anytime</li>
+              </ul>
+              <div className="flex justify-center">
+                <DownloadButton 
+                  variant="primary"
+                  className="w-full justify-center"
+                >
+                  Start Free Trial
+                </DownloadButton>
+              </div>
+            </div>
 
-          <div className="flex justify-center mb-3">
-            <DownloadButton 
-              variant="primary"
-              className="w-full max-w-sm justify-center"
-            >
-              Download on the Mac App Store
-            </DownloadButton>
+            {/* Lifetime Plan */}
+            <div className="bg-white border border-gray-200 rounded-3xl p-8 hover:border-orange-200 hover:shadow-xl transition-all relative">
+              <div className="absolute -top-3 left-1/2 -translate-x-1/2 bg-gradient-to-r from-orange-500 to-red-500 text-white text-xs font-bold px-4 py-1 rounded-full">
+                LIMITED LAUNCH OFFER
+              </div>
+              <h3 className="text-2xl font-bold text-gray-900 mb-2">Lifetime License</h3>
+              <div className="flex items-baseline justify-center gap-2 my-6">
+                <span className="text-2xl font-bold text-gray-400 line-through">$119.99</span>
+                <span className="text-5xl font-bold text-gray-900 tracking-tight">$79.99</span>
+              </div>
+              <p className="text-xs text-orange-600 font-semibold mb-6">Pay once, own forever</p>
+              <ul className="text-left space-y-3 mb-8 text-gray-600 text-sm">
+                <li className="flex gap-3"><Check size={16} className="text-orange-500 flex-shrink-0 mt-0.5" /> <span><strong>One-time payment</strong></span></li>
+                <li className="flex gap-3"><Check size={16} className="text-orange-500 flex-shrink-0 mt-0.5" /> Own it forever</li>
+                <li className="flex gap-3"><Check size={16} className="text-orange-500 flex-shrink-0 mt-0.5" /> All future updates included</li>
+                <li className="flex gap-3"><Check size={16} className="text-orange-500 flex-shrink-0 mt-0.5" /> Early adopter price</li>
+              </ul>
+              <p className="text-xs text-gray-500 italic mb-6 text-center">Price will increase as we add Self-Repair & Context Store features</p>
+              <div className="flex justify-center">
+                <DownloadButton 
+                  variant="secondary"
+                  className="w-full justify-center"
+                >
+                  Get Lifetime Access
+                </DownloadButton>
+              </div>
+            </div>
           </div>
-          <p className="text-xs text-gray-400 mt-4 flex items-center justify-center gap-2">
-            <Check size={12}/> Verified by Apple • Sandboxed for your security
+
+          <p className="text-xs text-gray-400 mt-8 flex items-center justify-center gap-2">
+            <Check size={12}/> Secure billing via Apple App Store • Verified by Apple
           </p>
         </div>
       </section>
