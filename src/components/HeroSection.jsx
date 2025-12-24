@@ -18,7 +18,7 @@ const HeroSection = () => {
         
         <div className="flex flex-col items-center gap-6">
           <DownloadButton />
-          <p className="text-sm text-gray-500 font-mono -mt-3">7-day free trial. No credit card required.</p>
+          <p className="text-sm text-gray-500 font-mono -mt-3">Try free for 7 days on the Mac App Store</p>
         </div>
       </div>
     </section>

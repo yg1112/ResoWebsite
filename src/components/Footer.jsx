@@ -60,39 +60,30 @@ const Footer = () => {
       {/* PRICING SECTION */}
       <section id="pricing" className="py-24 px-6 border-t border-gray-200 bg-gray-50 relative z-10 text-center">
         <div className="max-w-xl mx-auto bg-white border border-gray-200 rounded-3xl p-10 hover:border-orange-200 transition-all shadow-xl">
-          <h2 className="text-3xl font-bold text-gray-900 mb-4">Perpetual License</h2>
-          <p className="text-sm text-gray-500 mb-2">Buy it once. Use it for life. The way software used to be.</p>
+          <h2 className="text-3xl font-bold text-gray-900 mb-4">Simple Pricing</h2>
+          <p className="text-sm text-gray-500 mb-2">Simple annual subscription. Cancel anytime.</p>
           <div className="flex items-baseline justify-center gap-1 my-6">
             <span className="text-5xl font-bold text-gray-900 tracking-tight">$29.99</span>
-            <span className="text-gray-500 font-medium text-xl">/ seat</span>
+            <span className="text-gray-500 font-medium text-xl">/ year</span>
           </div>
           <ul className="text-left space-y-3 mb-6 text-gray-500 text-sm max-w-xs mx-auto">
-            <li className="flex gap-3"><Check size={16} className="text-orange-500" /> No monthly subscriptions</li>
+            <li className="flex gap-3"><Check size={16} className="text-orange-500" /> 7-day free trial</li>
             <li className="flex gap-3"><Check size={16} className="text-orange-500" /> Unlimited local transcription</li>
-            <li className="flex gap-3"><Check size={16} className="text-orange-500" /> Includes 1 year of updates</li>
-            <li className="flex gap-3"><Check size={16} className="text-orange-500" /> Keep your version forever</li>
-            <li className="flex gap-3 text-gray-400"><Check size={16} className="text-orange-200" /> Optional renewal at discounted price</li>
+            <li className="flex gap-3"><Check size={16} className="text-orange-500" /> Continuous updates & improvements</li>
+            <li className="flex gap-3"><Check size={16} className="text-orange-500" /> Cancel anytime</li>
+            <li className="flex gap-3"><Check size={16} className="text-orange-500" /> Secure billing via Apple App Store</li>
           </ul>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-3">
-            <button
-              onClick={handleBuy}
-              aria-label="Buy Reso License"
-              className="w-full inline-flex items-center justify-center gap-3 py-3 px-5 bg-gradient-to-r from-orange-500 to-orange-600 text-white rounded-2xl font-semibold shadow-2xl hover:from-orange-600 hover:to-orange-700 transition-all transform hover:-translate-y-0.5"
-            >
-              <CreditCard size={16} />
-              <span>Buy License</span>
-            </button>
-
+          <div className="flex justify-center mb-3">
             <DownloadButton 
-              variant="secondary"
-              className="w-full justify-center"
+              variant="primary"
+              className="w-full max-w-sm justify-center"
             >
-              Or start a 7-day free trial
+              Download on the Mac App Store
             </DownloadButton>
           </div>
           <p className="text-xs text-gray-400 mt-4 flex items-center justify-center gap-2">
-            <Check size={12}/> 30-day money-back guarantee • Secure payment
+            <Check size={12}/> Verified by Apple • Sandboxed for your security
           </p>
         </div>
       </section>
@@ -144,6 +135,19 @@ const Footer = () => {
               </div>
               <span>&copy; 2025 DZG STUDIO LLC.</span>
             </div>
+            {/* App Store Badge */}
+            <a 
+              href="https://apps.apple.com/app/reso/idXXXXXXXXX" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="inline-block hover:opacity-80 transition-opacity"
+            >
+              <img 
+                src="https://tools.applemediaservices.com/api/badges/download-on-the-mac-app-store/black/en-us?size=250x83&releaseDate=1704067200" 
+                alt="Download on the Mac App Store" 
+                className="h-10"
+              />
+            </a>
           </div>
           <div className="flex items-center gap-8">
             <a href="/privacy.html" target="_blank" rel="noreferrer" className="hover:text-gray-900 transition-colors">Privacy Policy</a>

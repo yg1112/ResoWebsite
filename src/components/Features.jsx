@@ -167,7 +167,7 @@ const Features = () => {
             </div>
             <h3 className="text-4xl font-bold text-gray-900 leading-tight">100% Offline.</h3>
             <p className="text-lg text-gray-500 leading-relaxed">
-              100% Offline on Apple Silicon. Your voice data never leaves your Mac. Zero data egress.
+              100% Offline on Apple Silicon. Your voice data never leaves your Mac. Zero data egress. <strong className="text-gray-700">Verified by Apple. Sandboxed for your security.</strong>
             </p>
           </div>
           <div className="flex-1 flex justify-center">
@@ -261,7 +261,7 @@ const Features = () => {
               </div>
               <div>
                 <h4 className="font-bold text-gray-900 mb-2 flex items-center gap-2"><HelpCircle size={16} className="text-orange-500"/> Is this a subscription?</h4>
-                <p className="text-gray-600 text-sm leading-relaxed">No, it is not a subscription. You pay once and own the app forever. The license includes 1 year of free updates.</p>
+                <p className="text-gray-600 text-sm leading-relaxed">Yes, simple annual subscription. This allows us to continuously improve the app with new features, maintain the local AI models, and ensure compatibility with the latest macOS versions.</p>
               </div>
             </div>
             <div className="space-y-8">
@@ -271,11 +271,11 @@ const Features = () => {
               </div>
               <div>
                 <h4 className="font-bold text-gray-900 mb-2 flex items-center gap-2"><HelpCircle size={16} className="text-orange-500"/> What is the refund policy?</h4>
-                <p className="text-gray-600 text-sm leading-relaxed">We offer a 30-day money-back guarantee. If you're not happy, just email us.</p>
+                <p className="text-gray-600 text-sm leading-relaxed">Subscriptions purchased through the Mac App Store follow Apple's standard refund policy. You can request a refund through the App Store within the applicable period.</p>
               </div>
               <div>
-                <h4 className="font-bold text-gray-900 mb-2 flex items-center gap-2"><HelpCircle size={16} className="text-orange-500"/> What happens after 1 year?</h4>
-                <p className="text-gray-600 text-sm leading-relaxed">The app will continue to work. You just won't receive new feature updates until you renew your license.</p>
+                <h4 className="font-bold text-gray-900 mb-2 flex items-center gap-2"><HelpCircle size={16} className="text-orange-500"/> Can I cancel anytime?</h4>
+                <p className="text-gray-600 text-sm leading-relaxed">Yes. You can cancel your subscription at any time through the Mac App Store settings. Your access continues until the end of the current billing period.</p>
               </div>
             </div>
           </div>
