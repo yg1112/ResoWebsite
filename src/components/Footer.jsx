@@ -86,12 +86,10 @@ const Footer = () => {
                 </button>
               </div>
             <div className="mt-6 flex justify-center">
-              <a href="https://apps.apple.com/app/reso/idXXXXXXXXX" target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-gray-100 hover:bg-gray-200 transition-colors text-sm text-gray-600 font-medium">
+              <span className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-gray-100 text-sm text-gray-400 font-medium" title="Pending Review">
                 <span className="text-black"></span>
-                <span>Also available on Mac App Store</span>
-              </a>
+                <span>Coming soon to Mac App Store</span>
+              </span>
             </div>
             </div>
           </div>
