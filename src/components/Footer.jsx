@@ -87,7 +87,7 @@ const Footer = () => {
               </div>
             <div className="mt-6 flex justify-center">
               <span className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-gray-100 text-sm text-gray-400 font-medium" title="Pending Review">
-                <span className="text-black"></span>
+                <span className="text-gray-400"></span>
                 <span>Coming soon to Mac App Store</span>
               </span>
             </div>

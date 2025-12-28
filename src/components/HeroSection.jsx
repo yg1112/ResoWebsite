@@ -24,7 +24,7 @@ const HeroSection = () => {
           </DownloadButton>
           <p className="text-xs text-gray-400 font-mono">v1.0.0 | macOS 14+ | Apple Silicon</p>
           <span className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-gray-100 text-sm text-gray-400 font-medium" title="Pending Review">
-            <span className="text-black"></span>
+            <span className="text-gray-400"></span>
             <span>Coming soon to Mac App Store</span>
           </span>
         </div>
