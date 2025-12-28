@@ -274,7 +274,7 @@ const Features = () => {
               </div>
               <div>
                 <h4 className="font-bold text-gray-900 mb-2 flex items-center gap-2"><HelpCircle size={16} className="text-orange-500"/> What is the refund policy?</h4>
-                <p className="text-gray-600 text-sm leading-relaxed">Subscriptions purchased through the Mac App Store follow Apple's standard refund policy. You can request a refund through the App Store within the applicable period.</p>
+                <p className="text-gray-600 text-sm leading-relaxed">For purchases made directly on our website, we offer a 30-day money-back guarantee. Just email us for a full refund.<br/><br/>For subscriptions via the Mac App Store, refunds are subject to Apple's policy and must be requested through Apple.</p>
               </div>
               <div>
                 <h4 className="font-bold text-gray-900 mb-2 flex items-center gap-2"><HelpCircle size={16} className="text-orange-500"/> Can I cancel anytime?</h4>
