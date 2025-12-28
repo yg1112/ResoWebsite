@@ -239,7 +239,7 @@ const DemoSection = () => {
       <div className="max-w-4xl mx-auto">
         
         {/* THE STAGE */}
-        <div className="relative w-full aspect-[16/10] bg-[#1C1C1E] rounded-3xl border border-gray-700/50 shadow-2xl shadow-black/30 overflow-hidden">
+        <div className="relative w-full aspect-[16/10] bg-[#1C1C1E] rounded-3xl border border-gray-700/50 shadow-[0_35px_60px_-15px_rgba(0,0,0,0.3)] overflow-hidden">
           
           {/* 1. APP LAYER */}
           <div className="absolute inset-0 z-0 flex flex-col">

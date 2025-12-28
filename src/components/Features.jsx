@@ -52,7 +52,8 @@ const Features = () => {
             <p className="text-lg text-gray-500 leading-relaxed">Don't train the model—just steer it. Tell Reso "I'm coding in Swift" or "Q3 Report," and it instantly adapts to your jargon and syntax.</p>
           </div>
           <div className="flex-1 flex justify-center">
-            <div className="bg-gray-50 rounded-3xl p-6 border border-gray-200 shadow-inner w-full max-w-2xl flex flex-col gap-4 h-80 items-center justify-center relative overflow-hidden">
+            <div className="relative bg-gray-50 rounded-3xl p-6 border border-gray-200 shadow-inner w-full max-w-2xl flex flex-col gap-4 h-80 items-center justify-center overflow-hidden">
+              <div className="absolute -inset-24 bg-gradient-to-r from-blue-100 to-purple-100 opacity-20 blur-3xl -z-10"></div>
               <div className="grid grid-cols-2 gap-6 w-full">
                 <div className="bg-red-50 rounded-xl border border-red-100 p-6 shadow-sm flex flex-col gap-3">
                   <div className="text-[10px] uppercase font-bold text-red-400 tracking-wider mb-1">Others</div>
