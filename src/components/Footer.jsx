@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Twitter, Mail, CheckCircle2, CreditCard, Check } from 'lucide-react';
+import { Twitter, Mail, CheckCircle2, Shield, Check } from 'lucide-react';
 import DownloadButton from './DownloadButton';
 
 // App Icon
@@ -65,7 +65,7 @@ const Footer = () => {
           
           <div className="flex justify-center">
             {/* Annual Plan */}
-            <div className="bg-white border-2 border-orange-500 rounded-3xl p-10 hover:shadow-2xl transition-all relative max-w-md w-full">
+            <div className="bg-white border-2 border-gray-200 rounded-3xl p-10 hover:border-orange-500 hover:shadow-lg transition-all relative max-w-md w-full">
               <h3 className="text-2xl font-bold text-gray-900 mb-2">Annual Plan</h3>
               <div className="flex items-baseline justify-center gap-1 my-6">
                 <span className="text-5xl font-bold text-gray-900 tracking-tight">$29.99</span>
@@ -74,7 +74,7 @@ const Footer = () => {
               <ul className="text-left space-y-4 mb-8 text-gray-600">
                 <li className="flex gap-3"><Check size={18} className="text-orange-500 flex-shrink-0 mt-0.5" /> <span><strong>Full access</strong> to all features</span></li>
                 <li className="flex gap-3"><Check size={18} className="text-orange-500 flex-shrink-0 mt-0.5" /> <span><strong>Continuous updates</strong> & improvements</span></li>
-                <li className="flex gap-3"><Check size={18} className="text-orange-500 flex-shrink-0 mt-0.5" /> <span><strong>30-day money-back guarantee</strong> for direct purchases</span></li>
+                <li className="flex gap-3"><Check size={18} className="text-orange-500 flex-shrink-0 mt-0.5" /> <span><strong>30-day money-back guarantee</strong> for Direct License purchases</span></li>
                 <li className="flex gap-3"><Check size={18} className="text-orange-500 flex-shrink-0 mt-0.5" /> <span><strong>Cancel anytime</strong> — no questions asked</span></li>
               </ul>
               <div className="flex justify-center">
@@ -90,7 +90,7 @@ const Footer = () => {
           </div>
 
           <p className="text-xs text-gray-400 mt-8 flex items-center justify-center gap-2">
-            <CreditCard size={12}/> Secure billing via Paddle • Verified by Apple
+            <Shield size={12}/> Secure billing via Paddle • Verified by Apple
           </p>
         </div>
       </section>
