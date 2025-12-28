@@ -85,7 +85,14 @@ const Footer = () => {
                   Subscribe Now
                 </button>
               </div>
-              <p className="text-xs text-gray-500 mt-4">Prefer Apple ID? <a href="https://apps.apple.com/app/reso/idXXXXXXXXX" target="_blank" rel="noopener noreferrer" className="underline hover:text-orange-500">Subscribe via the Mac App Store app.</a></p>
+            <div className="mt-6 flex justify-center">
+              <a href="https://apps.apple.com/app/reso/idXXXXXXXXX" target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-gray-100 hover:bg-gray-200 transition-colors text-sm text-gray-600 font-medium">
+                <span className="text-black"></span>
+                <span>Also available on Mac App Store</span>
+              </a>
+            </div>
             </div>
           </div>
 
@@ -142,19 +149,6 @@ const Footer = () => {
               </div>
               <span>&copy; 2025 DZG STUDIO LLC.</span>
             </div>
-            {/* App Store Badge */}
-            <a 
-              href="https://apps.apple.com/app/reso/idXXXXXXXXX" 
-              target="_blank" 
-              rel="noopener noreferrer"
-              className="inline-block hover:opacity-80 transition-opacity"
-            >
-              <img 
-                src="https://tools.applemediaservices.com/api/badges/download-on-the-mac-app-store/black/en-us?size=250x83&releaseDate=1704067200" 
-                alt="Download on the Mac App Store" 
-                className="h-10"
-              />
-            </a>
           </div>
           <div className="flex items-center gap-8">
             <a href="/privacy.html" target="_blank" rel="noreferrer" className="hover:text-gray-900 transition-colors">Privacy Policy</a>
