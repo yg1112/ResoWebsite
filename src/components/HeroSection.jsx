@@ -250,7 +250,7 @@ const HeroSection = () => {
             Flows into Slack, GitHub, iMessage, and more. <span className="text-orange-500 font-semibold">Locally.</span>
           </p>
 
-          <div className="flex flex-col gap-2 ml-4">
+          <div className="flex flex-col gap-2 ml-[5.7rem]">
             <DownloadButton className="!px-5 !py-2.5 !text-sm !w-fit !bg-black hover:!bg-gray-800">
               <Download size={16} />
               <span>Download for Mac</span>
