@@ -262,12 +262,12 @@ const HeroSection = () => {
               <div className="w-px h-8 bg-gray-300"></div>
 
               {/* App Store Badge */}
-              <div className="relative group">
+              <div className="relative group flex items-center">
                 <button
                   onClick={(e) => e.preventDefault()}
-                  className="cursor-not-allowed opacity-70 hover:opacity-60 transition-opacity"
+                  className="cursor-not-allowed opacity-70 hover:opacity-60 transition-opacity flex items-center h-[52px]"
                 >
-                  <svg width="156" height="52" viewBox="0 0 156 52" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <svg width="156" height="52" viewBox="0 0 156 52" fill="none" xmlns="http://www.w3.org/2000/svg" className="block">
                     {/* Background */}
                     <rect width="156" height="52" rx="8" fill="#6B7280"/>
 
