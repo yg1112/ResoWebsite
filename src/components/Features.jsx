@@ -208,7 +208,7 @@ const Features = () => {
 
       {/* STATS SECTION */}
       <section id="stats" className="py-24 px-6 border-t border-gray-100 bg-white relative z-10 mt-24">
-        <div className="max-w-6xl mx-auto">
+        <div className="max-w-5xl mx-auto">
           <div className="text-center mb-16">
             <h2 className="text-4xl font-bold text-gray-900 mb-4">Backed by Science.</h2>
             <p className="text-gray-500 text-lg">Why voice is the future of work.</p>
@@ -253,7 +253,7 @@ const Features = () => {
 
       {/* FAQ SECTION */}
       <section id="faq" className="py-24 px-6 border-t border-gray-100 bg-gray-50 relative z-10">
-        <div className="max-w-4xl mx-auto">
+        <div className="max-w-5xl mx-auto">
           <div className="text-center mb-16">
             <h2 className="text-3xl font-bold text-gray-900 mb-4">Frequently Asked Questions</h2>
           </div>

@@ -228,44 +228,44 @@ const HeroSection = () => {
   const CurrentScenario = scenariosData[activeScenario].component;
 
   return (
-    <section className="relative z-10 pt-40 pb-20 px-6 bg-white">
-      <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+    <section className="relative z-10 pt-40 pb-32 px-6 bg-white min-h-screen flex items-center">
+      <div className="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-12 items-center w-full">
         {/* Left Side: Text and CTA */}
         <div className="text-left">
           {/* Platform Tag */}
           <div className="inline-block mb-6">
-            <span className="px-3 py-1.5 rounded-full bg-blue-50 text-blue-600 text-sm font-semibold">
-              Apple Silicon & macOS 14+ 就绪!
+            <span className="px-2 py-0.5 rounded bg-blue-50 text-blue-600 text-[11px] font-semibold">
+              Apple Silicon & macOS 14+ ready!
             </span>
           </div>
 
-          <h1 className="text-6xl md:text-8xl font-bold tracking-tighter leading-[0.95] mb-8 text-gray-900">
+          <h1 className="text-6xl md:text-8xl font-bold tracking-tighter leading-[0.95] mb-12 text-gray-900">
             Capture thoughts. <br />
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-gray-400 to-gray-200">
               Anywhere.
             </span>
           </h1>
-          <p className="text-xl text-gray-500 leading-relaxed mb-10 font-normal">
+          <p className="text-xl text-gray-500 leading-relaxed mb-12 font-normal">
             Instant voice-to-text for your Mac.<br/>
             Flows into Slack, GitHub, iMessage, and more. <span className="text-orange-500 font-semibold">Locally.</span>
           </p>
 
-          <div className="flex flex-col gap-4">
-            <DownloadButton className="!px-6 !py-3 !text-sm">
-              <Download size={18} />
+          <div className="flex flex-col gap-2 ml-4">
+            <DownloadButton className="!px-5 !py-2.5 !text-sm !w-fit !bg-black hover:!bg-gray-800">
+              <Download size={16} />
               <span>Download for Mac</span>
             </DownloadButton>
-            <span className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-gray-100 text-sm text-gray-400 font-medium" title="Pending Review">
-              <svg className="w-4 h-4" viewBox="0 0 24 24" fill="currentColor">
+            <p className="flex items-center gap-1.5 text-xs text-gray-400">
+              <svg className="w-3.5 h-3.5" viewBox="0 0 24 24" fill="currentColor">
                 <path d="M17.05 20.28c-.98.95-2.05.8-3.08.35-1.09-.46-2.09-.48-3.24 0-1.44.62-2.2.44-3.06-.35C2.79 15.25 3.51 7.59 9.05 7.31c1.35.07 2.29.74 3.08.8 1.18-.24 2.31-.93 3.57-.84 1.51.12 2.65.72 3.4 1.8-3.12 1.87-2.38 5.98.48 7.13-.57 1.5-1.31 2.99-2.54 4.09l.01-.01zM12.03 7.25c-.15-2.23 1.66-4.07 3.74-4.25.29 2.58-2.34 4.5-3.74 4.25z"/>
               </svg>
               <span>Coming soon to App Store</span>
-            </span>
+            </p>
           </div>
         </div>
 
         {/* Right Side: Demo Animation */}
-        <div className="flex flex-col gap-6">
+        <div className="flex flex-col gap-8">
           {/* THE STAGE */}
           <div className="relative w-full aspect-[16/10] bg-[#1C1C1E] rounded-3xl border border-gray-700/50 shadow-[0_35px_60px_-15px_rgba(0,0,0,0.3)] overflow-hidden">
 
