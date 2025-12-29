@@ -250,16 +250,46 @@ const HeroSection = () => {
             Flows into Slack, GitHub, iMessage, and more. <span className="text-orange-500 font-semibold">Locally.</span>
           </p>
 
-          <div className="flex flex-col gap-2 ml-[5.7rem]">
-            <DownloadButton className="!px-5 !py-2.5 !text-sm !w-fit !bg-black hover:!bg-gray-800">
-              <Download size={16} />
-              <span>Download for Mac</span>
-            </DownloadButton>
-            <p className="flex items-center gap-1.5 text-xs text-gray-400">
-              <svg className="w-3.5 h-3.5" viewBox="0 0 24 24" fill="currentColor">
-                <path d="M17.05 20.28c-.98.95-2.05.8-3.08.35-1.09-.46-2.09-.48-3.24 0-1.44.62-2.2.44-3.06-.35C2.79 15.25 3.51 7.59 9.05 7.31c1.35.07 2.29.74 3.08.8 1.18-.24 2.31-.93 3.57-.84 1.51.12 2.65.72 3.4 1.8-3.12 1.87-2.38 5.98.48 7.13-.57 1.5-1.31 2.99-2.54 4.09l.01-.01zM12.03 7.25c-.15-2.23 1.66-4.07 3.74-4.25.29 2.58-2.34 4.5-3.74 4.25z"/>
-              </svg>
-              <span>Coming soon to App Store</span>
+          <div className="flex flex-col gap-3 ml-[4.05rem]">
+            <div className="flex items-center gap-4">
+              {/* Download Now Button */}
+              <button className="bg-black text-white rounded-lg font-semibold text-xs hover:bg-gray-800 transition-all shadow-sm hover:shadow-md flex items-center justify-center gap-1.5 h-[52px] w-[156px]">
+                <Download size={16} />
+                <span>Download Now</span>
+              </button>
+
+              {/* Divider */}
+              <div className="w-px h-8 bg-gray-300"></div>
+
+              {/* App Store Badge */}
+              <div className="relative group">
+                <button
+                  onClick={(e) => e.preventDefault()}
+                  className="cursor-not-allowed opacity-70 hover:opacity-60 transition-opacity"
+                >
+                  <svg width="156" height="52" viewBox="0 0 156 52" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    {/* Background */}
+                    <rect width="156" height="52" rx="8" fill="#6B7280"/>
+
+                    {/* Apple Logo */}
+                    <path d="M32.85 26.3c-.03-3.17 2.59-4.7 2.71-4.78-1.48-2.16-3.77-2.46-4.59-2.49-1.94-.2-3.81 1.15-4.8 1.15-1.0 0-2.54-1.12-4.18-1.09-2.15.03-4.13 1.25-5.24 3.18-2.24 3.88-.57 9.63 1.6 12.78 1.07 1.54 2.33 3.27 4.0 3.21 1.61-.07 2.21-1.04 4.15-1.04 1.93 0 2.5 1.04 4.18 1.01 1.73-.03 2.83-1.56 3.89-3.11 1.22-1.79 1.72-3.52 1.75-3.61-.04-.02-3.36-1.29-3.39-5.11zm-3.12-9.22c.88-1.07 1.48-2.56 1.32-4.05-1.27.05-2.81.85-3.73 1.92-.82.95-1.54 2.47-1.35 3.93 1.43.11 2.88-.72 3.76-1.8z" fill="white"/>
+
+                    {/* Text */}
+                    <text x="50" y="20" fill="white" fontSize="11" fontFamily="-apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif" fontWeight="400">Download on the</text>
+                    <text x="50" y="37" fill="white" fontSize="18" fontFamily="-apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif" fontWeight="600">App Store</text>
+                  </svg>
+                </button>
+                {/* Tooltip */}
+                <div className="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 px-3 py-1.5 bg-gray-900 text-white text-xs rounded-lg opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none whitespace-nowrap z-10">
+                  Coming soon
+                  <div className="absolute top-full left-1/2 transform -translate-x-1/2 -mt-1 border-4 border-transparent border-t-gray-900"></div>
+                </div>
+              </div>
+            </div>
+
+            {/* Guarantee Text */}
+            <p className="text-xs text-gray-400">
+              7-day free trial • 30-day money-back guarantee
             </p>
           </div>
         </div>
