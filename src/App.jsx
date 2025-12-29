@@ -16,10 +16,7 @@ function App() {
   }, []);
 
   const handleNavClick = () => {
-    const pricingSection = document.getElementById('pricing');
-    if (pricingSection) {
-      pricingSection.scrollIntoView({ behavior: 'smooth' });
-    }
+    window.open('https://buy.stripe.com/00w7sKeoFfNQ5bAftF6AM00', '_blank');
   };
 
   return (

@@ -52,7 +52,7 @@ const Footer = () => {
   };
 
   const handleBuy = () => {
-    window.open('https://reso.lemonsqueezy.com/checkout', '_blank');
+    window.open('https://buy.stripe.com/00w7sKeoFfNQ5bAftF6AM00', '_blank');
   };
 
   return (
@@ -89,7 +89,7 @@ const Footer = () => {
           </div>
 
           <p className="text-xs text-gray-400 mt-8 flex items-center justify-center gap-2">
-            <Shield size={12}/> Secure billing via Paddle • Verified by Apple
+            <Shield size={12}/> Secure billing via Stripe • Verified by Apple
           </p>
         </div>
       </section>
