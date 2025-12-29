@@ -229,7 +229,7 @@ const HeroSection = () => {
 
   return (
     <section className="relative z-10 pt-40 pb-32 px-6 bg-white min-h-screen flex items-center">
-      <div className="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-12 items-center w-full">
+      <div className="max-w-[67.2rem] mx-auto grid grid-cols-1 md:grid-cols-2 gap-12 items-center w-full">
         {/* Left Side: Text and CTA */}
         <div className="text-left">
           {/* Platform Tag */}

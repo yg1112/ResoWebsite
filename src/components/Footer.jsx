@@ -59,7 +59,7 @@ const Footer = () => {
     <>
       {/* PRICING SECTION */}
       <section id="pricing" className="py-24 px-6 border-t border-gray-200 bg-gray-50 relative z-10 text-center">
-        <div className="max-w-5xl mx-auto">
+        <div className="max-w-[67.2rem] mx-auto">
           <h2 className="text-4xl font-bold text-gray-900 mb-3">Simple, Transparent Pricing</h2>
           <p className="text-gray-500 mb-12">Start free, then pay only if you love it</p>
           
