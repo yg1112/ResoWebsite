@@ -10,7 +10,6 @@
             theme: {
                 extend: {
                     colors: {
-                        brand: '#F5D93B',
                         dark: '#111111',
                     }
                 }
@@ -21,19 +20,20 @@
 <body class="bg-gray-50 flex items-center justify-center min-h-screen font-sans text-dark">
 
     <div class="max-w-md w-full bg-white rounded-2xl shadow-xl p-8 text-center border border-gray-100">
-        <div class="w-20 h-20 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-6">
-            <svg class="w-10 h-10 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
-            </svg>
-        </div>
+        
+        <img src="https://reso.dzgapp.com/Reso_Logo.png" 
+             alt="Reso App Icon" 
+             class="w-24 h-24 mx-auto mb-6 rounded-2xl shadow-lg hover:scale-105 transition-transform duration-300">
 
         <h1 class="text-3xl font-bold mb-2">Payment Successful!</h1>
         <p class="text-gray-600 mb-8">Thank you for supporting Reso.</p>
 
         <div id="activation-area" class="hidden">
-            <a id="activate-btn" href="#" class="block w-full bg-brand hover:bg-yellow-400 text-dark font-bold text-lg py-4 rounded-xl transition-all transform hover:scale-[1.02] shadow-sm mb-4">
+            
+            <a id="activate-btn" href="#" class="block w-full bg-green-600 hover:bg-green-700 text-white font-bold text-lg py-4 rounded-xl transition-all transform hover:scale-[1.02] shadow-md hover:shadow-green-200 mb-4">
                 Open Reso to Activate
             </a>
+            
             <p class="text-sm text-gray-500 mb-6">
                 Click above to verify your license automatically.
             </p>
@@ -63,7 +63,7 @@
         const sessionId = urlParams.get('session_id');
 
         if (sessionId) {
-            // 有 ID -> 显示黄色激活按钮
+            // 有 ID -> 显示激活区域
             document.getElementById('activation-area').classList.remove('hidden');
             
             // 配置按钮链接: reso://activate?id=...
@@ -73,7 +73,7 @@
             // 显示手动码
             document.getElementById('manual-code').textContent = sessionId;
         } else {
-            // 无 ID -> 显示红色错误提示 (防止直接访问)
+            // 无 ID -> 显示错误提示
             document.getElementById('error-area').classList.remove('hidden');
         }
 
