@@ -227,7 +227,7 @@ const HeroSection = () => {
 
   return (
     <section className="relative z-10 pt-40 pb-32 px-6 bg-white min-h-screen flex items-center">
-      <div className="max-w-[67.2rem] mx-auto grid grid-cols-1 md:grid-cols-2 gap-12 items-center w-full">
+      <div className="max-w-[67.2rem] mx-auto grid grid-cols-1 md:grid-cols-2 gap-12 items-start w-full">
         {/* Left Side: Text and CTA */}
         <div className="text-left">
           {/* Platform Tag */}
@@ -290,18 +290,10 @@ const HeroSection = () => {
               7-day free trial • 30-day money-back guarantee
             </p>
           </div>
-
-          {/* Works Seamlessly With */}
-          <div className="mt-8">
-            <span className="text-[10px] uppercase tracking-widest text-gray-400 font-semibold">Works seamlessly with</span>
-            <div className="mt-4 flex items-center">
-              <ToolLogos />
-            </div>
-          </div>
         </div>
 
         {/* Right Side: Demo Animation */}
-        <div className="flex flex-col gap-8">
+        <div className="flex flex-col gap-6">
           {/* THE STAGE */}
           <div className="relative w-full aspect-[4/3] bg-[#1C1C1E] rounded-3xl border border-gray-700/50 shadow-[0_35px_60px_-15px_rgba(0,0,0,0.3)] overflow-hidden scale-110">
 
@@ -417,6 +409,14 @@ const HeroSection = () => {
               </div>
             </div>
 
+          </div>
+
+          {/* Works Seamlessly With */}
+          <div className="text-center">
+            <span className="text-[10px] uppercase tracking-widest text-gray-400 font-semibold">Works seamlessly with</span>
+            <div className="mt-4 flex items-center justify-center">
+              <ToolLogos />
+            </div>
           </div>
         </div>
       </div>
