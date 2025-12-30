@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recover License - Reso</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        dark: '#111111',
+                        hermesBlue: '#0B2044', // 保持一致的午夜蓝
+                        hermesOrange: '#F37021', // 保持一致的爱马仕橙
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-white flex items-center justify-center min-h-screen font-sans text-dark">
+
+    <div class="max-w-md w-full p-8 text-center">
+        
+        <a href="https://reso.dzgapp.com">
+            <img src="https://reso.dzgapp.com/Reso_Logo.png" 
+                 alt="Reso App Icon" 
+                 class="w-20 h-20 mx-auto mb-8 hover:scale-105 transition-transform duration-300 rounded-2xl shadow-sm">
+        </a>
+
+        <h1 class="text-2xl font-bold mb-2 tracking-tight text-gray-900">License Manager</h1>
+        <p class="text-gray-500 mb-10 text-base">Enter the email you used during purchase to retrieve your activation key.</p>
+
+        <div id="form-area">
+            <div class="mb-6 text-left">
+                <label for="email" class="block text-xs font-bold text-gray-400 uppercase tracking-wider mb-2 ml-1">Email Address</label>
+                <input type="email" id="email" placeholder="name@example.com" 
+                       class="w-full bg-gray-50 border border-gray-200 text-gray-900 text-lg rounded-xl focus:ring-hermesBlue focus:border-hermesBlue block p-4 outline-none transition-all placeholder-gray-300" required>
+                <p id="email-error" class="hidden mt-2 text-sm text-red-500 pl-1">Please enter a valid email.</p>
+            </div>
+
+            <button onclick="findLicense()" id="submit-btn" class="w-full bg-hermesBlue hover:bg-[#152a55] text-white font-bold text-lg py-4 rounded-xl transition-all shadow-lg shadow-blue-900/10 flex items-center justify-center">
+                <span id="btn-text">Find License</span>
+                <svg id="btn-loader" class="hidden w-5 h-5 ml-2 animate-spin" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                    <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                    <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                </svg>
+            </button>
+        </div>
+
+        <div id="result-area" class="hidden mt-8">
+            <div class="bg-green-50 rounded-xl p-5 border border-green-100 text-left animate-fade-in">
+                <p class="text-xs font-bold text-green-700 uppercase tracking-wider mb-2 flex items-center">
+                    <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                    License Found
+                </p>
+                <div class="bg-white border border-green-100 rounded-lg p-3 flex items-center justify-between">
+                    <code id="license-key" class="font-mono text-sm text-gray-800 break-all select-all">cs_live_...</code>
+                    <button onclick="copyCode()" class="ml-3 text-sm font-bold text-hermesBlue hover:text-blue-600 uppercase tracking-wider">Copy</button>
+                </div>
+                <p class="text-xs text-green-600 mt-3">
+                    Purchased on: <span id="purchase-date" class="font-medium">--</span>
+                </p>
+            </div>
+            
+            <a href="#" id="activate-link" class="block mt-6 text-hermesBlue font-medium hover:underline">
+                Open App to Activate &rarr;
+            </a>
+        </div>
+
+        <div id="error-area" class="hidden mt-6 p-4 bg-red-50 text-red-500 rounded-xl text-sm text-left">
+            <span class="font-bold">Error:</span> <span id="error-msg">No license found for this email.</span>
+        </div>
+
+        <div class="mt-12 pt-8 border-t border-gray-100 text-sm text-gray-400">
+            <p>Need help? <a href="mailto:support@dzgapp.com" class="underline hover:text-dark">Contact Support</a></p>
+            <p class="mt-4"><a href="https://reso.dzgapp.com" class="text-gray-300 hover:text-gray-500">← Back to Home</a></p>
+        </div>
+    </div>
+
+    <script>
+        // 配置你的 Cloudflare Worker 地址
+        // ⚠️ 请确认这里填的是你最新的 Worker 地址
+        const WORKER_URL = "https://reso-verify.gaoyukun1205.workers.dev";
+
+        async function findLicense() {
+            const emailInput = document.getElementById('email');
+            const email = emailInput.value.trim();
+            const btn = document.getElementById('submit-btn');
+            const btnText = document.getElementById('btn-text');
+            const btnLoader = document.getElementById('btn-loader');
+            const resultArea = document.getElementById('result-area');
+            const errorArea = document.getElementById('error-area');
+            const errorMsg = document.getElementById('error-msg');
+
+            // Reset UI
+            resultArea.classList.add('hidden');
+            errorArea.classList.add('hidden');
+            document.getElementById('email-error').classList.add('hidden');
+
+            // Validation
+            if (!email || !email.includes('@')) {
+                document.getElementById('email-error').classList.remove('hidden');
+                return;
+            }
+
+            // Loading State
+            btn.disabled = true;
+            btn.classList.add('opacity-75', 'cursor-not-allowed');
+            btnText.textContent = "Searching...";
+            btnLoader.classList.remove('hidden');
+
+            try {
+                const response = await fetch(WORKER_URL, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ action: 'restore', email: email })
+                });
+
+                const data = await response.json();
+
+                if (data.valid && data.session_id) {
+                    // Success
+                    document.getElementById('license-key').textContent = data.session_id;
+                    
+                    // Format Date
+                    if (data.purchase_date) {
+                        const date = new Date(data.purchase_date);
+                        document.getElementById('purchase-date').textContent = date.toLocaleDateString();
+                    }
+
+                    // Setup Deep Link
+                    document.getElementById('activate-link').href = `reso://activate?id=${data.session_id}`;
+
+                    resultArea.classList.remove('hidden');
+                } else {
+                    // Failed logic
+                    throw new Error(data.reason || 'No license found.');
+                }
+
+            } catch (err) {
+                console.error(err);
+                errorMsg.textContent = err.message || "Unable to connect to server.";
+                errorArea.classList.remove('hidden');
+            } finally {
+                // Restore Button
+                btn.disabled = false;
+                btn.classList.remove('opacity-75', 'cursor-not-allowed');
+                btnText.textContent = "Find License";
+                btnLoader.classList.add('hidden');
+            }
+        }
+
+        function copyCode() {
+            const code = document.getElementById('license-key').textContent;
+            navigator.clipboard.writeText(code);
+            const btn = event.target;
+            const originalText = btn.textContent;
+            btn.textContent = 'Copied!';
+            setTimeout(() => btn.textContent = originalText, 2000);
+        }
+    </script>
+</body>
+</html>
