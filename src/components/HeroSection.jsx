@@ -297,7 +297,7 @@ const HeroSection = () => {
         </div>
 
         {/* Right Side: Demo Animation */}
-        <div className="flex flex-col gap-6 mt-[5.9rem]">
+        <div className="flex flex-col gap-6 mt-[4.7rem]">
           {/* THE STAGE */}
           <div className="relative w-full aspect-[4/3] bg-[#1C1C1E] rounded-3xl border border-gray-700/50 shadow-[0_35px_60px_-15px_rgba(0,0,0,0.3)] overflow-hidden scale-110">
 
