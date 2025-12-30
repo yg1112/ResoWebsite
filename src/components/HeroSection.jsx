@@ -90,7 +90,6 @@ const Scenarios = {
               <Send size={16} />
             </div>
           </div>
-          <div className="absolute -inset-0.5 bg-gradient-to-r from-blue-500/20 to-purple-500/20 rounded-xl blur opacity-20 pointer-events-none"></div>
         </div>
       </div>
     </div>
@@ -112,7 +111,6 @@ const Scenarios = {
               {content ? <ContentFadeIn>{content}</ContentFadeIn> : null}
             </div>
           </div>
-          <div className="absolute -inset-0.5 bg-gradient-to-r from-green-500/20 to-emerald-500/20 rounded-lg blur opacity-20 pointer-events-none"></div>
         </div>
       </div>
     </div>
