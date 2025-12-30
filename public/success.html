@@ -17,70 +17,67 @@
         }
     </script>
 </head>
-<body class="bg-gray-50 flex items-center justify-center min-h-screen font-sans text-dark">
+<body class="bg-white flex items-center justify-center min-h-screen font-sans text-dark">
 
-    <div class="max-w-md w-full bg-white rounded-2xl shadow-xl p-8 text-center border border-gray-100">
+    <div class="max-w-md w-full p-8 text-center">
         
         <img src="https://reso.dzgapp.com/Reso_Logo.png" 
              alt="Reso App Icon" 
-             class="w-24 h-24 mx-auto mb-6 rounded-2xl shadow-lg hover:scale-105 transition-transform duration-300">
+             class="w-24 h-24 mx-auto mb-8 hover:scale-105 transition-transform duration-300">
 
-        <h1 class="text-3xl font-bold mb-2">Payment Successful!</h1>
-        <p class="text-gray-600 mb-8">Thank you for supporting Reso.</p>
+        <h1 class="text-3xl font-bold mb-3 tracking-tight">Payment Successful!</h1>
+        <p class="text-gray-500 mb-10 text-lg">Thank you for supporting Reso.</p>
 
         <div id="activation-area" class="hidden">
             
-            <a id="activate-btn" href="#" class="block w-full bg-green-600 hover:bg-green-700 text-white font-bold text-lg py-4 rounded-xl transition-all transform hover:scale-[1.02] shadow-md hover:shadow-green-200 mb-4">
+            <a id="activate-btn" href="#" class="block w-full bg-green-600 hover:bg-green-700 text-white font-bold text-lg py-4 rounded-2xl transition-all transform hover:scale-[1.01] shadow-lg shadow-green-200/50 mb-6">
                 Open Reso to Activate
             </a>
             
-            <p class="text-sm text-gray-500 mb-6">
+            <p class="text-sm text-gray-400 mb-8">
                 Click above to verify your license automatically.
             </p>
 
-            <div class="bg-gray-50 rounded-lg p-4 border border-gray-200 text-left">
-                <p class="text-xs font-bold text-gray-400 uppercase tracking-wider mb-1">Backup Activation Code</p>
+            <div class="bg-gray-50 rounded-xl p-5 text-left group">
+                <p class="text-xs font-bold text-gray-400 uppercase tracking-wider mb-2">Backup Activation Code</p>
                 <div class="flex items-center justify-between">
-                    <code id="manual-code" class="font-mono text-sm break-all text-gray-700 select-all">Loading...</code>
-                    <button onclick="copyCode()" class="ml-2 text-sm text-blue-600 hover:text-blue-800 font-medium">Copy</button>
+                    <code id="manual-code" class="font-mono text-sm text-gray-800 break-all select-all">Loading...</code>
+                    <button onclick="copyCode()" class="ml-3 text-sm text-green-600 hover:text-green-700 font-medium whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity">Copy</button>
                 </div>
             </div>
         </div>
 
-        <div id="error-area" class="hidden text-red-500 bg-red-50 p-4 rounded-lg text-sm">
+        <div id="error-area" class="hidden text-red-500 bg-red-50 p-4 rounded-xl text-sm">
             Unable to find transaction details. Please check your email.
         </div>
 
-        <div class="mt-8 pt-6 border-t border-gray-100 text-sm text-gray-400">
+        <div class="mt-12 pt-8 border-t border-gray-100 text-sm text-gray-400">
             <p>A backup activation link has been sent to your email.</p>
-            <p class="mt-2">Need help? <a href="https://tally.so/r/obDo51" target="_blank" class="underline text-gray-600 hover:text-dark">Contact Support</a></p>
+            <p class="mt-2">Need help? <a href="https://tally.so/r/obDo51" target="_blank" class="underline hover:text-dark transition-colors">Contact Support</a></p>
         </div>
     </div>
 
     <script>
-        // 1. 从 URL 获取 session_id
         const urlParams = new URLSearchParams(window.location.search);
         const sessionId = urlParams.get('session_id');
 
         if (sessionId) {
-            // 有 ID -> 显示激活区域
             document.getElementById('activation-area').classList.remove('hidden');
-            
-            // 配置按钮链接: reso://activate?id=...
             const deepLink = `reso://activate?id=${sessionId}`;
             document.getElementById('activate-btn').href = deepLink;
-
-            // 显示手动码
             document.getElementById('manual-code').textContent = sessionId;
         } else {
-            // 无 ID -> 显示错误提示
             document.getElementById('error-area').classList.remove('hidden');
         }
 
         function copyCode() {
             const code = document.getElementById('manual-code').textContent;
             navigator.clipboard.writeText(code);
-            alert('Code copied!');
+            // 简单的反馈，不弹窗打扰
+            const btn = event.target;
+            const originalText = btn.textContent;
+            btn.textContent = 'Copied!';
+            setTimeout(() => btn.textContent = originalText, 2000);
         }
     </script>
 </body>
