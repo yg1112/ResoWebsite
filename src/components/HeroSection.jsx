@@ -290,12 +290,20 @@ const HeroSection = () => {
               7-day free trial • 30-day money-back guarantee
             </p>
           </div>
+
+          {/* Works Seamlessly With */}
+          <div className="mt-8">
+            <span className="text-[10px] uppercase tracking-widest text-gray-400 font-semibold">Works seamlessly with</span>
+            <div className="mt-4 flex items-center">
+              <ToolLogos />
+            </div>
+          </div>
         </div>
 
         {/* Right Side: Demo Animation */}
         <div className="flex flex-col gap-8">
           {/* THE STAGE */}
-          <div className="relative w-full aspect-[16/10] bg-[#1C1C1E] rounded-3xl border border-gray-700/50 shadow-[0_35px_60px_-15px_rgba(0,0,0,0.3)] overflow-hidden">
+          <div className="relative w-full aspect-[4/3] bg-[#1C1C1E] rounded-3xl border border-gray-700/50 shadow-[0_35px_60px_-15px_rgba(0,0,0,0.3)] overflow-hidden scale-110">
 
             {/* 1. APP LAYER */}
             <div className="absolute inset-0 z-0 flex flex-col">
@@ -409,14 +417,6 @@ const HeroSection = () => {
               </div>
             </div>
 
-          </div>
-
-          {/* Works Seamlessly With */}
-          <div className="text-center">
-            <span className="text-[10px] uppercase tracking-widest text-gray-400 font-semibold">Works seamlessly with</span>
-            <div className="mt-4 flex items-center justify-center">
-              <ToolLogos />
-            </div>
           </div>
         </div>
       </div>
