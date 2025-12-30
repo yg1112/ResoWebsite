@@ -251,10 +251,14 @@ const HeroSection = () => {
           <div className="flex flex-col gap-3 ml-[4.05rem]">
             <div className="flex items-center gap-4">
               {/* Download Now Button */}
-              <button className="bg-black text-white rounded-lg font-semibold text-xs hover:bg-gray-800 transition-all shadow-sm hover:shadow-md flex items-center justify-center gap-1.5 h-[52px] w-[156px]">
+              <a
+                href="https://github.com/yg1112/reso/releases/latest/download/Reso_Direct_1.0.0.dmg"
+                download
+                className="bg-black text-white rounded-lg font-semibold text-xs hover:bg-gray-800 transition-all shadow-sm hover:shadow-md flex items-center justify-center gap-1.5 h-[52px] w-[156px]"
+              >
                 <Download size={16} />
                 <span>Download Now</span>
-              </button>
+              </a>
 
               {/* Divider */}
               <div className="w-px h-8 bg-gray-300"></div>
