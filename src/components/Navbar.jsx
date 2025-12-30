@@ -41,6 +41,7 @@ const Navbar = ({ isScrolled = false, onNavClick }) => {
         {/* Desktop Menu */}
         <div className="hidden md:flex items-center gap-6 text-sm font-medium text-gray-600">
           <a href="#features" className="hover:text-gray-900 transition-colors">Features</a>
+          <a href="https://reso.dzgapp.com/retrieve.html" target="_blank" rel="noopener noreferrer" className="hover:text-gray-900 transition-colors">License Manager</a>
           <a href="#faq" className="hover:text-gray-900 transition-colors">FAQ</a>
           <a href="#pricing" className="hover:text-gray-900 transition-colors">Pricing</a>
           <button
@@ -65,6 +66,7 @@ const Navbar = ({ isScrolled = false, onNavClick }) => {
       {mobileMenuOpen && (
         <div className="md:hidden bg-white border-b border-gray-200 px-6 py-4 space-y-4">
           <a href="#features" className="block text-gray-600 hover:text-gray-900">Features</a>
+          <a href="https://reso.dzgapp.com/retrieve.html" target="_blank" rel="noopener noreferrer" className="block text-gray-600 hover:text-gray-900">License Manager</a>
           <a href="#faq" className="block text-gray-600 hover:text-gray-900">FAQ</a>
           <a href="#pricing" className="block text-gray-600 hover:text-gray-900">Pricing</a>
           <DownloadButton variant="primary" size="md" className="w-full justify-center" />
