@@ -252,7 +252,7 @@ const HeroSection = () => {
             <div className="flex items-center gap-4">
               {/* Download Now Button */}
               <a
-                href="https://github.com/yg1112/reso-releases/releases/latest/download/Reso_Direct_1.0.1.dmg"
+                href="https://github.com/yg1112/reso-releases/releases/latest/download/Reso_1.0.2.dmg"
                 download
                 className="bg-black text-white rounded-lg font-semibold text-xs hover:bg-gray-800 transition-all shadow-sm hover:shadow-md flex items-center justify-center gap-1.5 h-[52px] w-[156px]"
               >
