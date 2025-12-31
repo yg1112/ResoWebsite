@@ -129,7 +129,7 @@ const Footer = () => {
 
                 <div className="flex items-center justify-center gap-4 mt-8 opacity-60">
                    <div className="flex items-center gap-1.5 text-[11px] text-gray-500 uppercase tracking-widest font-semibold">
-                      <Shield size={12} /> 30-Day Guarantee
+                      <Shield size={12} /> 30-Day Money-Back Guarantee
                    </div>
                 </div>
 
