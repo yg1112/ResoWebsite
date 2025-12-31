@@ -43,7 +43,7 @@ const DarkMechanicalKey = ({ label, active }) => (
     `}>
       <span className={`
         font-sans text-2xl font-medium transition-all duration-100 select-none
-        ${active ? 'text-orange-400 scale-95 drop-shadow-[0_0_8px_rgba(251,146,60,0.5)]' : 'text-gray-400'}
+        ${active ? 'text-orange-400 scale-95' : 'text-gray-400'}
       `}>
         {label}
       </span>
@@ -299,7 +299,7 @@ const HeroSection = () => {
         {/* Right Side: Demo Animation */}
         <div className="flex flex-col gap-6 mt-[4.7rem]">
           {/* THE STAGE */}
-          <div className="relative w-full aspect-[4/3] bg-[#1C1C1E] rounded-3xl border border-gray-700/50 shadow-[0_35px_60px_-15px_rgba(0,0,0,0.3)] overflow-hidden scale-110">
+          <div className="relative w-full aspect-[4/3] bg-[#1C1C1E] rounded-3xl border border-gray-700/50 overflow-hidden scale-110">
 
             {/* 1. APP LAYER */}
             <div className="absolute inset-0 z-0 flex flex-col">
@@ -317,7 +317,7 @@ const HeroSection = () => {
                 {/* Right: Status Icons */}
                 <div className="flex items-center gap-3 text-white/60 cursor-default">
                   {/* Reso Menu Bar Icon (Active State Animation) */}
-                  <div className={`transition-all duration-200 ${flowState >= 1 && flowState <= 3 ? 'text-white scale-110 drop-shadow-[0_0_8px_rgba(255,255,255,0.5)]' : 'text-white/40'}`}>
+                  <div className={`transition-all duration-200 ${flowState >= 1 && flowState <= 3 ? 'text-white scale-110' : 'text-white/40'}`}>
                     <AppIcon className="w-3.5 h-3.5 rounded-[2px]" />
                   </div>
                   <div className="w-px h-3 bg-white/10 mx-1"></div>
@@ -383,8 +383,7 @@ const HeroSection = () => {
                   {flowState === 2 && (
                     <>
                       <div className="relative flex items-center justify-center w-3 h-3">
-                        <div className="absolute w-full h-full bg-orange-500/40 rounded-full animate-ping"></div>
-                        <div className="relative w-2.5 h-2.5 bg-orange-500 rounded-full shadow-[0_0_8px_orange]"></div>
+                        <div className="relative w-2.5 h-2.5 bg-orange-500 rounded-full"></div>
                       </div>
                       <div className="flex items-center gap-[3px] h-6">
                         {[...Array(12)].map((_, i) => (
