@@ -40,7 +40,7 @@ const MechanicalKey = ({ label, active }) => (
 const Features = () => {
   return (
     <section id="features" className="py-24 px-6 bg-gray-50 border-t border-gray-100">
-      <div className="max-w-[67.2rem] mx-auto space-y-24">
+      <div className="max-w-[79rem] mx-auto space-y-24">
         
         {/* Pillar 1: Deep Context */}
         <div className="flex flex-col md:flex-row-reverse items-center gap-16">
@@ -52,20 +52,20 @@ const Features = () => {
             <p className="text-lg text-gray-500 leading-relaxed">Don't train the model—just steer it. Tell Reso "I'm coding in Swift" or "Q3 Report," and it instantly adapts to your jargon and syntax.</p>
           </div>
           <div className="flex-1 flex justify-center">
-            <div className="relative bg-gray-50 rounded-3xl p-6 border border-gray-200 shadow-inner w-full max-w-2xl flex flex-col gap-4 h-80 items-center justify-center overflow-hidden">
+            <div className="relative bg-white rounded-3xl p-10 border border-gray-200 shadow-xl w-full max-w-sm flex flex-col gap-4 h-64 items-center justify-center overflow-hidden">
               <div className="absolute -inset-24 bg-gradient-to-r from-blue-100 to-purple-100 opacity-20 blur-3xl -z-10"></div>
-              <div className="grid grid-cols-2 gap-6 w-full">
-                <div className="bg-red-50 rounded-xl border border-red-100 p-6 shadow-sm flex flex-col gap-3">
-                  <div className="text-[10px] uppercase font-bold text-red-400 tracking-wider mb-1">Others</div>
-                  <div className="flex flex-col gap-2">
-                    <span className="inline-block px-3 py-1 rounded-full bg-red-50 text-red-600 line-through font-mono text-sm">app dot tea sx</span>
-                    <span className="inline-block px-3 py-1 rounded-full bg-red-50 text-red-600 line-through font-mono text-sm">quarterly e bit da</span>
+              <div className="grid grid-cols-2 gap-3 w-full">
+                <div className="bg-red-50 rounded-xl border border-red-100 p-3 shadow-sm flex flex-col gap-2">
+                  <div className="text-[9px] uppercase font-bold text-red-400 tracking-wider">Others</div>
+                  <div className="flex flex-col gap-1.5">
+                    <span className="inline-block px-2 py-0.5 rounded-full bg-red-50 text-red-600 line-through font-mono text-xs">app dot tea sx</span>
+                    <span className="inline-block px-2 py-0.5 rounded-full bg-red-50 text-red-600 line-through font-mono text-xs">quarterly e bit da</span>
                   </div>
                 </div>
-                <div className="bg-gradient-to-br from-green-50 to-white rounded-xl border-l-4 border-green-200 p-6 shadow-lg flex flex-col gap-3 items-start">
-                  <div className="flex items-center gap-2 text-[10px] font-bold text-green-600 tracking-wider mb-1"><CheckCircle2 size={14} className="text-green-600"/> <span>Reso</span></div>
-                  <div className="inline-block px-3 py-1 rounded-full bg-green-50 text-green-700 font-mono text-sm">App.tsx</div>
-                  <div className="inline-block px-3 py-1 rounded-full bg-green-50 text-green-700 font-mono text-sm">Quarterly EBITDA</div>
+                <div className="bg-gradient-to-br from-green-50 to-white rounded-xl border-l-4 border-green-200 p-3 shadow-lg flex flex-col gap-2 items-start">
+                  <div className="flex items-center gap-1.5 text-[9px] font-bold text-green-600 tracking-wider"><CheckCircle2 size={12} className="text-green-600"/> <span>Reso</span></div>
+                  <div className="inline-block px-2 py-0.5 rounded-full bg-green-50 text-green-700 font-mono text-xs">App.tsx</div>
+                  <div className="inline-block px-2 py-0.5 rounded-full bg-green-50 text-green-700 font-mono text-xs">Quarterly EBITDA</div>
                 </div>
               </div>
             </div>
@@ -208,7 +208,7 @@ const Features = () => {
 
       {/* STATS SECTION */}
       <section id="stats" className="py-24 px-6 border-t border-gray-100 bg-white relative z-10 mt-24">
-        <div className="max-w-[67.2rem] mx-auto">
+        <div className="max-w-[79rem] mx-auto">
           <div className="text-center mb-16">
             <h2 className="text-4xl font-bold text-gray-900 mb-4">Backed by Science.</h2>
             <p className="text-gray-500 text-lg">Why voice is the future of work.</p>
@@ -253,7 +253,7 @@ const Features = () => {
 
       {/* FAQ SECTION */}
       <section id="faq" className="py-24 px-6 border-t border-gray-100 bg-gray-50 relative z-10">
-        <div className="max-w-[67.2rem] mx-auto">
+        <div className="max-w-[79rem] mx-auto">
           <div className="text-center mb-16">
             <h2 className="text-3xl font-bold text-gray-900 mb-4">Frequently Asked Questions</h2>
           </div>
