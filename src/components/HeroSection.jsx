@@ -226,8 +226,13 @@ const HeroSection = () => {
   const CurrentScenario = scenariosData[activeScenario].component;
 
   return (
-    <section className="relative z-10 pt-40 pb-32 px-6 bg-white min-h-screen flex items-center">
-      <div className="max-w-[79rem] mx-auto grid grid-cols-1 md:grid-cols-2 gap-12 items-start w-full">
+    // 调整：减少了 pt/pb 的高度，增加了一些 padding，让整体不那么顶天立地
+    <section className="relative z-10 pt-32 pb-24 px-6 bg-white min-h-screen flex items-center justify-center">
+      
+      {/* 调整：Grid gap 从 12 增加到 20 (lg:gap-24)，大幅增加左右呼吸感 */}
+      {/* 调整：items-start 改为 items-center，实现垂直居中对齐，这是高级感的关键 */}
+      <div className="max-w-[79rem] mx-auto grid grid-cols-1 md:grid-cols-2 gap-16 lg:gap-24 items-center w-full">
+        
         {/* Left Side: Text and CTA */}
         <div className="text-left">
           {/* Platform Tag */}
@@ -237,13 +242,14 @@ const HeroSection = () => {
             </span>
           </div>
 
-          <h1 className="text-6xl md:text-8xl font-bold tracking-tighter leading-[0.95] mb-12 text-gray-900">
+          <h1 className="text-6xl md:text-8xl font-bold tracking-tighter leading-[0.95] mb-10 text-gray-900">
             Capture thoughts. <br />
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-gray-400 to-gray-200">
               Anywhere.
             </span>
           </h1>
-          <p className="text-xl text-gray-500 leading-relaxed mb-12 font-normal">
+          {/* 调整：增加了 max-w-lg 限制文字宽度，防止文字拉太长，增加可读性 */}
+          <p className="text-xl text-gray-500 leading-relaxed mb-10 font-normal max-w-lg">
             Instant voice-to-text for your Mac.<br/>
             Flows into Slack, GitHub, iMessage, and more. <span className="text-orange-500 font-semibold">Locally.</span>
           </p>
@@ -270,18 +276,12 @@ const HeroSection = () => {
                   className="cursor-not-allowed opacity-70 hover:opacity-60 transition-opacity flex items-center h-[52px]"
                 >
                   <svg width="156" height="52" viewBox="0 0 156 52" fill="none" xmlns="http://www.w3.org/2000/svg" className="block">
-                    {/* Background */}
                     <rect width="156" height="52" rx="8" fill="#6B7280"/>
-
-                    {/* Apple Logo */}
                     <path d="M32.85 26.3c-.03-3.17 2.59-4.7 2.71-4.78-1.48-2.16-3.77-2.46-4.59-2.49-1.94-.2-3.81 1.15-4.8 1.15-1.0 0-2.54-1.12-4.18-1.09-2.15.03-4.13 1.25-5.24 3.18-2.24 3.88-.57 9.63 1.6 12.78 1.07 1.54 2.33 3.27 4.0 3.21 1.61-.07 2.21-1.04 4.15-1.04 1.93 0 2.5 1.04 4.18 1.01 1.73-.03 2.83-1.56 3.89-3.11 1.22-1.79 1.72-3.52 1.75-3.61-.04-.02-3.36-1.29-3.39-5.11zm-3.12-9.22c.88-1.07 1.48-2.56 1.32-4.05-1.27.05-2.81.85-3.73 1.92-.82.95-1.54 2.47-1.35 3.93 1.43.11 2.88-.72 3.76-1.8z" fill="white"/>
-
-                    {/* Text */}
                     <text x="50" y="20" fill="white" fontSize="11" fontFamily="-apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif" fontWeight="400">Download on the</text>
                     <text x="50" y="37" fill="white" fontSize="18" fontFamily="-apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif" fontWeight="600">App Store</text>
                   </svg>
                 </button>
-                {/* Tooltip */}
                 <div className="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 px-3 py-1.5 bg-gray-900 text-white text-xs rounded-lg opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none whitespace-nowrap z-10">
                   Coming soon
                   <div className="absolute top-full left-1/2 transform -translate-x-1/2 -mt-1 border-4 border-transparent border-t-gray-900"></div>
@@ -289,7 +289,6 @@ const HeroSection = () => {
               </div>
             </div>
 
-            {/* Guarantee Text */}
             <p className="text-xs text-gray-400">
               One-time payment • Lifetime access
             </p>
@@ -297,27 +296,27 @@ const HeroSection = () => {
         </div>
 
         {/* Right Side: Demo Animation */}
-        <div className="flex flex-col gap-6 mt-[4.7rem]">
+        {/* 调整：移除了 mt-[4.7rem]，因为我们现在使用 items-center 对齐 */}
+        <div className="flex flex-col gap-8 w-full">
           {/* THE STAGE */}
-          <div className="relative w-full aspect-[4/3] bg-[#1C1C1E] rounded-3xl border border-gray-700/50 overflow-hidden scale-110">
+          {/* 调整：
+              1. 移除了 scale-110 (这是拥挤的元凶)。
+              2. 将 aspect-[4/3] 改为 aspect-[3/2] (更宽扁)，这让它在不占据过多垂直空间的情况下保留大屏幕感。
+              3. 增加了 shadow-2xl 让其在没有放大的情况下依然有立体感。
+          */}
+          <div className="relative w-full aspect-[3/2] bg-[#1C1C1E] rounded-3xl border border-gray-700/50 overflow-hidden shadow-2xl ring-1 ring-gray-900/5">
 
             {/* 1. APP LAYER */}
             <div className="absolute inset-0 z-0 flex flex-col">
-              {/* [Native Cue] Fake macOS Menu Bar */}
-              {/* FIXED: Removed backdrop-blur-md and bg-black/20 to prevent corner bleed artifacts */}
+              {/* Menu Bar (Corrected: No blur/light effect) */}
               <div className="absolute top-0 left-0 right-0 h-7 flex items-center px-4 justify-between select-none z-20">
-                {/* Left: Fake Apple Logo & Menu */}
                 <div className="flex items-center gap-4 text-white/50 text-xs font-medium">
-                  <span className="hover:text-white transition-colors cursor-default"></span>
                   <span className="font-bold text-white/90 cursor-default">Reso</span>
                   <span className="hidden sm:inline cursor-default">File</span>
                   <span className="hidden sm:inline cursor-default">Edit</span>
                   <span className="hidden sm:inline cursor-default">View</span>
                 </div>
-
-                {/* Right: Status Icons */}
                 <div className="flex items-center gap-3 text-white/60 cursor-default">
-                  {/* Reso Menu Bar Icon (Active State Animation) */}
                   <div className={`transition-all duration-200 ${flowState >= 1 && flowState <= 3 ? 'text-white scale-110' : 'text-white/40'}`}>
                     <AppIcon className="w-3.5 h-3.5 rounded-[2px]" />
                   </div>
@@ -330,7 +329,6 @@ const HeroSection = () => {
                 </div>
               </div>
 
-              {/* Scenario Content */}
               <div className="flex-1 relative bg-[#1C1C1E] pt-8">
                 <CurrentScenario
                   key={activeScenario}
@@ -338,11 +336,9 @@ const HeroSection = () => {
                 />
               </div>
 
-              {/* [Local Cue] Smart HUD - 精简版 */}
+              {/* HUD */}
               <div className={`absolute bottom-5 right-5 transition-all duration-500 transform ${flowState >= 1 ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-2'}`}>
                 <div className="flex flex-col items-end gap-1.5">
-
-                  {/* State A: Processing (Offline Mode Showcase) - 极简文案 */}
                   {flowState === 3 ? (
                     <div className="flex items-center gap-2 px-3 py-1.5 rounded-full bg-orange-500/10 border border-orange-500/20 shadow-lg backdrop-blur-sm animate-in fade-in slide-in-from-bottom-1">
                       <WifiOff size={12} className="text-orange-400" />
@@ -351,7 +347,6 @@ const HeroSection = () => {
                       </span>
                     </div>
                   ) : (
-                  /* State B: Ready (Native Integration Showcase) */
                     <div className="flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/5 border border-white/10 shadow-lg backdrop-blur-sm">
                       <div className={`w-1.5 h-1.5 rounded-full ${flowState === 2 ? 'bg-green-500 animate-pulse' : 'bg-gray-500'}`}></div>
                       <span className="text-[9px] font-bold text-gray-400 tracking-widest uppercase font-mono">
@@ -418,7 +413,8 @@ const HeroSection = () => {
           {/* Works Seamlessly With */}
           <div className="text-center">
             <span className="text-[10px] uppercase tracking-widest text-gray-400 font-semibold">Works seamlessly with</span>
-            <div className="mt-4 flex items-center justify-center">
+            <div className="mt-4 flex items-center justify-center scale-95 opacity-80">
+               {/* 略微调小了 logo 栏，使其不喧宾夺主 */}
               <ToolLogos />
             </div>
           </div>
