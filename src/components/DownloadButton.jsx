@@ -7,7 +7,7 @@ const DownloadButton = ({ variant = 'primary', size = 'lg', className = '', chil
   
   // For development/testing, fall back to DMG download
   const downloadUrl = appStoreUrl.includes('idXXXXXXXXX') 
-    ? "https://github.com/yg1112/reso-releases/releases/latest/download/Reso_1.0.2.dmg"
+    ? "https://github.com/yg1112/reso-releases/releases/latest/download/Reso.dmg"
     : appStoreUrl;
 
   const variantStyles = {
