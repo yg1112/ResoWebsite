@@ -121,7 +121,7 @@ const Scenarios = {
       <div className="space-y-6">
         <div className="flex flex-col gap-2 opacity-50 blur-[0.5px]">
           <div className="self-start bg-[#333] px-4 py-2 rounded-2xl rounded-tl-sm text-sm text-gray-300 max-w-[60%]">
-            Lunch? 🍜
+            Lunch?
           </div>
         </div>
         <div className="relative">
@@ -171,7 +171,7 @@ const scenariosData = [
       <>
         <span className="text-gray-200">Meet at </span>
         <span className="text-white font-semibold">Blue Bottle</span>
-        <span className="text-gray-200"> around 1pm? ☕️</span>
+        <span className="text-gray-200"> around 1pm?</span>
       </>
     )
   },
