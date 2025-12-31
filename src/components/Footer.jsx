@@ -1,162 +1,124 @@
-import React, { useState } from 'react';
-import { Twitter, Mail, CheckCircle2, Shield, Check } from 'lucide-react';
-import DownloadButton from './DownloadButton';
+import React from 'react';
+import { Check, Shield, Zap, Cpu, HelpCircle, ArrowRight } from 'lucide-react';
 
-// App Icon
-const AppIcon = ({ className }) => (
-  <svg viewBox="0 0 512 512" fill="none" xmlns="http://www.w3.org/2000/svg" className={className}>
-    <defs>
-      <linearGradient id="icon_grad_footer" x1="256" y1="0" x2="256" y2="512" gradientUnits="userSpaceOnUse">
-        <stop offset="0" stopColor="#FB923C"/>
-        <stop offset="1" stopColor="#EA580C"/>
-      </linearGradient>
-      <filter id="icon_shadow_footer" x="-20%" y="-20%" width="140%" height="140%">
-         <feDropShadow dx="0" dy="4" stdDeviation="6" floodColor="#000" floodOpacity="0.15"/>
-      </filter>
-    </defs>
-    <rect x="0" y="0" width="512" height="512" rx="110" fill="url(#icon_grad_footer)"/>
-    <rect x="8" y="8" width="496" height="496" rx="108" stroke="white" strokeOpacity="0.1" strokeWidth="8"/>
-    <g stroke="white" strokeWidth="42" strokeLinecap="round" strokeLinejoin="round" filter="url(#icon_shadow_footer)">
-      <path d="M352 190H160"/>
-      <path d="M210 130L150 190L210 250"/>
-      <path d="M160 322H352"/>
-      <path d="M302 262L362 322L302 382"/>
-    </g>
-  </svg>
-);
-
-const Footer = () => {
-  const [email, setEmail] = useState('');
-  const [subscribed, setSubscribed] = useState(false);
-
-  const handleSubscribe = async (e) => {
-    e.preventDefault();
-    if (!email) return;
-    const formBody = `email=${encodeURIComponent(email)}&userGroup=Newsletter`;
-    try {
-      const response = await fetch("https://app.loops.so/api/newsletter-form/cmjdjf56l00dd0izhwc34oz2l", {
-        method: "POST",
-        body: formBody,
-        headers: { "Content-Type": "application/x-www-form-urlencoded" },
-      });
-      if (response.ok) { 
-        setSubscribed(true); 
-        setEmail(''); 
-      } else { 
-        alert("Something went wrong. Please try again."); 
-      }
-    } catch (error) { 
-      console.error("Error:", error); 
-      alert("Something went wrong. Please try again."); 
-    }
-  };
-
+const Pricing = () => {
   const handleBuy = () => {
     window.open('https://buy.stripe.com/7sY14m2FX9ps7jIcht6AM01', '_blank');
   };
 
   return (
-    <>
-      {/* PRICING SECTION */}
-      <section id="pricing" className="py-24 px-6 border-t border-gray-200 bg-gray-50 relative z-10 text-center">
-        <div className="max-w-[67.2rem] mx-auto">
-          <h2 className="text-4xl font-bold text-gray-900 mb-3">Simple, Transparent Pricing</h2>
-          <p className="text-gray-500 mb-12">Pay once, own forever</p>
+    <section id="pricing" className="relative py-24 px-6 overflow-hidden bg-gray-50/50 border-t border-gray-200">
+      
+      {/* 背景装饰：模拟 M-Series 芯片的辉光 */}
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-blue-100/40 rounded-full blur-[120px] pointer-events-none" />
 
-          <div className="flex justify-center">
-            {/* Lifetime License */}
-            <div className="bg-white border-2 border-gray-200 rounded-3xl p-10 hover:border-orange-500 hover:shadow-lg transition-all relative max-w-md w-full">
-              <h3 className="text-2xl font-bold text-gray-900 mb-2">Lifetime License</h3>
-              <div className="flex items-baseline justify-center gap-1 my-6">
-                <span className="text-5xl font-bold text-gray-900 tracking-tight">$29.99</span>
-                <span className="text-gray-500 font-medium text-xl">(Launch Special)</span>
+      <div className="relative max-w-4xl mx-auto">
+        
+        {/* 标题区域：主打“释放硬件潜能” */}
+        <div className="text-center mb-16 space-y-4">
+          <h2 className="text-4xl md:text-5xl font-bold text-gray-900 tracking-tight">
+            Put your Neural Engine to work.
+          </h2>
+          <p className="text-lg text-gray-500 max-w-2xl mx-auto leading-relaxed">
+            You invested in Apple Silicon. Now use it. 
+            <br className="hidden md:block"/>
+            Get highly optimized, local intelligence that flies on your M-series chip.
+          </p>
+        </div>
+
+        <div className="flex justify-center">
+          
+          {/* PRICING CARD */}
+          <div className="relative group w-full max-w-[440px] bg-white rounded-[2rem] shadow-[0_8px_40px_-12px_rgba(0,0,0,0.1)] ring-1 ring-black/5 transition-transform duration-300 hover:-translate-y-1">
+            
+            {/* 顶部高光条 */}
+            <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-orange-400/40 to-transparent" />
+
+            <div className="p-8 md:p-10">
+              
+              {/* Header: License Type */}
+              <div className="flex justify-between items-center mb-8">
+                <div className="flex items-center gap-2">
+                  <h3 className="text-sm font-bold text-gray-900 uppercase tracking-widest">
+                    Perpetual License
+                  </h3>
+                  {/* Tooltip hint regarding the CleanShot model */}
+                  <div className="group/tooltip relative">
+                    <HelpCircle size={14} className="text-gray-400 cursor-help" />
+                    <div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 w-48 p-2 bg-gray-900 text-white text-[10px] rounded-lg opacity-0 group-hover/tooltip:opacity-100 transition-opacity pointer-events-none text-center">
+                      Own version 1.0 forever. Includes 1 year of updates. Renewal is optional.
+                    </div>
+                  </div>
+                </div>
               </div>
-              <ul className="text-left space-y-4 mb-8 text-gray-600">
-                <li className="flex gap-3"><Check size={18} className="text-orange-500 flex-shrink-0 mt-0.5" /> <span><strong>Pay once, own it forever</strong></span></li>
-                <li className="flex gap-3"><Check size={18} className="text-orange-500 flex-shrink-0 mt-0.5" /> <span><strong>Your voice never leaves your Mac</strong></span></li>
-                <li className="flex gap-3"><Check size={18} className="text-orange-500 flex-shrink-0 mt-0.5" /> <span><strong>Unlimited dictation</strong></span></li>
-                <li className="flex gap-3"><Check size={18} className="text-orange-500 flex-shrink-0 mt-0.5" /> <span><strong>Includes 1 year of updates</strong></span></li>
-                <li className="flex gap-3 opacity-50"><span className="text-gray-400">✕</span> <span className="line-through">No monthly fees</span></li>
+
+              {/* Price */}
+              <div className="flex items-baseline gap-1 mb-2">
+                <span className="text-[3.5rem] leading-none font-bold text-gray-900 tracking-tighter">$29.99</span>
+                <span className="text-base text-gray-500 font-medium ml-1">/ once</span>
+              </div>
+              <p className="text-sm text-gray-400 mb-8">
+                Less than the cost of a dongle.
+              </p>
+
+              {/* Divider */}
+              <div className="h-px w-full bg-gray-100 mb-8" />
+
+              {/* Features List */}
+              <ul className="space-y-4 mb-10">
+                <li className="flex items-start gap-3.5">
+                  <div className="flex-shrink-0 w-5 h-5 rounded-full bg-orange-50 flex items-center justify-center mt-0.5 border border-orange-100">
+                    <Zap size={12} className="text-orange-600 fill-orange-600" />
+                  </div>
+                  <span className="text-gray-700 text-[15px] font-medium">
+                    Engineered for instant speed
+                  </span>
+                </li>
+
+                <li className="flex items-start gap-3.5">
+                  <div className="flex-shrink-0 w-5 h-5 rounded-full bg-blue-50 flex items-center justify-center mt-0.5 border border-blue-100">
+                    <Cpu size={12} className="text-blue-600" />
+                  </div>
+                  <span className="text-gray-700 text-[15px]">
+                    100% Local Neural Engine processing
+                  </span>
+                </li>
+
+                <li className="flex items-start gap-3.5">
+                  <div className="flex-shrink-0 w-5 h-5 rounded-full bg-green-50 flex items-center justify-center mt-0.5 border border-green-100">
+                    <Check size={12} className="text-green-600 stroke-[3]" />
+                  </div>
+                  <div className="flex flex-col">
+                    <span className="text-gray-700 text-[15px]">
+                      Keep the app forever
+                    </span>
+                    <span className="text-xs text-gray-400 mt-0.5">
+                      + 1 year of updates included
+                    </span>
+                  </div>
+                </li>
               </ul>
-              <div className="flex justify-center">
-                <button
-                  onClick={handleBuy}
-                  className="px-8 py-2.5 bg-black text-white rounded-full font-semibold text-sm hover:bg-gray-800 transition-all shadow-md hover:shadow-lg"
-                >
-                  Buy now
-                </button>
-              </div>
-            </div>
-          </div>
 
-          <p className="text-xs text-gray-400 mt-8 flex items-center justify-center gap-2">
-            <Shield size={12}/> Secure billing via Stripe • Verified by Apple
-          </p>
-        </div>
-      </section>
-
-      {/* NEWSLETTER SECTION */}
-      <section className="py-24 px-6 bg-white border-t border-gray-100 relative z-10">
-        <div className="max-w-5xl mx-auto text-center">
-          <h2 className="text-3xl font-bold text-gray-900 mb-3">Be the first to know</h2>
-          <p className="text-gray-600 text-[15px] mb-8 leading-relaxed">
-            We'll inform you about new apps and deals, but no spam, we promise.
-          </p>
-
-          {subscribed ? (
-            <div className="flex flex-col items-center justify-center p-6 bg-green-50 rounded-2xl border border-green-100 animate-in fade-in zoom-in duration-300">
-              <div className="w-12 h-12 bg-green-100 rounded-full flex items-center justify-center mb-3">
-                <CheckCircle2 size={24} className="text-green-600" />
-              </div>
-              <h3 className="text-xl font-bold text-gray-900">You're on the list!</h3>
-              <p className="text-gray-500">Thanks for subscribing.</p>
-            </div>
-          ) : (
-            <form onSubmit={handleSubscribe} className="flex flex-col sm:flex-row gap-3 justify-center max-w-lg mx-auto">
-              <input
-                type="email"
-                required
-                placeholder="Your e-mail address"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                className="flex-1 px-5 py-3 rounded-full border border-gray-200 bg-white focus:bg-white focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 outline-none transition-all placeholder:text-gray-400 text-[15px]"
-              />
+              {/* CTA Button */}
               <button
-                type="submit"
-                className="px-8 py-3 bg-[#007AFF] text-white font-semibold rounded-full hover:bg-[#0051D5] transition-all shadow-md hover:shadow-lg whitespace-nowrap text-[15px]"
+                onClick={handleBuy}
+                className="group relative w-full flex items-center justify-center gap-2 py-4 rounded-xl bg-[#111] text-white font-medium text-[15px] shadow-xl shadow-gray-900/10 hover:shadow-2xl hover:shadow-gray-900/20 hover:scale-[1.02] transition-all duration-200 overflow-hidden uppercase"
               >
-                Subscribe
+                <div className="absolute inset-x-0 top-0 h-px bg-white/20" />
+                <span className="relative z-10 flex items-center gap-2">
+                  Buy Now <ArrowRight size={16} className="opacity-50 group-hover:translate-x-0.5 transition-transform"/>
+                </span>
               </button>
-            </form>
-          )}
-        </div>
-      </section>
 
-      {/* FOOTER */}
-      <footer id="contact" className="py-12 px-6 border-t border-gray-200 bg-gray-50 text-xs text-gray-500 relative z-10">
-        <div className="max-w-5xl mx-auto flex flex-col md:flex-row justify-between items-start gap-8">
-          <div className="flex flex-col gap-6">
-            <div className="flex items-center">
-              <span>&copy; 2025 DZG STUDIO LLC.</span>
+              <p className="text-[11px] text-gray-400 text-center mt-5">
+                30-day money-back guarantee • Secure checkout
+              </p>
             </div>
           </div>
-          <div className="flex items-center gap-8">
-            <a href="/privacy.html" target="_blank" rel="noreferrer" className="hover:text-gray-900 transition-colors">Privacy Policy</a>
-            <a href="/terms.html" target="_blank" rel="noreferrer" className="hover:text-gray-900 transition-colors">Terms of Service</a>
-            <div className="w-px h-3 bg-gray-300"></div>
-            <a href="https://x.com/DzgStudio" target="_blank" rel="noreferrer" className="flex items-center gap-2 hover:text-gray-900 transition-colors">
-              <Twitter size={16} />
-              <span>@DzgStudio</span>
-            </a>
-            <a href="https://tally.so/r/obDo51" target="_blank" rel="noreferrer" className="flex items-center gap-2 hover:text-gray-900 transition-colors">
-              <Mail size={16} />
-              <span>Support</span>
-            </a>
-          </div>
         </div>
-      </footer>
-    </>
+      </div>
+    </section>
   );
 };
 
-export default Footer;
+export default Pricing;
