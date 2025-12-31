@@ -16,7 +16,7 @@ function App() {
   }, []);
 
   const handleNavClick = () => {
-    window.open('https://buy.stripe.com/00w7sKeoFfNQ5bAftF6AM00', '_blank');
+    window.open('https://buy.stripe.com/7sY14m2FX9ps7jIcht6AM01', '_blank');
   };
 
   return (

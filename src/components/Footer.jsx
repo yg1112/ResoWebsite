@@ -52,7 +52,7 @@ const Footer = () => {
   };
 
   const handleBuy = () => {
-    window.open('https://buy.stripe.com/00w7sKeoFfNQ5bAftF6AM00', '_blank');
+    window.open('https://buy.stripe.com/7sY14m2FX9ps7jIcht6AM01', '_blank');
   };
 
   return (
@@ -61,21 +61,22 @@ const Footer = () => {
       <section id="pricing" className="py-24 px-6 border-t border-gray-200 bg-gray-50 relative z-10 text-center">
         <div className="max-w-[67.2rem] mx-auto">
           <h2 className="text-4xl font-bold text-gray-900 mb-3">Simple, Transparent Pricing</h2>
-          <p className="text-gray-500 mb-12">Start free, then pay only if you love it</p>
-          
+          <p className="text-gray-500 mb-12">Pay once, own forever</p>
+
           <div className="flex justify-center">
-            {/* Annual Plan */}
+            {/* Lifetime License */}
             <div className="bg-white border-2 border-gray-200 rounded-3xl p-10 hover:border-orange-500 hover:shadow-lg transition-all relative max-w-md w-full">
-              <h3 className="text-2xl font-bold text-gray-900 mb-2">Annual Plan</h3>
+              <h3 className="text-2xl font-bold text-gray-900 mb-2">Lifetime License</h3>
               <div className="flex items-baseline justify-center gap-1 my-6">
                 <span className="text-5xl font-bold text-gray-900 tracking-tight">$29.99</span>
-                <span className="text-gray-500 font-medium text-xl">/ year</span>
+                <span className="text-gray-500 font-medium text-xl">(Launch Special)</span>
               </div>
               <ul className="text-left space-y-4 mb-8 text-gray-600">
-                <li className="flex gap-3"><Check size={18} className="text-orange-500 flex-shrink-0 mt-0.5" /> <span><strong>Full access</strong> to all features</span></li>
-                <li className="flex gap-3"><Check size={18} className="text-orange-500 flex-shrink-0 mt-0.5" /> <span><strong>Continuous updates</strong> & improvements</span></li>
-                <li className="flex gap-3"><Check size={18} className="text-orange-500 flex-shrink-0 mt-0.5" /> <span><strong>30-day money-back guarantee</strong> for Direct License purchases</span></li>
-                <li className="flex gap-3"><Check size={18} className="text-orange-500 flex-shrink-0 mt-0.5" /> <span><strong>Cancel anytime</strong> — no questions asked</span></li>
+                <li className="flex gap-3"><Check size={18} className="text-orange-500 flex-shrink-0 mt-0.5" /> <span><strong>Pay once, own it forever</strong></span></li>
+                <li className="flex gap-3"><Check size={18} className="text-orange-500 flex-shrink-0 mt-0.5" /> <span><strong>Your voice never leaves your Mac</strong></span></li>
+                <li className="flex gap-3"><Check size={18} className="text-orange-500 flex-shrink-0 mt-0.5" /> <span><strong>Unlimited dictation</strong></span></li>
+                <li className="flex gap-3"><Check size={18} className="text-orange-500 flex-shrink-0 mt-0.5" /> <span><strong>Includes 1 year of updates</strong></span></li>
+                <li className="flex gap-3 opacity-50"><span className="text-gray-400">✕</span> <span className="line-through">No monthly fees</span></li>
               </ul>
               <div className="flex justify-center">
                 <button

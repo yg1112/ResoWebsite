@@ -291,7 +291,7 @@ const HeroSection = () => {
 
             {/* Guarantee Text */}
             <p className="text-xs text-gray-400">
-              7-day free trial • 30-day money-back guarantee
+              One-time payment • Lifetime access
             </p>
           </div>
         </div>

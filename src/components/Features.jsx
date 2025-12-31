@@ -265,7 +265,7 @@ const Features = () => {
               </div>
               <div>
                 <h4 className="font-bold text-gray-900 mb-2 flex items-center gap-2"><HelpCircle size={16} className="text-orange-500"/> Is this a subscription?</h4>
-                <p className="text-gray-600 text-sm leading-relaxed">Yes, we offer an Annual Plan at $29.99/year. You get a 7-day free trial to explore all features, and you can cancel anytime with no questions asked.</p>
+                <p className="text-gray-600 text-sm leading-relaxed">No! Reso is a one-time purchase. Pay $29.99 once and own it forever. You get lifetime access to the app with 1 year of free updates included.</p>
               </div>
             </div>
             <div className="space-y-8">
@@ -275,11 +275,11 @@ const Features = () => {
               </div>
               <div>
                 <h4 className="font-bold text-gray-900 mb-2 flex items-center gap-2"><HelpCircle size={16} className="text-orange-500"/> What is the refund policy?</h4>
-                <p className="text-gray-600 text-sm leading-relaxed">For Direct License purchases, we offer a 30-day money-back guarantee. Just email us for a full refund.<br/><br/>For subscriptions via the Mac App Store, refunds are subject to Apple's policy and must be requested through Apple.</p>
+                <p className="text-gray-600 text-sm leading-relaxed">For Direct License purchases, we offer a 30-day money-back guarantee. Just email us for a full refund, no questions asked.<br/><br/>For purchases via the Mac App Store, refunds are subject to Apple's policy and must be requested through Apple.</p>
               </div>
               <div>
-                <h4 className="font-bold text-gray-900 mb-2 flex items-center gap-2"><HelpCircle size={16} className="text-orange-500"/> Can I cancel anytime?</h4>
-                <p className="text-gray-600 text-sm leading-relaxed">Yes. You can cancel your subscription at any time through the Mac App Store settings. Your access continues until the end of the current billing period.</p>
+                <h4 className="font-bold text-gray-900 mb-2 flex items-center gap-2"><HelpCircle size={16} className="text-orange-500"/> What happens after 1 year of updates?</h4>
+                <p className="text-gray-600 text-sm leading-relaxed">You keep using the app forever. After the first year, you can choose to extend updates for another year at a discounted rate, but it's completely optional. Your license never expires.</p>
               </div>
             </div>
           </div>
