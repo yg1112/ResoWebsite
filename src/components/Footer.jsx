@@ -1,5 +1,29 @@
 import React, { useState } from 'react';
-import { Twitter, Mail, CheckCircle2, Shield, Check, ArrowRight, Cpu, Zap, Lock, Wand2 } from 'lucide-react';
+import { Twitter, Mail, CheckCircle2, Shield, Zap, Cpu, Lock, ArrowRight } from 'lucide-react';
+// import DownloadButton from './DownloadButton';
+
+// App Icon (保持不变)
+const AppIcon = ({ className }) => (
+  <svg viewBox="0 0 512 512" fill="none" xmlns="http://www.w3.org/2000/svg" className={className}>
+    <defs>
+      <linearGradient id="icon_grad" x1="256" y1="0" x2="256" y2="512" gradientUnits="userSpaceOnUse">
+        <stop offset="0" stopColor="#FB923C"/>
+        <stop offset="1" stopColor="#EA580C"/>
+      </linearGradient>
+      <filter id="icon_shadow" x="-20%" y="-20%" width="140%" height="140%">
+         <feDropShadow dx="0" dy="4" stdDeviation="6" floodColor="#000" floodOpacity="0.15"/>
+      </filter>
+    </defs>
+    <rect x="0" y="0" width="512" height="512" rx="110" fill="url(#icon_grad)"/>
+    <rect x="8" y="8" width="496" height="496" rx="108" stroke="white" strokeOpacity="0.1" strokeWidth="8"/>
+    <g stroke="white" strokeWidth="42" strokeLinecap="round" strokeLinejoin="round" filter="url(#icon_shadow)">
+      <path d="M352 190H160"/>
+      <path d="M210 130L150 190L210 250"/>
+      <path d="M160 322H352"/>
+      <path d="M302 262L362 322L302 382"/>
+    </g>
+  </svg>
+);
 
 const Footer = () => {
   const [email, setEmail] = useState('');
@@ -28,146 +52,119 @@ const Footer = () => {
   };
 
   const handleBuy = () => {
-    window.open('https://buy.stripe.com/7sY14m2FX9ps7jIcht6AM01', '_blank');
+    window.open('https://reso.lemonsqueezy.com/checkout', '_blank');
   };
 
   return (
     <>
-      {/* =========================================
-          PRICING SECTION: The "Flow State" Pitch
-         ========================================= */}
-      <section id="pricing" className="relative py-32 px-6 overflow-hidden bg-[#FAFAFA] border-t border-gray-200">
-        
-        {/* 背景光晕：极淡，几乎不可见，只为了增加一点点空气感 */}
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[1000px] h-[1000px] bg-gradient-to-tr from-gray-100 via-blue-50/10 to-orange-50/10 rounded-full blur-[120px] pointer-events-none" />
-
-        <div className="relative max-w-4xl mx-auto">
+      {/* PRICING SECTION */}
+      <section id="pricing" className="py-10 px-6 border-t border-gray-200 bg-gray-50 relative z-10 text-center font-sans">
+        <div className="max-w-4xl mx-auto">
           
-          {/* 标题区域：改为用户视角的“心流体验” */}
-          <div className="text-center mb-20 space-y-6">
-            <h2 className="text-5xl md:text-6xl font-bold text-gray-900 tracking-tighter leading-tight">
-              Type at the speed of thought.
-            </h2>
-            <p className="text-xl text-gray-500 max-w-2xl mx-auto leading-relaxed font-light">
-              The optimized local client for macOS.
-              <br className="hidden md:block"/>
-              <span className="text-gray-900 font-medium">No clouds. No delays. Absolutely no subscriptions.</span>
-            </p>
-          </div>
-
+          {/* Main Headings */}
+          <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-3 tracking-tight">
+            Type at the speed of thought.
+          </h2>
+          <p className="text-lg text-gray-500 mb-5 leading-relaxed max-w-2xl mx-auto">
+            The optimized local client for macOS.<br className="hidden md:block"/>
+            <span className="text-gray-900 font-medium">No clouds. No delays. Absolutely no subscriptions.</span>
+          </p>
+          
           <div className="flex justify-center">
-            
-            {/* PRICING CARD: 纯净版 (去掉了顶部的光条和多余装饰) */}
-            <div className="relative group w-full max-w-[480px] bg-white rounded-[2.5rem] shadow-[0_20px_60px_-12px_rgba(0,0,0,0.08)] ring-1 ring-black/5 transition-all duration-500 hover:shadow-[0_30px_80px_-12px_rgba(0,0,0,0.12)] hover:-translate-y-2">
+            {/* Pricing Card */}
+            <div className="bg-white border border-gray-200 rounded-[2rem] p-10 md:p-12 hover:border-orange-500/50 hover:shadow-2xl hover:shadow-orange-500/10 transition-all duration-300 relative max-w-sm w-full group">
               
-              <div className="p-10 md:p-12">
-                
-                {/* Header: 极简左对齐 */}
-                <div className="flex items-center justify-between mb-6">
-                  <h3 className="text-xs font-bold text-gray-900 uppercase tracking-[0.2em]">
-                    Lifetime License
-                  </h3>
-                  {/* 这里没有任何多余的标签，极其干净 */}
+              {/* Card Header */}
+              <div className="mb-3 text-left">
+                <h3 className="text-xs font-bold text-gray-400 uppercase tracking-[0.25em] mb-2">
+                  Lifetime License
+                </h3>
+                <div className="flex items-center gap-1 mb-2">
+                  <span className="text-4xl md:text-5xl font-bold text-gray-900 tracking-tighter">$29.99</span>
                 </div>
-
-                {/* Price */}
-                <div className="flex items-baseline gap-2 mb-4">
-                  <span className="text-[4.5rem] leading-none font-bold text-gray-900 tracking-tighter">$29.99</span>
-                </div>
-                
-                <p className="text-base text-gray-400 mb-12 font-medium">
+                <p className="text-sm text-gray-500 font-medium">
                   One-time payment. Includes 1 year of updates.
                 </p>
-
-                {/* Divider */}
-                <div className="h-px w-full bg-gray-100 mb-12" />
-
-                {/* Features List: 单句式，聚焦“爽快感” */}
-                <ul className="space-y-8 mb-14">
-                  
-                  {/* Item 1: 速度 */}
-                  <li className="flex items-center gap-5">
-                    <div className="flex-shrink-0 w-12 h-12 rounded-2xl bg-gray-900 flex items-center justify-center shadow-md shadow-gray-900/10">
-                      <Zap size={22} className="text-white" />
-                    </div>
-                    <span className="text-gray-900 font-medium text-lg leading-snug">
-                      Instant speed. Engineered for Apple Silicon.
-                    </span>
-                  </li>
-
-                  {/* Item 2: 智能 */}
-                  <li className="flex items-center gap-5">
-                    <div className="flex-shrink-0 w-12 h-12 rounded-2xl bg-gray-100 flex items-center justify-center border border-gray-200">
-                      <Wand2 size={22} className="text-gray-900" />
-                    </div>
-                    <span className="text-gray-900 font-medium text-lg leading-snug">
-                      Smart enough to understand your context.
-                    </span>
-                  </li>
-
-                  {/* Item 3: 隐私 */}
-                  <li className="flex items-center gap-5">
-                    <div className="flex-shrink-0 w-12 h-12 rounded-2xl bg-gray-100 flex items-center justify-center border border-gray-200">
-                      <Lock size={22} className="text-gray-900" />
-                    </div>
-                    <span className="text-gray-900 font-medium text-lg leading-snug">
-                      100% Offline. Zero data leaves your Mac.
-                    </span>
-                  </li>
-                </ul>
-
-                {/* CTA Button: 纯黑，极简，有力 */}
-                <button
-                  onClick={handleBuy}
-                  className="group relative w-full flex items-center justify-center gap-3 py-5 rounded-2xl bg-gray-900 text-white font-semibold text-lg shadow-xl shadow-black/10 hover:shadow-2xl hover:shadow-black/20 hover:scale-[1.01] transition-all duration-300 overflow-hidden"
-                >
-                  <div className="absolute inset-x-0 top-0 h-px bg-white/20" />
-                  <span className="relative z-10 flex items-center gap-2 tracking-wide">
-                    Buy Now <ArrowRight size={18} className="opacity-70 group-hover:translate-x-1 transition-transform"/>
-                  </span>
-                </button>
-
-                <div className="flex items-center justify-center gap-4 mt-8 opacity-60">
-                   <div className="flex items-center gap-1.5 text-[11px] text-gray-500 uppercase tracking-widest font-semibold">
-                      <Shield size={12} /> 30-Day Money-Back Guarantee
-                   </div>
-                </div>
-
               </div>
+
+              {/* Divider */}
+              <div className="w-full h-px bg-gray-100 mb-6"></div>
+
+              {/* Features List */}
+              <ul className="text-left space-y-2 mb-8">
+                <li className="flex gap-4 items-start">
+                  <div className="p-2 bg-orange-50 rounded-lg shrink-0 mt-0.5">
+                    <Zap size={20} className="text-orange-600" />
+                  </div>
+                  <span className="text-gray-700 text-sm font-medium leading-relaxed">
+                    Instant speed. Engineered for Apple Silicon.
+                  </span>
+                </li>
+                <li className="flex gap-4 items-start">
+                  <div className="p-2 bg-blue-50 rounded-lg shrink-0 mt-0.5">
+                    <Cpu size={20} className="text-blue-600" />
+                  </div>
+                  <span className="text-gray-700 text-sm font-medium leading-relaxed">
+                    Smart enough to understand your context.
+                  </span>
+                </li>
+                <li className="flex gap-4 items-start">
+                  <div className="p-2 bg-green-50 rounded-lg shrink-0 mt-0.5">
+                    <Lock size={20} className="text-green-600" />
+                  </div>
+                  <span className="text-gray-700 text-sm font-medium leading-relaxed">
+                    100% Offline. Zero data leaves your Mac.
+                  </span>
+                </li>
+              </ul>
+
+              {/* Action Button */}
+              <div className="flex flex-col gap-3">
+                <button 
+                  onClick={handleBuy}
+                  className="w-full group flex items-center justify-center gap-2 text-lg py-4 px-8 bg-gray-900 text-white rounded-xl font-semibold hover:bg-black transition-all shadow-lg hover:shadow-xl hover:-translate-y-0.5"
+                >
+                  <span>Buy Now</span>
+                  <ArrowRight size={18} className="transition-transform group-hover:translate-x-1" />
+                </button>
+                <p className="text-xs text-gray-400 font-medium uppercase tracking-wider">
+                  30-day money-back guarantee
+                </p>
+              </div>
+
             </div>
           </div>
         </div>
       </section>
 
-      {/* Newsletter Section (Preserved) */}
-      <section className="py-24 px-6 bg-white border-t border-gray-100 relative z-10">
+      {/* NEWSLETTER SECTION */}
+      <section className="py-16 px-6 bg-white border-t border-gray-100 relative z-10">
         <div className="max-w-2xl mx-auto text-center">
-          <div className="inline-flex items-center justify-center w-12 h-12 rounded-2xl bg-gray-100 mb-6 text-gray-600">
-            <Mail size={20} />
-          </div>
-          <h2 className="text-3xl font-bold text-gray-900 mb-3 tracking-tight">Be the first to know</h2>
-          <p className="text-gray-500 text-base mb-8">
-            We'll inform you about new apps and deals, but no spam, we promise.
+          <h2 className="text-lg font-bold text-gray-900 mb-2">Be the first to know</h2>
+          <p className="text-gray-500 text-sm mb-6">
+            Get the latest apps and deals. We hate spam as much as you do.
           </p>
 
           {subscribed ? (
-            <div className="inline-flex items-center gap-2 px-6 py-3 bg-green-50 text-green-700 rounded-full border border-green-100 animate-in fade-in zoom-in">
-              <CheckCircle2 size={18} />
-              <span className="font-medium">You're on the list!</span>
+            <div className="flex flex-col items-center justify-center p-6 bg-green-50 rounded-2xl border border-green-100 animate-in fade-in zoom-in duration-300">
+              <div className="w-10 h-10 bg-green-100 rounded-full flex items-center justify-center mb-2">
+                <CheckCircle2 size={20} className="text-green-600" />
+              </div>
+              <h3 className="text-lg font-bold text-gray-900">You're on the list!</h3>
             </div>
           ) : (
-            <form onSubmit={handleSubscribe} className="relative max-w-md mx-auto">
+            <form onSubmit={handleSubscribe} className="flex flex-col sm:flex-row gap-2 justify-center max-w-sm mx-auto">
               <input
                 type="email"
                 required
-                placeholder="Your e-mail address"
+                placeholder="Enter your email"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-                className="w-full px-5 py-3.5 pr-32 rounded-full bg-gray-50 border border-gray-200 text-gray-900 placeholder:text-gray-400 focus:bg-white focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 outline-none transition-all"
+                className="flex-1 px-4 py-2.5 rounded-lg border border-gray-200 bg-gray-50 focus:bg-white focus:ring-2 focus:ring-orange-500/20 focus:border-orange-500 outline-none transition-all placeholder:text-gray-400 text-sm"
               />
               <button
                 type="submit"
-                className="absolute right-1.5 top-1.5 bottom-1.5 px-6 bg-[#007AFF] hover:bg-[#0051D5] text-white text-sm font-semibold rounded-full transition-colors"
+                className="px-6 py-2.5 bg-orange-500 text-white font-bold rounded-lg hover:bg-orange-600 transition-all shadow-md hover:shadow-lg text-sm whitespace-nowrap"
               >
                 Subscribe
               </button>
@@ -176,22 +173,27 @@ const Footer = () => {
         </div>
       </section>
 
-      {/* Footer Links (Preserved) */}
-      <footer id="contact" className="py-12 px-6 border-t border-gray-100 bg-white">
-        <div className="max-w-5xl mx-auto flex flex-col md:flex-row justify-between items-center gap-6">
+      {/* FOOTER */}
+      <footer id="contact" className="py-8 px-6 border-t border-gray-200 bg-gray-50 text-xs text-gray-500 relative z-10">
+        <div className="max-w-6xl mx-auto flex flex-col md:flex-row justify-between items-center gap-6">
           <div className="flex items-center gap-2">
-            <span className="text-sm text-gray-400 font-medium">&copy; 2025 DZG STUDIO LLC.</span>
+            <div className="w-5 h-5 opacity-50 grayscale">
+              <AppIcon className="w-full h-full rounded-[4px]" />
+            </div>
+            <span>&copy; 2025 DZG STUDIO LLC.</span>
           </div>
-          
-          <div className="flex items-center gap-6 text-sm text-gray-500 font-medium">
-             <a href="https://x.com/DzgStudio" target="_blank" rel="noreferrer" className="flex items-center gap-2 hover:text-gray-900 transition-colors">
-               <Twitter size={15} /> @DzgStudio
-             </a>
-             <a href="https://tally.so/r/obDo51" target="_blank" rel="noreferrer" className="flex items-center gap-2 hover:text-gray-900 transition-colors">
-               <Mail size={15} /> Support
-             </a>
-             <a href="/privacy.html" target="_blank" rel="noreferrer" className="hover:text-gray-900 transition-colors">Privacy Policy</a>
-             <a href="/terms.html" target="_blank" rel="noreferrer" className="hover:text-gray-900 transition-colors">Terms of Service</a>
+          <div className="flex items-center gap-6">
+            <a href="/privacy.html" className="hover:text-gray-900 transition-colors">Privacy</a>
+            <a href="/terms.html" className="hover:text-gray-900 transition-colors">Terms</a>
+            <div className="w-px h-3 bg-gray-300"></div>
+            <a href="https://x.com/DzgStudio" target="_blank" rel="noreferrer" className="flex items-center gap-1.5 hover:text-gray-900 transition-colors">
+              <Twitter size={14} />
+              <span>@DzgStudio</span>
+            </a>
+            <a href="https://tally.so/r/obDo51" target="_blank" rel="noreferrer" className="flex items-center gap-1.5 hover:text-gray-900 transition-colors">
+              <Mail size={14} />
+              <span>Support</span>
+            </a>
           </div>
         </div>
       </footer>
