@@ -32,45 +32,45 @@
 </head>
 <body class="bg-white flex items-center justify-center min-h-screen font-sans text-dark overflow-hidden">
 
-    <div class="max-w-md w-full p-8 text-center relative z-10">
+    <div class="max-w-md w-full p-6 text-center relative z-10">
         
         <div class="animate-float">
             <img src="https://reso.dzgapp.com/Reso_Logo.png" 
                  alt="Reso App Icon" 
-                 class="w-24 h-24 mx-auto mb-8 hover:scale-105 transition-transform duration-500 cursor-pointer">
+                 class="w-20 h-20 mx-auto mb-6 hover:scale-105 transition-transform duration-500 cursor-pointer">
         </div>
 
-        <h1 class="text-3xl font-bold mb-3 tracking-tight text-gray-900">Payment Successful!</h1>
-        <p class="text-gray-500 mb-10 text-lg font-medium">Thank you for supporting Reso.</p>
+        <h1 class="text-2xl font-bold mb-2 tracking-tight text-gray-900">Payment Successful!</h1>
+        <p class="text-gray-500 mb-6 text-base font-medium">Thank you for supporting Reso.</p>
 
         <div id="activation-area" class="hidden opacity-0 transition-opacity duration-700 ease-out translate-y-4" style="animation: fadeUp 0.8s forwards;">
             
-            <div class="mb-8 p-5 bg-gradient-to-br from-gray-50 to-white rounded-2xl border border-gray-200">
-                <p class="text-xs font-bold text-gray-400 uppercase tracking-widest mb-4">Step 1: Download Reso</p>
+            <div class="mb-5 p-4 bg-gradient-to-br from-gray-50 to-white rounded-2xl border border-gray-200">
+                <p class="text-[10px] font-bold text-gray-400 uppercase tracking-widest mb-3">Step 1: Download Reso</p>
                 <a href="https://github.com/yg1112/reso-releases/releases/latest/download/Reso.dmg" 
-                   class="group flex items-center justify-center gap-2 w-full bg-gray-900 hover:bg-black text-white font-bold text-base py-3.5 rounded-xl transition-all duration-300 shadow-lg hover:shadow-xl hover:-translate-y-0.5 mb-3">
-                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M9 19l3 3m0 0l3-3m-3 3V10"></path></svg>
+                   class="group flex items-center justify-center gap-2 w-full bg-gray-900 hover:bg-black text-white font-bold text-sm py-3 rounded-xl transition-all duration-300 shadow-lg hover:shadow-xl hover:-translate-y-0.5 mb-2">
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M9 19l3 3m0 0l3-3m-3 3V10"></path></svg>
                     <span>Download Reso.dmg</span>
                 </a>
-                <p class="text-xs text-gray-400 font-medium">macOS 14+ • Apple Silicon</p>
+                <p class="text-[10px] text-gray-400 font-medium">macOS 14+ • Apple Silicon</p>
             </div>
 
-            <div class="mb-8 p-5 bg-white rounded-2xl border-2 border-hermesBlue/20">
-                <p class="text-xs font-bold text-gray-400 uppercase tracking-widest mb-4">Step 2: Activate License</p>
-                <a id="activate-btn" href="#" class="group block w-full bg-hermesBlue hover:bg-[#152a55] text-white font-bold text-base py-3.5 rounded-xl transition-all duration-300 transform hover:scale-[1.02] hover:shadow-xl shadow-lg shadow-blue-900/10 mb-3 flex items-center justify-center">
+            <div class="mb-5 p-4 bg-white rounded-2xl border-2 border-hermesBlue/20">
+                <p class="text-[10px] font-bold text-gray-400 uppercase tracking-widest mb-3">Step 2: Activate License</p>
+                <a id="activate-btn" href="#" class="group block w-full bg-hermesBlue hover:bg-[#152a55] text-white font-bold text-sm py-3 rounded-xl transition-all duration-300 transform hover:scale-[1.02] hover:shadow-xl shadow-lg shadow-blue-900/10 mb-2 flex items-center justify-center">
                     <span>Open Reso to Activate</span>
-                    <svg class="w-5 h-5 ml-2 transform group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
+                    <svg class="w-4 h-4 ml-2 transform group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
                 </a>
-                <p class="text-xs text-gray-400 font-medium">
+                <p class="text-[10px] text-gray-400 font-medium">
                     Click above after installing the app
                 </p>
             </div>
 
-            <div class="bg-gray-50 rounded-xl p-5 text-left group hover:bg-gray-100 transition-colors duration-300">
-                <p class="text-[10px] font-bold text-gray-400 uppercase tracking-widest mb-2">Backup Activation Code</p>
+            <div class="bg-gray-50 rounded-xl p-4 text-left group hover:bg-gray-100 transition-colors duration-300">
+                <p class="text-[9px] font-bold text-gray-400 uppercase tracking-widest mb-2">Backup Activation Code</p>
                 <div class="flex items-center justify-between">
-                    <code id="manual-code" class="font-mono text-sm text-gray-800 break-all select-all font-semibold tracking-wide">Loading...</code>
-                    <button onclick="copyCode()" class="ml-3 text-xs font-bold text-hermesBlue hover:text-blue-600 uppercase tracking-wider opacity-60 group-hover:opacity-100 transition-all">Copy</button>
+                    <code id="manual-code" class="font-mono text-xs text-gray-800 break-all select-all font-semibold tracking-wide">Loading...</code>
+                    <button onclick="copyCode()" class="ml-3 text-[10px] font-bold text-hermesBlue hover:text-blue-600 uppercase tracking-wider opacity-60 group-hover:opacity-100 transition-all">Copy</button>
                 </div>
             </div>
         </div>
@@ -79,7 +79,7 @@
             Unable to find transaction details. Please check your email.
         </div>
 
-        <div class="mt-12 pt-8 border-t border-gray-100 text-sm text-gray-400">
+        <div class="mt-8 pt-6 border-t border-gray-100 text-xs text-gray-400">
             <p>A backup activation link has been sent to your email.</p>
             <p class="mt-2">Need help? <a href="https://tally.so/r/obDo51" target="_blank" class="underline hover:text-hermesBlue transition-colors font-medium">Contact Support</a></p>
         </div>
