@@ -177,9 +177,6 @@ const Footer = () => {
       <footer id="contact" className="py-8 px-6 border-t border-gray-200 bg-gray-50 text-xs text-gray-500 relative z-10">
         <div className="max-w-6xl mx-auto flex flex-col md:flex-row justify-between items-center gap-6">
           <div className="flex items-center gap-2">
-            <div className="w-5 h-5 opacity-50 grayscale">
-              <AppIcon className="w-full h-full rounded-[4px]" />
-            </div>
             <span>&copy; 2025 DZG STUDIO LLC.</span>
           </div>
           <div className="flex items-center gap-6">
