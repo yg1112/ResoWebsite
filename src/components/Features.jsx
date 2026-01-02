@@ -113,49 +113,84 @@ const Features = () => {
           </div>
         </div>
 
-        {/* Pillar 4: Dual Engine Power */}
+        {/* Pillar 4: The Full-Stack Engine */}
         <div className="flex flex-col md:flex-row items-center gap-16">
           <div className="flex-1 space-y-6">
-            <div className="inline-flex items-center gap-2 px-3 py-1 bg-yellow-100 text-yellow-700 rounded-full text-xs font-bold uppercase tracking-wider">
-              04. Performance
+            <div className="inline-flex items-center gap-2 px-3 py-1 bg-indigo-100 text-indigo-700 rounded-full text-xs font-bold uppercase tracking-wider">
+              04. The Architecture
             </div>
-            <h3 className="text-4xl font-bold text-gray-900 leading-tight">Speed vs Fidelity.</h3>
+            <h3 className="text-4xl font-bold text-gray-900 leading-tight">Engineered,<br/>not just wrapped.</h3>
             <p className="text-lg text-gray-500 leading-relaxed">
-              Switch between <strong>Standard</strong> model for instant speed (perfect for chats) and <strong>Pro</strong> model for high-fidelity document drafting.
+              While others simply wrap an API, we rebuilt the stack. 
+              The <strong>Reso™ Neural Engine</strong> combines proprietary <strong>Signal Shaping</strong> (to kill hallucinations), <strong>OS-level Page Cache</strong> preloading, and a custom <strong>Metal-optimized core</strong>. 
+              It is a vertically integrated masterpiece of performance.
             </p>
           </div>
           <div className="flex-1 flex justify-center">
-            <div className="bg-white rounded-3xl border border-gray-200 shadow-lg flex flex-col p-8 relative overflow-hidden w-full max-w-sm h-80">
-              {/* Background Grid */}
-              <div className="absolute inset-0 opacity-[0.03]" style={{backgroundImage: 'linear-gradient(#000 1px, transparent 1px), linear-gradient(90deg, #000 1px, transparent 1px)', backgroundSize: '20px 20px'}}></div>
+            {/* CARD CONTAINER */}
+            <div className="bg-white rounded-3xl border border-gray-200 shadow-xl flex items-center justify-center relative overflow-hidden w-full max-w-sm h-80 group">
+              
+              {/* Subtle Tech Grid Background */}
+              <div className="absolute inset-0 opacity-[0.05]" style={{backgroundImage: 'linear-gradient(#4f46e5 0.5px, transparent 0.5px), linear-gradient(90deg, #4f46e5 0.5px, transparent 0.5px)', backgroundSize: '20px 20px'}}></div>
+              
+              {/* THE ENGINE STACK VISUALIZATION */}
+              <div className="relative z-10 w-64 flex flex-col gap-2">
+                
+                {/* Layer 3: Cognitive (Top) */}
+                <div className="bg-white/80 backdrop-blur-sm border border-indigo-100 rounded-xl p-3 flex items-center justify-between shadow-sm group-hover:-translate-y-1 transition-transform duration-500">
+                  <div className="flex items-center gap-3">
+                    <div className="w-8 h-8 rounded-lg bg-indigo-50 flex items-center justify-center text-indigo-600">
+                      <Brain size={16} />
+                    </div>
+                    <div>
+                      <div className="text-xs font-bold text-gray-900">Cognitive Layer</div>
+                    </div>
+                  </div>
+                  <div className="w-1.5 h-1.5 rounded-full bg-green-500 animate-pulse"></div>
+                </div>
 
-              {/* Standard Mode */}
-              <div className="flex-1 flex flex-col justify-center gap-3">
-                <div className="flex justify-between items-center">
-                  <span className="text-xs font-bold text-gray-400 uppercase tracking-widest">Standard Mode</span>
-                  <span className="px-2 py-0.5 bg-orange-100 text-orange-700 text-[10px] font-bold rounded-full">INSTANT</span>
+                {/* Connecting Lines */}
+                <div className="h-4 flex justify-center gap-1">
+                  <div className="w-px h-full bg-indigo-200"></div>
+                  <div className="w-px h-full bg-indigo-200"></div>
                 </div>
-                <div className="h-12 flex items-end gap-1.5 opacity-80">
-                  {[...Array(15)].map((_, i) => (
-                    <div key={i} className="w-full bg-orange-400 rounded-t-sm" style={{height: `${30 + Math.random() * 40}%`}}></div>
-                  ))}
+
+                {/* Layer 2: Compute (Middle) */}
+                <div className="bg-white/80 backdrop-blur-sm border border-purple-100 rounded-xl p-3 flex items-center justify-between shadow-sm group-hover:scale-105 transition-transform duration-500 z-10 ring-1 ring-purple-50">
+                  <div className="flex items-center gap-3">
+                    <div className="w-8 h-8 rounded-lg bg-purple-600 flex items-center justify-center text-white shadow-lg shadow-purple-200">
+                      <Zap size={16} fill="currentColor" />
+                    </div>
+                    <div>
+                      <div className="text-xs font-bold text-gray-900">Metal™ Core</div>
+                    </div>
+                  </div>
+                  <div className="text-[10px] font-mono font-bold text-purple-600 bg-purple-50 px-1.5 py-0.5 rounded">GPU</div>
                 </div>
+
+                {/* Connecting Lines */}
+                <div className="h-4 flex justify-center gap-1">
+                  <div className="w-px h-full bg-indigo-200"></div>
+                  <div className="w-px h-full bg-indigo-200"></div>
+                </div>
+
+                {/* Layer 1: Acoustic (Bottom) */}
+                <div className="bg-white/80 backdrop-blur-sm border border-blue-100 rounded-xl p-3 flex items-center justify-between shadow-sm group-hover:translate-y-1 transition-transform duration-500">
+                  <div className="flex items-center gap-3">
+                    <div className="w-8 h-8 rounded-lg bg-blue-50 flex items-center justify-center text-blue-600">
+                      <Activity size={16} />
+                    </div>
+                    <div>
+                      <div className="text-xs font-bold text-gray-900">Acoustic Prism™</div>
+                    </div>
+                  </div>
+                  <Check size={12} className="text-blue-500" />
+                </div>
+
+                {/* Scanning Light Effect Overlay */}
+                <div className="absolute inset-0 bg-gradient-to-b from-transparent via-white/50 to-transparent h-full w-full -translate-y-full group-hover:translate-y-full transition-transform duration-1000 ease-in-out pointer-events-none"></div>
               </div>
 
-              <div className="h-px w-full bg-gray-100 my-2"></div>
-
-              {/* Pro Mode */}
-              <div className="flex-1 flex flex-col justify-center gap-3">
-                <div className="flex justify-between items-center">
-                  <span className="text-xs font-bold text-gray-400 uppercase tracking-widest">Pro Mode</span>
-                  <span className="px-2 py-0.5 bg-purple-100 text-purple-700 text-[10px] font-bold rounded-full">HIGH FIDELITY</span>
-                </div>
-                <div className="h-16 flex items-end gap-[2px]">
-                  {[...Array(30)].map((_, i) => (
-                    <div key={i} className="w-full bg-purple-600 rounded-t-sm" style={{height: `${20 + Math.random() * 80}%`}}></div>
-                  ))}
-                </div>
-              </div>
             </div>
           </div>
         </div>
