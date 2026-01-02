@@ -1,10 +1,10 @@
 #!/usr/bin/env sh
 set -e
 
-# Generates favicons from src/assets/Reso_Logo.png into public/
+# Generates favicons from src/assets/ResoIcon_512.png into public/
 # Requires ImageMagick's `magick` command to be installed.
 
-SRC="src/assets/Reso_Logo.png"
+SRC="src/assets/ResoIcon_512.png"
 OUT_DIR="public"
 
 if [ ! -f "$SRC" ]; then
