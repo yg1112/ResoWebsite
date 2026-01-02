@@ -119,11 +119,9 @@ const Features = () => {
             <div className="inline-flex items-center gap-2 px-3 py-1 bg-indigo-100 text-indigo-700 rounded-full text-xs font-bold uppercase tracking-wider">
               04. The Architecture
             </div>
-            <h3 className="text-4xl font-bold text-gray-900 leading-tight">Engineered,<br/>not just wrapped.</h3>
+            <h3 className="text-4xl font-bold text-gray-900 leading-tight">Born for the silicon.</h3>
             <p className="text-lg text-gray-500 leading-relaxed">
-              While others simply wrap an API, we rebuilt the stack. 
-              The <strong>Reso™ Neural Engine</strong> combines proprietary <strong>Signal Shaping</strong> (to kill hallucinations), <strong>OS-level Page Cache</strong> preloading, and a custom <strong>Metal-optimized core</strong>. 
-              It is a vertically integrated masterpiece of performance.
+              We bypassed standard layers to build directly on the metal. By unifying the Neural Engine with our custom core, Reso feels less like an app and more like a natural extension of your Mac.
             </p>
           </div>
           <div className="flex-1 flex justify-center">
