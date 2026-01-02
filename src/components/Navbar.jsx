@@ -1,29 +1,7 @@
 import React, { useState } from 'react';
 import { Menu, X as XIcon } from 'lucide-react';
 import DownloadButton from './DownloadButton';
-
-// App Icon
-const AppIcon = ({ className }) => (
-  <svg viewBox="0 0 512 512" fill="none" xmlns="http://www.w3.org/2000/svg" className={className}>
-    <defs>
-      <linearGradient id="icon_grad_nav" x1="256" y1="0" x2="256" y2="512" gradientUnits="userSpaceOnUse">
-        <stop offset="0" stopColor="#FB923C"/>
-        <stop offset="1" stopColor="#EA580C"/>
-      </linearGradient>
-      <filter id="icon_shadow_nav" x="-20%" y="-20%" width="140%" height="140%">
-         <feDropShadow dx="0" dy="4" stdDeviation="6" floodColor="#000" floodOpacity="0.15"/>
-      </filter>
-    </defs>
-    <rect x="0" y="0" width="512" height="512" rx="110" fill="url(#icon_grad_nav)"/>
-    <rect x="8" y="8" width="496" height="496" rx="108" stroke="white" strokeOpacity="0.1" strokeWidth="8"/>
-    <g stroke="white" strokeWidth="42" strokeLinecap="round" strokeLinejoin="round" filter="url(#icon_shadow_nav)">
-      <path d="M352 190H160"/>
-      <path d="M210 130L150 190L210 250"/>
-      <path d="M160 322H352"/>
-      <path d="M302 262L362 322L302 382"/>
-    </g>
-  </svg>
-);
+import ResoIcon from '../assets/ResoIcon_512.png';
 
 const Navbar = ({ isScrolled = false, onNavClick }) => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -33,7 +11,7 @@ const Navbar = ({ isScrolled = false, onNavClick }) => {
       <div className="max-w-[79rem] mx-auto px-6 h-20 flex items-center justify-between">
         <div className="flex items-center gap-3 font-bold text-xl tracking-tight">
           <div className="w-9 h-9">
-            <AppIcon className="w-full h-full rounded-[10px] shadow-sm" />
+            <img src={ResoIcon} alt="Reso" className="w-full h-full rounded-[10px] shadow-sm" />
           </div>
           <span className="text-gray-900">Reso</span>
         </div>

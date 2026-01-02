@@ -2,29 +2,7 @@ import React, { useState, useEffect } from 'react';
 import DownloadButton from './DownloadButton';
 import ToolLogos from './ToolLogos';
 import { Download, Search, Loader2, WifiOff, Hash, Send, Code, MessageSquarePlus } from 'lucide-react';
-
-// App Icon
-const AppIcon = ({ className }) => (
-  <svg viewBox="0 0 512 512" fill="none" xmlns="http://www.w3.org/2000/svg" className={className}>
-    <defs>
-      <linearGradient id="icon_grad" x1="256" y1="0" x2="256" y2="512" gradientUnits="userSpaceOnUse">
-        <stop offset="0" stopColor="#FB923C"/>
-        <stop offset="1" stopColor="#EA580C"/>
-      </linearGradient>
-      <filter id="icon_shadow" x="-20%" y="-20%" width="140%" height="140%">
-         <feDropShadow dx="0" dy="4" stdDeviation="6" floodColor="#000" floodOpacity="0.15"/>
-      </filter>
-    </defs>
-    <rect x="0" y="0" width="512" height="512" rx="110" fill="url(#icon_grad)"/>
-    <rect x="8" y="8" width="496" height="496" rx="108" stroke="white" strokeOpacity="0.1" strokeWidth="8"/>
-    <g stroke="white" strokeWidth="42" strokeLinecap="round" strokeLinejoin="round" filter="url(#icon_shadow)">
-      <path d="M352 190H160"/>
-      <path d="M210 130L150 190L210 250"/>
-      <path d="M160 322H352"/>
-      <path d="M302 262L362 322L302 382"/>
-    </g>
-  </svg>
-);
+import ResoIcon from '../assets/ResoIcon_512.png';
 
 // Dark Mode Mechanical Key
 const DarkMechanicalKey = ({ label, active }) => (
@@ -251,7 +229,7 @@ const HeroSection = () => {
           {/* 调整：增加了 max-w-lg 限制文字宽度，防止文字拉太长，增加可读性 */}
           <p className="text-xl text-gray-500 leading-relaxed mb-10 font-normal max-w-lg">
             Instant voice-to-text for your Mac.<br/>
-            Flows into Slack, GitHub, iMessage, and more. <span className="text-orange-500 font-semibold">Locally.</span>
+            Flows into Slack, GitHub, iMessage, and more. <span className="font-semibold" style={{ color: '#6600FF' }}>Locally.</span>
           </p>
 
           <div className="flex flex-col gap-3 ml-[4.05rem]">
@@ -318,7 +296,7 @@ const HeroSection = () => {
                 </div>
                 <div className="flex items-center gap-3 text-white/60 cursor-default">
                   <div className={`transition-all duration-200 ${flowState >= 1 && flowState <= 3 ? 'text-white scale-110' : 'text-white/40'}`}>
-                    <AppIcon className="w-3.5 h-3.5 rounded-[2px]" />
+                    <img src={ResoIcon} alt="Reso" className="w-3.5 h-3.5 rounded-[2px] icon-white-r" />
                   </div>
                   <div className="w-px h-3 bg-white/10 mx-1"></div>
                   <Search size={12} strokeWidth={2.5} />
@@ -428,6 +406,9 @@ const HeroSection = () => {
         }
         .animate-wave {
           animation: wave 0.8s ease-in-out infinite;
+        }
+        .icon-white-r {
+          filter: brightness(0) invert(1);
         }
       `}</style>
     </section>
