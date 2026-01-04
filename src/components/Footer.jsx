@@ -84,7 +84,7 @@ const Footer = () => {
                     <span className="text-3xl md:text-4xl align-super opacity-70">.99</span>
                   </span>
                 </div>
-                <p className="text-[14px] text-indigo-600 font-normal leading-[1.6] mb-2">
+                <p className="text-[14px] font-normal leading-[1.6] mb-2" style={{ color: '#4F46E5' }}>
                   Don't rent AI. Unleash your Neural Engine.
                 </p>
                 <p className="text-[13px] text-gray-400 font-light italic">
@@ -95,27 +95,27 @@ const Footer = () => {
               {/* Divider */}
               <div className="w-full h-px bg-gray-100 mb-6"></div>
 
-              {/* Features List */}
+              {/* Features List - 统一单色图标 */}
               <ul className="text-left space-y-2 mb-8">
                 <li className="flex gap-4 items-start">
-                  <div className="p-2 bg-orange-50 rounded-lg shrink-0 mt-0.5">
-                    <Zap size={20} className="text-orange-600" />
+                  <div className="p-2 bg-gray-100 rounded-lg shrink-0 mt-0.5">
+                    <Zap size={20} className="text-gray-900" />
                   </div>
                   <span className="text-gray-700 text-sm font-medium leading-relaxed">
                     Instant speed. Engineered for Apple Silicon.
                   </span>
                 </li>
                 <li className="flex gap-4 items-start">
-                  <div className="p-2 bg-blue-50 rounded-lg shrink-0 mt-0.5">
-                    <Cpu size={20} className="text-blue-600" />
+                  <div className="p-2 bg-gray-100 rounded-lg shrink-0 mt-0.5">
+                    <Cpu size={20} className="text-gray-900" />
                   </div>
                   <span className="text-gray-700 text-sm font-medium leading-relaxed">
                     Smart enough to understand your context.
                   </span>
                 </li>
                 <li className="flex gap-4 items-start">
-                  <div className="p-2 bg-green-50 rounded-lg shrink-0 mt-0.5">
-                    <Lock size={20} className="text-green-600" />
+                  <div className="p-2 bg-gray-100 rounded-lg shrink-0 mt-0.5">
+                    <Lock size={20} className="text-gray-900" />
                   </div>
                   <span className="text-gray-700 text-sm font-medium leading-relaxed">
                     100% Offline. Zero data leaves your Mac.
