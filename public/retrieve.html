@@ -12,35 +12,66 @@
                     colors: {
                         dark: '#111111',
                         hermesBlue: '#0B2044', 
-                        hermesOrange: '#F37021', 
+                        hermesOrange: '#F37021',
+                        brandPurple: '#7850FF',
                     }
                 }
             }
         }
     </script>
+    <style>
+        /* 紫色光晕效果 */
+        .purple-glow {
+            position: relative;
+        }
+        .purple-glow::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 150%;
+            height: 150%;
+            background: radial-gradient(circle, rgba(120, 80, 255, 0.2) 0%, rgba(255, 255, 255, 0) 70%);
+            filter: blur(40px);
+            z-index: -1;
+        }
+        
+        /* 按钮hover紫色外发光 */
+        .btn-primary:hover {
+            box-shadow: 0 0 30px rgba(120, 80, 255, 0.5);
+        }
+        
+        /* 输入框focus紫色边框 */
+        .input-focus:focus {
+            border-color: #7850FF !important;
+            box-shadow: 0 0 0 3px rgba(120, 80, 255, 0.1);
+        }
+    </style>
 </head>
 <body class="bg-white flex items-center justify-center min-h-screen font-sans text-dark">
 
     <div class="max-w-md w-full p-8 text-center">
         
-        <a href="https://reso.dzgapp.com">
-            <img src="https://reso.dzgapp.com/Reso_Logo.png" 
+        <!-- 紫色图标带光晕效果 -->
+        <a href="https://reso.dzgapp.com" class="inline-block purple-glow">
+            <img src="/ResoIcon_512.png" 
                  alt="Reso App Icon" 
                  class="w-20 h-20 mx-auto mb-8 hover:scale-105 transition-transform duration-300 rounded-2xl">
         </a>
 
-        <h1 class="text-2xl font-bold mb-2 tracking-tight text-gray-900">License Manager</h1>
-        <p class="text-gray-500 mb-10 text-base">Enter the email you used during purchase to retrieve your activation key.</p>
+        <h1 class="text-3xl font-bold mb-3 tracking-tight text-gray-900">Recover Your Key</h1>
+        <p class="text-gray-600 mb-12 text-base leading-relaxed">Enter the email you used during purchase to retrieve your activation key.</p>
 
         <div id="form-area">
             <div class="mb-6 text-left">
-                <label for="email" class="block text-xs font-bold text-gray-400 uppercase tracking-wider mb-2 ml-1">Email Address</label>
+                <label for="email" class="block text-xs font-semibold text-gray-500 uppercase tracking-wider mb-3 ml-1">Email Address</label>
                 <input type="email" id="email" placeholder="name@example.com" 
-                       class="w-full bg-gray-50 border border-gray-200 text-gray-900 text-lg rounded-xl focus:ring-hermesBlue focus:border-hermesBlue block p-4 outline-none transition-all placeholder-gray-300" required>
+                       class="input-focus w-full bg-gray-50 border-2 border-gray-200 text-gray-900 text-lg rounded-xl block p-4 outline-none transition-all placeholder-gray-400" required>
                 <p id="email-error" class="hidden mt-2 text-sm text-red-500 pl-1">Please enter a valid email.</p>
             </div>
 
-            <button onclick="findLicense()" id="submit-btn" class="w-full bg-hermesBlue hover:bg-[#152a55] text-white font-bold text-lg py-4 rounded-xl transition-all shadow-lg shadow-blue-900/10 flex items-center justify-center">
+            <button onclick="findLicense()" id="submit-btn" class="btn-primary w-full bg-[#000000] hover:bg-[#111111] text-white font-semibold text-base py-4 rounded-xl transition-all shadow-lg flex items-center justify-center">
                 <span id="btn-text">Find License</span>
                 <svg id="btn-loader" class="hidden w-5 h-5 ml-2 animate-spin" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
                     <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
@@ -64,7 +95,7 @@
                 </p>
             </div>
             
-            <a href="#" id="activate-link" class="block mt-6 text-hermesBlue font-medium hover:underline">
+            <a href="#" id="activate-link" class="block mt-6 font-medium hover:underline" style="color: #7850FF;">
                 Open App to Activate &rarr;
             </a>
         </div>
@@ -73,9 +104,13 @@
             <span class="font-bold">Error:</span> <span id="error-msg">No license found for this email.</span>
         </div>
 
-        <div class="mt-12 pt-8 border-t border-gray-100 text-sm text-gray-400">
-            <p>Need help? <a href="https://tally.so/r/obDo51" target="_blank" class="underline hover:text-dark transition-colors">Contact Support</a></p>
-            <p class="mt-4"><a href="https://reso.dzgapp.com" class="text-gray-300 hover:text-gray-500">← Back to Home</a></p>
+        <div class="mt-16 pt-8 border-t border-gray-100">
+            <p class="text-sm text-gray-500 mb-4">
+                Need help? <a href="https://tally.so/r/obDo51" target="_blank" class="underline hover:opacity-70 transition-opacity" style="color: #7850FF;">Contact Support</a>
+            </p>
+            <p class="mt-6">
+                <a href="https://reso.dzgapp.com" class="text-xs text-gray-300 hover:text-gray-500 transition-colors">← Back to Home</a>
+            </p>
         </div>
     </div>
 
