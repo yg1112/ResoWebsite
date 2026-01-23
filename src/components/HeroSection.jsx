@@ -1,9 +1,36 @@
-import React from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import DownloadButton from './DownloadButton';
 import ToolLogos from './ToolLogos';
 import { Download } from 'lucide-react';
 
 const HeroSection = () => {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const modalVideoRef = useRef(null);
+
+  useEffect(() => {
+    const handleEsc = (e) => {
+      if (e.key === 'Escape') setIsModalOpen(false);
+    };
+    if (isModalOpen) {
+      document.addEventListener('keydown', handleEsc);
+      document.body.style.overflow = 'hidden';
+    }
+    return () => {
+      document.removeEventListener('keydown', handleEsc);
+      document.body.style.overflow = '';
+    };
+  }, [isModalOpen]);
+
+  useEffect(() => {
+    if (isModalOpen && modalVideoRef.current) {
+      modalVideoRef.current.play();
+    }
+    if (!isModalOpen && modalVideoRef.current) {
+      modalVideoRef.current.pause();
+      modalVideoRef.current.currentTime = 0;
+    }
+  }, [isModalOpen]);
+
   return (
     // 全屏Hero区域，提供充足呼吸感
     <section className="relative z-10 pt-[120px] pb-[120px] px-6 bg-white min-h-screen flex items-center justify-center">
@@ -91,7 +118,10 @@ const HeroSection = () => {
                 transform: 'translate(-50%, -50%) translate(-3%, -3%)'
               }}
             />
-            <div className="relative w-full h-full bg-black rounded-3xl overflow-hidden shadow-[0_20px_80px_-20px_rgba(0,0,0,0.25)] ring-1 ring-gray-900/5">
+            <div
+              className="relative w-full h-full bg-black rounded-3xl overflow-hidden shadow-[0_20px_80px_-20px_rgba(0,0,0,0.25)] ring-1 ring-gray-900/5 cursor-pointer group/video"
+              onClick={() => setIsModalOpen(true)}
+            >
               <video
                 autoPlay
                 loop
@@ -100,8 +130,15 @@ const HeroSection = () => {
                 className="w-full h-full object-cover"
               >
                 <source src="/Reso_Demo_v3.mp4" type="video/mp4" />
-                Your browser does not support the video tag.
               </video>
+              {/* Play Button Overlay */}
+              <div className="absolute inset-0 flex items-center justify-center">
+                <div className="w-12 h-12 md:w-14 md:h-14 bg-white rounded-full flex items-center justify-center shadow-lg transition-all duration-300 group-hover/video:scale-110">
+                  <svg className="w-4 h-4 md:w-5 md:h-5 text-gray-900 ml-0.5" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M8 5v14l11-7z" />
+                  </svg>
+                </div>
+              </div>
             </div>
           </div>
 
@@ -114,6 +151,38 @@ const HeroSection = () => {
           </div>
         </div>
       </div>
+      {/* Fullscreen Video Modal */}
+      {isModalOpen && (
+        <div
+          className="fixed inset-0 z-50 flex items-center justify-center bg-black/90 backdrop-blur-sm"
+          onClick={() => setIsModalOpen(false)}
+        >
+          {/* Close Button */}
+          <button
+            onClick={() => setIsModalOpen(false)}
+            className="absolute top-6 right-6 w-11 h-11 bg-white/10 hover:bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center transition-all duration-200 z-50"
+          >
+            <svg className="w-5 h-5 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round">
+              <path d="M18 6L6 18M6 6l12 12" />
+            </svg>
+          </button>
+
+          {/* Video Container */}
+          <div
+            className="relative w-[90vw] max-w-5xl aspect-video rounded-2xl overflow-hidden shadow-2xl"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <video
+              ref={modalVideoRef}
+              controls
+              playsInline
+              className="w-full h-full object-contain bg-black"
+            >
+              <source src="/Reso_Demo_v3.mp4" type="video/mp4" />
+            </video>
+          </div>
+        </div>
+      )}
     </section>
   );
 };

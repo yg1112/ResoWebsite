@@ -52,7 +52,7 @@ const Footer = () => {
   };
 
   const handleBuy = () => {
-    window.open('https://buy.stripe.com/7sY14m2FX9ps7jIcht6AM01', '_blank');
+    window.open('https://reso.lemonsqueezy.com/checkout/buy/80d0e623-d94c-4a19-a4c9-afee9451a146', '_blank');
   };
 
   return (
