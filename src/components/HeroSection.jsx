@@ -133,9 +133,9 @@ const HeroSection = () => {
               </video>
               {/* Play Button Overlay */}
               <div className="absolute inset-0 flex items-center justify-center">
-                <div className="w-12 h-12 md:w-14 md:h-14 bg-white rounded-full flex items-center justify-center shadow-lg transition-all duration-300 group-hover/video:scale-110">
-                  <svg className="w-4 h-4 md:w-5 md:h-5 text-gray-900 ml-0.5" viewBox="0 0 24 24" fill="currentColor">
-                    <path d="M8 5v14l11-7z" />
+                <div className="w-11 h-11 md:w-[52px] md:h-[52px] bg-white rounded-full flex items-center justify-center shadow-[0_4px_24px_rgba(0,0,0,0.15)] transition-all duration-300 group-hover/video:scale-105 group-hover/video:shadow-[0_8px_32px_rgba(102,0,255,0.25)]">
+                  <svg className="w-[20px] h-[20px] md:w-[24px] md:h-[24px] ml-[2px]" viewBox="0 0 24 24" fill="none">
+                    <path d="M8.5 5.5C8.5 4.89 9.18 4.52 9.7 4.86L19.2 11.36C19.67 11.67 19.67 12.33 19.2 12.64L9.7 19.14C9.18 19.48 8.5 19.11 8.5 18.5V5.5Z" fill="#6600FF" />
                   </svg>
                 </div>
               </div>
