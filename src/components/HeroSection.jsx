@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
+import { createPortal } from 'react-dom';
 import DownloadButton from './DownloadButton';
 import ToolLogos from './ToolLogos';
 import { Download } from 'lucide-react';
@@ -151,16 +152,16 @@ const HeroSection = () => {
           </div>
         </div>
       </div>
-      {/* Fullscreen Video Modal */}
-      {isModalOpen && (
+      {/* Fullscreen Video Modal - rendered via portal to escape z-index stacking */}
+      {isModalOpen && createPortal(
         <div
-          className="fixed inset-0 z-50 flex items-center justify-center bg-black/90 backdrop-blur-sm"
+          className="fixed inset-0 z-[9999] flex items-center justify-center bg-black/90 backdrop-blur-sm"
           onClick={() => setIsModalOpen(false)}
         >
           {/* Close Button */}
           <button
             onClick={() => setIsModalOpen(false)}
-            className="absolute top-6 right-6 w-11 h-11 bg-white/10 hover:bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center transition-all duration-200 z-50"
+            className="absolute top-6 right-6 w-11 h-11 bg-white/10 hover:bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center transition-all duration-200"
           >
             <svg className="w-5 h-5 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round">
               <path d="M18 6L6 18M6 6l12 12" />
@@ -181,7 +182,8 @@ const HeroSection = () => {
               <source src="/Reso_Demo_v3.mp4" type="video/mp4" />
             </video>
           </div>
-        </div>
+        </div>,
+        document.body
       )}
     </section>
   );
