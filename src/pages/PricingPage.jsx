@@ -38,7 +38,7 @@ const PricingPage = () => {
         <div className="max-w-4xl mx-auto">
           {/* Header */}
           <div className="text-center mb-16">
-            <h1 className="text-4xl font-medium text-gray-900 mb-4">Your local intelligence, working for your words.</h1>
+            <h1 className="text-4xl font-medium text-gray-900 mb-4">Your local intelligence, working for your thoughts.</h1>
             <p className="text-base text-gray-500">Pay once. Own forever.</p>
           </div>
 
