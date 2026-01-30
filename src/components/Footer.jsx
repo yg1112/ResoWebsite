@@ -1,29 +1,5 @@
 import React, { useState } from 'react';
-import { Twitter, Mail, CheckCircle2, Shield, Zap, Cpu, Lock, ArrowRight } from 'lucide-react';
-// import DownloadButton from './DownloadButton';
-
-// App Icon (保持不变)
-const AppIcon = ({ className }) => (
-  <svg viewBox="0 0 512 512" fill="none" xmlns="http://www.w3.org/2000/svg" className={className}>
-    <defs>
-      <linearGradient id="icon_grad" x1="256" y1="0" x2="256" y2="512" gradientUnits="userSpaceOnUse">
-        <stop offset="0" stopColor="#FB923C"/>
-        <stop offset="1" stopColor="#EA580C"/>
-      </linearGradient>
-      <filter id="icon_shadow" x="-20%" y="-20%" width="140%" height="140%">
-         <feDropShadow dx="0" dy="4" stdDeviation="6" floodColor="#000" floodOpacity="0.15"/>
-      </filter>
-    </defs>
-    <rect x="0" y="0" width="512" height="512" rx="110" fill="url(#icon_grad)"/>
-    <rect x="8" y="8" width="496" height="496" rx="108" stroke="white" strokeOpacity="0.1" strokeWidth="8"/>
-    <g stroke="white" strokeWidth="42" strokeLinecap="round" strokeLinejoin="round" filter="url(#icon_shadow)">
-      <path d="M352 190H160"/>
-      <path d="M210 130L150 190L210 250"/>
-      <path d="M160 322H352"/>
-      <path d="M302 262L362 322L302 382"/>
-    </g>
-  </svg>
-);
+import { Twitter, Mail, CheckCircle2 } from 'lucide-react';
 
 const Footer = () => {
   const [email, setEmail] = useState('');
@@ -34,143 +10,53 @@ const Footer = () => {
     if (!email) return;
     const formBody = `email=${encodeURIComponent(email)}&userGroup=Newsletter`;
     try {
-      const response = await fetch("https://app.loops.so/api/newsletter-form/cmjdjf56l00dd0izhwc34oz2l", {
+      const response = await fetch("https://app.loops.so/api/newsletter-form/cmjdjf36l00dd0izhwc34oz2l", {
         method: "POST",
         body: formBody,
         headers: { "Content-Type": "application/x-www-form-urlencoded" },
       });
-      if (response.ok) { 
-        setSubscribed(true); 
-        setEmail(''); 
-      } else { 
-        alert("Something went wrong. Please try again."); 
+      if (response.ok) {
+        setSubscribed(true);
+        setEmail('');
+      } else {
+        alert("Something went wrong. Please try again.");
       }
-    } catch (error) { 
-      console.error("Error:", error); 
-      alert("Something went wrong. Please try again."); 
+    } catch (error) {
+      console.error("Error:", error);
+      alert("Something went wrong. Please try again.");
     }
-  };
-
-  const handleBuy = () => {
-    window.open('https://reso.lemonsqueezy.com/checkout/buy/80d0e623-d94c-4a19-a4c9-afee9451a146', '_blank');
   };
 
   return (
     <>
-      {/* PRICING SECTION */}
-      <section id="pricing" className="py-10 px-6 border-t border-gray-200 bg-gray-50 relative z-10 text-center font-sans">
-        <div className="max-w-4xl mx-auto">
-          
-          {/* Main Headings - 强调拥有权 */}
-          <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4 tracking-tight">
-            Software you own.
-          </h2>
-          <p className="text-lg text-gray-500 mb-8 leading-[1.8] font-light max-w-2xl mx-auto">
-            Pay once. Own forever. <span className="font-normal text-gray-700">Your license, your data, your device.</span>
-          </p>
-          
-          <div className="flex justify-center">
-            {/* Pricing Card */}
-            <div className="bg-white border border-gray-200 rounded-[2rem] p-10 md:p-12 hover:border-orange-500/50 hover:shadow-2xl hover:shadow-orange-500/10 transition-all duration-300 relative max-w-sm w-full group">
-              
-              {/* Card Header - 强调拥有权 */}
-              <div className="mb-3 text-left">
-                <h3 className="text-xs font-normal text-gray-400 uppercase tracking-[0.25em] mb-2 opacity-70">
-                  The Lifetime Pass
-                </h3>
-                <div className="flex items-baseline gap-0 mb-2">
-                  <span className="text-5xl md:text-6xl font-bold text-gray-900 tracking-[-0.02em]">
-                    $29
-                    <span className="text-3xl md:text-4xl align-super opacity-70">.99</span>
-                  </span>
-                </div>
-                <p className="text-[14px] font-normal leading-[1.6] mb-2" style={{ color: '#4F46E5' }}>
-                  Don't rent AI. Unleash your Neural Engine.
-                </p>
-                <p className="text-[13px] text-gray-400 font-light italic">
-                  If Reso improves your workflow, we'd love your support.
-                </p>
-              </div>
-
-              {/* Divider */}
-              <div className="w-full h-px bg-gray-100 mb-6"></div>
-
-              {/* Features List - 统一单色图标 */}
-              <ul className="text-left space-y-2 mb-8">
-                <li className="flex gap-4 items-start">
-                  <div className="p-2 bg-gray-100 rounded-lg shrink-0 mt-0.5">
-                    <Zap size={20} className="text-gray-900" />
-                  </div>
-                  <span className="text-gray-700 text-sm font-medium leading-relaxed">
-                    Instant speed. Engineered for Apple Silicon.
-                  </span>
-                </li>
-                <li className="flex gap-4 items-start">
-                  <div className="p-2 bg-gray-100 rounded-lg shrink-0 mt-0.5">
-                    <Cpu size={20} className="text-gray-900" />
-                  </div>
-                  <span className="text-gray-700 text-sm font-medium leading-relaxed">
-                    Smart enough to understand your context.
-                  </span>
-                </li>
-                <li className="flex gap-4 items-start">
-                  <div className="p-2 bg-gray-100 rounded-lg shrink-0 mt-0.5">
-                    <Lock size={20} className="text-gray-900" />
-                  </div>
-                  <span className="text-gray-700 text-sm font-medium leading-relaxed">
-                    100% Offline. Zero data leaves your Mac.
-                  </span>
-                </li>
-              </ul>
-
-              {/* Action Button - 更有格调的表达 */}
-              <div className="flex flex-col gap-3">
-                <button 
-                  onClick={handleBuy}
-                  className="w-full group flex items-center justify-center gap-2 text-base py-4 px-8 bg-[#0A0A0A] text-white rounded-xl font-semibold hover:bg-[#111] transition-all shadow-lg hover:shadow-xl hover:-translate-y-0.5"
-                  style={{ boxShadow: 'inset 0 1px 0 0 rgba(255,255,255,0.05)' }}
-                >
-                  <span>Purchase License</span>
-                  <ArrowRight size={18} className="transition-transform group-hover:translate-x-1" />
-                </button>
-                <p className="text-[13px] text-gray-400 font-light">
-                  30-day money-back guarantee
-                </p>
-              </div>
-
-            </div>
-          </div>
-        </div>
-      </section>
-
       {/* NEWSLETTER SECTION */}
-      <section className="py-16 px-6 bg-white border-t border-gray-100 relative z-10">
-        <div className="max-w-2xl mx-auto text-center">
-          <h2 className="text-lg font-bold text-gray-900 mb-2">Be the first to know</h2>
-          <p className="text-gray-500 text-sm mb-6">
-            Get the latest apps and deals. We hate spam as much as you do.
+      <section className="py-16 px-6 bg-[#FAFAF9]">
+        <div className="max-w-md mx-auto text-center">
+          <h2 className="text-lg font-medium text-gray-900 mb-2">Stay updated</h2>
+          <p className="text-sm text-gray-500 mb-6">
+            Get notified about new features and updates.
           </p>
 
           {subscribed ? (
-            <div className="flex flex-col items-center justify-center p-6 bg-green-50 rounded-2xl border border-green-100 animate-in fade-in zoom-in duration-300">
-              <div className="w-10 h-10 bg-green-100 rounded-full flex items-center justify-center mb-2">
-                <CheckCircle2 size={20} className="text-green-600" />
+            <div className="flex flex-col items-center justify-center p-5 bg-green-50 rounded-xl border border-green-100">
+              <div className="w-8 h-8 bg-green-100 rounded-full flex items-center justify-center mb-2">
+                <CheckCircle2 size={16} className="text-green-600" />
               </div>
-              <h3 className="text-lg font-bold text-gray-900">You're on the list!</h3>
+              <p className="text-sm font-medium text-gray-900">You're on the list!</p>
             </div>
           ) : (
-            <form onSubmit={handleSubscribe} className="flex flex-col sm:flex-row gap-2 justify-center max-w-sm mx-auto">
+            <form onSubmit={handleSubscribe} className="flex flex-col sm:flex-row gap-2">
               <input
                 type="email"
                 required
                 placeholder="Enter your email"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-                className="flex-1 px-4 py-2.5 rounded-lg border border-gray-200 bg-gray-50 focus:bg-white focus:ring-2 focus:ring-orange-500/20 focus:border-orange-500 outline-none transition-all placeholder:text-gray-400 text-sm"
+                className="flex-1 px-4 py-2.5 rounded-lg border border-gray-200 bg-gray-50 focus:bg-white focus:ring-1 focus:ring-gray-300 focus:border-gray-300 outline-none transition-all placeholder:text-gray-400 text-sm"
               />
               <button
                 type="submit"
-                className="px-6 py-2.5 bg-black text-white font-bold rounded-lg hover:bg-gray-800 transition-all shadow-md hover:shadow-lg text-sm whitespace-nowrap"
+                className="px-5 py-2.5 bg-[#1a1a1a] text-white font-medium rounded-lg hover:bg-[#2a2a2a] transition-all text-sm whitespace-nowrap"
               >
                 Subscribe
               </button>
@@ -180,22 +66,18 @@ const Footer = () => {
       </section>
 
       {/* FOOTER */}
-      <footer id="contact" className="py-8 px-6 border-t border-gray-200 bg-gray-50 text-xs text-gray-500 relative z-10">
-        <div className="max-w-6xl mx-auto flex flex-col md:flex-row justify-between items-center gap-6">
-          <div className="flex items-center gap-2">
-            <span>&copy; 2025 DZG STUDIO LLC.</span>
-          </div>
+      <footer className="py-8 px-6 border-t border-gray-200 bg-[#FAFAF9] text-xs text-gray-500">
+        <div className="max-w-4xl mx-auto flex flex-col md:flex-row justify-between items-center gap-4">
+          <span>&copy; 2025 DZG STUDIO LLC.</span>
           <div className="flex items-center gap-6">
             <a href="/privacy.html" className="hover:text-gray-900 transition-colors">Privacy</a>
             <a href="/terms.html" className="hover:text-gray-900 transition-colors">Terms</a>
             <div className="w-px h-3 bg-gray-300"></div>
             <a href="https://x.com/DzgStudio" target="_blank" rel="noreferrer" className="flex items-center gap-1.5 hover:text-gray-900 transition-colors">
               <Twitter size={14} />
-              <span>@DzgStudio</span>
             </a>
             <a href="https://tally.so/r/obDo51" target="_blank" rel="noreferrer" className="flex items-center gap-1.5 hover:text-gray-900 transition-colors">
               <Mail size={14} />
-              <span>Support</span>
             </a>
           </div>
         </div>

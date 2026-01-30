@@ -1,14 +1,10 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import {
   CheckCircle2,
   Lock,
   Zap,
   Brain,
-  Workflow,
-  FileText,
-  Hand,
   Activity,
-  HelpCircle,
   Check,
 } from 'lucide-react';
 
@@ -39,9 +35,9 @@ const MechanicalKey = ({ label, active }) => (
 
 const Features = () => {
   return (
-    <section id="features" className="py-32 px-6 bg-gray-50">
+    <section id="features" className="py-32 px-6 bg-[#FAFAF9]">
       {/* 大幅增加max-w，并使用巨大的垂直间距 */}
-      <div className="max-w-6xl mx-auto space-y-40">
+      <div className="max-w-4xl mx-auto space-y-40">
         
         {/* Pillar 1: Deep Context - 左图右文 */}
         <div className="flex flex-col md:flex-row items-center gap-24">
@@ -68,11 +64,11 @@ const Features = () => {
           
           {/* 右侧：文字内容 */}
           <div className="flex-1 space-y-6 text-left">
-            <div className="inline-flex items-center gap-2 px-3 py-1 bg-blue-50 text-blue-600 rounded-full text-[10px] font-normal uppercase tracking-wider opacity-70">
+            <div className="text-xs uppercase tracking-wider text-gray-400 mb-4">
               01. Deep Context
             </div>
-            <h3 className="text-5xl font-bold text-gray-900 leading-tight">It doesn't just listen. It understands.</h3>
-            <p className="text-lg text-gray-500 leading-[1.8] font-light">Don't train the model—just steer it. Tell Reso "I'm coding in Swift" or "Q3 Report," and it instantly adapts to your jargon and syntax.</p>
+            <h3 className="text-2xl font-medium text-gray-900 leading-snug mb-4">It doesn't just listen. It understands.</h3>
+            <p className="text-base text-gray-600 leading-relaxed">Don't train the model—just steer it. Tell Reso "I'm coding in Swift" or "Q3 Report," and it instantly adapts to your jargon and syntax.</p>
           </div>
         </div>
 
@@ -89,12 +85,12 @@ const Features = () => {
           
           {/* 左侧：文字内容 */}
           <div className="flex-1 space-y-6 text-left">
-            <div className="inline-flex items-center gap-2 px-3 py-1 bg-orange-50 text-orange-600 rounded-full text-[10px] font-normal uppercase tracking-wider opacity-70">
+            <div className="text-xs uppercase tracking-wider text-gray-400 mb-4">
               02. Instant Access
             </div>
-            <h3 className="text-5xl font-bold text-gray-900 leading-tight">Invisible until needed.</h3>
-            <p className="text-lg text-gray-500 leading-[1.8] font-light">
-              Double-tap <code className="bg-white px-1.5 rounded font-mono text-sm text-gray-800">Option</code> (⌥ ⌥) to summon Reso instantly. No dock icon cluttering your space.
+            <h3 className="text-2xl font-medium text-gray-900 leading-snug mb-4">Invisible until needed.</h3>
+            <p className="text-base text-gray-600 leading-relaxed">
+              Double-tap <code className="bg-gray-100 px-1.5 py-0.5 rounded font-mono text-sm text-gray-800">Option</code> (⌥ ⌥) to summon Reso instantly. No dock icon cluttering your space.
             </p>
           </div>
         </div>
@@ -113,11 +109,11 @@ const Features = () => {
           
           {/* 右侧：文字内容 */}
           <div className="flex-1 space-y-6 text-left">
-            <div className="inline-flex items-center gap-2 px-3 py-1 bg-purple-50 text-purple-600 rounded-full text-[10px] font-normal uppercase tracking-wider opacity-70">
+            <div className="text-xs uppercase tracking-wider text-gray-400 mb-4">
               03. Direct Input
             </div>
-            <h3 className="text-5xl font-bold text-gray-900 leading-tight">Direct Insertion.</h3>
-            <p className="text-lg text-gray-500 leading-[1.8] font-light">
+            <h3 className="text-2xl font-medium text-gray-900 leading-snug mb-4">Direct Insertion.</h3>
+            <p className="text-base text-gray-600 leading-relaxed">
               Text flows directly into your cursor, no copy-paste needed. It acts like a ghost keyboard typing for you.
             </p>
           </div>
@@ -196,14 +192,14 @@ const Features = () => {
           
           {/* 左侧：文字内容 */}
           <div className="flex-1 space-y-6 text-left">
-            <div className="inline-flex items-center gap-2 px-3 py-1 bg-indigo-50 text-indigo-600 rounded-full text-[10px] font-normal uppercase tracking-wider opacity-70">
+            <div className="text-xs uppercase tracking-wider text-gray-400 mb-4">
               04. The Architecture
             </div>
-            <h3 className="text-5xl font-bold text-gray-900 leading-tight">Born for the silicon.</h3>
-            <p className="text-lg text-gray-500 leading-[1.8] font-light">
+            <h3 className="text-2xl font-medium text-gray-900 leading-snug mb-4">Born for the silicon.</h3>
+            <p className="text-base text-gray-600 leading-relaxed mb-4">
               We bypassed standard layers to build directly on the metal. By unifying the Neural Engine with our custom core, Reso feels less like an app and more like a natural extension of your Mac.
             </p>
-            <p className="text-base text-gray-600 leading-[1.8] font-light italic border-l-2 border-indigo-200 pl-4">
+            <p className="text-sm text-gray-500 leading-relaxed italic border-l-2 border-gray-200 pl-4">
               Why rent intelligence? Your Mac is already a genius. Stop paying monthly for cloud AI—Reso unlocks the Neural Engine you already paid for.
             </p>
           </div>
@@ -243,100 +239,20 @@ const Features = () => {
           
           {/* 右侧：文字内容 */}
           <div className="flex-1 space-y-6 text-left">
-            <div className="inline-flex items-center gap-2 px-3 py-1 bg-green-50 text-green-600 rounded-full text-[10px] font-normal uppercase tracking-wider opacity-70">
+            <div className="text-xs uppercase tracking-wider text-gray-400 mb-4">
               05. Privacy
             </div>
-            <h3 className="text-5xl font-bold text-gray-900 leading-tight">Sovereign Data.</h3>
-            <p className="text-lg text-gray-500 leading-[1.8] font-light">
-              Your thoughts are your own. No cloud processing, ever. <span className="font-normal text-gray-700">Verified by Apple. Sandboxed for your security.</span>
+            <h3 className="text-2xl font-medium text-gray-900 leading-snug mb-4">Sovereign Data.</h3>
+            <p className="text-base text-gray-600 leading-relaxed mb-3">
+              Your thoughts are your own. No cloud processing, ever. <span className="text-gray-900">Verified by Apple. Sandboxed for your security.</span>
             </p>
-            <p className="text-sm text-gray-400 font-light italic opacity-70">
+            <p className="text-sm text-gray-400 italic">
               Optional: You can choose to share anonymous usage statistics to help us improve the app.
             </p>
           </div>
         </div>
 
       </div>
-
-      {/* STATS SECTION - 增加垂直间距和优化字重 */}
-      <section id="stats" className="py-32 px-6 bg-white relative z-10 mt-40">
-        <div className="max-w-6xl mx-auto">
-          <div className="text-center mb-20">
-            <h2 className="text-5xl font-bold text-gray-900 mb-6">Backed by Science.</h2>
-            <p className="text-gray-500 text-xl font-light leading-[1.8]">Why voice is the future of work.</p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
-            <div className="bg-white p-10 rounded-3xl shadow-[0_8px_30px_-10px_rgba(0,0,0,0.08)] hover:shadow-[0_20px_60px_-15px_rgba(0,0,0,0.12)] transition-shadow flex flex-col justify-between h-full">
-              <div className="w-12 h-12 bg-orange-50 rounded-xl flex items-center justify-center text-orange-600 mb-8">
-                <Zap size={24} />
-              </div>
-              <h3 className="text-3xl font-bold text-gray-900 mb-3">Thought Speed.</h3>
-              <p className="text-gray-500 text-base leading-[1.8] font-light mb-8">Keep up with your brain. Dictate code, emails, and essays without breaking flow.</p>
-              <div className="pt-6 flex items-center gap-2 text-xs text-gray-400 uppercase tracking-wide font-normal opacity-50">
-                <Brain size={12} /> Stanford Research
-              </div>
-            </div>
-
-            <div className="bg-white p-10 rounded-3xl shadow-[0_8px_30px_-10px_rgba(0,0,0,0.08)] hover:shadow-[0_20px_60px_-15px_rgba(0,0,0,0.12)] transition-shadow flex flex-col justify-between h-full">
-              <div className="w-12 h-12 bg-blue-50 rounded-xl flex items-center justify-center text-blue-600 mb-8">
-                <Workflow size={24} />
-              </div>
-              <h3 className="text-3xl font-bold text-gray-900 mb-3">Cognitive Flow</h3>
-              <p className="text-gray-500 text-base leading-[1.8] font-light mb-8">"Dictation frees up working memory, allowing for better complex thinking and flow."</p>
-              <div className="pt-6 flex items-center gap-2 text-xs text-gray-400 uppercase tracking-wide font-normal opacity-50">
-                <FileText size={12} /> Journal of Writing Research
-              </div>
-            </div>
-
-            <div className="bg-white p-10 rounded-3xl shadow-[0_8px_30px_-10px_rgba(0,0,0,0.08)] hover:shadow-[0_20px_60px_-15px_rgba(0,0,0,0.12)] transition-shadow flex flex-col justify-between h-full">
-              <div className="w-12 h-12 bg-green-50 rounded-xl flex items-center justify-center text-green-600 mb-8">
-                <Hand size={24} />
-              </div>
-              <h3 className="text-3xl font-bold text-gray-900 mb-3">Health & RSI</h3>
-              <p className="text-gray-500 text-base leading-[1.8] font-light mb-8">"Reduces repetitive strain on wrists and improves posture during long drafting sessions."</p>
-              <div className="pt-6 flex items-center gap-2 text-xs text-gray-400 uppercase tracking-wide font-normal opacity-50">
-                <Activity size={12} /> Ergonomics Health
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* FAQ SECTION - 增加间距和优化字重 */}
-      <section id="faq" className="py-32 px-6 bg-gray-50 relative z-10">
-        <div className="max-w-6xl mx-auto">
-          <div className="text-center mb-20">
-            <h2 className="text-4xl font-bold text-gray-900 mb-6">Frequently Asked Questions</h2>
-          </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-16">
-            <div className="space-y-12">
-              <div>
-                <h4 className="font-bold text-gray-900 mb-3 flex items-center gap-2 text-lg"><HelpCircle size={16} className="text-orange-500"/> Can I use it on multiple Macs?</h4>
-                <p className="text-gray-600 text-base leading-[1.8] font-light">For Direct License purchases, your key is valid for activation on 2 personal Macs (e.g., your desktop and laptop).<br/><br/>For App Store downloads, you can use it on any Mac signed in with your personal Apple ID.</p>
-              </div>
-              <div>
-                <h4 className="font-bold text-gray-900 mb-3 flex items-center gap-2 text-lg"><HelpCircle size={16} className="text-orange-500"/> Is this a subscription?</h4>
-                <p className="text-gray-600 text-base leading-[1.8] font-light">No! Reso is a one-time purchase. Pay $29.99 once and own it forever. You get lifetime access to the app with 1 year of free updates included.</p>
-              </div>
-            </div>
-            <div className="space-y-12">
-              <div>
-                <h4 className="font-bold text-gray-900 mb-3 flex items-center gap-2 text-lg"><HelpCircle size={16} className="text-orange-500"/> Does it work offline?</h4>
-                <p className="text-gray-600 text-base leading-[1.8] font-light">Yes! All voice processing happens locally on your Apple Silicon chip. Your recordings and transcriptions stay on your Mac. <span className="text-gray-500 italic opacity-70">You may optionally share anonymous usage stats to help us improve.</span></p>
-              </div>
-              <div>
-                <h4 className="font-bold text-gray-900 mb-3 flex items-center gap-2 text-lg"><HelpCircle size={16} className="text-orange-500"/> What is the refund policy?</h4>
-                <p className="text-gray-600 text-base leading-[1.8] font-light">For Direct License purchases, we offer a 30-day money-back guarantee. Just email us for a full refund, no questions asked.<br/><br/>For purchases via the Mac App Store, refunds are subject to Apple's policy and must be requested through Apple.</p>
-              </div>
-              <div>
-                <h4 className="font-bold text-gray-900 mb-3 flex items-center gap-2 text-lg"><HelpCircle size={16} className="text-orange-500"/> What happens after 1 year of updates?</h4>
-                <p className="text-gray-600 text-base leading-[1.8] font-light">You keep using the app forever. After the first year, you can choose to extend updates for another year at a discounted rate, but it's completely optional. Your license never expires.</p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
     </section>
   );
 };

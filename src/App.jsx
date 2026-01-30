@@ -1,8 +1,19 @@
 import React, { useState, useEffect } from 'react';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Navbar from './components/Navbar';
 import HeroSection from './components/HeroSection';
 import Features from './components/Features';
 import Footer from './components/Footer';
+import PricingPage from './pages/PricingPage';
+
+function HomePage() {
+  return (
+    <>
+      <HeroSection />
+      <Features />
+    </>
+  );
+}
 
 function App() {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -15,17 +26,17 @@ function App() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  const handleNavClick = () => {
-    window.open('https://reso.lemonsqueezy.com/checkout/buy/80d0e623-d94c-4a19-a4c9-afee9451a146', '_blank');
-  };
-
   return (
-    <div className="min-h-screen bg-white text-gray-900 font-sans selection:bg-orange-100 scroll-smooth overflow-x-hidden">
-      <Navbar isScrolled={isScrolled} onNavClick={handleNavClick} />
-      <HeroSection />
-      <Features />
-      <Footer />
-    </div>
+    <BrowserRouter>
+      <div className="min-h-screen bg-white text-gray-900 font-sans selection:bg-orange-100 scroll-smooth overflow-x-hidden">
+        <Navbar isScrolled={isScrolled} />
+        <Routes>
+          <Route path="/" element={<HomePage />} />
+          <Route path="/pricing" element={<PricingPage />} />
+        </Routes>
+        <Footer />
+      </div>
+    </BrowserRouter>
   );
 }
 
