@@ -50,10 +50,28 @@ const ToolLogos = () => (
     </div>
     {/* GitHub */}
     <div className="tool-icon">
-      <img 
-        src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons@latest/icons/github.svg" 
-        alt="GitHub" 
-        width="36" 
+      <img
+        src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons@latest/icons/github.svg"
+        alt="GitHub"
+        width="36"
+        height="36"
+      />
+    </div>
+    {/* Obsidian */}
+    <div className="tool-icon">
+      <img
+        src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons@latest/icons/obsidian.svg"
+        alt="Obsidian"
+        width="36"
+        height="36"
+      />
+    </div>
+    {/* VS Code */}
+    <div className="tool-icon">
+      <img
+        src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons@latest/icons/visualstudiocode.svg"
+        alt="VS Code"
+        width="36"
         height="36"
       />
     </div>
@@ -96,6 +114,14 @@ const ToolLogos = () => (
       /* GitHub品牌色 */
       .tool-icon:nth-child(6):hover img {
         filter: brightness(0) saturate(100%) invert(0%) sepia(0%) saturate(0%) hue-rotate(0deg) brightness(20%) contrast(100%);
+      }
+      /* Obsidian品牌色 (紫色) */
+      .tool-icon:nth-child(7):hover img {
+        filter: brightness(0) saturate(100%) invert(30%) sepia(94%) saturate(1352%) hue-rotate(243deg) brightness(87%) contrast(96%);
+      }
+      /* VS Code品牌色 (蓝色) */
+      .tool-icon:nth-child(8):hover img {
+        filter: brightness(0) saturate(100%) invert(45%) sepia(98%) saturate(2000%) hue-rotate(190deg) brightness(95%) contrast(101%);
       }
     `}</style>
   </div>
