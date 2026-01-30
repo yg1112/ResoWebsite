@@ -38,7 +38,7 @@ const PricingPage = () => {
         <div className="max-w-4xl mx-auto">
           {/* Header */}
           <div className="text-center mb-16">
-            <h1 className="text-4xl font-medium text-gray-900 mb-4">Unlock what your Mac already knows.</h1>
+            <h1 className="text-4xl font-medium text-gray-900 mb-4">Your Neural Engine, finally awakened.</h1>
             <p className="text-base text-gray-500">Pay once. Own forever.</p>
           </div>
 
@@ -66,21 +66,21 @@ const PricingPage = () => {
               <ul className="space-y-3 mb-8">
                 <li className="flex gap-3 items-start">
                   <div className="p-1.5 bg-gray-100 rounded-lg shrink-0 mt-0.5">
-                    <Zap size={14} className="text-gray-600" />
+                    <Cpu size={14} className="text-gray-600" />
                   </div>
-                  <span className="text-sm text-gray-600">Instant speed on Apple Silicon</span>
+                  <span className="text-sm text-gray-600">Engineered for Neural Engine</span>
                 </li>
                 <li className="flex gap-3 items-start">
                   <div className="p-1.5 bg-gray-100 rounded-lg shrink-0 mt-0.5">
-                    <Cpu size={14} className="text-gray-600" />
+                    <Zap size={14} className="text-gray-600" />
                   </div>
-                  <span className="text-sm text-gray-600">Context-aware transcription</span>
+                  <span className="text-sm text-gray-600">Optimized for local workflows</span>
                 </li>
                 <li className="flex gap-3 items-start">
                   <div className="p-1.5 bg-gray-100 rounded-lg shrink-0 mt-0.5">
                     <Lock size={14} className="text-gray-600" />
                   </div>
-                  <span className="text-sm text-gray-600">100% offline. Zero data leaves your Mac.</span>
+                  <span className="text-sm text-gray-600">100% local processing</span>
                 </li>
               </ul>
 
