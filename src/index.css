@@ -37,12 +37,11 @@
 .dark .grid-paper-bg::before {
   background-size: 32px 32px;
   background-image:
-    linear-gradient(to bottom, rgba(255, 255, 255, 0.05) 0%, rgba(255, 255, 255, 0.12) 100%),
     linear-gradient(rgba(255, 255, 255, 0.08) 1px, transparent 1px),
     linear-gradient(90deg, rgba(255, 255, 255, 0.08) 1px, transparent 1px);
-  /* Remove ellipse mask for cleaner gradient */
-  -webkit-mask-image: none;
-  mask-image: none;
+  /* Subtle radial gradient mask for depth */
+  mask-image: radial-gradient(ellipse 100% 80% at 50% 40%, black 0%, rgba(0, 0, 0, 0.6) 100%);
+  -webkit-mask-image: radial-gradient(ellipse 100% 80% at 50% 40%, black 0%, rgba(0, 0, 0, 0.6) 100%);
 }
 
 /* Feature Card - Light Mode (default) */
