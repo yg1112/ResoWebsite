@@ -43,7 +43,7 @@ const Features = () => {
         <div className="flex flex-col md:flex-row items-center gap-24">
           {/* 左侧：可视化 */}
           <div className="flex-1 flex justify-center md:justify-start">
-            <div className="relative bg-white dark:bg-gray-900 rounded-3xl p-12 shadow-[0_20px_80px_-20px_rgba(0,0,0,0.15)] dark:shadow-[0_20px_80px_-20px_rgba(255,255,255,0.05)] w-full max-w-md flex flex-col gap-4 h-72 items-center justify-center overflow-hidden">
+            <div className="feature-card p-12 w-full max-w-md flex flex-col gap-4 h-72 items-center justify-center overflow-hidden">
               <div className="absolute -inset-24 bg-gradient-to-r from-blue-100 to-brand-light opacity-20 blur-3xl -z-10"></div>
               <div className="grid grid-cols-2 gap-3 w-full">
                 <div className="bg-red-50 rounded-xl p-3 shadow-sm flex flex-col gap-2">
@@ -76,7 +76,7 @@ const Features = () => {
         <div className="flex flex-col md:flex-row-reverse items-center gap-24">
           {/* 右侧：可视化 */}
           <div className="flex-1 flex justify-center md:justify-end">
-            <div className="bg-white dark:bg-gray-900 rounded-3xl p-12 shadow-[0_20px_80px_-20px_rgba(0,0,0,0.15)] dark:shadow-[0_20px_80px_-20px_rgba(255,255,255,0.05)] w-full max-w-md flex items-center justify-center h-72">
+            <div className="feature-card p-12 w-full max-w-md flex items-center justify-center h-72">
               <MechanicalKey label="⌥" active={true} />
               <span className="mx-4 text-2xl text-gray-300 dark:text-gray-600">+</span>
               <MechanicalKey label="⌥" active={true} />
@@ -99,7 +99,7 @@ const Features = () => {
         <div className="flex flex-col md:flex-row items-center gap-24">
           {/* 左侧：可视化 */}
           <div className="flex-1 flex justify-center md:justify-start">
-            <div className="bg-white dark:bg-gray-900 rounded-3xl p-12 shadow-[0_20px_80px_-20px_rgba(0,0,0,0.15)] dark:shadow-[0_20px_80px_-20px_rgba(255,255,255,0.05)] w-full max-w-md flex items-center justify-center h-72">
+            <div className="feature-card p-12 w-full max-w-md flex items-center justify-center h-72">
               <div className="text-3xl font-serif text-gray-800 dark:text-gray-200 flex items-center">
                 Hello World
                 <div className="w-0.5 h-8 bg-orange-500 ml-1 animate-pulse"></div>
@@ -124,7 +124,7 @@ const Features = () => {
           {/* 右侧：可视化 */}
           <div className="flex-1 flex justify-center md:justify-end">
             {/* CARD CONTAINER */}
-            <div className="bg-white dark:bg-gray-900 rounded-3xl shadow-[0_20px_80px_-20px_rgba(0,0,0,0.15)] dark:shadow-[0_20px_80px_-20px_rgba(255,255,255,0.05)] flex items-center justify-center relative overflow-hidden w-full max-w-md h-80 group">
+            <div className="feature-card flex items-center justify-center overflow-hidden w-full max-w-md h-80 group">
               
               {/* Subtle Tech Grid Background */}
               <div className="absolute inset-0 opacity-[0.05]" style={{backgroundImage: 'linear-gradient(#5423e7 0.5px, transparent 0.5px), linear-gradient(90deg, #5423e7 0.5px, transparent 0.5px)', backgroundSize: '20px 20px'}}></div>
@@ -209,7 +209,7 @@ const Features = () => {
         <div className="flex flex-col md:flex-row items-center gap-24">
           {/* 左侧：可视化 */}
           <div className="flex-1 flex justify-center md:justify-start">
-            <div className="bg-gray-900 rounded-3xl shadow-[0_20px_80px_-20px_rgba(0,0,0,0.3)] flex items-center justify-center relative overflow-hidden w-full max-w-md h-80">
+            <div className="feature-card flex items-center justify-center overflow-hidden w-full max-w-md h-80">
               {/* Dark Gradient BG */}
               <div className="absolute inset-0 bg-gradient-to-br from-gray-900 via-[#111] to-black"></div>
               <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_120%,_var(--tw-gradient-stops))] from-green-900/40 to-transparent"></div>
