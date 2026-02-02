@@ -2,7 +2,40 @@
 @tailwind components;
 @tailwind utilities;
 
-body {
-  background-color: #050505;
-  color: white;
+/* Light mode grid background with gradient fade */
+.grid-paper-bg {
+  background-color: #fafafa;
+  position: relative;
+  transition: background-color 0.3s ease;
+}
+
+.grid-paper-bg::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(0, 0, 0, 0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0, 0, 0, 0.04) 1px, transparent 1px);
+  background-size: 24px 24px;
+  mask-image: radial-gradient(ellipse 80% 60% at 50% 40%, black 0%, transparent 100%);
+  -webkit-mask-image: radial-gradient(ellipse 80% 60% at 50% 40%, black 0%, transparent 100%);
+  pointer-events: none;
+  z-index: 0;
+  transition: opacity 0.3s ease;
+}
+
+.grid-paper-bg > * {
+  position: relative;
+  z-index: 1;
+}
+
+/* Dark mode grid background */
+.dark .grid-paper-bg {
+  background-color: #1a1a1a;
+}
+
+.dark .grid-paper-bg::before {
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.06) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.06) 1px, transparent 1px);
 }

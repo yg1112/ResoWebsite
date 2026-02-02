@@ -1,13 +1,20 @@
 /** @type {import('tailwindcss').Config} */
 export default {
+  darkMode: 'class',
   content: [
     "./index.html",
     "./src/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
     extend: {
+      colors: {
+        brand: {
+          primary: '#5423e7',
+          light: '#f3f0ff',
+        },
+      },
       fontFamily: {
-        sans: ['Inter', 'sans-serif'],
+        sans: ['Switzer', 'sans-serif'],
       },
       animation: {
         'float': 'float 6s ease-in-out infinite',

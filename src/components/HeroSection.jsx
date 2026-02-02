@@ -32,19 +32,19 @@ const HeroSection = () => {
   }, [isModalOpen]);
 
   return (
-    <section className="relative z-10 pt-32 pb-20 px-6 bg-[#FAFAF9] min-h-screen">
+    <section className="relative z-10 pt-32 pb-20 px-6 min-h-screen">
       <div className="max-w-4xl mx-auto">
 
         {/* Title + Button */}
         <div className="mb-14">
-          <h1 className="text-3xl md:text-4xl font-medium tracking-tight leading-[1.3] mb-6 text-gray-900">
-            Capture thoughts. Anywhere. <span className="text-gray-400">Locally.</span>
+          <h1 className="text-3xl md:text-4xl font-medium tracking-tight leading-[1.3] mb-6 text-black dark:text-white">
+            Capture thoughts. Anywhere. <span className="text-gray-500 dark:text-gray-400">Locally.</span>
           </h1>
 
           <a
             href="https://github.com/yg1112/reso-releases/releases/latest/download/Reso.dmg"
             download
-            className="inline-flex items-center gap-2 bg-[#1a1a1a] text-white rounded-lg font-medium text-sm hover:bg-[#2a2a2a] transition-all px-5 py-3"
+            className="inline-flex items-center gap-2 bg-black dark:bg-white text-white dark:text-black rounded-lg font-medium text-sm hover:bg-gray-800 dark:hover:bg-gray-100 transition-all px-5 py-3"
           >
             <span>Download for macOS</span>
             <Download size={16} />
@@ -80,7 +80,7 @@ const HeroSection = () => {
             <div className="absolute inset-0 flex items-center justify-center">
               <div className="w-12 h-12 md:w-14 md:h-14 bg-white rounded-full flex items-center justify-center shadow-[0_4px_24px_rgba(0,0,0,0.15)] transition-all duration-300 group-hover:scale-105 group-hover:shadow-[0_8px_32px_rgba(102,0,255,0.25)]">
                 <svg className="w-5 h-5 md:w-6 md:h-6 ml-0.5" viewBox="0 0 24 24" fill="none">
-                  <path d="M8.5 5.5C8.5 4.89 9.18 4.52 9.7 4.86L19.2 11.36C19.67 11.67 19.67 12.33 19.2 12.64L9.7 19.14C9.18 19.48 8.5 19.11 8.5 18.5V5.5Z" fill="#7850FF" />
+                  <path d="M8.5 5.5C8.5 4.89 9.18 4.52 9.7 4.86L19.2 11.36C19.67 11.67 19.67 12.33 19.2 12.64L9.7 19.14C9.18 19.48 8.5 19.11 8.5 18.5V5.5Z" fill="#5423e7" />
                 </svg>
               </div>
             </div>
@@ -89,7 +89,7 @@ const HeroSection = () => {
 
         {/* Works Seamlessly With */}
         <div className="text-center">
-          <span className="text-xs uppercase tracking-wider text-gray-400">Works seamlessly with</span>
+          <span className="text-xs uppercase tracking-wider text-gray-400 dark:text-gray-500">Works seamlessly with</span>
           <div className="mt-5 flex items-center justify-center opacity-40 hover:opacity-60 transition-opacity duration-300">
             <ToolLogos />
           </div>

@@ -28,7 +28,7 @@ function App() {
 
   return (
     <BrowserRouter>
-      <div className="min-h-screen bg-white text-gray-900 font-sans selection:bg-orange-100 scroll-smooth overflow-x-hidden">
+      <div className="min-h-screen grid-paper-bg text-gray-900 dark:text-gray-100 font-sans selection:bg-orange-100 dark:selection:bg-brand-primary/30 scroll-smooth overflow-x-hidden">
         <Navbar isScrolled={isScrolled} />
         <Routes>
           <Route path="/" element={<HomePage />} />

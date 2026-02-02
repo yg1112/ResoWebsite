@@ -4,12 +4,11 @@ const ToolLogos = () => (
   <div className="flex gap-6 sm:gap-10 items-center justify-center">
     {/* Cursor */}
     <div className="tool-icon">
-      <img 
-        src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons@latest/icons/cursor.svg" 
-        alt="Cursor" 
-        width="36" 
+      <img
+        src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons@latest/icons/cursor.svg"
+        alt="Cursor"
+        width="36"
         height="36"
-        style={{ filter: 'invert(0)' }}
       />
     </div>
     {/* Linear */}
@@ -90,6 +89,16 @@ const ToolLogos = () => (
       .tool-icon img {
         display: block;
         transition: filter 0.3s ease;
+      }
+      /* Dark mode: invert icons to white with brightness */
+      .dark .tool-icon {
+        opacity: 0.6;
+      }
+      .dark .tool-icon img {
+        filter: invert(1) brightness(1.2);
+      }
+      .dark .tool-icon:hover {
+        opacity: 1;
       }
       /* Cursor品牌色 */
       .tool-icon:nth-child(1):hover img {
