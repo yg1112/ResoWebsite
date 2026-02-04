@@ -10,10 +10,9 @@ const Footer = () => {
   const [isDark, setIsDark] = useState(false);
 
   useEffect(() => {
-    // 从 localStorage 读取主题偏好
+    // 从 localStorage 读取主题偏好，默认为浅色模式
     const savedTheme = localStorage.getItem('theme');
-    const prefersDark = savedTheme === 'dark' ||
-                       (!savedTheme && window.matchMedia('(prefers-color-scheme: dark)').matches);
+    const prefersDark = savedTheme === 'dark';
     setIsDark(prefersDark);
     if (prefersDark) {
       document.documentElement.classList.add('dark');
