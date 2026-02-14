@@ -17,7 +17,7 @@ const TIERS = [
     description: 'Maximum control. Zero markup.',
     features: [
       'Flexible routing: Your favorite APIs, one workflow.',
-      'On-device AI: Voice & insights processing, fully private.',
+      'Local engine: Voice processing & insight discovery, fully private.',
       '1-year updates: Every new skill pack included.',
     ],
     cta: 'Get Pro License',
@@ -34,7 +34,7 @@ const TIERS = [
     description: 'Just think. We handle the rest.',
     features: [
       'One price, no surprises: Built-in AI, no keys needed.',
-      'On-device AI: Voice & insights processing, fully private.',
+      'Local engine: Voice processing & insight discovery, fully private.',
       'Always current: Latest features and skill packs.',
     ],
     cta: 'Start Subscription',
