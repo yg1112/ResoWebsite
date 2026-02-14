@@ -11,7 +11,8 @@ const TIERS = [
     id: 'pro',
     name: 'Reso Pro',
     mode: 'BYOK',
-    price: '$40',
+    priceMain: '$39',
+    priceSup: '.99',
     cadence: '/year',
     description: 'For power users who already have their own API keys.',
     features: [
@@ -27,7 +28,8 @@ const TIERS = [
     id: 'plus',
     name: 'Reso+',
     mode: 'All-in-One',
-    price: '$10',
+    priceMain: '$9',
+    priceSup: '.99',
     cadence: '/month',
     description: 'Zero setup. Everything just works out of the box.',
     features: [
@@ -123,7 +125,7 @@ const PricingPage = () => {
                     </div>
 
                     <div className={`flex items-end gap-2 mb-7 pb-7 border-b ${tier.featured ? 'border-white/15' : 'border-gray-200 dark:border-gray-800'}`}>
-                      <span className="text-5xl font-medium tracking-tight">{tier.price}</span>
+                      <span className="text-5xl font-medium tracking-tight">{tier.priceMain}<sup className="text-xl font-medium align-top ml-0.5">{tier.priceSup}</sup></span>
                       <span className={`text-sm pb-1 ${tier.featured ? 'text-gray-300' : 'text-gray-500 dark:text-gray-400'}`}>{tier.cadence}</span>
                     </div>
 
