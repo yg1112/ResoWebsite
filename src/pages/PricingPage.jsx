@@ -230,11 +230,42 @@ const PricingPage = () => {
             Your thoughts stay yours. We don't train on your data.
           </p>
 
-          {/* Activation Flow */}
-          <div className="mb-24 rounded-2xl border border-gray-200 dark:border-gray-800 bg-white/70 dark:bg-[#0A0A0A]/80 backdrop-blur p-6 md:p-8">
-            <p className="text-xs tracking-[0.18em] uppercase text-gray-500 dark:text-gray-400 mb-3 font-mono">Activation Flow</p>
-            <p className="text-sm md:text-base text-gray-700 dark:text-gray-300 leading-relaxed">
-              Both plans issue a LemonSqueezy license key. Enter that key in Reso, and we automatically detect your tier to unlock either BYOK setup (Reso Pro) or built-in hosted access (Reso+).
+          {/* How it works */}
+          <div className="mb-24 rounded-2xl bg-[#0A0A0A] dark:bg-[#0A0A0A] p-8 md:p-10">
+            <p className="text-xs tracking-[0.18em] uppercase text-gray-500 mb-8 font-mono text-center">How it works</p>
+
+            {/* Steps */}
+            <div className="flex flex-col md:flex-row items-center justify-center gap-4 md:gap-0 mb-8">
+              {/* Step 1 */}
+              <div className="flex items-center gap-3">
+                <span className="w-8 h-8 rounded-full bg-white/10 flex items-center justify-center text-sm font-mono text-white">1</span>
+                <span className="text-white font-medium">Get your key</span>
+              </div>
+
+              {/* Connector */}
+              <div className="hidden md:block w-12 h-px bg-gradient-to-r from-white/20 to-white/20 mx-4" />
+              <div className="md:hidden h-6 w-px bg-gradient-to-b from-white/20 to-white/20" />
+
+              {/* Step 2 */}
+              <div className="flex items-center gap-3">
+                <span className="w-8 h-8 rounded-full bg-white/10 flex items-center justify-center text-sm font-mono text-white">2</span>
+                <span className="text-white font-medium">Paste in Reso</span>
+              </div>
+
+              {/* Connector */}
+              <div className="hidden md:block w-12 h-px bg-gradient-to-r from-white/20 to-white/20 mx-4" />
+              <div className="md:hidden h-6 w-px bg-gradient-to-b from-white/20 to-white/20" />
+
+              {/* Step 3 */}
+              <div className="flex items-center gap-3">
+                <span className="w-8 h-8 rounded-full bg-white/10 flex items-center justify-center text-sm font-mono text-white">3</span>
+                <span className="text-white font-medium">You're all set</span>
+              </div>
+            </div>
+
+            {/* Description */}
+            <p className="text-sm text-gray-400 text-center max-w-xl mx-auto leading-relaxed">
+              Reso automatically validates your tier. Pro users get instant access to local API settings, while Reso+ users are connected immediately—no configuration required.
             </p>
           </div>
 
