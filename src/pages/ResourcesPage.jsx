@@ -375,68 +375,63 @@ That trust is worth way more than any feature.`,
   {
     id: 4,
     date: 'Aug 2025',
-    title: 'From Vibe to Code: Building Architect Mode',
+    title: 'From Vision to Code: Building Architect Mode',
     category: 'Product',
-    summary: 'How I built a feature that turns fuzzy voice descriptions + screenshots into precise technical specs for AI coding assistants.',
-    content: `I use Cursor and Windsurf constantly. They're incredible at writing code—*if* you give them good prompts.
+    summary: 'How I built a feature that eliminates the friction between seeing exactly what needs to change and communicating it to AI coding assistants.',
+    content: `As developers, we often know *exactly* what we want to build. The bottleneck isn't understanding—it's communication.
 
-But here's the problem: turning a vague idea into a precise prompt is hard.
+When I'm polishing UI details in Cursor or Windsurf, I can see precisely what needs adjustment: this shadow needs 2px more blur, that spacing is 4px too tight, this hover state needs a subtle lift animation. I know the exact CSS properties. I know the design rationale.
 
-"Make this button pop" → What does that mean? Drop shadow? Color contrast? Animation?
+But typing all of that out? Describing which element I'm referring to, its location, the surrounding context? That's where time gets wasted.
 
-I wanted a way to capture both **what I'm looking at** and **what I'm thinking**, then automatically translate that into something an AI coder can execute.
+**Architect mode exists to eliminate that friction.**
 
-That's how Architect mode was born.
+### The Problem: Context Is Expensive to Type
 
-### The Workflow
+Consider a typical refinement task: adjusting a button's visual weight.
 
-1. Double-tap **Option** → Reso starts recording audio and shows an overlay
-2. Draw boxes around UI elements on screen (like taking selective screenshots)
-3. Describe what you want in natural language
-4. Double-tap **Option** again → Reso processes it
+Without Architect mode, I'd write something like:
 
-**Output**: A structured tech spec like:
+> "In the hero section, there's a primary CTA button with the text 'Get Started'. It currently has a subtle shadow. I want to increase the shadow to make it more prominent—something like 0 4px 12px rgba(0,0,0,0.15). Also add a hover state that lifts it slightly, maybe translateY(-1px) with a transition..."
+
+That's 60+ words just to describe what I could *point at* in 2 seconds.
+
+### The Solution: Point, Speak, Execute
+
+Architect mode combines screen capture with voice input:
+
+1. **Double-tap Option** → Overlay appears
+2. **Draw a box** around the exact element (no ambiguity about "which button")
+3. **Speak your intent**: "Stronger shadow, subtle lift on hover, 200ms ease-out"
+4. **Double-tap Option** → Structured spec generated
+
+The output is precise and actionable:
 
 > "Update the primary CTA button in the hero section:
-> - Increase shadow from subtle to prominent
-> - Add hover state with slight upward motion
-> - Ensure WCAG AA contrast (current ratio insufficient)"
+> - box-shadow: 0 4px 12px rgba(0,0,0,0.15)
+> - hover: translateY(-1px), box-shadow: 0 6px 16px rgba(0,0,0,0.18)
+> - transition: all 200ms ease-out
+> - Verify WCAG AA contrast ratio maintained"
 
-This is **copy-paste ready** for Cursor.
+This drops directly into Cursor. No reformatting. No clarification needed.
 
-### Why This Is Hard
+### Engineering Challenges
 
-Combining voice + vision requires a multimodal LLM (GPT-4V, Claude 3.5 Sonnet, Gemini).
+Building this required solving several hard problems:
 
-But here's the catch: These models are *expensive* and *slow*.
+**1. Latency budget**: Multimodal LLMs (GPT-4V, Claude 3.5 Sonnet) are slow. I implemented aggressive image compression and streaming responses to keep the interaction feeling snappy.
 
-I had to:
-1. Compress screenshots to reduce API costs
-2. Show live progress (users hate black boxes)
-3. Handle errors gracefully (what if the API is down?)
+**2. Prompt precision**: Early iterations produced generic suggestions. The final system prompt (~300 words) enforces specific output: exact CSS values, component identification, and accessibility considerations.
 
-### The Prompt Engineering
+**3. Context preservation**: The LLM needs to understand not just what you're pointing at, but the surrounding design system context. I extract color palettes and spacing patterns from the visible UI.
 
-This took forever to get right.
+### Why This Matters
 
-Early versions would output vague advice: "Make it look more modern."
+This isn't about replacing technical knowledge—it's about **removing the translation layer** between vision and execution.
 
-I had to teach the LLM to:
-- **Identify specific components** ("the blue button in the top-right")
-- **Suggest concrete values** ("box-shadow: 0 4px 12px rgba(0,0,0,0.15)")
-- **Explain tradeoffs** ("This may impact mobile tap targets")
+When you're deep in a polishing session, iterating on micro-interactions and visual details, the last thing you want is to context-switch into "prompt writing mode." Architect mode keeps you in flow.
 
-The final system prompt is ~300 words of very specific instructions.
-
-### What I Learned
-
-**Vibe coding is real.** People think in feelings and gestures, not CSS properties.
-
-Architect mode doesn't replace technical knowledge—it **translates** fuzzy intent into precise execution.
-
-When it works, you get that magical feeling: "The computer understood what I meant."
-
-That's the future of human-AI collaboration.`,
+The best tools don't change how you think. They just remove the friction between thinking and doing.`,
   },
   {
     id: 3,
