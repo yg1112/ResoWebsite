@@ -343,63 +343,70 @@ That's the goal. Not just reliability. A playground.`,
     date: 'Sep 2025',
     title: 'Privacy by Design: The PII Shield',
     category: 'Security',
-    summary: 'Building a privacy layer that masks sensitive data before it touches any cloud API—because trust is earned, not assumed.',
-    content: `I had a realization while building Reso: **If users don't trust it with sensitive data, they won't use it for anything important.**
+    summary: 'The journey from "I\'m worried about my voice data" to building an architecture where your voice fingerprint never leaves your Mac.',
+    content: `This feature came from a deeply personal need.
 
-Voice notes are personal. People record passwords, phone numbers, internal project names. If Reso sends that straight to OpenAI or Anthropic, it's a privacy disaster waiting to happen.
+When I first started exploring voice tools, I was genuinely worried. Where does my audio go? Who's listening? I didn't even know how to configure my computer to feel safe. That uncertainty kept me from using voice input for anything important.
 
-I needed a solution that was both effective and transparent.
+So when I built Reso, I wanted to solve that problem—not just for myself, but properly.
 
-### The Problem
+### The Struggle: Local Everything?
 
-Reso's text refinement feature sends transcriptions to LLMs for cleanup. But what if the transcription contains:
-- Your name, email, phone number
-- Credit card numbers
-- Internal project codenames
+My first instinct was to run *everything* locally. No cloud. No APIs. Total privacy.
 
-Standard practice: "Just tell users not to record sensitive stuff."
+I spent nearly two months trying to make this work. We experimented with different local LLMs, quantized versions, GPU optimizations, even leveraging the Apple Neural Engine for acceleration.
 
-**That's not good enough.** People forget. People make mistakes.
+The hardware could technically handle it—30+ GB of VRAM is a lot. But here's the reality:
+- You don't want to "burn" that much compute just by opening an app
+- Local models still lag behind top-tier APIs in reasoning and abstraction
+- The language processing quality wasn't where it needed to be
 
-### The Solution: Automatic Masking
+If the model can't deliver the experience users deserve, forcing it to run locally is just... cutting the foot to fit the shoe.
 
-Before any text leaves your device, Reso scans for sensitive patterns:
-- Names (detected via NLP)
-- Emails, phone numbers, credit cards (regex + validation)
-- Custom sensitive terms you define
+### Redefining the Question
 
-It replaces them with placeholder tokens:
+So we stepped back and asked: **What is privacy, really?**
+
+When you break it down, there are two things that matter most:
+1. **PII (Personally Identifiable Information)** — names, numbers, sensitive terms
+2. **Your voice fingerprint** — the unique acoustic signature of *you*
+
+Once we framed it this way, the architecture became clear.
+
+### What We Built
+
+**1. Voice fingerprint stays local. Period.**
+
+Your raw audio never leaves your Mac. Transcription happens entirely on-device using optimized Whisper models running on Apple Silicon. This is non-negotiable.
+
+**2. Text gets sanitized before it goes anywhere.**
+
+After transcription, we scan for sensitive patterns—names, phone numbers, emails, custom terms you define. These get encoded into random tokens:
+
 \`\`\`
 Original: "Call John at 555-1234 about Project Phoenix"
-Masked:   "Call [NAME_1] at [PHONE_1] about [SENSITIVE_1]"
+Masked:   "Call [PERSON_1] at [PHONE_1] about [SENSITIVE_1]"
 \`\`\`
 
-The LLM processes the masked version. When it responds, Reso restores the original values.
+Only the sanitized version touches the cloud.
 
-**Net result**: Your private data never leaves your Mac in readable form.
+**3. We work with reputable providers.**
 
-### The Hard Part: LLM Compliance
+The masked text goes to OpenAI or Anthropic—established vendors with clear data policies. We can't control everything they do, but we've built the system we *wish* existed: one where even if something leaks, it's meaningless without context.
 
-LLMs are *really* bad at preserving exact tokens. They paraphrase. They translate. They "fix" things.
+**4. Everything else runs locally.**
 
-I had to add verification:
-1. Count tokens before sending
-2. Count tokens in the response
-3. If any are missing or modified, reject the response
+Our discovery algorithms, clustering, chip-level optimizations—all of that stays on your machine. We leverage your Mac's silicon for everything we can.
 
-This sounds paranoid, but I tested it: GPT-4 would occasionally "translate" tokens to different cases (like changing NAME_1 to name_1), breaking the unmask step.
+### Rethinking Privacy
 
-Now we catch that and either auto-correct it or fail safely (return the masked version rather than risk data leakage).
+This was a fun trip, honestly. It forced us to think carefully: What does privacy actually mean? Who's responsible for protecting it?
 
-### What I Learned
+I don't have all the answers. But I know this: I built the architecture I wanted to exist. One where I'd feel comfortable using it for my own sensitive thoughts.
 
-**Privacy can't be an afterthought.** You can't bolt it on later.
+If you're going to trust a tool with your voice, you deserve to know exactly what's protected and how.
 
-The PII Shield isn't perfect—no automated system is. But it's a commitment: Reso will never blindly send your raw transcriptions to a third party.
-
-Users notice this. Not because they read the docs, but because they *feel* safe using it for sensitive work.
-
-That trust is worth way more than any feature.`,
+That clarity is the real feature.`,
   },
   {
     id: 4,
