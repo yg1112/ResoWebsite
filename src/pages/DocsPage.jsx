@@ -1,20 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 import { CheckCircle2 } from 'lucide-react';
-
-// Build Journey posts data
-const journeyPosts = [
-  { id: 'journey-10', date: 'Feb 2026', title: "Onboarding that doesn't suck", category: 'Product' },
-  { id: 'journey-9', date: 'Jan 2026', title: 'The UI you never think about', category: 'Design' },
-  { id: 'journey-8', date: 'Dec 2025', title: 'Making ideas visible', category: 'Engineering' },
-  { id: 'journey-7', date: 'Nov 2025', title: 'Teaching an app to find patterns', category: 'Engineering' },
-  { id: 'journey-6', date: 'Oct 2025', title: "When one API isn't enough", category: 'Infrastructure' },
-  { id: 'journey-5', date: 'Sep 2025', title: 'Privacy by design', category: 'Security' },
-  { id: 'journey-4', date: 'Aug 2025', title: 'From vibe to code', category: 'Product' },
-  { id: 'journey-3', date: 'Jul 2025', title: 'The recording that never dies', category: 'Engineering' },
-  { id: 'journey-2', date: 'Jun 2025', title: 'Obsessing over 10x', category: 'Performance' },
-  { id: 'journey-1', date: 'May 2025', title: 'Why I built this', category: 'Vision' },
-];
+import { journeyPosts } from '../data/journeyPosts';
 
 // Navigation structure
 const mainNavigation = [
@@ -35,7 +22,7 @@ const mainNavigation = [
   {
     id: 'build-journey',
     label: 'Build Journey',
-    children: journeyPosts.map(post => ({ id: post.id, label: post.title })),
+    children: journeyPosts.map(post => ({ id: `journey-${post.id}`, label: post.title })),
   },
 ];
 
@@ -51,7 +38,7 @@ const DocsPage = () => {
       setActiveSection(sectionId);
       // Auto-expand parent sections
       const featureIds = ['capture', 'privacy', 'skills', 'discovery', 'routing'];
-      const journeyIds = journeyPosts.map(p => p.id);
+      const journeyIds = journeyPosts.map(p => `journey-${p.id}`);
       if (featureIds.includes(sectionId)) {
         setExpandedSections(prev => new Set([...prev, 'features']));
       }
@@ -496,225 +483,47 @@ const TroubleshootingSection = () => (
 // Build Journey Posts Content
 // ============================================================================
 
-const journeyContent = {
-  'journey-10': {
-    title: "Onboarding that doesn't suck",
-    date: 'Feb 2026',
-    category: 'Product',
-    content: (
-      <div className="prose-content space-y-4">
-        <p>
-          Most app onboarding is terrible. You download something, and before you can do anything useful,
-          you're hit with a carousel of feature explanations, permission requests, and account creation forms.
-        </p>
-        <p>
-          We took a different approach with Reso. The first launch downloads ML models in the background
-          while you're already using the app. Microphone permission is requested the moment you actually
-          try to record—not before. No account required to start.
-        </p>
-        <p>
-          The goal: useful output within 60 seconds of first launch. Everything else can wait.
-        </p>
-      </div>
-    ),
-  },
-  'journey-9': {
-    title: 'The UI you never think about',
-    date: 'Jan 2026',
-    category: 'Design',
-    content: (
-      <div className="prose-content space-y-4">
-        <p>
-          The best interface is one you forget exists. For a voice app, that means getting out of the way
-          during recording and only appearing when you need to review or edit.
-        </p>
-        <p>
-          The notch bar was born from this principle. It lives in the space that's already "dead" on
-          MacBooks with notches, shows just enough status to confirm Reso is listening, and disappears
-          when you're done.
-        </p>
-        <p>
-          No floating windows. No dock icons bouncing. Just a subtle indicator that your thoughts are being captured.
-        </p>
-      </div>
-    ),
-  },
-  'journey-8': {
-    title: 'Making ideas visible',
-    date: 'Dec 2025',
-    category: 'Engineering',
-    content: (
-      <div className="prose-content space-y-4">
-        <p>
-          The knowledge graph started as a debugging tool. We needed to visualize how embeddings clustered
-          to tune the semantic chunking parameters. Turns out, seeing your thoughts as connected nodes
-          is genuinely useful.
-        </p>
-        <p>
-          The hard part wasn't the visualization—force-directed graphs are well-understood. It was deciding
-          what edges to show. Too many connections and it's noise. Too few and you miss insights.
-        </p>
-        <p>
-          We settled on showing edges above a similarity threshold, with the threshold adjustable.
-          Simple, but it took months of user testing to get right.
-        </p>
-      </div>
-    ),
-  },
-  'journey-7': {
-    title: 'Teaching an app to find patterns',
-    date: 'Nov 2025',
-    category: 'Engineering',
-    content: (
-      <div className="prose-content space-y-4">
-        <p>
-          Clustering algorithms are easy. Clustering that matches human intuition is hard.
-        </p>
-        <p>
-          Early versions would group notes by surface-level keywords. "Meeting with John" and "John's birthday"
-          would cluster together because of "John." Users found this useless.
-        </p>
-        <p>
-          The breakthrough was semantic chunking before embedding. Instead of embedding whole transcripts,
-          we break them into coherent thought units first. Now "Meeting with John about Q4 budget" clusters
-          with other financial discussions, not other mentions of John.
-        </p>
-      </div>
-    ),
-  },
-  'journey-6': {
-    title: "When one API isn't enough",
-    date: 'Oct 2025',
-    category: 'Infrastructure',
-    content: (
-      <div className="prose-content space-y-4">
-        <p>
-          Different models are good at different things. Groq is blazing fast for simple reformatting.
-          Claude excels at nuanced analysis. Local models are the only option for truly private content.
-        </p>
-        <p>
-          The multi-API router was supposed to be simple: classify the task, pick the best model, done.
-          In practice, we spent months on edge cases. What if the user's Anthropic quota is exhausted?
-          What if a task needs both speed and depth?
-        </p>
-        <p>
-          The current system uses a priority queue with fallbacks, cost awareness, and user preferences.
-          It's complex, but users just see "it works."
-        </p>
-      </div>
-    ),
-  },
-  'journey-5': {
-    title: 'Privacy by design',
-    date: 'Sep 2025',
-    category: 'Security',
-    content: (
-      <div className="prose-content space-y-4">
-        <p>
-          "We take your privacy seriously" is the most meaningless phrase in tech. Everyone says it.
-          Few build systems where privacy is architecturally enforced.
-        </p>
-        <p>
-          PII Shield wasn't in the original spec. We added it after realizing that cloud-powered features
-          would be useless if users were afraid to send their real thoughts.
-        </p>
-        <p>
-          The system detects names, emails, phone numbers, and custom terms, replaces them with tokens
-          before cloud processing, then restores them locally. The LLM literally cannot see your sensitive data.
-        </p>
-      </div>
-    ),
-  },
-  'journey-4': {
-    title: 'From vibe to code',
-    date: 'Aug 2025',
-    category: 'Product',
-    content: (
-      <div className="prose-content space-y-4">
-        <p>
-          Architect mode started with a frustration: AI coding assistants are powerful, but they need
-          precise instructions. "Make this button pop" doesn't cut it.
-        </p>
-        <p>
-          The insight was combining voice with visual context. You see a UI element that needs work,
-          you describe what you want, Reso captures both the screenshot and your words, and a vision
-          model produces a spec that an AI coder can actually execute.
-        </p>
-        <p>
-          It's a bridge between human intuition ("this feels off") and machine precision
-          ("adjust box-shadow to 0 4px 12px rgba(0,0,0,0.15)").
-        </p>
-      </div>
-    ),
-  },
-  'journey-3': {
-    title: 'The recording that never dies',
-    date: 'Jul 2025',
-    category: 'Engineering',
-    content: (
-      <div className="prose-content space-y-4">
-        <p>
-          Shadow recording was a happy accident. We implemented a rolling audio buffer for a different
-          feature (real-time transcription preview) and realized it solved a bigger problem.
-        </p>
-        <p>
-          How many times have you had a thought, reached for your phone to record it, and by the time
-          the app opened, you'd forgotten the first part? Shadow recording means Reso can "rewind"
-          a few seconds when you activate it.
-        </p>
-        <p>
-          The buffer is kept in memory, encrypted, and never persisted until you explicitly save.
-          Privacy maintained, thoughts captured.
-        </p>
-      </div>
-    ),
-  },
-  'journey-2': {
-    title: 'Obsessing over 10x',
-    date: 'Jun 2025',
-    category: 'Performance',
-    content: (
-      <div className="prose-content space-y-4">
-        <p>
-          The original Whisper implementation was... fine. It worked. But "fine" meant waiting
-          several seconds for transcription to complete after you stopped speaking.
-        </p>
-        <p>
-          We spent two months on CoreML optimization. Custom model conversion. Neural Engine scheduling.
-          Memory mapping tricks. The result: transcription now completes faster than you can read it.
-        </p>
-        <p>
-          Performance isn't a feature. It's the absence of friction. When transcription is instant,
-          you stop thinking about the tool and focus on your thoughts.
-        </p>
-      </div>
-    ),
-  },
-  'journey-1': {
-    title: 'Why I built this',
-    date: 'May 2025',
-    category: 'Vision',
-    content: (
-      <div className="prose-content space-y-4">
-        <p>
-          I talk to myself a lot. Not in a concerning way—in a "thinking out loud" way. The best ideas
-          come when I'm pacing around, not sitting at a keyboard.
-        </p>
-        <p>
-          Existing voice memo apps felt like dead ends. You record, the file sits there, you never listen
-          to it again. I wanted something that would turn spoken thoughts into useful artifacts.
-        </p>
-        <p>
-          Reso is the tool I needed: voice capture that leads somewhere. Transcripts that connect.
-          A second brain that listens.
-        </p>
-      </div>
-    ),
-  },
+// Parse inline markdown (bold, italic, code)
+const parseInlineMarkdown = (text) => {
+  if (!text) return text;
+
+  const parts = [];
+  const pattern = /(\*\*(.+?)\*\*)|(\*(.+?)\*)|(`(.+?)`)/g;
+  let lastIndex = 0;
+  let match;
+  let key = 0;
+
+  while ((match = pattern.exec(text)) !== null) {
+    if (match.index > lastIndex) {
+      parts.push(text.slice(lastIndex, match.index));
+    }
+
+    if (match[1]) {
+      parts.push(<strong key={key++} className="font-semibold">{match[2]}</strong>);
+    } else if (match[3]) {
+      parts.push(<em key={key++}>{match[4]}</em>);
+    } else if (match[5]) {
+      parts.push(
+        <code key={key++} className="px-1.5 py-0.5 bg-gray-100 dark:bg-gray-800 rounded text-sm font-mono">
+          {match[6]}
+        </code>
+      );
+    }
+
+    lastIndex = match.index + match[0].length;
+  }
+
+  if (lastIndex < text.length) {
+    parts.push(text.slice(lastIndex));
+  }
+
+  return parts.length > 0 ? parts : text;
 };
 
 const JourneyPostSection = ({ postId }) => {
-  const post = journeyContent[postId];
+  // Extract numeric id from 'journey-X' format
+  const numericId = parseInt(postId.replace('journey-', ''), 10);
+  const post = journeyPosts.find(p => p.id === numericId);
   if (!post) return null;
 
   return (
@@ -729,7 +538,61 @@ const JourneyPostSection = ({ postId }) => {
           {post.title}
         </h2>
       </div>
-      {post.content}
+      <div className="prose-content">
+        {post.content.split('\n\n').map((paragraph, idx) => {
+          if (paragraph.startsWith('### ')) {
+            return (
+              <h3 key={idx} className="text-xl font-medium text-gray-900 dark:text-gray-100 mt-8 mb-4">
+                {parseInlineMarkdown(paragraph.replace('### ', ''))}
+              </h3>
+            );
+          }
+          if (paragraph.startsWith('```')) {
+            const code = paragraph.replace(/```.*\n?/g, '');
+            return (
+              <pre key={idx} className="bg-gray-100 dark:bg-gray-800 rounded-xl p-4 overflow-x-auto mb-4">
+                <code className="text-sm text-gray-800 dark:text-gray-200">{code}</code>
+              </pre>
+            );
+          }
+          if (paragraph.match(/^\d+\.\s/)) {
+            const items = paragraph.split('\n').filter(line => line.match(/^\d+\.\s/));
+            return (
+              <ol key={idx} className="list-decimal list-outside ml-6 mb-4 space-y-1">
+                {items.map((item, i) => (
+                  <li key={i} className="text-base text-gray-700 dark:text-gray-300 leading-relaxed">
+                    {parseInlineMarkdown(item.replace(/^\d+\.\s*/, ''))}
+                  </li>
+                ))}
+              </ol>
+            );
+          }
+          if (paragraph.startsWith('- ')) {
+            const items = paragraph.split('\n').filter(line => line.startsWith('- '));
+            return (
+              <ul key={idx} className="list-disc list-outside ml-6 mb-4 space-y-1">
+                {items.map((item, i) => (
+                  <li key={i} className="text-base text-gray-700 dark:text-gray-300 leading-relaxed">
+                    {parseInlineMarkdown(item.replace(/^-\s*/, ''))}
+                  </li>
+                ))}
+              </ul>
+            );
+          }
+          if (paragraph.startsWith('>')) {
+            return (
+              <blockquote key={idx} className="border-l-4 border-gray-300 dark:border-gray-600 pl-4 my-4 italic text-gray-600 dark:text-gray-400">
+                {parseInlineMarkdown(paragraph.replace(/^>\s*/, ''))}
+              </blockquote>
+            );
+          }
+          return (
+            <p key={idx} className="text-base text-gray-700 dark:text-gray-300 leading-relaxed mb-4">
+              {parseInlineMarkdown(paragraph)}
+            </p>
+          );
+        })}
+      </div>
     </div>
   );
 };
