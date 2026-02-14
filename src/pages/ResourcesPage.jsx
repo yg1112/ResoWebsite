@@ -570,71 +570,58 @@ The best tools disappear.`,
     date: 'May 2025',
     title: 'Why I Built This',
     category: 'Vision',
-    summary: 'The problem that started it all: existing voice tools felt like toys, and AI coding assistants needed better input. Reso is my attempt to bridge that gap.',
-    content: `I've been using voice-to-text tools for years. iOS dictation, Otter.ai, even custom Whisper scripts.
+    summary: 'Reso exists to handle the wording and structuring, so you can spend more time contemplating, creating, and building.',
+    content: `There's an inherent tension in how we express ideas: speaking is fragmented, scattered, full of pauses and restarts. But writing—typing—is one of the most fluent forms of human expression.
 
-They all have the same problem: **They're designed for transcription, not for thinking.**
+The gap between the two is where ideas get lost.
 
-### The Problem
+### The Real Problem
 
-Most voice tools treat your speech as raw data:
-1. You talk
-2. It transcribes
-3. You copy-paste the text somewhere else
+I wanted to free up more time for building. Not transcription—*building*. The kind of deep work where you're creating, thinking, designing.
 
-But that's not how I think. When I'm working through a problem, I need to:
-- Capture half-formed ideas quickly
-- Connect related thoughts over time
-- Translate messy speech into structured output
+Typing takes time. Editing takes more. And when your thoughts come out messy (as spoken thoughts always do), you end up spending hours polishing what should have taken minutes.
 
-Existing tools couldn't do this. So I built one that could.
+**What if someone else handled the wording and structuring?** What if you could just *think*, and the clean output appeared?
 
-### The Vision
+That's what Reso does. We take care of the typing so you can focus on contemplating.
 
-Reso isn't a voice memo app. It's a **voice workspace**.
+### More Than a Voice Recorder
 
-Here's what that means:
-- **Local-first**: Audio never leaves your device during capture. Transcription happens on Apple Silicon's Neural Engine.
-- **Modular**: You can use just transcription, or enable the full pipeline (refinement, discovery, memory).
-- **AI-native**: Built for workflows where you're working *with* AI, not just dictating to it.
+There are plenty of recording tools and transcription APIs out there. But going from a raw thought to a usable artifact—and eventually to a *thought partner*—that journey matters.
 
-### The Use Case That Convinced Me
+Reso helps you:
+- **Discover ideas** you didn't know you had
+- **Reflect** on how you think, not just what you think
+- **Track** how your time flows and what you're building
 
-I use Cursor for coding. It's incredible—but it needs good prompts.
+When I look back at my voice notes from months ago, I'm not just reading words. I'm seeing where my time went. What I got right. How my thinking evolved. It's a record of building—and a tool for self-discovery.
 
-I found myself doing this workflow constantly:
-1. Record a voice note explaining what I want
-2. Manually transcribe it
-3. Edit it into a structured prompt
-4. Paste into Cursor
+### Why Voice Is Different
 
-**This was insane.** Three manual steps!
+Voice carries emotion in ways typing never can. That's exactly why it should stay private.
 
-I wanted a tool that could:
-1. Capture my voice *and* screenshot the UI I'm looking at
-2. Automatically translate that into a precise technical spec
-3. Output something I can paste directly into Cursor
+You don't want your raw recordings floating around the internet. But sharing polished text? That's depersonalized. Desensitized. Safe.
 
-That became Architect mode—Reso's killer feature.
+So Reso is built around three principles:
+1. **Lighten the output burden** — speak freely, get clean results
+2. **Privacy-first architecture** — your voice stays on your device
+3. **Smart enough to understand** — learns your workflows and adapts
 
-### Why Now?
+### The Long Game
 
-Two things made this possible:
+Sometimes you'll record a scattered thought while holding your cat, hands-free, not thinking much of it. A year later, you'll look back and realize: *that was the seed of something important*.
 
-1. **Apple Silicon**: The M-series chips have Neural Engines that can run Whisper at 10x real-time speed.
-2. **Vision LLMs**: GPT-4V, Claude 3.5 Sonnet can process images + text, enabling screenshot-to-spec workflows.
+Fragmented voice notes become fascinating over time. Where did my time go? What did I build? What patterns emerge?
 
-This wasn't feasible two years ago. Now it is.
+I've always needed something like this. Drawing from my background in scientific research, I know that the best insights often come from revisiting raw observations with fresh eyes.
 
-### What's Next
+### Not Just a Recorder—A Thought Partner
 
-Reso is still evolving. But the core philosophy won't change:
+This is why we named it Reso—short for *Resonate*.
 
-**Get out of your way. Capture your thoughts. Make them useful.**
+We're not building a voice memo app. We're building a workflow that understands you. One that helps you succeed by getting out of your way and letting you think.
 
-The best tools don't make you think about them. They make you think *better*.
-
-That's what I'm building.`,
+The goal isn't to capture your voice. It's to **resonate with how you work**.`,
   },
 ];
 
