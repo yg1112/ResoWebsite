@@ -184,10 +184,10 @@ const PricingPage = () => {
               </h2>
               <div className="space-y-0">
                 {faqs.map((faq, index) => (
-                  <div key={index} className="border-t border-gray-200 dark:border-gray-800">
+                  <div key={index}>
                     <button
                       onClick={() => setOpenFaq(openFaq === index ? null : index)}
-                      className="w-full py-5 flex items-center justify-between text-left group"
+                      className="w-full py-4 flex items-center justify-between text-left group"
                     >
                       <span className="text-sm text-gray-900 dark:text-gray-100 group-hover:text-gray-600 dark:group-hover:text-gray-300 transition-colors pr-4">
                         {faq.q}
@@ -198,7 +198,7 @@ const PricingPage = () => {
                       />
                     </button>
                     {openFaq === index && (
-                      <div className="pb-5 pr-8">
+                      <div className="pb-4 pr-8">
                         <p className="text-sm text-gray-500 dark:text-gray-400 leading-relaxed">
                           {faq.a}
                         </p>
@@ -206,7 +206,6 @@ const PricingPage = () => {
                     )}
                   </div>
                 ))}
-                <div className="border-t border-gray-200 dark:border-gray-800"></div>
               </div>
             </div>
           </div>
