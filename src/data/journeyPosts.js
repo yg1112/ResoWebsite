@@ -1,5 +1,4 @@
 // Build Journey posts - ordered chronologically (most recent first)
-// Shared between ResourcesPage and DocsPage
 
 export const journeyPosts = [
   {
