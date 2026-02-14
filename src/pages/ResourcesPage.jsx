@@ -54,44 +54,49 @@ const journeyPosts = [
     date: 'Feb 2026',
     title: "Onboarding That Doesn't Get in the Way",
     category: 'Product',
-    summary: 'How we automated the painful parts of first launch—model downloads, permission checks, and service warmup—while keeping users in control.',
-    content: `I've always hated onboarding flows that feel like obstacle courses. You download an app, and suddenly you're clicking through 5 screens of permissions, manually configuring things that should "just work," and waiting for progress bars with no context.
+    summary: 'Designing a first-launch experience that feels like meeting a friend—not filling out a government form.',
+    content: `You know that feeling when you download a new app and immediately get hit with three permission popups in a row? It's... weird. You haven't even used the app yet. You don't know what these permissions are for. And the pressure of "Allow / Don't Allow" decisions firing at you—it makes you want to just close everything.
 
-When I started building Reso, I knew the first launch would be complex: we need microphone access, we need to download ~2GB of ML models, we need to initialize services. But I refused to make users babysit this process.
+I've done this myself. Denied all permissions out of reflex. Then later, when I actually wanted to use a feature, the app was stuck. "Please enable microphone access in Settings." And I felt that little pang of regret mixed with annoyance—now I have to dig through System Preferences to fix something I didn't understand in the first place.
 
-The core principle was simple: **Do the heavy lifting in the background, but stay transparent.**
+**The problem isn't that users don't want to give access. It's that:**
+1. They don't know *why* you need it
+2. Three popups in rapid succession creates pressure, not trust
 
-### The Problem
+### Building for Friends
 
-Our transcription engine relies on two ML models that live on-device:
-- A quantized Whisper model (~550MB)
-- A CoreML encoder for Neural Engine acceleration (~1.1GB)
+When I first built the Reso prototype, I didn't think much about onboarding. I knew what everything did. But when I started sharing it with friends, something clicked.
 
-Without these, Reso is a paperweight. But forcing users to sit through a "please wait" screen while we download 2GB felt wrong.
+When you're building something for people you care about, you want it to feel *mild*. Not intrusive. Not demanding.
 
-### The Solution
+It's like meeting a friend for the first time. You don't walk up and immediately ask: "What's your phone number? Where do you live? What do you do for work?" Nobody likes that.
 
-We built a three-tier onboarding system:
+### Our Design Principles
 
-1. **Critical path first**: Request microphone permission immediately—this is the only blocker. If you grant it, you can start recording right away with CPU-only transcription.
+We landed on two guiding ideas:
 
-2. **Background bootstrap**: While you're exploring the app, we quietly download models, validate checksums, and warm up services. No modal dialogs. Just a subtle indicator in settings.
+1. **Minimize discomfort**: Slow down. Don't bombard. Let users breathe.
+2. **Don't let them miss out**: While reducing friction, make sure critical information doesn't get lost.
 
-3. **Graceful degradation**: If models aren't ready yet, we show real-time performance (e.g., "0.3x speed - models downloading"). Users understand the tradeoff and can still use the app.
+This balance came partly from improv classes I've been taking—the idea of reading the room, matching energy, not forcing a scene.
 
-### The Details That Matter
+### What We Actually Built
 
-- **Resumable downloads**: Network drops? We pick up where we left off.
-- **SHA-256 validation**: Corrupted download? We catch it before trying to load garbage into CoreML.
-- **Permission guidance**: Instead of a cryptic system alert, we show users *exactly* where to go in System Settings if they denied access.
+Reso needs microphone access and ~2GB of ML models to work properly. That's a lot to ask upfront.
 
-### What I Learned
+So we don't ask upfront.
 
-Users don't mind waiting for things to download. They mind *not knowing why* or *being forced to wait*.
+- **One permission, when it matters**: We only request microphone access when you actually try to record. By then, the context is obvious.
+- **Background everything else**: Models download quietly while you explore. No progress bars blocking your way. Just a subtle indicator if you want to check.
+- **Graceful degradation**: If models aren't ready, the app still works—just slower. You see exactly what's happening ("0.3x speed - optimizing...") and can keep going.
 
-By making the critical path instant (microphone → record → transcribe) and deferring optimization (Neural Engine acceleration) to the background, first launch went from "this is broken" to "wow, it's already working."
+### The Polish That Matters
 
-The best onboarding is the one you barely notice.`,
+Getting here took iteration. Friends would download debug builds, get confused about which version to keep, run into edge cases. We spent more time on onboarding than I expected—testing what felt right, what felt pushy, what felt broken.
+
+The goal was always: **open the box, and it just works**. Elegant. Minimal. Like a work partner who's there when you need them and invisible when you don't.
+
+The best onboarding doesn't feel like onboarding at all. It feels like the app already knows you.`,
   },
   {
     id: 9,
