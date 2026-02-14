@@ -1,5 +1,51 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { useLocation } from 'react-router-dom';
 import { ArrowUpRight, BookOpen, Compass, GitCommitHorizontal, Calendar } from 'lucide-react';
+
+// Parse inline markdown (bold, italic, code)
+const parseInlineMarkdown = (text) => {
+  if (!text) return text;
+
+  const parts = [];
+  let remaining = text;
+  let key = 0;
+
+  // Pattern to match **bold**, *italic*, or `code`
+  const pattern = /(\*\*(.+?)\*\*)|(\*(.+?)\*)|(`(.+?)`)/g;
+  let lastIndex = 0;
+  let match;
+
+  while ((match = pattern.exec(remaining)) !== null) {
+    // Add text before the match
+    if (match.index > lastIndex) {
+      parts.push(remaining.slice(lastIndex, match.index));
+    }
+
+    if (match[1]) {
+      // Bold **text**
+      parts.push(<strong key={key++} className="font-semibold">{match[2]}</strong>);
+    } else if (match[3]) {
+      // Italic *text*
+      parts.push(<em key={key++}>{match[4]}</em>);
+    } else if (match[5]) {
+      // Code `text`
+      parts.push(
+        <code key={key++} className="px-1.5 py-0.5 bg-gray-100 dark:bg-gray-800 rounded text-sm font-mono">
+          {match[6]}
+        </code>
+      );
+    }
+
+    lastIndex = match.index + match[0].length;
+  }
+
+  // Add remaining text
+  if (lastIndex < remaining.length) {
+    parts.push(remaining.slice(lastIndex));
+  }
+
+  return parts.length > 0 ? parts : text;
+};
 
 // Build Journey posts - ordered chronologically (most recent first)
 const journeyPosts = [
@@ -628,6 +674,22 @@ const resourceBlocks = [
 
 const ResourcesPage = () => {
   const [selectedPost, setSelectedPost] = useState(null);
+  const location = useLocation();
+
+  // Handle hash scrolling after page load
+  useEffect(() => {
+    if (location.hash) {
+      // Wait for DOM to be fully rendered
+      const timer = setTimeout(() => {
+        const id = location.hash.replace('#', '');
+        const el = document.getElementById(id);
+        if (el) {
+          el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      }, 300);
+      return () => clearTimeout(timer);
+    }
+  }, [location.hash]);
 
   return (
     <main className="pt-28 min-h-screen pb-20">
@@ -743,15 +805,8 @@ const ResourcesPage = () => {
                   if (paragraph.startsWith('### ')) {
                     return (
                       <h3 key={idx} className="text-xl font-medium text-gray-900 dark:text-gray-100 mt-8 mb-4">
-                        {paragraph.replace('### ', '')}
+                        {parseInlineMarkdown(paragraph.replace('### ', ''))}
                       </h3>
-                    );
-                  }
-                  if (paragraph.startsWith('**')) {
-                    return (
-                      <p key={idx} className="text-base text-gray-700 dark:text-gray-300 leading-relaxed mb-4 font-medium">
-                        {paragraph.replace(/\*\*/g, '')}
-                      </p>
                     );
                   }
                   if (paragraph.startsWith('```')) {
@@ -762,30 +817,40 @@ const ResourcesPage = () => {
                       </pre>
                     );
                   }
-                  if (paragraph.match(/^\d+\./)) {
+                  if (paragraph.match(/^\d+\.\s/)) {
+                    const items = paragraph.split('\n').filter(line => line.match(/^\d+\.\s/));
                     return (
-                      <li key={idx} className="text-base text-gray-700 dark:text-gray-300 leading-relaxed ml-6">
-                        {paragraph.replace(/^\d+\.\s*/, '')}
-                      </li>
+                      <ol key={idx} className="list-decimal list-outside ml-6 mb-4 space-y-1">
+                        {items.map((item, i) => (
+                          <li key={i} className="text-base text-gray-700 dark:text-gray-300 leading-relaxed">
+                            {parseInlineMarkdown(item.replace(/^\d+\.\s*/, ''))}
+                          </li>
+                        ))}
+                      </ol>
                     );
                   }
-                  if (paragraph.startsWith('- ') || paragraph.startsWith('* ')) {
+                  if (paragraph.startsWith('- ')) {
+                    const items = paragraph.split('\n').filter(line => line.startsWith('- '));
                     return (
-                      <li key={idx} className="text-base text-gray-700 dark:text-gray-300 leading-relaxed ml-6">
-                        {paragraph.replace(/^[-*]\s*/, '')}
-                      </li>
+                      <ul key={idx} className="list-disc list-outside ml-6 mb-4 space-y-1">
+                        {items.map((item, i) => (
+                          <li key={i} className="text-base text-gray-700 dark:text-gray-300 leading-relaxed">
+                            {parseInlineMarkdown(item.replace(/^-\s*/, ''))}
+                          </li>
+                        ))}
+                      </ul>
                     );
                   }
                   if (paragraph.startsWith('>')) {
                     return (
                       <blockquote key={idx} className="border-l-4 border-gray-300 dark:border-gray-600 pl-4 my-4 italic text-gray-600 dark:text-gray-400">
-                        {paragraph.replace(/^>\s*/, '')}
+                        {parseInlineMarkdown(paragraph.replace(/^>\s*/, ''))}
                       </blockquote>
                     );
                   }
                   return (
                     <p key={idx} className="text-base text-gray-700 dark:text-gray-300 leading-relaxed mb-4">
-                      {paragraph}
+                      {parseInlineMarkdown(paragraph)}
                     </p>
                   );
                 })}

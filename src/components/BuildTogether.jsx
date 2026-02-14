@@ -3,16 +3,10 @@ import { ArrowRight, ArrowUpRight } from 'lucide-react';
 
 const previewItems = [
   {
-    title: 'Change Log',
-    body: 'Track every release, fixes, and performance improvements in one clean timeline.',
-    href: '/resources#changelog',
-    cta: 'Open updates',
-  },
-  {
-    title: 'Blog',
-    body: 'Read our engineering and product notes as we build local-first AI workflows.',
-    href: '/resources#blog',
-    cta: 'Read build notes',
+    title: 'Docs',
+    body: 'Product architecture and workflow guides.',
+    href: '/docs',
+    cta: 'Open Docs',
   },
 ];
 
@@ -30,7 +24,7 @@ const BuildTogether = () => {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 max-w-md">
           {previewItems.map((item) => (
             <article
               key={item.title}

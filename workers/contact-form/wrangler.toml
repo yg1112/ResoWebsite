@@ -1,0 +1,19 @@
+name = "reso-contact"
+main = "worker.js"
+compatibility_date = "2024-01-01"
+
+# R2 bucket binding for file uploads
+[[r2_buckets]]
+binding = "FEEDBACK_BUCKET"
+bucket_name = "reso-feedback"
+
+# KV namespace for storing form submissions (metadata)
+[[kv_namespaces]]
+binding = "FEEDBACK_KV"
+id = "YOUR_KV_NAMESPACE_ID"  # TODO: Replace after running `wrangler kv:namespace create FEEDBACK_KV`
+
+[vars]
+# Your email for notifications (optional, used with Email Workers)
+NOTIFY_EMAIL = "your-email@example.com"
+# Allowed origin for CORS
+ALLOWED_ORIGIN = "https://reso.dzgapp.com"

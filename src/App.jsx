@@ -6,8 +6,8 @@ import Features from './components/Features';
 import BuildTogether from './components/BuildTogether';
 import Footer from './components/Footer';
 import PricingPage from './pages/PricingPage';
-import ResourcesPage from './pages/ResourcesPage';
 import DocsPage from './pages/DocsPage';
+import ContactPage from './pages/ContactPage';
 import MarketplacePage from './pages/MarketplacePage';
 import DiscoverPage from './pages/DiscoverPage';
 
@@ -65,8 +65,8 @@ function App() {
           <Route path="/pricing" element={<PricingPage />} />
           <Route path="/discover" element={<DiscoverPage />} />
           <Route path="/marketplace" element={<MarketplacePage />} />
-          <Route path="/resources" element={<ResourcesPage />} />
           <Route path="/docs" element={<DocsPage />} />
+          <Route path="/contact" element={<ContactPage />} />
         </Routes>
         <Footer />
       </div>

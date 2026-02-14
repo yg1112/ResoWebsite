@@ -84,7 +84,6 @@ const PricingPage = () => {
         <div className="max-w-6xl mx-auto px-6">
           {/* Header */}
           <div className="mb-16 max-w-3xl">
-            <p className="text-xs uppercase tracking-[0.22em] text-gray-500 dark:text-gray-400 mb-5">Pricing</p>
             <h1 className="text-4xl md:text-5xl leading-tight tracking-tight font-medium text-gray-900 dark:text-gray-100 mb-5">
               Pick the workflow.
               <br />
