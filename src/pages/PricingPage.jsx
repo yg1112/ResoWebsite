@@ -14,15 +14,15 @@ const TIERS = [
     priceMain: '$39',
     priceSup: '.99',
     cadence: '/year',
-    description: 'For power users who already have their own API keys.',
+    description: 'Maximum control. Zero markup.',
     features: [
-      'Bring Your Own Key: Connect Anthropic, OpenAI, Groq, or Google.',
-      'Pay for what you use: No markup. Pay only base token cost to model providers.',
-      '1-Year Updates: Includes all new skill packs and product updates for one year.',
+      'Zero markup on tokens: Direct access to Anthropic, OpenAI, Groq, or Google.',
+      'Keys stored locally: Your credentials never leave your device.',
+      '1-year of updates: Every new skill pack included.',
     ],
     cta: 'Get Pro License',
     checkoutUrl: CHECKOUT_LINKS.pro,
-    footnote: 'Best for dev-heavy workflows and full token-cost control.',
+    footnote: '30-day money-back guarantee',
   },
   {
     id: 'plus',
@@ -31,15 +31,15 @@ const TIERS = [
     priceMain: '$9',
     priceSup: '.99',
     cadence: '/month',
-    description: 'Zero setup. Everything just works out of the box.',
+    description: 'Just think. We handle the rest.',
     features: [
-      'No API Key needed: Built-in top-tier models with no manual configuration.',
-      'All API costs included: Model token usage covered by us (fair use applies).',
-      'Always up to date: Unlock the newest skill packs during active subscription.',
+      'One price, no surprises: Built-in AI, no keys needed.',
+      'Ready in seconds: No configuration required.',
+      'Always current: Latest features and skill packs.',
     ],
-    cta: 'Subscribe to Reso+',
+    cta: 'Start Subscription',
     checkoutUrl: CHECKOUT_LINKS.plus,
-    footnote: 'Built for users who want pure speed and zero setup overhead.',
+    footnote: 'Cancel anytime · 30-day refund',
     featured: true,
   },
 ];
@@ -224,6 +224,11 @@ const PricingPage = () => {
               })}
             </div>
           </div>
+
+          {/* Privacy Promise */}
+          <p className="text-center text-sm text-gray-500 dark:text-gray-400 mb-16">
+            Your thoughts stay yours. We don't train on your data.
+          </p>
 
           {/* Activation Flow */}
           <div className="mb-24 rounded-2xl border border-gray-200 dark:border-gray-800 bg-white/70 dark:bg-[#0A0A0A]/80 backdrop-blur p-6 md:p-8">
