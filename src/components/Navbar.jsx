@@ -6,7 +6,7 @@ import ResoIcon from '../assets/ResoIcon_512.png';
 const navLinks = [
   { label: 'Product', href: '/#features' },
   { label: 'Pricing', to: '/pricing' },
-  { label: 'Discover', to: '/discover' },
+  // { label: 'Discover', to: '/discover' },  // Hidden until feature is complete
   { label: 'Docs', to: '/docs' },
   { label: 'License Manager', href: 'https://reso.dzgapp.com/retrieve.html', external: true },
 ];
