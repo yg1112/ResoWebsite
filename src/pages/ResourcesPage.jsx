@@ -103,53 +103,61 @@ The best onboarding doesn't feel like onboarding at all. It feels like the app a
     date: 'Jan 2026',
     title: 'The UI You Never Think About',
     category: 'Design',
-    summary: 'Designing a global hotkey system that feels native to macOS—from floating capsules to dark mode that actually respects your workflow.',
-    content: `Good UI is invisible. You notice it when it's bad, but when it's right, it just *feels* like part of the system.
+    summary: 'Why I cut most of my UI, and what it taught me about the difference between building and using.',
+    content: `Honestly, my early beta looked like a DJ console. Knobs everywhere. Toggles for every route, every model variation, every debug parameter. It made sense—I needed to test hundreds of permutations to find what worked.
 
-I spent weeks on Reso's UI not to make it "pretty," but to make it **forgettable**—in the best way.
+But then I asked myself: *Who is this actually for?*
 
-### The Hotkey Problem
+### The Real Goal
 
-Reso lives in your menu bar. You trigger it with ⌘⇧R. The app needs to appear instantly, record your voice, then disappear just as fast.
+Everything I was doing—all those model routes, delay settings, polish options—had one purpose: to give you **the version you like best**. You shouldn't have to tune anything. You shouldn't even know those permutations exist.
 
-But here's the thing: macOS has specific expectations for how apps should behave when summoned globally. If you violate these patterns, users won't consciously notice—but they'll *feel* that something's off.
+When you see the output and think, "Yes, that's exactly what I meant"—that's the goal. That's the only goal.
 
-**What I learned:**
-- **Respect focus**: When Reso captures audio, it shouldn't steal focus from your current app. You should be able to keep typing in your editor while speaking.
-- **Instant feedback**: The floating capsule (our recording indicator) must appear within 50ms of the hotkey press. Any slower and it feels laggy.
-- **Escape hatch**: Pressing the hotkey again should always stop recording, no matter what state the app is in. No modals, no confirmations.
+Once I realized that, my design principle became simple: **If I can hide it, hide it. If I can encapsulate it, don't bother the user.**
 
-### Dark Mode Done Right
+### The Engineer vs. User Gap
 
-Every macOS app says it supports dark mode. Most do it lazily—they just invert colors and call it done.
+There's a cognitive gap between engineers and users that I kept bumping into:
 
-I wanted Reso's dark mode to feel *intentional*. Here's what that meant:
+**The engineer's instinct**: Give users a full remote control. Every option, every setting. Maximum flexibility.
 
-- **It follows your system**: We don't force a setting. If macOS is in dark mode, Reso is too.
-- **Gradients, not flat blacks**: Pure black (#000) looks cheap. We use subtle gradients (black/5% opacity) that give depth without distraction.
-- **Grid backgrounds**: The timeline and graph views have subtle grid patterns that work in both modes—visible enough to provide structure, invisible enough to fade into the background.
+**The user's reality**: The cooler experience is when content just *appears* in your feed. You don't want to press "Sports," then "Baseball," then scroll to find the one player you care about. You just want it there.
 
-### The Floating Capsule
+This made me rethink a lot. The version you see now? I've cut *so much*. Features I was proud of at one point—gone.
 
-This was the hardest part. When you're recording, you need *some* indicator, but it can't be intrusive.
+### The Test That Matters
 
-I tried:
-1. A menu bar icon that pulses (too subtle—people forgot they were recording)
-2. A large overlay window (too aggressive—blocked content)
-3. A notification banner (felt like an error message)
+I started asking myself two questions, but not right away. I'd wait a few days. Let the excitement fade. Then:
 
-What worked: **A small, draggable capsule with a waveform.**
+1. **Does it make sense?**
+2. **Will you ever actually use it?**
 
-- It floats above all windows but doesn't steal focus
-- You can drag it out of the way if it's blocking something
-- The waveform gives you real-time feedback that audio is being captured
-- It's just translucent enough to see through, but opaque enough to be noticeable
+When the answers changed—and they often did—I cut without hesitation.
 
-### What I Learned
+Here's the thing: when you're deep in building, everything feels reasonable. But building something and using something are completely different perspectives. And it's hard to be both people at once. You can't debug code one moment and then genuinely pretend you're a user who doesn't care about implementation details.
 
-UI work is 90% restraint. Every feature wants to be a button, every state wants to be a modal.
+So I gave myself buffer time. That's partly why our development cycle was longer than expected. The prototype existed early. Friends were testing it. But we kept polishing, kept asking: *Is this actually useful? Would I use this myself?*
 
-The best interface is the one that gets out of your way—but is there exactly when you need it.`,
+### Eating Your Own Cooking
+
+During development, I used Reso as scaffolding for my own work. And if something felt awkward to me—even as the person who built it—that was a red flag.
+
+Why would I give someone else something I don't want to use myself? It's like giving advice you don't believe in. If someone asks, "Do you actually believe this?" and you say no—everything after that is just noise.
+
+When you finish building something, you have to ask: **Do I believe in it?**
+
+If you do, you'll communicate it with conviction. If deep down something feels off—you know. You just know.
+
+### UI as Expression
+
+This struggle—between what's technically possible and what's actually human—showed up constantly when we built features like Skills and Tones. We kept asking: Are we just impressing ourselves, or does the user actually need this?
+
+But here's the beautiful part: UI is a form of expression. I'm grateful for great art in the world, and I think UI is a window for developers to express what they believe beauty looks like.
+
+There's no "correct" UI. Only what fits. What feels right. What gives users comfort.
+
+And that standard will keep evolving. I'm looking forward to more inspiration, more feedback, more iteration. Because the UI you never think about? That's the one that took the most thought.`,
   },
   {
     id: 8,
