@@ -16,7 +16,7 @@ const TIERS = [
     cadence: '/year',
     description: 'For power users who already have their own API keys.',
     features: [
-      'Bring Your Own Key: Connect Anthropic, OpenAI, GROQ, or Gemini (Google).',
+      'Bring Your Own Key: Connect Anthropic, OpenAI, Groq, or Google.',
       'Pay for what you use: No markup. Pay only base token cost to model providers.',
       '1-Year Updates: Includes all new skill packs and product updates for one year.',
     ],
@@ -54,11 +54,11 @@ const PricingPage = () => {
     },
     {
       q: 'Do I need to configure API keys?',
-      a: 'For Reso Pro, yes. You can use Anthropic, OpenAI, GROQ, or Gemini (Google) keys. For Reso+, no. API access is integrated and ready out of the box.',
+      a: 'For Reso Pro, yes. You can use Anthropic, OpenAI, Groq, or Google keys. For Reso+, no. API access is integrated and ready out of the box.',
     },
     {
       q: 'Which model providers are supported?',
-      a: 'Reso currently supports Anthropic, OpenAI, GROQ, and Gemini (Google).',
+      a: 'Reso currently supports Anthropic, OpenAI, Groq, and Google.',
     },
     {
       q: 'How does activation work after payment?',

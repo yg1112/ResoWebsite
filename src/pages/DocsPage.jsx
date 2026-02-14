@@ -438,7 +438,7 @@ const RoutingSection = () => (
           (and expensive) model. Complex analysis benefits from deeper reasoning.
         </p>
         <p>
-          Reso supports multiple providers: Anthropic, OpenAI, GROQ, and Gemini. You bring your
+          Reso supports multiple providers: Anthropic, OpenAI, Groq, and Google. You bring your
           own API keys (Reso Pro) or use our hosted access (Reso+).
         </p>
       </div>
