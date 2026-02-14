@@ -1,0 +1,25 @@
+{
+  "version": 1,
+  "lastUpdated": "2026-02-13T00:00:00Z",
+  "skills": [
+    {
+      "id": "calendar",
+      "name": "Calendar Event",
+      "icon": "calendar.badge.plus",
+      "description": "Create calendar events from voice commands",
+      "keywords": ["schedule", "meeting", "calendar", "event"],
+      "category": "productivity",
+      "requiresPro": false
+    },
+    {
+      "id": "research",
+      "name": "Web Research",
+      "icon": "magnifyingglass",
+      "description": "Search with AI-powered web search engines",
+      "keywords": ["search", "find", "research", "lookup"],
+      "category": "productivity",
+      "requiresPro": false
+    }
+  ],
+  "tones": []
+}

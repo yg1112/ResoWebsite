@@ -1,0 +1,20 @@
+{
+  "id": "calendar",
+  "schemaVersion": 1,
+  "name": "Calendar Event",
+  "icon": "calendar.badge.plus",
+  "description": "Create a calendar event from voice commands",
+  "keywords": ["安排", "提醒", "开会", "日程", "会议", "约", "schedule", "meeting", "event", "calendar", "remind"],
+  "executionType": "calendar_create",
+  "requiresContentGeneration": false,
+  "hasProviderOptions": false,
+  "parameterContract": {
+    "required": ["eventTitle", "startDateTimeISO8601"],
+    "optional": ["durationMinutes", "notes"]
+  },
+  "promptTemplates": {
+    "intent": null,
+    "extract": "Extract calendar event parameters from the voice command.\nRequired fields:\n- eventTitle: title of the event\n- startDateTimeISO8601: event start time in strict ISO8601 format\n\nOptional fields:\n- durationMinutes: event duration in minutes (default 60)\n- notes: optional details\n\nCurrent local time: {{nowISO8601}}\nCurrent timezone: {{currentTimeZone}}\n\nRules:\n1. Resolve relative times using the current local time.\n2. startDateTimeISO8601 must be a concrete date-time, e.g. 2026-02-17T15:00:00-08:00\n3. Output ONLY valid JSON. No markdown, no comments.\n\nExample output:\n{\"eventTitle\":\"Team review\",\"startDateTimeISO8601\":\"2026-02-17T15:00:00-08:00\",\"durationMinutes\":\"60\"}",
+    "content": null
+  }
+}

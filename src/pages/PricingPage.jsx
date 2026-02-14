@@ -3,7 +3,7 @@ import { ArrowRight, Check, ChevronDown, Download, Sparkles } from 'lucide-react
 
 const CHECKOUT_LINKS = {
   pro: 'https://reso.lemonsqueezy.com/checkout/buy/80d0e623-d94c-4a19-a4c9-afee9451a146',
-  plus: '', // TODO: Replace with the Reso+ monthly checkout URL.
+  plus: 'https://reso.lemonsqueezy.com/checkout/buy/ba6f74ba-5444-4488-98c1-9402f4c59e00',
 };
 
 const TIERS = [
@@ -15,7 +15,7 @@ const TIERS = [
     cadence: '/year',
     description: 'For power users who already have their own API keys.',
     features: [
-      'Bring Your Own Key: Fill in your OpenAI/Anthropic key and start instantly.',
+      'Bring Your Own Key: Connect Anthropic, OpenAI, GROQ, or Gemini (Google).',
       'Pay for what you use: No markup. Pay only base token cost to model providers.',
       '1-Year Updates: Includes all new skill packs and product updates for one year.',
     ],
@@ -57,7 +57,11 @@ const PricingPage = () => {
     },
     {
       q: 'Do I need to configure API keys?',
-      a: 'For Reso Pro, yes. You bring your own OpenAI/Anthropic key. For Reso+, no. API access is integrated and ready out of the box.',
+      a: 'For Reso Pro, yes. You can use Anthropic, OpenAI, GROQ, or Gemini (Google) keys. For Reso+, no. API access is integrated and ready out of the box.',
+    },
+    {
+      q: 'Which model providers are supported?',
+      a: 'Reso currently supports Anthropic, OpenAI, GROQ, and Gemini (Google).',
     },
     {
       q: 'How does activation work after payment?',
@@ -74,17 +78,14 @@ const PricingPage = () => {
   ];
 
   return (
-    <main className="pt-20 min-h-screen">
+    <main className="pt-28 min-h-screen pb-20">
       {/* PRICING SECTION */}
-      <section className="py-20 px-6">
-        <div className="max-w-6xl mx-auto">
+      <section>
+        <div className="max-w-6xl mx-auto px-6">
           {/* Header */}
-          <div className="text-center mb-14 max-w-2xl mx-auto">
-            <div className="inline-flex items-center gap-2 rounded-full px-4 py-2 border border-gray-200/70 dark:border-gray-700/70 bg-white/80 dark:bg-gray-900/70 backdrop-blur text-xs tracking-[0.18em] uppercase text-gray-500 dark:text-gray-400 mb-6">
-              <Sparkles size={14} />
-              <span>Choose your tier</span>
-            </div>
-            <h1 className="text-4xl md:text-5xl font-medium text-gray-900 dark:text-gray-100 mb-4 leading-tight">
+          <div className="mb-16 max-w-3xl">
+            <p className="text-xs uppercase tracking-[0.22em] text-gray-500 dark:text-gray-400 mb-5">Pricing</p>
+            <h1 className="text-4xl md:text-5xl leading-tight tracking-tight font-medium text-gray-900 dark:text-gray-100 mb-5">
               Pick the workflow.
               <br />
               Keep the speed.
@@ -149,7 +150,7 @@ const PricingPage = () => {
                       <button
                         onClick={() => handleCheckout(tier.checkoutUrl)}
                         disabled={isDisabled}
-                        className={`w-full group flex items-center justify-center gap-2 text-sm py-3.5 px-6 rounded-xl font-medium transition-all ${
+                        className={`w-full group flex items-center justify-center gap-2 text-sm py-3 px-6 rounded-full font-medium transition-all ${
                           tier.featured
                             ? 'bg-white text-black hover:bg-gray-100 disabled:bg-gray-300 disabled:text-gray-500'
                             : 'bg-black text-white dark:bg-white dark:text-black hover:bg-gray-800 dark:hover:bg-gray-100 disabled:bg-gray-300 disabled:text-gray-500'
@@ -214,19 +215,21 @@ const PricingPage = () => {
       </section>
 
       {/* GET STARTED CTA */}
-      <section className="py-24 px-6">
-        <div className="max-w-2xl mx-auto text-center">
+      <section className="py-24">
+        <div className="max-w-6xl mx-auto px-6">
+          <div className="max-w-2xl mx-auto text-center">
           <h2 className="text-4xl font-medium text-gray-900 dark:text-gray-100 mb-8">
             Start with Reso today.
           </h2>
           <a
             href="https://github.com/yg1112/reso-releases/releases/latest/download/Reso.dmg"
             download
-            className="inline-flex items-center gap-2 bg-black dark:bg-white text-white dark:text-black rounded-lg font-medium text-sm hover:bg-gray-800 dark:hover:bg-gray-100 transition-all px-6 py-3"
+            className="inline-flex items-center gap-2 bg-black dark:bg-white text-white dark:text-black rounded-full font-medium text-sm hover:bg-gray-800 dark:hover:bg-gray-100 transition-all px-6 py-3"
           >
             <Download size={16} />
             <span>Download for macOS</span>
           </a>
+          </div>
         </div>
       </section>
     </main>

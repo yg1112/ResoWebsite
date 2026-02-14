@@ -1,18 +1,47 @@
 import React, { useState, useEffect } from 'react';
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom';
 import Navbar from './components/Navbar';
 import HeroSection from './components/HeroSection';
 import Features from './components/Features';
+import BuildTogether from './components/BuildTogether';
 import Footer from './components/Footer';
 import PricingPage from './pages/PricingPage';
+import ResourcesPage from './pages/ResourcesPage';
+import DocsPage from './pages/DocsPage';
+import MarketplacePage from './pages/MarketplacePage';
+import DiscoverPage from './pages/DiscoverPage';
 
 function HomePage() {
   return (
     <>
       <HeroSection />
       <Features />
+      <BuildTogether />
     </>
   );
+}
+
+function HashScrollHandler() {
+  const location = useLocation();
+
+  useEffect(() => {
+    if (!location.hash) return;
+
+    const id = location.hash.slice(1);
+    const scrollToTarget = () => {
+      const target = document.getElementById(id);
+      if (!target) return false;
+      target.scrollIntoView({ block: 'start' });
+      return true;
+    };
+
+    if (scrollToTarget()) return;
+
+    const timeoutId = window.setTimeout(scrollToTarget, 80);
+    return () => window.clearTimeout(timeoutId);
+  }, [location.pathname, location.hash]);
+
+  return null;
 }
 
 function App() {
@@ -29,10 +58,15 @@ function App() {
   return (
     <BrowserRouter>
       <div className="min-h-screen grid-paper-bg text-gray-900 dark:text-gray-100 font-sans selection:bg-orange-100 dark:selection:bg-brand-primary/30 scroll-smooth overflow-x-hidden">
+        <HashScrollHandler />
         <Navbar isScrolled={isScrolled} />
         <Routes>
           <Route path="/" element={<HomePage />} />
           <Route path="/pricing" element={<PricingPage />} />
+          <Route path="/discover" element={<DiscoverPage />} />
+          <Route path="/marketplace" element={<MarketplacePage />} />
+          <Route path="/resources" element={<ResourcesPage />} />
+          <Route path="/docs" element={<DocsPage />} />
         </Routes>
         <Footer />
       </div>

@@ -32,19 +32,19 @@ const HeroSection = () => {
   }, [isModalOpen]);
 
   return (
-    <section className="relative z-10 pt-32 pb-20 px-6 min-h-screen">
-      <div className="max-w-4xl mx-auto">
+    <section className="relative z-10 pt-32 pb-20 min-h-screen">
+      <div className="max-w-6xl mx-auto px-6">
 
         {/* Title + Button */}
-        <div className="mb-14">
-          <h1 className="text-3xl md:text-4xl font-medium tracking-tight leading-[1.3] mb-6 text-black dark:text-white">
+        <div className="mb-14 max-w-3xl">
+          <h1 className="text-3xl md:text-5xl font-medium tracking-tight leading-[1.15] mb-6 text-black dark:text-white">
             Capture thoughts. Anywhere. <span className="text-gray-500 dark:text-gray-400">Locally.</span>
           </h1>
 
           <a
             href="https://github.com/yg1112/reso-releases/releases/latest/download/Reso.dmg"
             download
-            className="inline-flex items-center gap-2 bg-black dark:bg-white text-white dark:text-black rounded-lg font-medium text-sm hover:bg-gray-800 dark:hover:bg-gray-100 transition-all px-5 py-3"
+            className="inline-flex items-center gap-2 bg-black dark:bg-white text-white dark:text-black rounded-full font-medium text-sm hover:bg-gray-800 dark:hover:bg-gray-100 transition-all px-6 py-3"
           >
             <span>Download for macOS</span>
             <Download size={16} />

@@ -88,3 +88,13 @@
   position: relative;
   z-index: 1;
 }
+
+/* Brand logo: pointer-followed damped rotation */
+.brand-logo-icon {
+  transform-origin: 50% 50%;
+  will-change: transform;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  transform: rotate(0deg);
+  image-rendering: auto;
+}

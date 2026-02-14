@@ -58,8 +58,9 @@ const Footer = () => {
     <>
       {/* NEWSLETTER SECTION - Hidden on Pricing page */}
       {!isPricingPage && (
-        <section className="py-16 px-6">
-          <div className="max-w-md mx-auto text-center">
+        <section className="py-16">
+          <div className="max-w-6xl mx-auto px-6">
+            <div className="max-w-md mx-auto text-center">
             <h2 className="text-lg font-medium text-gray-900 dark:text-gray-100 mb-2">Stay updated</h2>
             <p className="text-sm text-gray-500 mb-6">
               Get notified about new features and updates.
@@ -80,23 +81,24 @@ const Footer = () => {
                   placeholder="Enter your email"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
-                  className="flex-1 px-4 py-2.5 rounded-lg border border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-gray-800 focus:bg-white dark:focus:bg-gray-700 focus:ring-1 focus:ring-gray-300 dark:focus:ring-gray-600 focus:border-gray-300 dark:focus:border-gray-600 outline-none transition-all placeholder:text-gray-400 dark:placeholder:text-gray-500 text-sm text-gray-900 dark:text-gray-100"
+                  className="flex-1 px-4 py-2.5 rounded-full border border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-gray-800 focus:bg-white dark:focus:bg-gray-700 focus:ring-1 focus:ring-gray-300 dark:focus:ring-gray-600 focus:border-gray-300 dark:focus:border-gray-600 outline-none transition-all placeholder:text-gray-400 dark:placeholder:text-gray-500 text-sm text-gray-900 dark:text-gray-100"
                 />
                 <button
                   type="submit"
-                  className="px-5 py-2.5 bg-black dark:bg-white text-white dark:text-black font-medium rounded-lg hover:bg-gray-800 dark:hover:bg-gray-100 transition-all text-sm whitespace-nowrap"
+                  className="px-5 py-2.5 bg-black dark:bg-white text-white dark:text-black font-medium rounded-full hover:bg-gray-800 dark:hover:bg-gray-100 transition-all text-sm whitespace-nowrap"
                 >
                   Subscribe
                 </button>
               </form>
             )}
+            </div>
           </div>
         </section>
       )}
 
       {/* FOOTER */}
-      <footer className="py-8 px-6 border-t border-gray-200 dark:border-gray-800 text-xs text-gray-500 dark:text-gray-400">
-        <div className="max-w-4xl mx-auto flex flex-col md:flex-row justify-between items-center gap-4">
+      <footer className="py-8 border-t border-gray-200 dark:border-gray-800 text-xs text-gray-500 dark:text-gray-400">
+        <div className="max-w-6xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-4">
           <span>&copy; 2025 DZG STUDIO LLC.</span>
           <div className="flex items-center gap-6">
             <a href="/privacy.html" className="hover:text-gray-900 dark:hover:text-gray-100 transition-colors">Privacy</a>
