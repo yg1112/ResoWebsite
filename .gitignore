@@ -12,3 +12,10 @@ node_modules/
 
 ### OS
 .DS_Store
+
+### Secrets
+ADMIN_SECRETS.md
+workers/contact-form-admin/wrangler.toml
+
+### Wrangler
+.wrangler/
