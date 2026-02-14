@@ -286,52 +286,57 @@ That's the magic—making the invisible visible.`,
     date: 'Oct 2025',
     title: "When One API Isn't Enough",
     category: 'Infrastructure',
-    summary: 'Building a multi-provider routing system that automatically fails over between OpenAI, Anthropic, and Google—because rate limits are a fact of life.',
-    content: `Here's a problem I didn't expect: **Reso works too well**.
+    summary: 'Why I built multi-provider routing—not just for reliability, but because I wanted a playground to try new models whenever I felt like it.',
+    content: `I'm the kind of person who tries every new model the moment it drops.
 
-Early users loved the text refinement feature—it takes raw transcriptions and cleans them up with an LLM. But they were hitting rate limits constantly.
+New Claude version? I want to feel the difference. GPT update? Let me compare. A new player enters the scene? Sign me up. It's not just about benchmarks—I genuinely enjoy experiencing how different models *think*.
 
-"Error: Rate limit exceeded. Try again in 60 seconds."
+So when I built Reso's LLM integration, I knew one API slot wouldn't be enough. Not for me, anyway.
 
-This is a terrible user experience. You're in flow, recording thoughts, and suddenly... nothing works.
+### The Practical Side
 
-### The Naive Solution
+Sure, there's a reliability argument. Rate limits happen. Outages happen. Having multiple providers configured means if one hits a wall, another picks up seamlessly.
 
-"Just handle errors and show a retry button!"
+But honestly? That's not why I built it.
 
-No. That's pushing the problem onto the user. If I have to *think* about which API to use, the tool has failed.
+I built it because I wanted **flexibility**:
 
-### The Real Solution: Automatic Failover
+- Sometimes I want to use my company's API key for work stuff
+- Sometimes I want to use my personal key for private thoughts
+- Sometimes I just want to rotate between providers because one hit its limit
+- Sometimes I want to compare how different models handle the same input
 
-I wanted this to be invisible:
-1. User has multiple API providers configured (OpenAI, Anthropic, Google)
-2. Reso tries the first one
-3. If it hits a rate limit, automatically try the next
-4. Temporarily mark the rate-limited provider as "on cooldown"
-5. Retry it after a brief period
+The point is: **switching should be effortless**. No reconfiguring. No digging through settings. Just... works.
 
-**The result**: Uninterrupted service. You never see an error.
+### Making It Fun
 
-### The Hard Part: State Management
+I wanted routing to feel intuitive—almost like a playground.
 
-This sounds simple, but the edge cases are brutal:
+You can set up multiple API keys from different providers. Reso handles the rest. If you want to manually pick one for a specific task, you can. If you want it to auto-rotate, it will. If one provider is rate-limited, it quietly moves to the next.
 
-- What if *all* providers are rate-limited?
-- What if a provider fails for a different reason (network error vs. rate limit)?
-- What if a provider comes back online mid-cooldown?
-- How do you avoid "request storms" where all users retry simultaneously?
+The experience should feel like you have options, not obligations.
 
-I spent a week on edge case handling. The core routing logic is ~50 lines. The error handling is 200+.
+### Why This Matters
 
-### What I Learned
+Most apps lock you into one provider. One API key. One way of doing things.
 
-**Reliability isn't a feature—it's the absence of broken states.**
+But the AI landscape moves fast. What's best today might not be best tomorrow. And sometimes you just *want* to try something different—not because it's better, but because you're curious.
 
-Users don't praise apps for "not crashing." They just stop using apps that *do* crash.
+I think tools should support that curiosity. They should make experimentation easy, not punishing.
 
-Good infrastructure is invisible. It's the thing you build so users never have to think about it.
+### The Boring Infrastructure
 
-Multi-provider routing isn't sexy. It doesn't make it into marketing slides. But it's the difference between "this tool is flaky" and "this tool just works."`,
+Behind the scenes, there's a lot of state management:
+- Tracking which providers are healthy
+- Handling rate limits vs. actual errors
+- Avoiding retry storms
+- Graceful degradation when everything's down
+
+The core routing logic is maybe 50 lines. The error handling is 200+. That's just how infrastructure works—the boring stuff takes the most code.
+
+But when it works, you don't notice it. You just feel like the app is responsive, flexible, and... fun.
+
+That's the goal. Not just reliability. A playground.`,
   },
   {
     id: 5,
