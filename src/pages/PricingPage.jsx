@@ -16,7 +16,7 @@ const TIERS = [
     cadence: '/year',
     description: 'Maximum control. Zero markup.',
     features: [
-      'Zero markup: Pay providers directly.',
+      'Flexible routing: Your favorite models, one workflow.',
       'Keys stored locally: Never leave your device.',
       '1-year updates: Every new skill pack included.',
     ],
