@@ -164,55 +164,66 @@ And that standard will keep evolving. I'm looking forward to more inspiration, m
     date: 'Dec 2025',
     title: 'Making Ideas Visible: The Knowledge Graph',
     category: 'Engineering',
-    summary: 'Building a force-directed graph to visualize connections between notes—and learning why "organic layout" is harder than it sounds.',
-    content: `I've always loved knowledge graphs. The idea that scattered thoughts could self-organize into a visual web is genuinely exciting.
+    summary: 'Why I built a discovery feature that acts as another pair of eyes—helping you see patterns in your own thinking you couldn\'t see alone.',
+    content: `I come from a science background. In industry, I spent years processing massive datasets—machine learning, clustering algorithms, high-dimensional visualization. These tools were always there, ready to reveal hidden patterns.
 
-But building one that *doesn't* look like a tangled mess? That's the hard part.
+But I kept thinking: **Why aren't these tools helping regular people in their daily lives?**
 
-### Why Graphs?
+The techniques exist. The compute power exists (your Mac's chips are incredibly capable). What's missing is the bridge—an interface that takes something technical and cold, and makes it warm, human, useful.
 
-Reso's Discovery feature automatically groups related notes into themes. But showing users a list of themes felt... flat. I wanted them to *see* how their ideas connect.
+That's what I wanted to build.
 
-A graph made sense: nodes are notes, edges show similarity. Simple, right?
+### Another Pair of Eyes
 
-### The Layout Problem
+Here's something I believe deeply: **You can't lift yourself up by pulling your own hair.**
 
-Force-directed graphs work like physics simulations:
-- Nodes repel each other (like magnets)
-- Connected nodes attract (like springs)
-- You let it "settle" into an organic shape
+The reason you are who you are today is partly because you don't see your own patterns. Your habits, your blind spots, your recurring themes—they're invisible to you precisely because you're living inside them.
 
-In theory, this produces beautiful layouts. In practice, I spent two weeks fighting an algorithm that kept producing:
-1. **Hairballs**: Everything clumped in the center
-2. **Runaways**: Nodes flying off to infinity
-3. **Jitter**: The graph never actually settled—it vibrated forever
+But when data shows you those patterns? When you can *see* that you've mentioned guitar every few weeks for the past year? Suddenly you realize: *Oh, I actually do care about music. Maybe I should do something about that.*
 
-### What Worked
+Once you see through your own patterns—even your limitations—you naturally stop repeating them. That's growth. That's why you need another pair of eyes.
 
-After reading papers and debugging endlessly, here's what stabilized it:
+### The Intelligent Steward
 
-1. **Center gravity**: A gentle pull toward the canvas center prevents runaways
-2. **Velocity damping**: Nodes slow down over time (like friction)
-3. **Iteration limits**: Stop after 150 iterations even if it's not "perfect"—users don't care about mathematical convergence
+At its simplest, this is just a secretary. It organizes your meeting notes. But now the cost of that is nearly zero.
 
-The trick was realizing **the graph doesn't need to be optimal**. It just needs to be *readable*. Nodes that are related should be close. That's it.
+At its best, it's like having someone who remembers everything you've said—last week, last year. It connects the dots. It finds the threads running through your life that you didn't notice.
 
-### Making It Interactive
+You don't need to manually sort things into "work notes" vs "personal reflections" vs "health journal." You just speak, and the system organizes. The best experience is when collection happens automatically.
 
-A static graph is boring. I added:
-- **Drag nodes**: Rearrange the layout manually
-- **Zoom/pan**: Explore large graphs
-- **Click to open**: Jump to the actual note
+### The Art of Surfacing Without Exposing
 
-The hardest part was making dragging feel natural. macOS has specific expectations for how drag interactions should work (acceleration curves, edge snapping). If you get it wrong, it feels "floaty."
+There's a balance here that matters: **How do you surface insights from data without trading off privacy?**
 
-### What I Learned
+This is an art. What tech stack achieves the goal without overkill? How do you make the machine work for you without making you vulnerable?
 
-Visualization is about **tradeoffs**. A perfectly optimal layout that takes 10 seconds to compute is worse than a "good enough" layout that appears instantly.
+In my previous work with large-scale data, we used intuitive visualizations—parallel plots, radvis plots, clustering in high-dimensional space. These techniques are genuinely interesting. And now, with modern embedding technology and powerful local chips, we can run these algorithms *natively on your Mac*, optimized specifically for discovery.
 
-The graph doesn't need to reveal every connection—it just needs to show enough that users think, "Huh, I didn't realize I'd been thinking about that so much."
+No cloud required. Your thoughts stay yours.
 
-That moment of recognition is the goal.`,
+### What We're Really Building
+
+Think about how humans interact. When you talk with a close friend, you reference things you mentioned days ago. They build on it. That *continuity*—that *reference*—is what makes conversation feel like flow.
+
+With machines, that continuity is usually missing. And that friction is exactly why talking to software feels exhausting.
+
+We're trying to translate human-to-human flow into human-to-software flow. The Discovery feature is one piece of that:
+
+1. **Pattern Discovery**: Like a bystander watching your conversations, finding commonalities, surfacing insights you wouldn't have found alone.
+
+2. **Auto-organize**: You don't categorize. The system collects and structures based on what you've defined matters to you.
+
+3. **Clustering**: Finding the hidden links between ideas. Helping you discover:
+   - The unspoken clues
+   - The unspoken words
+
+### The Goal
+
+I don't know how much you'll love this. But I hope we can build something valuable for you—or build it together.
+
+That moment when you look at the graph and think, "Huh, I didn't realize I'd been thinking about that so much"—that's the goal.
+
+Not just organizing your notes. Helping you see yourself.`,
   },
   {
     id: 7,
