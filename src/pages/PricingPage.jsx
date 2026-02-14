@@ -33,7 +33,7 @@ const TIERS = [
     cadence: '/month',
     description: 'Just think. We handle the rest.',
     features: [
-      'One price, no surprises: Built-in AI, no keys needed.',
+      'One price, no surprises. Ready out of the box.',
       'Local engine: Voice processing & insight discovery, fully private.',
       'Always current: Latest features and skill packs.',
     ],
