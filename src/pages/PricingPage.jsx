@@ -45,11 +45,6 @@ const TIERS = [
 const PricingPage = () => {
   const [openFaq, setOpenFaq] = useState(null);
 
-  const handleCheckout = (url) => {
-    if (!url) return;
-    window.open(url, '_blank', 'noopener,noreferrer');
-  };
-
   const faqs = [
     {
       q: 'How should I choose between Reso Pro and Reso+?',
@@ -146,18 +141,28 @@ const PricingPage = () => {
                     </ul>
 
                     <div className="flex flex-col gap-3">
-                      <button
-                        onClick={() => handleCheckout(tier.checkoutUrl)}
-                        disabled={isDisabled}
-                        className={`w-full group flex items-center justify-center gap-2 text-sm py-3 px-6 rounded-full font-medium transition-all ${
-                          tier.featured
-                            ? 'bg-white text-black hover:bg-gray-100 disabled:bg-gray-300 disabled:text-gray-500'
-                            : 'bg-black text-white dark:bg-white dark:text-black hover:bg-gray-800 dark:hover:bg-gray-100 disabled:bg-gray-300 disabled:text-gray-500'
-                        } disabled:cursor-not-allowed`}
-                      >
-                        <span>{tier.cta}</span>
-                        <ArrowRight size={16} className="transition-transform group-hover:translate-x-1" />
-                      </button>
+                      {isDisabled ? (
+                        <span
+                          className={`w-full group flex items-center justify-center gap-2 text-sm py-3 px-6 rounded-full font-medium bg-gray-300 text-gray-500 cursor-not-allowed`}
+                        >
+                          <span>{tier.cta}</span>
+                          <ArrowRight size={16} />
+                        </span>
+                      ) : (
+                        <a
+                          href={tier.checkoutUrl}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className={`w-full group flex items-center justify-center gap-2 text-sm py-3 px-6 rounded-full font-medium transition-all ${
+                            tier.featured
+                              ? 'bg-white text-black hover:bg-gray-100'
+                              : 'bg-black text-white dark:bg-white dark:text-black hover:bg-gray-800 dark:hover:bg-gray-100'
+                          }`}
+                        >
+                          <span>{tier.cta}</span>
+                          <ArrowRight size={16} className="transition-transform group-hover:translate-x-1" />
+                        </a>
+                      )}
                       <p className={`text-xs text-center ${tier.featured ? 'text-gray-400' : 'text-gray-500 dark:text-gray-400'}`}>
                         {isDisabled ? 'Checkout link pending update.' : tier.footnote}
                       </p>
