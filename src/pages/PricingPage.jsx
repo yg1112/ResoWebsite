@@ -231,40 +231,40 @@ const PricingPage = () => {
           </p>
 
           {/* How it works */}
-          <div className="mb-24 rounded-2xl bg-[#0A0A0A] dark:bg-[#0A0A0A] p-8 md:p-10">
-            <p className="text-xs tracking-[0.18em] uppercase text-gray-500 mb-8 font-mono text-center">How it works</p>
+          <div className="mb-24 py-8">
+            <p className="text-xs tracking-[0.18em] uppercase text-gray-400 dark:text-gray-500 mb-10 font-mono text-center">How it works</p>
 
             {/* Steps */}
-            <div className="flex flex-col md:flex-row items-center justify-center gap-4 md:gap-0 mb-8">
+            <div className="flex flex-col md:flex-row items-center justify-center gap-6 md:gap-0 mb-10">
               {/* Step 1 */}
               <div className="flex items-center gap-3">
-                <span className="w-8 h-8 rounded-full bg-white/10 flex items-center justify-center text-sm font-mono text-white">1</span>
-                <span className="text-white font-medium">Get your key</span>
+                <span className="w-8 h-8 rounded-full bg-white dark:bg-black border border-gray-300 dark:border-gray-700 flex items-center justify-center text-sm font-mono text-gray-900 dark:text-gray-100">1</span>
+                <span className="text-gray-900 dark:text-gray-100 font-medium">Get your key</span>
               </div>
 
               {/* Connector */}
-              <div className="hidden md:block w-12 h-px bg-gradient-to-r from-white/20 to-white/20 mx-4" />
-              <div className="md:hidden h-6 w-px bg-gradient-to-b from-white/20 to-white/20" />
+              <div className="hidden md:block w-16 border-b border-dashed border-gray-300 dark:border-gray-700 mx-4" />
+              <div className="md:hidden h-4 border-l border-dashed border-gray-300 dark:border-gray-700" />
 
               {/* Step 2 */}
               <div className="flex items-center gap-3">
-                <span className="w-8 h-8 rounded-full bg-white/10 flex items-center justify-center text-sm font-mono text-white">2</span>
-                <span className="text-white font-medium">Paste in Reso</span>
+                <span className="w-8 h-8 rounded-full bg-white dark:bg-black border border-gray-300 dark:border-gray-700 flex items-center justify-center text-sm font-mono text-gray-900 dark:text-gray-100">2</span>
+                <span className="text-gray-900 dark:text-gray-100 font-medium">Paste in Reso</span>
               </div>
 
               {/* Connector */}
-              <div className="hidden md:block w-12 h-px bg-gradient-to-r from-white/20 to-white/20 mx-4" />
-              <div className="md:hidden h-6 w-px bg-gradient-to-b from-white/20 to-white/20" />
+              <div className="hidden md:block w-16 border-b border-dashed border-gray-300 dark:border-gray-700 mx-4" />
+              <div className="md:hidden h-4 border-l border-dashed border-gray-300 dark:border-gray-700" />
 
               {/* Step 3 */}
               <div className="flex items-center gap-3">
-                <span className="w-8 h-8 rounded-full bg-white/10 flex items-center justify-center text-sm font-mono text-white">3</span>
-                <span className="text-white font-medium">You're all set</span>
+                <span className="w-8 h-8 rounded-full bg-white dark:bg-black border border-gray-300 dark:border-gray-700 flex items-center justify-center text-sm font-mono text-gray-900 dark:text-gray-100">3</span>
+                <span className="text-gray-900 dark:text-gray-100 font-medium">You're all set</span>
               </div>
             </div>
 
             {/* Description */}
-            <p className="text-sm text-gray-400 text-center max-w-xl mx-auto leading-relaxed">
+            <p className="text-sm text-gray-500 dark:text-gray-400 text-center max-w-xl mx-auto leading-relaxed">
               Reso automatically validates your tier. Pro users get instant access to local API settings, while Reso+ users are connected immediately—no configuration required.
             </p>
           </div>
