@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { ArrowRight, Check, ChevronDown, Download, Sparkles } from 'lucide-react';
+import { ArrowRight, Check, ChevronDown, Download } from 'lucide-react';
 
 const CHECKOUT_LINKS = {
   pro: 'https://reso.lemonsqueezy.com/checkout/buy/80d0e623-d94c-4a19-a4c9-afee9451a146',
@@ -93,7 +93,9 @@ const PricingPage = () => {
 
           {/* Pricing Cards */}
           <div className="relative mb-24">
+            {/* Background glow */}
             <div className="pointer-events-none absolute -inset-4 md:-inset-x-20 top-20 h-72 bg-gradient-to-r from-orange-500/15 via-sky-400/15 to-emerald-400/15 blur-3xl opacity-50 dark:opacity-40"></div>
+
             <div className="relative grid grid-cols-1 lg:grid-cols-2 gap-6">
               {TIERS.map((tier) => {
                 const isDisabled = !tier.checkoutUrl;
@@ -101,73 +103,121 @@ const PricingPage = () => {
                 return (
                   <article
                     key={tier.id}
-                    className={`rounded-3xl p-8 md:p-10 border backdrop-blur-xl transition-all duration-300 ${
+                    className={`group relative rounded-3xl p-8 md:p-10 backdrop-blur-xl transition-all duration-300 ${
                       tier.featured
-                        ? 'bg-gradient-to-b from-gray-900 to-black text-white border-white/20 shadow-[0_25px_80px_-25px_rgba(255,255,255,0.25)]'
-                        : 'bg-white/80 dark:bg-gray-900/70 border-gray-200 dark:border-gray-800 text-gray-900 dark:text-gray-100'
+                        ? 'text-white hover:-translate-y-1'
+                        : 'bg-white/80 dark:bg-[#0A0A0A]/90 text-gray-900 dark:text-gray-100 border border-gray-200 dark:border-gray-800 hover:border-gray-300 dark:hover:border-gray-700 hover:-translate-y-1'
                     }`}
+                    style={tier.featured ? {
+                      background: 'linear-gradient(to bottom, #111111, #050505)',
+                    } : undefined}
                   >
-                    <div className="flex items-start justify-between mb-8">
-                      <div>
-                        <p className={`text-xs tracking-[0.2em] uppercase mb-3 ${tier.featured ? 'text-gray-300' : 'text-gray-500 dark:text-gray-400'}`}>
-                          {tier.mode}
-                        </p>
-                        <h3 className="text-2xl font-medium mb-2">{tier.name}</h3>
-                        <p className={`text-sm leading-relaxed max-w-xs ${tier.featured ? 'text-gray-300' : 'text-gray-600 dark:text-gray-400'}`}>
-                          {tier.description}
+                    {/* Gradient border for featured card */}
+                    {tier.featured && (
+                      <>
+                        {/* Subtle glow behind card */}
+                        <div className="absolute -inset-[1px] rounded-3xl bg-gradient-to-b from-white/25 via-white/10 to-transparent opacity-100 group-hover:opacity-100 transition-opacity" />
+                        <div className="absolute inset-0 rounded-3xl bg-gradient-to-b from-[#111111] to-[#050505]" />
+                        {/* Ambient glow */}
+                        <div className="absolute -inset-4 rounded-[2rem] bg-gradient-to-b from-purple-500/10 via-blue-500/5 to-transparent blur-2xl opacity-60 group-hover:opacity-80 transition-opacity" />
+                      </>
+                    )}
+
+                    {/* Content wrapper */}
+                    <div className="relative">
+                      <div className="flex items-start justify-between mb-8">
+                        <div>
+                          {/* Mode label with monospace for technical terms */}
+                          <p className={`text-xs tracking-[0.2em] uppercase mb-3 font-mono ${tier.featured ? 'text-gray-400' : 'text-gray-500 dark:text-gray-500'}`}>
+                            {tier.mode}
+                          </p>
+                          <h3 className="text-2xl font-medium mb-2">{tier.name}</h3>
+                          <p className={`text-sm leading-relaxed max-w-xs ${tier.featured ? 'text-gray-400' : 'text-gray-600 dark:text-gray-400'}`}>
+                            {tier.description}
+                          </p>
+                        </div>
+                        {tier.featured && (
+                          <span className="inline-flex items-center rounded-full px-3 py-1 text-[11px] uppercase tracking-wider border border-white/20 bg-white/5 text-gray-300 backdrop-blur-sm">
+                            Most Popular
+                          </span>
+                        )}
+                      </div>
+
+                      {/* Price with monospace font */}
+                      <div className={`flex items-baseline gap-1.5 mb-7 pb-7 relative`}>
+                        <span className="text-5xl font-medium tracking-tight font-mono tabular-nums">
+                          {tier.priceMain}
+                        </span>
+                        <span className="text-lg font-mono tabular-nums -translate-y-3 opacity-70">
+                          {tier.priceSup}
+                        </span>
+                        <span className={`text-sm ml-1 ${tier.featured ? 'text-gray-400' : 'text-gray-500 dark:text-gray-400'}`}>
+                          {tier.cadence}
+                        </span>
+
+                        {/* Gradient divider - fades at edges */}
+                        <div className={`absolute bottom-0 left-0 right-0 h-px ${
+                          tier.featured
+                            ? 'bg-gradient-to-r from-transparent via-white/20 to-transparent'
+                            : 'bg-gradient-to-r from-transparent via-gray-300 dark:via-gray-700 to-transparent'
+                        }`} />
+                      </div>
+
+                      {/* Feature list with refined checkmarks */}
+                      <ul className="space-y-4 mb-8">
+                        {tier.features.map((feature, idx) => (
+                          <li key={idx} className="flex gap-3 items-start group/item">
+                            {/* Circular checkmark */}
+                            <div className={`mt-0.5 shrink-0 w-5 h-5 rounded-full flex items-center justify-center transition-colors ${
+                              tier.featured
+                                ? 'bg-white/10 ring-1 ring-white/20 group-hover/item:bg-white/15'
+                                : 'bg-gray-100 dark:bg-gray-800 ring-1 ring-gray-200 dark:ring-gray-700 group-hover/item:ring-gray-300 dark:group-hover/item:ring-gray-600'
+                            }`}>
+                              <Check size={11} strokeWidth={2.5} className={tier.featured ? 'text-white' : 'text-gray-600 dark:text-gray-400'} />
+                            </div>
+                            <span className={`text-sm leading-relaxed transition-colors ${
+                              tier.featured
+                                ? 'text-gray-300 group-hover/item:text-gray-200'
+                                : 'text-gray-600 dark:text-gray-400 group-hover/item:text-gray-900 dark:group-hover/item:text-gray-200'
+                            }`}>
+                              {feature}
+                            </span>
+                          </li>
+                        ))}
+                      </ul>
+
+                      {/* CTA Button with depth */}
+                      <div className="flex flex-col gap-3">
+                        {isDisabled ? (
+                          <span className="w-full group flex items-center justify-center gap-2 text-sm py-3 px-6 rounded-full font-medium bg-gray-300 text-gray-500 cursor-not-allowed">
+                            <span>{tier.cta}</span>
+                            <ArrowRight size={16} />
+                          </span>
+                        ) : (
+                          <a
+                            href={tier.checkoutUrl}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className={`relative w-full flex items-center justify-center gap-2 text-sm py-3 px-6 rounded-full font-medium transition-all overflow-hidden ${
+                              tier.featured
+                                ? 'bg-white text-black hover:bg-gray-50'
+                                : 'bg-[#0A0A0A] text-white dark:bg-white dark:text-black hover:bg-black dark:hover:bg-gray-100'
+                            }`}
+                            style={{
+                              boxShadow: tier.featured
+                                ? 'inset 0 1px 0 0 rgba(255,255,255,0.2), inset 0 -1px 0 0 rgba(0,0,0,0.1), 0 1px 2px rgba(0,0,0,0.1)'
+                                : 'inset 0 1px 0 0 rgba(255,255,255,0.1), inset 0 -1px 0 0 rgba(0,0,0,0.2), 0 1px 2px rgba(0,0,0,0.2)',
+                            }}
+                          >
+                            <span>{tier.cta}</span>
+                            <ArrowRight size={16} className="transition-transform group-hover:translate-x-1" />
+                          </a>
+                        )}
+                        {/* Footnote below button */}
+                        <p className={`text-[11px] text-center ${tier.featured ? 'text-gray-500' : 'text-gray-400 dark:text-gray-500'}`}>
+                          {isDisabled ? 'Checkout link pending update.' : tier.footnote}
                         </p>
                       </div>
-                      {tier.featured && (
-                        <span className="inline-flex items-center rounded-full px-3 py-1 text-[11px] uppercase tracking-wider border border-white/25 bg-white/10 text-white">
-                          Most Popular
-                        </span>
-                      )}
-                    </div>
-
-                    <div className={`flex items-end gap-2 mb-7 pb-7 border-b ${tier.featured ? 'border-white/15' : 'border-gray-200 dark:border-gray-800'}`}>
-                      <span className="text-5xl font-medium tracking-tight">{tier.priceMain}<sup className="text-xl font-medium align-top ml-0.5">{tier.priceSup}</sup></span>
-                      <span className={`text-sm pb-1 ${tier.featured ? 'text-gray-300' : 'text-gray-500 dark:text-gray-400'}`}>{tier.cadence}</span>
-                    </div>
-
-                    <ul className="space-y-4 mb-8">
-                      {tier.features.map((feature) => (
-                        <li key={feature} className="flex gap-3 items-start">
-                          <div className={`mt-0.5 shrink-0 rounded-lg p-1.5 ${tier.featured ? 'bg-white/15' : 'bg-gray-100 dark:bg-gray-800'}`}>
-                            <Check size={14} className={tier.featured ? 'text-white' : 'text-gray-700 dark:text-gray-300'} />
-                          </div>
-                          <span className={`text-sm leading-relaxed ${tier.featured ? 'text-gray-200' : 'text-gray-700 dark:text-gray-300'}`}>
-                            {feature}
-                          </span>
-                        </li>
-                      ))}
-                    </ul>
-
-                    <div className="flex flex-col gap-3">
-                      {isDisabled ? (
-                        <span
-                          className={`w-full group flex items-center justify-center gap-2 text-sm py-3 px-6 rounded-full font-medium bg-gray-300 text-gray-500 cursor-not-allowed`}
-                        >
-                          <span>{tier.cta}</span>
-                          <ArrowRight size={16} />
-                        </span>
-                      ) : (
-                        <a
-                          href={tier.checkoutUrl}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className={`w-full group flex items-center justify-center gap-2 text-sm py-3 px-6 rounded-full font-medium transition-all ${
-                            tier.featured
-                              ? 'bg-white text-black hover:bg-gray-100'
-                              : 'bg-black text-white dark:bg-white dark:text-black hover:bg-gray-800 dark:hover:bg-gray-100'
-                          }`}
-                        >
-                          <span>{tier.cta}</span>
-                          <ArrowRight size={16} className="transition-transform group-hover:translate-x-1" />
-                        </a>
-                      )}
-                      <p className={`text-xs text-center ${tier.featured ? 'text-gray-400' : 'text-gray-500 dark:text-gray-400'}`}>
-                        {isDisabled ? 'Checkout link pending update.' : tier.footnote}
-                      </p>
                     </div>
                   </article>
                 );
@@ -176,8 +226,8 @@ const PricingPage = () => {
           </div>
 
           {/* Activation Flow */}
-          <div className="mb-24 rounded-2xl border border-gray-200 dark:border-gray-800 bg-white/70 dark:bg-gray-900/60 backdrop-blur p-6 md:p-8">
-            <p className="text-xs tracking-[0.18em] uppercase text-gray-500 dark:text-gray-400 mb-3">Activation Flow</p>
+          <div className="mb-24 rounded-2xl border border-gray-200 dark:border-gray-800 bg-white/70 dark:bg-[#0A0A0A]/80 backdrop-blur p-6 md:p-8">
+            <p className="text-xs tracking-[0.18em] uppercase text-gray-500 dark:text-gray-400 mb-3 font-mono">Activation Flow</p>
             <p className="text-sm md:text-base text-gray-700 dark:text-gray-300 leading-relaxed">
               Both plans issue a LemonSqueezy license key. Enter that key in Reso, and we automatically detect your tier to unlock either BYOK setup (Reso Pro) or built-in hosted access (Reso+).
             </p>
@@ -229,7 +279,10 @@ const PricingPage = () => {
           <a
             href="https://github.com/yg1112/reso-releases/releases/latest/download/Reso.dmg"
             download
-            className="inline-flex items-center gap-2 bg-black dark:bg-white text-white dark:text-black rounded-full font-medium text-sm hover:bg-gray-800 dark:hover:bg-gray-100 transition-all px-6 py-3"
+            className="inline-flex items-center gap-2 bg-[#0A0A0A] dark:bg-white text-white dark:text-black rounded-full font-medium text-sm hover:bg-black dark:hover:bg-gray-100 transition-all px-6 py-3"
+            style={{
+              boxShadow: 'inset 0 1px 0 0 rgba(255,255,255,0.1), 0 1px 2px rgba(0,0,0,0.2)',
+            }}
           >
             <Download size={16} />
             <span>Download for macOS</span>
