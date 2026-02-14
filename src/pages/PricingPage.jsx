@@ -16,9 +16,9 @@ const TIERS = [
     cadence: '/year',
     description: 'Maximum control. Zero markup.',
     features: [
-      'Zero markup on tokens: Direct access to Anthropic, OpenAI, Groq, or Google.',
-      'Keys stored locally: Your credentials never leave your device.',
-      '1-year of updates: Every new skill pack included.',
+      'Zero markup: Pay providers directly.',
+      'Keys stored locally: Never leave your device.',
+      '1-year updates: Every new skill pack included.',
     ],
     cta: 'Get Pro License',
     checkoutUrl: CHECKOUT_LINKS.pro,
