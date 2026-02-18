@@ -2,40 +2,40 @@ import React, { useState } from 'react';
 import { ArrowRight, Check, ChevronDown, Download } from 'lucide-react';
 
 const CHECKOUT_LINKS = {
-  pro: 'https://reso.lemonsqueezy.com/checkout/buy/80d0e623-d94c-4a19-a4c9-afee9451a146',
+  free: 'https://github.com/yg1112/reso-releases/releases/latest/download/Reso.dmg',
   plus: 'https://reso.lemonsqueezy.com/checkout/buy/ba6f74ba-5444-4488-98c1-9402f4c59e00',
 };
 
 const TIERS = [
   {
-    id: 'pro',
-    name: 'Reso Pro',
-    mode: 'BYOK',
-    priceMain: '$39',
-    priceSup: '.99',
-    cadence: '/year',
-    description: 'Maximum control. Zero markup.',
+    id: 'free',
+    name: 'Reso',
+    mode: 'Free',
+    priceMain: 'Free',
+    priceSup: '',
+    cadence: '',
+    description: 'Bring your favorite API for essential text processing or dictation',
     features: [
-      'Flexible routing: Your favorite APIs, one workflow.',
-      'Local engine: Voice processing & insight discovery, fully private.',
-      '1-year updates: Every new skill pack included.',
+      'Bring your own API for text processing or dictation.',
+      'Local voice processing on your device.',
+      'Common features: Diary & Dictation, Shadow Writer, Write with your command.',
     ],
-    cta: 'Get Pro License',
-    checkoutUrl: CHECKOUT_LINKS.pro,
-    footnote: '30-day money-back guarantee',
+    cta: 'Download Free',
+    checkoutUrl: CHECKOUT_LINKS.free,
+    footnote: 'Free forever',
   },
   {
     id: 'plus',
     name: 'Reso+',
     mode: 'All-in-One',
-    priceMain: '$9',
+    priceMain: '$19',
     priceSup: '.99',
     cadence: '/month',
-    description: 'Just think. We handle the rest.',
+    description: 'A voice-first workspace that captures, connects, and executes.',
     features: [
-      'One price, no surprises. Ready out of the box.',
-      'Local engine: Voice processing & insight discovery, fully private.',
-      'Always current: Latest features and skill packs.',
+      'Diary, dictation, shadow writing, and write-with-command in one flow.',
+      'Context that evolves with you: sense the present and link your past notes.',
+      'From random sparks to cohesive insights, with local-first privacy and zero data retention.',
     ],
     cta: 'Start Subscription',
     checkoutUrl: CHECKOUT_LINKS.plus,
@@ -49,12 +49,16 @@ const PricingPage = () => {
 
   const faqs = [
     {
-      q: 'How should I choose between Reso Pro and Reso+?',
-      a: 'Choose Reso Pro if you already manage your own model keys and want lowest raw token cost. Choose Reso+ if you want zero setup and bundled model access.',
+      q: 'How should I choose between Reso Free and Reso+?',
+      a: 'Choose Reso Free if you want a free BYOK setup for essential voice dictation and writing flows. Choose Reso+ if you want an all-in-one monthly plan with integrated execution.',
     },
     {
       q: 'Do I need to configure API keys?',
-      a: 'For Reso Pro, yes. You can use Anthropic, OpenAI, Groq, or Google keys. For Reso+, no. API access is integrated and ready out of the box.',
+      a: 'For Reso Free, yes. You can use Anthropic, OpenAI, Groq, or Google keys. For Reso+, no. API access is integrated and ready out of the box.',
+    },
+    {
+      q: 'What can I do with Reso as a voice tool?',
+      a: 'Reso is built for diary and dictation capture, shadow writing, and write-with-command workflows.',
     },
     {
       q: 'Which model providers are supported?',
@@ -62,11 +66,11 @@ const PricingPage = () => {
     },
     {
       q: 'How does activation work after payment?',
-      a: 'Both tiers issue a LemonSqueezy license key. Enter it in Reso, and your tier is verified automatically to unlock the right experience.',
+      a: 'Reso Free is free and can be used right away with your own API key. Reso+ issues a LemonSqueezy license key that unlocks the all-in-one subscription.',
     },
     {
       q: 'Are model API costs included?',
-      a: 'Reso Pro does not include model costs because usage is billed directly by your provider account. Reso+ includes API costs during subscription, subject to fair use.',
+      a: 'Reso Free does not include model costs because usage is billed directly by your provider account. Reso+ includes API costs during subscription, subject to fair use.',
     },
     {
       q: 'Can I switch tiers later?',
@@ -87,7 +91,7 @@ const PricingPage = () => {
               Keep the speed.
             </h1>
             <p className="text-base md:text-lg text-gray-600 dark:text-gray-400 leading-relaxed">
-              Two products, two outcomes: bring your own keys for maximum control, or go all-in-one for zero setup.
+              A voice-first dictation and writing workflow: capture diary notes, shape drafts, and write with commands.
             </p>
           </div>
 
@@ -148,12 +152,16 @@ const PricingPage = () => {
                         <span className="text-5xl font-medium tracking-tight font-mono tabular-nums">
                           {tier.priceMain}
                         </span>
-                        <span className="text-lg font-mono tabular-nums -translate-y-3 opacity-70">
-                          {tier.priceSup}
-                        </span>
-                        <span className={`text-sm ml-1 ${tier.featured ? 'text-gray-400' : 'text-gray-500 dark:text-gray-400'}`}>
-                          {tier.cadence}
-                        </span>
+                        {tier.priceSup && (
+                          <span className="text-lg font-mono tabular-nums -translate-y-3 opacity-70">
+                            {tier.priceSup}
+                          </span>
+                        )}
+                        {tier.cadence && (
+                          <span className={`text-sm ml-1 ${tier.featured ? 'text-gray-400' : 'text-gray-500 dark:text-gray-400'}`}>
+                            {tier.cadence}
+                          </span>
+                        )}
 
                         {/* Gradient divider - fades at edges */}
                         <div className={`absolute bottom-0 left-0 right-0 h-px ${
@@ -265,7 +273,7 @@ const PricingPage = () => {
 
             {/* Description */}
             <p className="text-sm text-gray-500 dark:text-gray-400 text-center max-w-xl mx-auto leading-relaxed">
-              Reso automatically validates your tier. Pro users get instant access to local API settings, while Reso+ users are connected immediately—no configuration required.
+              Reso Free is free and starts with your own API key. Reso+ connects your subscription instantly for an all-in-one workflow.
             </p>
           </div>
 

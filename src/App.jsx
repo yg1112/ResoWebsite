@@ -10,6 +10,8 @@ import DocsPage from './pages/DocsPage';
 import ContactPage from './pages/ContactPage';
 import MarketplacePage from './pages/MarketplacePage';
 import DiscoverPage from './pages/DiscoverPage';
+import BuildJourneyPage from './pages/BuildJourneyPage';
+import BuildBlocksPage from './pages/BuildBlocksPage';
 
 function HomePage() {
   return (
@@ -66,6 +68,8 @@ function App() {
           <Route path="/discover" element={<DiscoverPage />} />
           <Route path="/marketplace" element={<MarketplacePage />} />
           <Route path="/docs" element={<DocsPage />} />
+          <Route path="/build-journey" element={<BuildJourneyPage />} />
+          <Route path="/build-blocks" element={<BuildBlocksPage />} />
           <Route path="/contact" element={<ContactPage />} />
         </Routes>
         <Footer />
