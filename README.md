@@ -6,6 +6,8 @@ Before coding, read the [Architecture Map](./STRUCTURE.md).
 - 📋 **Architecture Map**: [STRUCTURE.md](./STRUCTURE.md) — project structure, components, data flow
 - 🚀 **Deployment**: [scripts/deploy.sh](./scripts/deploy.sh) — ONLY source of truth for releases
 - 📝 **Rules**: [.cursorrules](./.cursorrules) — protocol for AI operations
+- ✍️ **Build Journey Voice**: [BUILD_JOURNEY_STYLE_GUIDE.md](./BUILD_JOURNEY_STYLE_GUIDE.md) — tone, wording, multilingual consistency
+- 🧩 **Build Journey Brief Template**: [BUILD_JOURNEY_BRIEF_TEMPLATE.md](./BUILD_JOURNEY_BRIEF_TEMPLATE.md) — structured input for new posts
 
 **Producer-Consumer Relationships:**
 - This Website repo (Consumer) ← Reso App repo (Producer)

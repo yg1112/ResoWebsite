@@ -12,7 +12,6 @@ import MarketplacePage from './pages/MarketplacePage';
 import DiscoverPage from './pages/DiscoverPage';
 import BuildJourneyPage from './pages/BuildJourneyPage';
 import BuildBlocksPage from './pages/BuildBlocksPage';
-import FloatingPreferences from './components/FloatingPreferences';
 
 function HomePage() {
   return (
@@ -74,7 +73,6 @@ function App() {
           <Route path="/contact" element={<ContactPage />} />
         </Routes>
         <Footer />
-        <FloatingPreferences />
       </div>
     </BrowserRouter>
   );

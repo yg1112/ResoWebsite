@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Mail, Sun, Moon } from 'lucide-react';
+import { Mail, Sun, Moon, Globe, ChevronDown } from 'lucide-react';
 import { useAppPreferences } from '../contexts/AppPreferencesContext';
 import { getLocalizedCopy } from '../i18n/localize';
 
@@ -12,27 +12,37 @@ const XIcon = ({ size = 14 }) => (
 );
 
 const Footer = () => {
-  const { language, setTheme, theme } = useAppPreferences();
+  const { language, setLanguage, setTheme, theme } = useAppPreferences();
   const copy = getLocalizedCopy({
     en: {
       privacy: 'Privacy',
       terms: 'Terms',
       light: 'Switch to light mode',
       dark: 'Switch to dark mode',
+      languagePicker: 'Language',
     },
     zh: {
       privacy: '隐私',
       terms: '条款',
       light: '切换到浅色模式',
       dark: '切换到深色模式',
+      languagePicker: '语言',
     },
     ja: {
       privacy: 'プライバシー',
       terms: '利用規約',
       light: 'ライトモードに切り替え',
       dark: 'ダークモードに切り替え',
+      languagePicker: '言語',
     },
   }, language);
+
+  const languageOptions = [
+    { value: 'zh', label: '简体中文' },
+    { value: 'zh-TW', label: '繁體中文' },
+    { value: 'en', label: 'English' },
+    { value: 'ja', label: '日本語' },
+  ];
 
   return (
     <>
@@ -64,6 +74,22 @@ const Footer = () => {
             >
               <Moon size={14} className={theme === 'dark' ? 'text-blue-400' : ''} />
             </button>
+            <div className="relative">
+              <Globe size={14} className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-500 dark:text-gray-400 pointer-events-none" />
+              <select
+                value={language}
+                onChange={(event) => setLanguage(event.target.value)}
+                aria-label={copy.languagePicker}
+                className="appearance-none bg-black/[0.04] dark:bg-white/[0.08] text-gray-700 dark:text-gray-200 text-xs rounded-full pl-8 pr-7 py-1.5 border border-black/10 dark:border-white/10 focus:outline-none focus:ring-2 focus:ring-black/20 dark:focus:ring-white/20"
+              >
+                {languageOptions.map((option) => (
+                  <option key={option.value} value={option.value}>
+                    {option.label}
+                  </option>
+                ))}
+              </select>
+              <ChevronDown size={12} className="absolute right-2.5 top-1/2 -translate-y-1/2 text-gray-500 dark:text-gray-400 pointer-events-none" />
+            </div>
           </div>
         </div>
       </footer>

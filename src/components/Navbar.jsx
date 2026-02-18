@@ -49,6 +49,7 @@ const Navbar = ({ isScrolled = false }) => {
   const logoTriggerRef = useRef(null);
   const logoIconRef = useRef(null);
   const resourcesMenuRef = useRef(null);
+  const resourcesHoveringRef = useRef(false);
   const copy = getLocalizedCopy(navCopy, language);
 
   const navLinks = [
@@ -85,7 +86,9 @@ const Navbar = ({ isScrolled = false }) => {
   const scheduleResourcesClose = () => {
     clearResourcesCloseTimer();
     resourcesCloseTimerRef.current = window.setTimeout(() => {
-      setResourcesOpen(false);
+      if (!resourcesHoveringRef.current) {
+        setResourcesOpen(false);
+      }
       resourcesCloseTimerRef.current = null;
     }, RESOURCES_CLOSE_DELAY_MS);
   };
@@ -247,11 +250,17 @@ const Navbar = ({ isScrolled = false }) => {
           <div
             ref={resourcesMenuRef}
             className="relative"
-            onPointerEnter={openResourcesMenu}
-            onPointerLeave={scheduleResourcesClose}
+            onPointerEnter={() => {
+              resourcesHoveringRef.current = true;
+              openResourcesMenu();
+            }}
+            onPointerLeave={() => {
+              resourcesHoveringRef.current = false;
+              scheduleResourcesClose();
+            }}
             onFocus={openResourcesMenu}
             onBlur={(event) => {
-              if (!event.currentTarget.contains(event.relatedTarget)) {
+              if (!resourcesHoveringRef.current && !event.currentTarget.contains(event.relatedTarget)) {
                 scheduleResourcesClose();
               }
             }}
@@ -284,6 +293,7 @@ const Navbar = ({ isScrolled = false }) => {
                           href={resource.href}
                           target="_blank"
                           rel="noreferrer"
+                          onClick={closeResourcesMenu}
                           className="flex items-center justify-between rounded-lg px-3 py-2 text-sm text-gray-700 dark:text-gray-200 hover:bg-black/[0.04] dark:hover:bg-white/[0.06]"
                         >
                           <span>{copy[resource.key]}</span>
@@ -295,6 +305,7 @@ const Navbar = ({ isScrolled = false }) => {
                       <Link
                         key={resource.key}
                         to={resource.to}
+                        onClick={closeResourcesMenu}
                         className="block rounded-lg px-3 py-2 text-sm text-gray-700 dark:text-gray-200 hover:bg-black/[0.04] dark:hover:bg-white/[0.06]"
                       >
                         {copy[resource.key]}

@@ -11,203 +11,227 @@ const localizedJourneyPosts = [
       ja: '作ることと使うことのあいだ',
     },
     summary: {
-      en: 'Engineers polish workflows, users care about outcomes. Real design keeps complexity inside the system and gives expression back to people.',
-      zh: '工程师在打磨流程，用户只在意结果。真正的设计，是把复杂留给系统，把表达还给人。',
-      ja: 'エンジニアはフローを磨き、ユーザーは結果を見る。良い設計は複雑さをシステムに閉じ込め、表現を人に返す。',
+      en: "Lately I keep being reminded: I'm not studying people from outside. I wear both hats, and that changes how I build.",
+      zh: '这阵子我反复被一件事提醒：我不是在研究使用者，我本来就是其中一员。',
+      ja: '最近何度も思い知らされる。私は使い手を外から観察しているのではなく、作り手と使い手の両方だということ。',
     },
     content: {
-      en: `This week I felt a familiar tension again: engineers thought we had finally made the system "complete," while users only asked one thing: "Can I use it more smoothly now?"
+      en: `This week I got humbled again.
 
-No one is wrong here. These are just naturally different perspectives.
+During the day I tuned the flow and felt the chain was finally complete. At night I used it for real writing and still got blocked by a few startup steps.
 
-### Engineer and User Are Watching Different Movies
+That moment was clear: I'm not standing outside the people I build for. I wear both hats. I'm a builder and a user at the same time.
 
-Users look at experience and outcomes: can I get into flow faster, and can I reliably get what I want?
+### I Don't Observe from Distance
 
-Engineers look at construction: is the architecture elegant, is the activation flow complete, are edge cases covered, and is the new feature extensible?
+With the builder hat on, I think about activation flow, edge branches, and extensibility.
 
-When we build something highly technical, that gap gets magnified. Engineers may see precision machinery; users may only feel, "Why is this step so cumbersome?"
+With the user hat on, I care about three things: Is it smooth? Is it fast? Does it interrupt me?
 
-### The Creative Barrier Is Often in the First 20 Minutes
+Because both feelings live in the same body, I now avoid saying "users might feel..." and write "I just got stuck here."
 
-In many daily workflows, the issue is not that people can't create. It's that entry is too slow.
+### The First Minutes Are Fragile
 
-Take journaling. Ideally, it's "I feel something -> I write it down immediately." In reality, it often becomes: open folders, think of a title, tweak formatting, check the weather, find where I left off. Twenty minutes pass, and half the emotion is gone.
+Journaling makes this obvious.
 
-I'm increasingly convinced good software should first catch the moment you want to express something, then handle repetitive work in the background: organize content, build a knowledge graph, connect historical context. Users should create first; process optimization should happen quietly afterward.
+What I want is simple: feel something, write it immediately.
 
-### The Engineer's Job: Turning Flow into Executable Logic
+What often happens: find folders, patch the title, tweak formatting, locate where I left off. By then, the heat is gone.
 
-From an implementation view, the problem turns into a different language:
+So lately I keep pushing one principle: put expression first, then let organizing, archiving, and historical linking run quietly in the background.
 
-1. Where should step one of the activation flow live so it's accurate without being intrusive?
-2. How should a thought process unfold so it doesn't break halfway?
-3. How should skill and process stage be sequenced to reduce misfires and rollback?
+### In Builder Mode, the Hard Part Is Sequence
 
-This feels like designing a processing pipeline. Each step is easy by itself; the hard part is sequencing. Once the order is wrong, the experience fragments.
+Each step is easy in isolation. Sequencing is hard.
 
-### Interaction Is Moving from "Channels" to "Delivery"
+Once order is wrong, the experience fractures.
 
-Traditional interaction is like a remote control: users press 1, 2, 3, switch channels, then search for content themselves.
+These are the three loops I keep tuning:
 
-A better form is more like an Information Feed: the system understands you first, then proactively brings what matters, instead of forcing you to learn every entry point.
+1. Where to place step one of activation flow so it's accurate without being intrusive
+2. How to connect the thought process so it doesn't drop halfway
+3. How to sequence skills and process stages to reduce misfires and rollback
 
-The core is not a "smarter UI." It's more accurate intent judgment.
+### I Want "Being Understood," Not "Finding Entrances"
 
-### After Intent Comes Abstraction Design
+Older interaction feels like channel switching: find an entrance first, then search for content.
 
-Intent recognition is only the first gate. Next comes abstracting diverse needs into reusable steps.
+I want something closer to an Information Feed: understand first, deliver next.
 
-User differences are very real:
+That is not UI decoration. It's intent accuracy.
+
+### The Hard Part Starts After Intent
+
+Intent recognition is only the first gate. Then comes abstraction design.
+
+Differences between people are concrete:
 
 - Bilingual users need language refinement but don't want their tone flattened
-- Creative users don't want to spend energy on wording; they care more about high-fidelity content
-- Many people want the system to remember old jokes and expressions so they don't repeat themselves every time
+- Creative users don't want to spend energy on wording; they care about high-fidelity content
+- Some people want the system to remember old jokes and expressions so they don't repeat themselves
 
-So "enable user to build" is not about adding more buttons. It's about building a better abstraction layer so each person can bring in their own way of working.
+For me, democratizing convenience is not adding more buttons. It's building an abstraction layer people can assemble in their own way.
 
-### The Hard Part Starts After It Works
+### After It Worked, I Had to Relearn How to Explain It
 
-I tuned these components repeatedly and eventually got it working. The flow is complex, with a lot of internal detail.
+I tuned this system for many rounds and finally got it working.
 
-But as soon as it worked, a new problem appeared: users probably don't want to see those details.
+But I also know most people don't need internal complexity.
 
-Then we enter a new debate: how do we explain capability while preserving agency? How do we give direction without locking people into a fixed script?
+My job is to explain the value clearly while keeping room for participation.
 
-I now prefer this metaphor: it should feel like Lego, not a menu.
+The metaphor I trust now is still Lego:
 
-1. Users can embed their own ideas instead of passively choosing preset answers
-2. Software should understand you, while staying convenient and safe enough to work with you long term
+not forcing people into a fixed menu, but handing them blocks they can shape.
 
-That's the part I've been most obsessed with recently. Design is not a one-time answer; it's an evolving relationship.`,
-      zh: `这周我又经历了一次熟悉的拉扯：工程师觉得自己终于把系统做“完整”了，用户却只问一句，“所以我现在可以更顺手地用了吗？”
+1. People can bring their own ideas into the process
+2. The tool can stay understandable, convenient, and safe for long-term use
 
-这不是谁对谁错，而是两个视角天然不同。
+I'm still on this path. Design is never a one-shot answer for me. It grows with real use.`,
+      zh: `这礼拜我又被自己提醒了一次。
 
-### Engineer 和 User，看见的是两部电影
+白天我在调流程，觉得这条链路终于完整了。晚上真正拿来写东西时，我还是被几步启动动作卡住了。
 
-用户看的是体验和结果：能不能快一点进入状态，能不能稳定得到我想要的东西。
+那一刻我很清楚：我不是站在使用者外面做设计。我同时戴着两顶帽子，既是构造者，也是使用者。
 
-工程师看的是构建过程：架构是否优雅，activation flow 是否完整，极端场景是否兜住，新功能是否可扩展。
+### 我不是在“观察使用者”，我是“来自使用者”
 
-当我们在做一些“很工程”的创新时，这种差异会被放大。同一个功能，工程师看到的是精密机械，用户看到的可能只是“这一步为什么这么麻烦？”
+我戴着构造者这顶帽子时，会想 activation flow、异常分支、可扩展性。
 
-### 创作门槛，常常卡在启动前 20 分钟
+我戴着使用者这顶帽子时，只在意三件事：顺不顺、快不快、会不会打断我。
 
-很多日常 workflow 的问题，不是用户不会创作，而是切入太慢。
+这两套感受都在我身上，所以我现在尽量少说“使用者可能会怎样”，而是直接写“我刚刚就是这样卡住的”。
 
-比如写一篇日记，本来应该是“有感受 -> 立刻写下”。现实却常常变成：打开文件夹、想标题、调排版、查天气、找上次写到哪里。二十分钟过去，情绪已经冷掉一半。
+### 创作最脆弱的，是开头那几分钟
 
-我越来越相信，理想的软件应该先接住“想表达的那一刻”，再在后台处理重复劳动：organize 内容、建立知识图谱、连接历史上下文。用户应该先创作，流程优化应该在后面默默发生。
+拿写日记来说最直接。
 
-### 工程师的工作：把流程变成可运行的逻辑
+我最想要的是：有感觉，马上写。
 
-从实现角度看，问题会变成另一套语言：
+现实却常常是：先找文件、补标题、调格式、找上一次写到哪。等这些做完，热度已经下去了。
 
-1. activation flow 的第一步放在哪里，才能既准确又不打扰
-2. 一个 thought process 应该如何起承转合，才不会中途断掉
-3. 不同 skill 和 process stage 的顺序怎么排，才能减少误判和回退
+所以这段时间我一直在做同一件事：把“进入表达”放到最前，把整理、归档、连接历史内容这些重复动作放到后面自动完成。
 
-这部分很像在设计 processing pipeline。每个步骤本身都不难，难的是 sequencing：先后顺序一旦错了，体验就会碎。
+### 站在构造者这一侧，难点不是功能，而是顺序
 
-### 交互正在从“频道”走向“推送”
+每个步骤单看都不难，难的是 sequencing。
 
-传统交互像遥控器：用户按 1、2、3，切到不同频道，再自己找内容。
+顺序一旦错，体验就会碎。
 
-但更好的形态应该像 Information Feed：系统先理解你，再把真正相关的东西主动送到你面前，而不是要求你先学会所有入口。
+我现在反复打磨的就是这三步：
 
-这背后的核心不是“更聪明的 UI”，而是更准确的 intent 判断。
+1. activation flow 第一步放在哪里，既准确又不打扰
+2. thought process 怎么接，才不会半路掉线
+3. 不同 skill 和 process stage 怎么衔接，减少误判和回退
 
-### Intent 之后，是抽象层设计
+### 我想做的交互，不是“找入口”，而是“被理解”
 
-意图识别只是第一关。下一关是把多样化需求抽象成可复用的步骤。
+过去的操作更像换频道：先找入口，再找内容。
 
-不同用户的差异非常真实：
+我更想要的是像 Information Feed：先理解，再送达。
 
-- 双语使用者需要语言 refinement，但不希望语气被磨平
-- 创意用户不想把力气花在措辞上，他们更在意内容 high fidelity
-- 很多人希望系统能记住过去的笑话和表达，不必每次从头重复自己
+这不是 UI 花样，而是 intent 判断是否够准。
 
-所以“enable user to build”这件事，本质上不是给更多按钮，而是给更好的抽象层，让每个人都能把自己的方式带进来。
+### 真正的难题，在 intent 之后
 
-### 做出来之后，新的难题才开始
+意图判断只是开始。后面是抽象层设计。
 
-我把这些组件反复调试，最后确实做成了。流程很复杂，内部细节也很多。
+同样是写作需求，不同人的差异非常具体：
 
-但做完后我马上遇到另一个问题：用户大概率并不想看这些细节。
+- 双语使用者要 language refinement，但不想语气被抹平
+- 创意使用者不想把精力花在措辞上，更在意内容 high fidelity
+- 也有人希望系统记住过去的表达和 joke，不用每次重讲
 
-于是就会进入新的 debate：怎么把功能讲清楚，同时保留参与感？怎么让系统有方向，但不把人锁死在固定剧本里？
+所以对我来说，把便利 democratize 出去，不是加更多按钮，而是给出可以自由拼装的抽象层。
 
-我现在更喜欢一个比喻：它应该像乐高，而不是菜单。
+### 做完之后，我还在学怎么说人话
 
-1. 用户可以把自己的想法嵌进去，而不是被动选择预设答案
-2. 软件要足够懂你，也足够方便和安全，能长期陪你工作
+这套东西我调了很多轮，最后终于做出来了。
 
-这就是我最近最着迷的部分。设计不是一次性答案，而是一种持续演化的关系。`,
-      ja: `今週、また見慣れた綱引きを体験しました。エンジニアは「やっとシステムを“完成”させた」と感じるのに、ユーザーの質問は一つだけ。「それで、今はもっとスムーズに使えるの？」
+但我也知道，内部再复杂，别人并不需要看全部细节。
 
-どちらが正しいかの話ではありません。見ている角度が根本的に違うだけです。
+我要做的是把价值说清楚，同时把参与感留给使用的人。
 
-### Engineer と User は別の映画を見ている
+我现在最喜欢的比喻还是乐高：
 
-ユーザーが見るのは体験と結果です。もっと早く集中に入れるか、欲しいものを安定して得られるか。
+不是把人塞进固定菜单里，而是把积木递到他手上。
 
-エンジニアが見るのは構築です。アーキテクチャは美しいか、activation flow は完結しているか、エッジケースは守れているか、新機能は拡張可能か。
+1. 你可以把自己的想法拼进来
+2. 工具既懂你，也足够稳定、方便、安全，能长期一起工作
 
-「エンジニアリング色の強い」新機能を作るほど、この差は大きくなります。同じ機能でも、エンジニアには精密機械に見え、ユーザーには「この手順、なんでこんなに面倒なの？」に見えることがあります。
+这段路我还在走。对我来说，设计从来不是一次性答案，而是和真实使用一起长出来的东西。`,
+      ja: `今週、また自分に言い聞かされる場面がありました。
 
-### 創作のハードルは最初の 20 分で決まる
+昼はフローを調整して「これでつながった」と思ったのに、夜に実際の書き作業で使うと、開始の数ステップでまだ詰まる。
 
-日々の workflow の問題は、作れないことではなく、入り口が遅いことです。
+その瞬間にはっきりしました。私は使い手の外側に立って設計しているのではない。作り手であり、使い手でもある、同じ一人です。
 
-例えば日記。本来は「感じる -> すぐ書く」のはずなのに、現実はフォルダを開き、タイトルを考え、体裁を整え、天気を確認し、前回の続き探しで終わる。20 分経つ頃には、熱量の半分が冷めています。
+### 私は「使い手を理解する人」ではなく「使い手の側の人」
 
-最近ますます思うのは、良いソフトはまず「表現したい瞬間」を受け止めるべきだということ。その後ろで organize、ナレッジグラフの構築、過去文脈の接続を静かに処理すればいい。先に創作、最適化は後ろで。
+作り手の帽子をかぶると、activation flow、異常分岐、拡張性を考えます。
 
-### エンジニアの仕事はフローを実行可能なロジックにすること
+使い手の帽子をかぶると、気になるのは3つだけです。滑らかか、速いか、途中で邪魔されないか。
 
-実装側から見ると、問題は別の言語になります。
+この二つの感覚が同時に自分の中にあるので、最近は「使い手はこう感じるはず」とは書かず、「今ここで自分が詰まった」と書くようにしています。
 
-1. activation flow の最初の一手をどこに置けば、正確で邪魔にならないか
-2. thought process をどう組めば途中で切れないか
-3. skill と process stage の順序をどう並べれば誤判定と巻き戻しを減らせるか
+### 創作で一番弱いのは最初の数分
 
-これは processing pipeline 設計に近いです。各ステップ自体は難しくない。難しいのは sequencing。順番を間違えると体験はすぐ崩れます。
+日記は分かりやすいです。
 
-### インタラクションは「チャンネル」から「配信」へ
+理想は「感じる -> すぐ書く」。
 
-従来の操作はリモコンのようなもの。1、2、3 を押してチャンネルを切り替え、そこから自分で探す。
+でも現実は、ファイルを探し、タイトルを補い、体裁を整え、前回の続き場所を探す。そこまでで熱が落ちます。
 
-でも理想形は Information Feed に近い。先にシステムがあなたを理解し、本当に関連する情報を前に届ける。入口を全部覚えることをユーザーに要求しない。
+だから最近ずっと同じことをしています。表現に入る動作を最前に置き、整理・アーカイブ・過去文脈接続は後段で自動化する。
 
-核心は「賢い UI」ではなく、精度の高い intent 判定です。
+### 作り手の視点で難しいのは機能より順序
 
-### Intent の次は抽象レイヤー設計
+各ステップ単体は難しくありません。難しいのは sequencing です。
 
-意図認識は第一関門にすぎません。次は多様な要求を再利用可能な手順へ抽象化することです。
+順序を間違えると、体験はすぐ割れます。
 
-ユーザー差はとても現実的です。
+今、繰り返し磨いているのは次の3点です。
 
-- バイリンガル利用者は language refinement が必要でも、語感は潰したくない
-- クリエイティブな利用者は言い回しよりも content high fidelity を重視する
-- 多くの人は過去の言い回しや冗談を覚えていてほしく、毎回一から説明したくない
+1. activation flow の第一歩をどこに置けば正確で邪魔しないか
+2. thought process をどう接続すれば途中で途切れないか
+3. skill と process stage をどうつなげれば誤判定と巻き戻しを減らせるか
 
-だから「enable user to build」の本質はボタン追加ではありません。より良い抽象レイヤーを作り、それぞれのやり方を持ち込めるようにすることです。
+### 私が作りたいのは「入口探し」ではなく「先に理解される体験」
 
-### 作ってからが本当の難所
+従来操作はチャンネル切替に近い。入口を探してから内容を探す。
 
-これらのコンポーネントを何度も調整して、最終的に動くところまで持っていきました。内部はかなり複雑です。
+私が目指すのは Information Feed に近い。先に理解し、次に届ける。
 
-でも完成直後に別の問題が出ます。ユーザーはその内部詳細を見たいわけではない。
+これは UI の装飾ではなく、intent 判定の精度の話です。
 
-すると次の debate が始まる。機能をどう伝えれば参加感を失わないか。方向性を示しつつ、固定シナリオに閉じ込めないにはどうするか。
+### 本当の難題は intent の後
 
-最近しっくりくる比喩は、メニューではなくレゴです。
+意図判定は入口にすぎません。その後は抽象レイヤー設計です。
 
-1. ユーザーは用意された答えを選ぶのではなく、自分の発想を差し込める
-2. ソフトは十分にあなたを理解し、同時に長期利用できる安全性と手軽さを持つ
+同じ「書く」でも差は具体的です。
 
-ここが今いちばん夢中な部分です。設計は一度きりの正解ではなく、進化し続ける関係です。`,
+- バイリンガルな使い手は language refinement が必要でも語感は潰したくない
+- クリエイティブな使い手は言い回しより content high fidelity を重視する
+- 過去の表現や joke を覚えていて、毎回説明し直さなくて済むことを望む人もいる
+
+だから私にとって、便利さを民主化することはボタンを増やすことではありません。自分のやり方を持ち込める抽象レイヤーを作ることです。
+
+### 動いてから、伝え方を学び直す
+
+この仕組みは何度も調整して、ようやく動くところまで来ました。
+
+でも内部がどれだけ複雑でも、使い手がその全部を見たいわけではない。
+
+必要なのは、価値を明確に伝えつつ、参加の余地を残すことです。
+
+最近いちばんしっくりくる比喩は、やはりレゴです。
+
+固定メニューに押し込むのではなく、手元にブロックを渡す。
+
+1. 自分の発想をそのまま差し込める
+2. ツールが理解しつつ、長期で使える安定性・手軽さ・安全性を持つ
+
+この道はまだ続いています。私にとって設計は一度きりの答えではなく、実使用と一緒に育つものです。`,
     },
   },
   {
@@ -215,23 +239,25 @@ That's the part I've been most obsessed with recently. Design is not a one-time 
     date: 'Feb 2026',
     category: 'Product',
     title: {
-      en: "Onboarding That Doesn't Get in the Way",
-      zh: '不添堵的 Onboarding',
-      ja: '邪魔しないオンボーディング',
+      en: 'Onboarding That Feels Natural',
+      zh: '更自然的 Onboarding',
+      ja: '自然に始まるオンボーディング',
     },
     summary: {
-      en: 'Designing a first-launch experience that feels like meeting a friend—not filling out a government form.',
-      zh: '第一次打开应用时，体验应该像认识一个朋友，而不是在填一张冗长的行政表格。',
-      ja: '初回起動は「役所の書類」ではなく、「友だちに会う」感覚であるべきだと考えて設計した。',
+      en: 'I wanted first launch to feel like meeting a friend: calm, clear, and easy to continue.',
+      zh: '我希望第一次打开应用像认识新朋友：节奏温和、信息清楚、可以自然继续。',
+      ja: '初回起動は、友だちに会うように始まってほしい。落ち着いて、分かりやすく、続けやすく。',
     },
     content: {
-      en: `You know that feeling when you download a new app and immediately get hit with three permission popups in a row? It's... weird. You haven't even used the app yet. You don't know what these permissions are for. And the pressure of "Allow / Don't Allow" decisions firing at you—it makes you want to just close everything.
+      en: `Whenever I open a new app and get hit with three permission dialogs in a row, I almost always close them out of reflex.
 
-I've done this myself. Denied all permissions out of reflex. Then later, when I actually wanted to use a feature, the app was stuck. "Please enable microphone access in Settings." And I felt that little pang of regret mixed with annoyance—now I have to dig through System Preferences to fix something I didn't understand in the first place.
+I've done this more than once. Then later I try to use a feature, hit "Please enable microphone access in Settings," and feel that mix of regret and annoyance. I end up repairing a decision I made before I had context.
 
-**The problem isn't that users don't want to give access. It's that:**
+So while building Reso, I set one constraint for onboarding: the first meeting should feel calm, not pressuring.
+
+**The issue is usually not willingness. It's this:**
 1. They don't know *why* you need it
-2. Three popups in rapid succession creates pressure, not trust
+2. Three popups in rapid succession create pressure, not trust
 
 ### Building for Friends
 
@@ -245,7 +271,7 @@ It's like meeting a friend for the first time. You don't walk up and immediately
 
 We landed on two guiding ideas:
 
-1. **Minimize discomfort**: Slow down. Don't bombard. Let users breathe.
+1. **Minimize discomfort**: Slow down. Don't bombard. Let people breathe.
 2. **Don't let them miss out**: While reducing friction, make sure critical information doesn't get lost.
 
 This balance came partly from improv classes I've been taking—the idea of reading the room, matching energy, not forcing a scene.
@@ -267,11 +293,13 @@ Getting here took iteration. Friends would download debug builds, get confused a
 The goal was always: **open the box, and it just works**. Elegant. Minimal. Like a work partner who's there when you need them and invisible when you don't.
 
 The best onboarding doesn't feel like onboarding at all. It feels like the app already knows you.`,
-      zh: `你有没有这种体验：下载一个新 App，刚打开就连续弹出三个权限窗口？感觉很奇怪。你甚至还没真正用过它，不知道这些权限到底做什么，却被迫连续做“允许 / 不允许”的决定，最后只想把窗口全关掉。
+      zh: `每次我打开一个新 App，如果一上来就连弹三个权限窗，我几乎都会下意识先关掉。
 
-我自己也干过这种事。出于本能把权限全拒了。结果后来真想用某个功能时，应用卡住了：“请在设置中开启麦克风权限。”那种“后悔 + 烦躁”的感觉很真实，因为你得去系统设置里补救一个一开始并没理解的问题。
+我自己这样做过很多次。后来真要用功能时，才看到“请在设置中开启麦克风权限”，然后开始后悔和烦躁：前面在没上下文时做的决定，最后还是得自己补救。
 
-**问题不在于用户不愿授权，而在于：**
+所以做 Reso onboarding 时，我先给自己定了一条约束：第一次见面要温和，不能给人压迫感。
+
+**问题通常不在于使用者不愿授权，而在于：**
 1. 他们不知道你*为什么*要这个权限
 2. 连续弹窗制造的是压力，不是信任
 
@@ -287,7 +315,7 @@ The best onboarding doesn't feel like onboarding at all. It feels like the app a
 
 最后我们定了两个原则：
 
-1. **尽量降低不适感**：慢一点，不轰炸，让用户有呼吸空间。
+1. **尽量降低不适感**：慢一点，不轰炸，让使用者有呼吸空间。
 2. **又不能让他们错过关键能力**：降低摩擦的同时，关键信息不能丢。
 
 这种平衡也受到我上即兴课的影响：观察现场气氛、对齐能量，而不是硬推剧情。
@@ -309,11 +337,13 @@ Reso 要正常工作，确实需要麦克风权限和大约 2GB 的 ML 模型。
 我们的目标始终是：**打开盒子，它就能工作**。优雅、克制，像一个在你需要时就出现、不需要时就安静待命的工作伙伴。
 
 最好的 onboarding，最终不该让人觉得“我正在 onboarding”。而是觉得这个应用已经懂你了。`,
-      ja: `新しいアプリを入れて、起動直後に権限ポップアップが3連発で出るときの感覚、ありますよね。まだ使ってもいないのに、何のための権限か分からないまま「許可 / 許可しない」を連続で迫られる。正直、全部閉じたくなります。
+      ja: `新しいアプリを開いて、起動直後に権限ダイアログが3連続で出ると、私は反射で閉じてしまいます。
 
-私も何度もやりました。反射で全部拒否。でも後で機能を使いたくなると詰む。「設定でマイクを許可してください」。最初に理解していなかった問題を、今度はシステム設定の奥で修正することになる。あの小さな後悔と苛立ちは地味につらいです。
+私自身それを何度もやりました。あとで機能を使おうとして「設定でマイクを許可してください」と出ると、後悔と苛立ちが同時に来る。文脈がないまま決めたことを、後で自分で直すことになるからです。
 
-**問題は、ユーザーが権限を出したくないことではありません。問題は次の2つです。**
+だから Reso のオンボーディングでは、最初に一つ決めました。初回体験をプレッシャーにしないこと。
+
+**問題は「使い手が許可したくない」ことではなく、だいたい次の2点です。**
 1. なぜ必要なのかが分からない
 2. 連続ポップアップは信頼ではなく圧力を生む
 
@@ -363,14 +393,14 @@ Reso は正常に動くために、マイク権限と約2GBの ML モデルが�
       ja: '意識されない UI',
     },
     summary: {
-      en: 'Why I cut most of my UI, and what it taught me about the difference between building and using.',
-      zh: '我为什么砍掉了大部分 UI，以及这件事如何让我重新理解“构建”和“使用”的差别。',
-      ja: 'UI の大半を削った理由と、「作ること」と「使うこと」の差から得た学び。',
+      en: 'Cutting most of my UI made me admit a hard truth: the control panel I enjoy building is often not what I enjoy using.',
+      zh: '砍掉大部分 UI 之后，我才承认一件事：我爱做的控制面板，往往不是我爱用的体验。',
+      ja: 'UI を大きく削って、ようやく認めた。作る側として好きな操作盤は、使う側として心地よい体験と一致しないことが多い。',
     },
     content: {
-      en: `Honestly, my early beta looked like a DJ console. Knobs everywhere. Toggles for every route, every model variation, every debug parameter. It made sense—I needed to test hundreds of permutations to find what worked.
+      en: `Honestly, my early beta looked like a DJ console. Knobs everywhere. Toggles for every route, every model variation, every debug parameter. It made sense at that stage because I needed to test hundreds of permutations.
 
-But then I asked myself: *Who is this actually for?*
+But when I started using it every day, even I felt interrupted by all those controls.
 
 ### The Real Goal
 
@@ -378,15 +408,15 @@ Everything I was doing—all those model routes, delay settings, polish options�
 
 When you see the output and think, "Yes, that's exactly what I meant"—that's the goal. That's the only goal.
 
-Once I realized that, my design principle became simple: **If I can hide it, hide it. If I can encapsulate it, don't bother the user.**
+Once I realized that, my design principle became simple: **If I can hide it, hide it. If I can encapsulate it, don't interrupt the person using it.**
 
-### The Engineer vs. User Gap
+### The Builder and User Gap
 
-There's a cognitive gap between engineers and users that I kept bumping into:
+I kept running into a cognitive gap between builder mode and user mode:
 
-**The engineer's instinct**: Give users a full remote control. Every option, every setting. Maximum flexibility.
+**Builder instinct**: Hand over a full remote control. Every option, every setting. Maximum flexibility.
 
-**The user's reality**: The cooler experience is when content just *appears* in your feed. You don't want to press "Sports," then "Baseball," then scroll to find the one player you care about. You just want it there.
+**User reality**: The better experience is when what matters simply *appears* in your feed. No channel switching, no hunting.
 
 This made me rethink a lot. The version you see now? I've cut *so much*. Features I was proud of at one point—gone.
 
@@ -395,11 +425,11 @@ This made me rethink a lot. The version you see now? I've cut *so much*. Feature
 I started asking myself two questions, but not right away. I'd wait a few days. Let the excitement fade. Then:
 
 1. **Does it make sense?**
-2. **Will you ever actually use it?**
+2. **Would I actually use it myself?**
 
 When the answers changed—and they often did—I cut without hesitation.
 
-Here's the thing: when you're deep in building, everything feels reasonable. But building something and using something are completely different perspectives. And it's hard to be both people at once. You can't debug code one moment and then genuinely pretend you're a user who doesn't care about implementation details.
+Here's the thing: when you're deep in building, everything feels reasonable. But building and using are different perspectives, and switching hats is hard. You can't debug implementation one moment and immediately become a neutral user the next.
 
 So I gave myself buffer time. That's partly why our development cycle was longer than expected. The prototype existed early. Friends were testing it. But we kept polishing, kept asking: *Is this actually useful? Would I use this myself?*
 
@@ -415,32 +445,32 @@ If you do, you'll communicate it with conviction. If deep down something feels o
 
 ### UI as Expression
 
-This struggle—between what's technically possible and what's actually human—showed up constantly when we built features like Skills and Tones. We kept asking: Are we just impressing ourselves, or does the user actually need this?
+This struggle—between what's technically possible and what's actually human—showed up constantly when we built features like Skills and Tones. We kept asking: Are we just impressing ourselves, or does someone actually need this?
 
 But here's the beautiful part: UI is a form of expression. I'm grateful for great art in the world, and I think UI is a window for developers to express what they believe beauty looks like.
 
-There's no "correct" UI. Only what fits. What feels right. What gives users comfort.
+There's no "correct" UI. Only what fits. What feels right. What gives people comfort.
 
 And that standard will keep evolving. I'm looking forward to more inspiration, more feedback, more iteration. Because the UI you never think about? That's the one that took the most thought.`,
       zh: `说实话，我早期的 beta 看起来像 DJ 控台。到处都是旋钮。每条 route、每种模型变体、每个 debug 参数都有开关。那时候这很合理，因为我需要测试几百种组合才能找到可行方案。
 
-但后来我问了自己一句：*这到底是给谁用的？*
+但当我开始每天自己用它时，连我都会被这些开关打断。
 
 ### 真正的目标
 
-我做的所有事——model route、延迟设置、打磨选项——只有一个目的：给你 **你最喜欢的那个版本**。你不该手动调参，甚至不需要知道这些排列组合存在。
+我做的所有事——model route、延迟设置、打磨选项——只有一个目的：给使用者 **最顺手的那个版本**。不该让人手动调参，甚至不需要让人知道这些排列组合存在。
 
 当你看到输出时心里想“对，就是我要的那个意思”，这才是目标，也是唯一目标。
 
-意识到这点后，我的设计原则变得很简单：**能藏就藏，能封装就别打扰用户。**
+意识到这点后，我的设计原则变得很简单：**能藏就藏，能封装就别打扰使用者。**
 
-### Engineer 和 User 的认知落差
+### 构造者和使用者的认知落差
 
-我不断撞上的，是工程师和用户之间的认知差。
+我不断撞上的，是“构造者模式”和“使用者模式”之间的认知差。
 
-**工程师本能**：给用户一个完整遥控器。所有选项、所有设置，灵活性拉满。
+**构造者本能**：给出完整遥控器。所有选项、所有设置，灵活性拉满。
 
-**用户现实**：更爽的体验是内容直接*出现在*你的 feed 里。你不想先点“体育”，再点“棒球”，再翻很久找那个你关心的球员。你只想它已经在那里。
+**使用者现实**：更顺的体验是内容直接*出现在* feed 里，不需要先换频道再搜索。
 
 这让我重想了很多东西。你现在看到的版本？我删了*非常多*。很多我曾经很骄傲的功能，后来都砍掉了。
 
@@ -449,11 +479,11 @@ And that standard will keep evolving. I'm looking forward to more inspiration, m
 我开始问自己两个问题，但不会立刻问。我会先等几天，让兴奋感过去，然后再看：
 
 1. **它讲得通吗？**
-2. **你真的会用吗？**
+2. **我自己真的会长期用吗？**
 
 当答案变化时——而且经常变化——我会毫不犹豫地删除。
 
-关键在于：你沉浸在构建状态时，几乎一切都看起来合理。但“做一个东西”和“用一个东西”是完全不同的视角，很难同时扮演两种人。你不可能上一秒还在 debug，下一秒就真诚地当一个不关心实现细节的用户。
+关键在于：你沉浸在构建状态时，几乎一切都看起来合理。但“做一个东西”和“用一个东西”是完全不同的视角，很难同时扮演两种人。你不可能上一秒还在 debug，下一秒就真诚地当一个不关心实现细节的使用者。
 
 所以我给自己留了缓冲时间。这也是为什么我们的开发周期比预期长。原型很早就有了，朋友也在测试，但我们一直在打磨、一直在问：*它真的有用吗？我自己会长期用吗？*
 
@@ -469,32 +499,32 @@ And that standard will keep evolving. I'm looking forward to more inspiration, m
 
 ### UI 也是表达
 
-这种在“技术上可行”和“人性上自然”之间的拉扯，在我们做 Skills、Tones 这类功能时反复出现。我们一直在问：我们是在取悦自己，还是用户真的需要它？
+这种在“技术上可行”和“人性上自然”之间的拉扯，在我们做 Skills、Tones 这类功能时反复出现。我们一直在问：我们是在取悦自己，还是使用者真的需要它？
 
 但好的一面是，UI 本身就是一种表达。我非常感激这个世界上的好作品，我也觉得 UI 是开发者表达“自己认为什么是美”的窗口。
 
-UI 没有唯一“正确答案”。只有适不适合、顺不顺手、能不能给用户安全感。
+UI 没有唯一“正确答案”。只有适不适合、顺不顺手、能不能给使用者安全感。
 
 而这个标准会持续变化。我期待更多灵感、反馈和迭代。因为那个你几乎注意不到的 UI，往往才是被反复思考最多的 UI。`,
       ja: `正直に言うと、初期ベータの UI は DJ コンソールみたいでした。ノブだらけ。route ごと、モデル差分ごと、debug パラメータごとにトグルがある。あの段階では合理的でした。何百通りも試して、動く組み合わせを見つける必要があったからです。
 
-でも途中で自分に問い直しました。*これは誰のための UI なんだ？*
+でも毎日自分で使い始めると、作った本人の私ですら操作に割り込まれる感覚がありました。
 
 ### 本当のゴール
 
-私がやっていたこと全部、つまり model route、遅延調整、仕上げオプションは、目的が一つでした。**あなたが一番好きな版を届けること**。ユーザーに調整させるべきではないし、そもそもその組み合わせの存在を意識させる必要もない。
+私がやっていたこと全部、つまり model route、遅延調整、仕上げオプションは、目的が一つでした。**使い手にとって一番しっくりくる版を届けること**。使い手に調整を強いるべきではないし、その組み合わせの存在すら意識させない方がいい。
 
 出力を見て「そう、それが言いたかった」と思える。それだけがゴールです。
 
-そこに気づいてから設計原則はシンプルになりました。**隠せるなら隠す。包めるなら包む。ユーザーを煩わせない。**
+そこに気づいてから設計原則はシンプルになりました。**隠せるなら隠す。包めるなら包む。使い手を煩わせない。**
 
-### Engineer と User のギャップ
+### 作り手と使い手のギャップ
 
-何度もぶつかったのは、エンジニアとユーザーの認知ギャップでした。
+何度もぶつかったのは、作り手モードと使い手モードの認知ギャップでした。
 
-**エンジニアの本能**: すべての設定を渡す。完全なリモコンを渡す。柔軟性を最大化する。
+**作り手の本能**: すべての設定を渡す。完全なリモコンを渡す。柔軟性を最大化する。
 
-**ユーザーの現実**: 体験として気持ちいいのは、必要なものが feed に自然に*現れる*こと。「スポーツ」→「野球」→スクロール、みたいな探索はしたくない。最初からそこにあってほしい。
+**使い手の現実**: 気持ちいい体験は、必要なものが feed に自然に*現れる*こと。入口を何段も辿って探す体験ではない。
 
 この差に気づいて、たくさん削りました。今の版は、本当に多くを捨てています。かつて誇っていた機能も消えました。
 
@@ -507,7 +537,7 @@ UI 没有唯一“正确答案”。只有适不适合、顺不顺手、能不�
 
 答えが変わったら、迷わず削る。
 
-作っている最中は何でも正しく見えます。でも「作る視点」と「使う視点」はまったく別物で、同時に両立するのは難しい。さっきまで debug していた人間が、次の瞬間に実装を気にしない素のユーザーになるのは無理があります。
+作っている最中は何でも正しく見えます。でも「作る視点」と「使う視点」はまったく別物で、同時に両立するのは難しい。さっきまで debug していた人間が、次の瞬間に実装を気にしない素の使い手になるのは無理があります。
 
 だから意図的にバッファ時間を取りました。開発サイクルが想定より長くなった理由の一つです。プロトタイプ自体は早くできていたし、友人テストも進んでいた。でも磨き続けて、問い続けた。*本当に役立つか？ 自分で使い続けたいか？*
 
@@ -535,25 +565,25 @@ UI 没有唯一“正确答案”。只有适不适合、顺不顺手、能不�
   {
     id: 8,
     date: 'Dec 2025',
-    category: 'Engineering',
+    category: 'Building',
     title: {
       en: 'Making Ideas Visible: The Knowledge Graph',
       zh: '让想法可见：Knowledge Graph',
       ja: 'アイデアを可視化する: Knowledge Graph',
     },
     summary: {
-      en: "Why I built a discovery feature that acts as another pair of eyes—helping you see patterns in your own thinking you couldn't see alone.",
-      zh: '我为什么做了一个像“第二双眼睛”的发现功能，帮你看见自己独自看不见的思维模式。',
-      ja: '自分では見えにくい思考パターンを見つけるために、もう一組の目として働く discovery 機能を作った理由。',
+      en: 'I brought data-science pattern discovery into daily workflow to build a second pair of eyes for my own thinking.',
+      zh: '我把数据分析里的模式发现带进日常 workflow，只想做一双能看见自己思路的“第二双眼睛”。',
+      ja: 'データ分析のパターン発見を日常 workflow に持ち込み、自分の思考を見るための「もう一組の目」を作りたかった。',
     },
     content: {
-      en: `I come from a science background. In industry, I spent years processing massive datasets—machine learning, clustering algorithms, high-dimensional visualization. These tools were always there, ready to reveal hidden patterns.
+      en: `I come from a science background. In industry, I spent years processing massive datasets—machine learning, clustering algorithms, high-dimensional visualization.
 
-But I kept thinking: **Why aren't these tools helping regular people in their daily lives?**
+What stayed with me was a frustration: these methods are powerful, but in daily life they rarely help ordinary people see their own patterns.
 
-The techniques exist. The compute power exists (your Mac's chips are incredibly capable). What's missing is the bridge—an interface that takes something technical and cold, and makes it warm, human, useful.
+The techniques already exist. The compute is already here. What was missing for me was the bridge from technical capability to humane experience.
 
-That's what I wanted to build.
+That's the bridge I wanted to build.
 
 ### Another Pair of Eyes
 
@@ -577,7 +607,7 @@ You don't need to manually sort things into "work notes" vs "personal reflection
 
 There's a balance here that matters: **How do you surface insights from data without trading off privacy?**
 
-This is an art. What tech stack achieves the goal without overkill? How do you make the machine work for you without making you vulnerable?
+This is an art. What tech stack achieves the goal without overkill? How do you make the machine work for people without making them vulnerable?
 
 In my previous work with large-scale data, we used intuitive visualizations—parallel plots, radvis plots, clustering in high-dimensional space. These techniques are genuinely interesting. And now, with modern embedding technology and powerful local chips, we can run these algorithms *natively on your Mac*, optimized specifically for discovery.
 
@@ -601,16 +631,16 @@ We're trying to translate human-to-human flow into human-to-software flow. The D
 
 ### The Goal
 
-I don't know how much you'll love this. But I hope we can build something valuable for you—or build it together.
+I still don't know how far this can go. But I know the moment I care about.
 
-That moment when you look at the graph and think, "Huh, I didn't realize I'd been thinking about that so much"—that's the goal.
+When I look at the graph and think, "I didn't realize I'd been circling this idea for so long," that's the point.
 
-Not just organizing your notes. Helping you see yourself.`,
-      zh: `我本来是科学背景出身。进入行业后，我花了很多年处理大规模数据：machine learning、clustering algorithm、高维可视化。这些工具一直都在，随时可以揭示隐藏模式。
+Not just organizing notes. Helping people see themselves.`,
+      zh: `我本来是科学背景出身。进入行业后，我花了很多年处理大规模数据：machine learning、clustering algorithm、高维可视化。
 
-但我一直在想：**为什么这些工具没有真正帮助到普通人的日常生活？**
+但我一直有个遗憾：这些方法很强，却很少真正帮普通人在日常里看见自己的模式。
 
-技术有了，算力也有了（你 Mac 上的芯片非常强）。真正缺的是桥梁：把冷冰冰的技术转成温暖、有人味、可用的界面。
+技术有了，算力也有了。真正缺的是桥梁：把冷冰冰的技术转成温暖、有人味、可用的界面。
 
 这就是我想做的事。
 
@@ -636,7 +666,7 @@ Not just organizing your notes. Helping you see yourself.`,
 
 这里有一个关键平衡：**如何从数据里提炼洞察，同时不牺牲隐私？**
 
-这其实是一门艺术。什么技术栈够用但不过度？如何让机器为你服务，而不是让你暴露在风险里？
+这其实是一门艺术。什么技术栈够用但不过度？如何让机器为人服务，而不是让使用者暴露在风险里？
 
 我之前做大规模数据时，会用很多直观可视化：parallel plots、radvis plots、高维聚类。这些方法非常有趣。现在借助现代 embedding 技术和本地强芯片，我们已经可以把这些算法*原生跑在你的 Mac 上*，并且专门针对 discovery 做优化。
 
@@ -660,16 +690,16 @@ Not just organizing your notes. Helping you see yourself.`,
 
 ### 目标
 
-我不知道你会有多喜欢它。但我希望我们能为你做出有价值的东西，或者一起把它做出来。
+我还不知道这件事最终能走多远，但我很确定自己在追一个瞬间。
 
-当你看着图谱说出“咦，我原来一直在想这个”，那一刻就是目标。
+当我看着图谱说出“原来我一直在绕着这个问题想”，那一刻就是目标。
 
-不只是整理笔记，而是帮你看见自己。`,
-      ja: `私はもともとサイエンスの出身です。業界では長年、大規模データを扱ってきました。machine learning、clustering algorithm、高次元可視化。隠れたパターンを見つける道具は、ずっと目の前にありました。
+不只是整理笔记，而是帮人看见自己。`,
+      ja: `私はもともとサイエンスの出身です。業界では長年、大規模データを扱ってきました。machine learning、clustering algorithm、高次元可視化。
 
-でもずっと考えていました。**なぜこの道具は、普通の人の日常を助ける形になっていないのか？**
+でもずっと残っていた違和感があります。強力な手法なのに、日常では自分の思考パターンを見る助けになりにくいことです。
 
-技術はある。計算資源もある（Mac のチップは驚くほど強い）。足りないのは橋です。技術的で冷たいものを、人間的であたたかく、使える体験に変える橋。
+技術も計算資源もある。足りないのは橋です。技術的で冷たいものを、人間的であたたかい体験に変える橋。
 
 それを作りたかった。
 
@@ -695,7 +725,7 @@ Not just organizing your notes. Helping you see yourself.`,
 
 ここで重要なのはバランスです。**プライバシーを損なわずに、どうやって洞察を浮かび上がらせるか。**
 
-これはアートです。やりすぎず目的を達成できる tech stack は何か。マシンを味方にしつつ、ユーザーを脆弱にしないにはどうするか。
+これはアートです。やりすぎず目的を達成できる tech stack は何か。マシンを味方にしつつ、使い手を脆弱にしないにはどうするか。
 
 以前の大規模データの仕事では、parallel plots、radvis plots、高次元空間でのクラスタリングなど、直感的な可視化を使っていました。これらは本当に面白い。今は embedding 技術とローカルチップの進化で、これらを *Mac 上でネイティブ実行* し、discovery 向けに最適化できます。
 
@@ -719,9 +749,9 @@ Not just organizing your notes. Helping you see yourself.`,
 
 ### ゴール
 
-これをどこまで気に入ってもらえるかは分かりません。でも、あなたに価値のあるものを作りたい。できれば一緒に作りたい。
+これがどこまで育つかはまだ分かりません。でも私が狙っている瞬間は明確です。
 
-グラフを見て「え、こんなにずっとこれを考えていたのか」と気づく、その瞬間がゴールです。
+グラフを見て「自分はこんなに長くこれを考えていたのか」と気づく、その瞬間です。
 
 メモ整理だけではなく、自分を見えるようにすること。`,
     },
@@ -729,23 +759,23 @@ Not just organizing your notes. Helping you see yourself.`,
   {
     id: 7,
     date: 'Nov 2025',
-    category: 'Engineering',
+    category: 'Building',
     title: {
       en: 'Teaching an App to Find Patterns',
       zh: '教应用学会发现模式',
       ja: 'アプリにパターン発見を教える',
     },
     summary: {
-      en: 'How semantic clustering turns scattered voice notes into discoverable themes—and why I had to resist the urge to over-engineer it.',
-      zh: '语义聚类如何把分散语音笔记变成可发现主题，以及我为什么必须克制过度工程化的冲动。',
-      ja: 'semantic clustering で散らばった音声メモをテーマ化する方法と、過剰設計を抑える必要があった理由。',
+      en: 'I built semantic clustering for a problem I also had: the more voice notes you save, the harder they are to revisit.',
+      zh: '我做 semantic clustering，是因为这个问题我自己也有：语音笔记越多，越难回看。',
+      ja: 'semantic clustering を作ったのは、私自身の課題でもあったからです。音声メモは増えるほど振り返りづらくなる。',
     },
     content: {
-      en: `One of Reso's early users told me: "I have 200 voice notes and I can't remember what half of them are about."
+      en: `An early Reso user once told me: "I have 200 voice notes and I can't remember what half of them are about."
 
-This is the problem with capture-focused tools. They make it *easy* to record thoughts, but then what? You're drowning in data.
+I related immediately, because my own archive felt the same. Capture-focused tools make recording *easy*, then leave you drowning in data.
 
-I wanted Reso to help you **discover patterns** in your thinking over time—without requiring manual tagging or folder organization.
+I wanted Reso to help me and other users **discover patterns** over time—without manual tags or folder maintenance.
 
 ### The Core Idea
 
@@ -768,7 +798,7 @@ What worked: **Adaptive clustering**.
 
 Instead of a fixed threshold, we look at the distribution of similarity scores. If there's a natural gap (e.g., scores are either >0.75 or <0.3), we use that gap as the cutoff.
 
-This means the "right" threshold emerges from your data, not from my arbitrary tuning.
+This means the "right" threshold emerges from the data, not from my arbitrary tuning.
 
 ### Naming Themes
 
@@ -787,14 +817,14 @@ We extract frequent keywords, then use a lightweight LLM call to combine them in
 
 The best AI features don't feel like AI. They feel like the app is just... paying attention.
 
-When a theme surfaces, users don't think "wow, cool clustering algorithm." They think "huh, I *have* been thinking about that a lot."
+When a theme surfaces, people don't think "wow, cool clustering algorithm." They think "huh, I *have* been thinking about that a lot."
 
 That's the magic—making the invisible visible.`,
-      zh: `Reso 的一位早期用户跟我说过一句话：“我有 200 条语音笔记，但一半都想不起在讲什么。”
+      zh: `Reso 的一位早期使用者跟我说过一句话：“我有 200 条语音笔记，但一半都想不起在讲什么。”
 
-这就是 capture 型工具的典型问题：记录很*容易*，然后呢？你会被数据淹没。
+我听完只觉得太熟了，因为我自己的语音库也有同样的问题。capture 型工具让记录很*容易*，然后你很快会被数据淹没。
 
-我希望 Reso 能帮你在时间线上**发现思维模式**，而不要求你手动打标签或整理文件夹。
+我希望 Reso 能帮我和其他使用者在时间线上**发现思维模式**，而不要求手动打标签或整理文件夹。
 
 ### 核心思路
 
@@ -802,7 +832,7 @@ That's the magic—making the invisible visible.`,
 
 当相关笔记积累到一定数量，它们会自动浮现为一个“主题”，并附带自动生成的名字。
 
-**例子**：两周内你录了五条关于“API design”的想法。Reso 会自动把它们归为一组，并标注成 “API Design Patterns”。
+**例子**：两周内我录了五条关于“API design”的想法。Reso 会自动把它们归为一组，并标注成 “API Design Patterns”。
 
 ### 聚类难点
 
@@ -817,7 +847,7 @@ That's the magic—making the invisible visible.`,
 
 不用固定阈值，而是看相似度分布本身。如果数据里存在自然断层（比如分数要么 >0.75，要么 <0.3），就拿这个断层当切分点。
 
-这样“正确阈值”来自你的数据，而不是来自我的主观拍脑袋。
+这样“正确阈值”来自这批数据本身，而不是来自我的主观拍脑袋。
 
 ### 主题命名
 
@@ -836,12 +866,12 @@ That's the magic—making the invisible visible.`,
 
 最好的 AI 功能，不会让你觉得“这很 AI”。它更像应用在静静地留意你。
 
-当主题浮现时，用户不会想“哇，聚类算法真酷”。他们会想：“原来我最近真的一直在想这个。”
+当主题浮现时，使用者不会想“哇，聚类算法真酷”。他们会想：“原来我最近真的一直在想这个。”
 
 这就是魔法：把看不见的东西变得可见。`,
-      ja: `Reso の初期ユーザーの一人がこう言いました。「音声メモが 200 件あるのに、半分は何の話か思い出せない。」
+      ja: `Reso の初期使い手の一人がこう言いました。「音声メモが 200 件あるのに、半分は何の話か思い出せない。」
 
-これは capture 重視ツールの典型的な課題です。記録は*簡単*になる。でもその後は？ データに埋もれてしまう。
+それを聞いて、私自身のアーカイブも同じだとすぐに分かりました。capture 重視ツールは記録を*簡単*にする一方で、その後にデータへ埋もれやすくなります。
 
 私は Reso に、手動タグ付けやフォルダ整理なしで、時間を通じて**思考のパターン**を見つける役割を持たせたかった。
 
@@ -866,7 +896,7 @@ That's the magic—making the invisible visible.`,
 
 固定値ではなく、類似度スコアの分布を見る。自然なギャップ（例: >0.75 と <0.3 に分かれる）があれば、その境界をカットオフに使う。
 
-つまり「正しい」しきい値は、私の主観ではなく、あなたのデータから現れます。
+つまり「正しい」しきい値は、私の主観ではなく、データ側から現れます。
 
 ### テーマ名の生成
 
@@ -885,7 +915,7 @@ That's the magic—making the invisible visible.`,
 
 良い AI 機能は、AI っぽく見えません。アプリがただ…注意深く見ていてくれる感覚になります。
 
-テーマが出たとき、ユーザーは「すごいクラスタリングだ」とは思わない。「あ、確かに最近こればかり考えてた」と思う。
+テーマが出たとき、使い手は「すごいクラスタリングだ」とは思わない。「あ、確かに最近こればかり考えてた」と思う。
 
 見えなかったものを見えるようにする。それが魔法です。`,
     },
@@ -900,9 +930,9 @@ That's the magic—making the invisible visible.`,
       ja: '1つの API では足りないとき',
     },
     summary: {
-      en: 'Why I built multi-provider routing—not just for reliability, but because I wanted a playground to try new models whenever I felt like it.',
-      zh: '我为什么做了多提供商路由：不只是为了稳定性，更是为了随时试新模型的自由。',
-      ja: '信頼性のためだけでなく、気分で新モデルを試せる playground が欲しくて multi-provider routing を作った。',
+      en: 'I built multi-provider routing not only for fallback, but because I needed a playground to try new models anytime.',
+      zh: '我做 multi-provider routing，不只是为了兜底，更因为我自己需要一个随时试新模型的 playground。',
+      ja: 'multi-provider routing は冗長化のためだけではない。私自身が、いつでも新モデルを試せる playground を必要としていた。',
     },
     content: {
       en: `I'm the kind of person who tries every new model the moment it drops.
@@ -1052,7 +1082,7 @@ routing は直感的で、ほぼ playground のようにしたかった。
 
 routing 本体は 50 行程度でも、エラーハンドリングは 200 行超え。インフラはだいたいそうで、地味なところが一番コード量を食います。
 
-でもうまく動けば気づかれません。ユーザーには「反応が速い」「柔軟」「ちょっと楽しい」とだけ伝わる。
+でもうまく動けば気づかれません。使い手には「反応が速い」「柔軟」「ちょっと楽しい」とだけ伝わる。
 
 目標はそこです。信頼性だけじゃない。playground です。`,
     },
@@ -1067,9 +1097,9 @@ routing 本体は 50 行程度でも、エラーハンドリングは 200 行超
       ja: '設計で守るプライバシー: PII Shield',
     },
     summary: {
-      en: "The journey from \"I'm worried about my voice data\" to building an architecture where your voice fingerprint never leaves your Mac.",
-      zh: '从“我担心语音数据泄露”到搭建一套“声纹永不离开 Mac”的架构，这是一段很个人的演进。',
-      ja: '「自分の音声データが不安」から、「声紋が Mac の外へ出ない」設計に至るまでの道のり。',
+      en: "This started from my own anxiety about voice privacy and became an architecture where voice fingerprints never leave your Mac.",
+      zh: '这件事从我对语音隐私的焦虑开始，最后落成一套“声纹不离开 Mac”的架构。',
+      ja: 'この機能は、私自身の音声プライバシーへの不安から始まり、声紋を Mac 外へ出さない設計に着地した。',
     },
     content: {
       en: `This feature came from a deeply personal need.
@@ -1089,7 +1119,7 @@ The hardware could technically handle it—30+ GB of VRAM is a lot. But here's t
 - Local models still lag behind top-tier APIs in reasoning and abstraction
 - The language processing quality wasn't where it needed to be
 
-If the model can't deliver the experience users deserve, forcing it to run locally is just... cutting the foot to fit the shoe.
+If the model can't deliver the experience people deserve, forcing it to run locally is just... cutting the foot to fit the shoe.
 
 ### Redefining the Question
 
@@ -1152,7 +1182,7 @@ That clarity is the real feature.`,
 - 本地模型在推理和抽象能力上仍落后于头部 API
 - 语言处理质量离我想要的标准还有差距
 
-如果模型体验达不到用户应得的水平，强行全本地就是削足适履。
+如果模型体验达不到使用者应得的水平，强行全本地就是削足适履。
 
 ### 重新定义问题
 
@@ -1215,7 +1245,7 @@ discovery 算法、clustering、芯片级优化都在你的机器上执行。我
 - 推論や抽象化ではローカルモデルがトップ API にまだ届かない
 - 言語処理品質が必要ラインに達しない
 
-ユーザーが得るべき体験を満たせないなら、ローカル強制は本末転倒です。
+使い手が得るべき体験を満たせないなら、ローカル強制は本末転倒です。
 
 ### 問いの再定義
 
@@ -1273,9 +1303,9 @@ discovery アルゴリズム、clustering、チップ最適化などは端末内
       ja: 'ビジョンをコードへ: Architect Mode を作る',
     },
     summary: {
-      en: 'How I built a feature that eliminates the friction between seeing exactly what needs to change and communicating it to AI coding assistants.',
-      zh: '我如何做出一个功能，消除“看见该改什么”和“把它准确告诉 AI 编码助手”之间的摩擦。',
-      ja: '何を直すべきかを「見えている状態」から、AI coding assistant に正確に伝えるまでの摩擦を消す機能を作った話。',
+      en: 'I built Architect Mode to close the gap between what I can already see on screen and what I need to tell an AI coding assistant.',
+      zh: '我做 Architect Mode，是为了把“我已经看见的问题”更快地变成 AI coding assistant 能执行的规格。',
+      ja: 'Architect Mode は、画面で見えている修正点を AI coding assistant が実行できる仕様へ最短で落とすために作った。',
     },
     content: {
       en: `As developers, we often know *exactly* what we want to build. The bottleneck isn't understanding—it's communication.
@@ -1315,7 +1345,7 @@ The output is precise and actionable:
 
 This drops directly into Cursor. No reformatting. No clarification needed.
 
-### Engineering Challenges
+### Implementation Challenges
 
 Building this required solving several hard problems:
 
@@ -1423,7 +1453,7 @@ Architect mode はスクリーンキャプチャと音声入力を組み合わ�
 
 Cursor にそのまま貼れる。整形不要、補足説明不要です。
 
-### エンジニアリング上の難所
+### 実装上の難所
 
 実装にはいくつか難題がありました。
 
@@ -1445,16 +1475,16 @@ Cursor にそのまま貼れる。整形不要、補足説明不要です。
   {
     id: 3,
     date: 'Jul 2025',
-    category: 'Engineering',
+    category: 'Building',
     title: {
       en: 'The Recording That Never Dies',
       zh: '不会消失的录音',
       ja: '消えない録音',
     },
     summary: {
-      en: "Why I built Shadow Recording—a crash-resilient audio system that writes incrementally, so even kernel panics can't kill your ideas.",
-      zh: '我为什么做了 Shadow Recording：一种增量写盘、抗崩溃的录音系统，让 kernel panic 也带不走你的想法。',
-      ja: 'kernel panic でもアイデアを失わないように、増分書き込み型でクラッシュ耐性を持つ Shadow Recording を作った理由。',
+      en: 'After losing recordings myself, I built Shadow Recording so crashes and kernel panics no longer erase ideas.',
+      zh: '我自己丢过录音，所以做了 Shadow Recording：让崩溃和 kernel panic 也带不走想法。',
+      ja: '自分で録音を失った経験があるから、Shadow Recording を作った。クラッシュや kernel panic でもアイデアを失わないために。',
     },
     content: {
       en: `I've lost voice recordings before. App crashes, battery dies, system freezes—poof, gone.
@@ -1498,9 +1528,9 @@ We keep shadow recordings for 7 days. After that, they're auto-deleted. This pre
 
 ### What I Learned
 
-**The best features are the ones users never notice.**
+**The best features are the ones people never notice.**
 
-Shadow Recording has saved dozens of recordings from crashes. But users don't think "wow, shadow recording is great!" They just think "Reso is reliable."
+Shadow Recording has saved dozens of recordings from crashes. But people don't think "wow, shadow recording is great!" They just think "Reso is reliable."
 
 That's exactly what I wanted.
 
@@ -1550,9 +1580,9 @@ Shadow Recording 的做法是：
 
 ### 我学到的
 
-**最好的功能，往往是用户注意不到的功能。**
+**最好的功能，往往是使用者注意不到的功能。**
 
-Shadow Recording 已经从崩溃里救回了很多录音。但用户不会说“这个 shadow recording 真棒”，他们只会说“Reso 很可靠”。
+Shadow Recording 已经从崩溃里救回了很多录音。但使用者不会说“这个 shadow recording 真棒”，他们只会说“Reso 很可靠”。
 
 这正是我想要的结果。
 
@@ -1602,9 +1632,9 @@ shadow 録音は 7 日保持し、その後自動削除します。安全網を�
 
 ### 学んだこと
 
-**最高の機能は、ユーザーが気づかない機能です。**
+**最高の機能は、使い手が気づかない機能です。**
 
-Shadow Recording はクラッシュから多数の録音を救いました。でもユーザーは「shadow recording すごい」とは言わない。「Reso は信頼できる」と言う。
+Shadow Recording はクラッシュから多数の録音を救いました。でも使い手は「shadow recording すごい」とは言わない。「Reso は信頼できる」と言う。
 
 それが狙いでした。
 
@@ -1625,9 +1655,9 @@ Shadow Recording はクラッシュから多数の録音を救いました。で
       ja: '10x への執念',
     },
     summary: {
-      en: 'How I spent two weeks hunting down compiler flags and CoreML optimizations to make transcription 10x faster than standard builds.',
-      zh: '我如何花两周追编译参数和 CoreML 优化，把转写速度做到标准构建的 10 倍。',
-      ja: 'compiler flag と CoreML 最適化を2週間追い込み、標準ビルド比 10x の転写速度にした話。',
+      en: 'To make transcription truly keep up with thought, I spent two weeks on compiler flags and CoreML to push speed to 10x.',
+      zh: '为了让转写真正跟上思路，我花了两周追 compiler flags 和 CoreML，把速度推到 10x。',
+      ja: '転写を思考速度に追いつかせるために、2週間かけて compiler flags と CoreML を詰め、10x まで押し上げた。',
     },
     content: {
       en: `I'll admit it: I'm obsessed with performance.
@@ -1840,9 +1870,9 @@ Whisper.cpp は C++。Swift アプリを Xcode でビルドすると、Swift は
       ja: 'これを作った理由',
     },
     summary: {
-      en: 'Reso exists to handle the wording and structuring, so you can spend more time contemplating, creating, and building.',
-      zh: 'Reso 的意义是接管措辞和结构化，让你把时间留给思考、创造与构建。',
-      ja: 'Reso は言語化と構造化を引き受け、あなたが思考・創造・構築に時間を使えるようにするためにある。',
+      en: 'I built Reso to take wording and structuring off my plate, so more of my time stays with thinking and building.',
+      zh: '我做 Reso，是想把措辞和结构化从自己手上拿开，把时间还给思考与构建。',
+      ja: 'Reso を作った理由は、言語化と構造化の負担を自分から外し、思考と build に時間を戻したかったから。',
     },
     content: {
       en: `There's an inherent tension in how we express ideas: speaking is fragmented, scattered, full of pauses and restarts. But writing—typing—is one of the most fluent forms of human expression.
