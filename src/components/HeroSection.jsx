@@ -2,10 +2,35 @@ import React, { useState, useEffect, useRef } from 'react';
 import { createPortal } from 'react-dom';
 import ToolLogos from './ToolLogos';
 import { Download } from 'lucide-react';
+import { useAppPreferences } from '../contexts/AppPreferencesContext';
+import { getLocalizedCopy } from '../i18n/localize';
+
+const heroCopy = {
+  en: {
+    title: 'Capture thoughts. Anywhere.',
+    local: 'Locally.',
+    download: 'Download for macOS',
+    worksWith: 'Works seamlessly with',
+  },
+  zh: {
+    title: '随时捕捉想法。',
+    local: '本地完成。',
+    download: '下载 macOS 版本',
+    worksWith: '无缝兼容',
+  },
+  ja: {
+    title: '思考を、どこでも記録。',
+    local: 'ローカルで。',
+    download: 'macOS 版をダウンロード',
+    worksWith: 'シームレスに連携',
+  },
+};
 
 const HeroSection = () => {
+  const { language } = useAppPreferences();
   const [isModalOpen, setIsModalOpen] = useState(false);
   const modalVideoRef = useRef(null);
+  const copy = getLocalizedCopy(heroCopy, language);
 
   useEffect(() => {
     const handleEsc = (e) => {
@@ -38,7 +63,7 @@ const HeroSection = () => {
         {/* Title + Button */}
         <div className="mb-14 max-w-3xl">
           <h1 className="text-3xl md:text-5xl font-medium tracking-tight leading-[1.15] mb-6 text-black dark:text-white">
-            Capture thoughts. Anywhere. <span className="text-gray-500 dark:text-gray-400">Locally.</span>
+            {copy.title} <span className="text-gray-500 dark:text-gray-400">{copy.local}</span>
           </h1>
 
           <a
@@ -46,7 +71,7 @@ const HeroSection = () => {
             download
             className="inline-flex items-center gap-2 bg-black dark:bg-white text-white dark:text-black rounded-full font-medium text-sm hover:bg-gray-800 dark:hover:bg-gray-100 transition-all px-6 py-3"
           >
-            <span>Download for macOS</span>
+            <span>{copy.download}</span>
             <Download size={16} />
           </a>
         </div>
@@ -89,7 +114,7 @@ const HeroSection = () => {
 
         {/* Works Seamlessly With */}
         <div className="text-center">
-          <span className="text-xs uppercase tracking-wider text-gray-400 dark:text-gray-500">Works seamlessly with</span>
+          <span className="text-xs uppercase tracking-wider text-gray-400 dark:text-gray-500">{copy.worksWith}</span>
           <div className="mt-5 flex items-center justify-center opacity-40 hover:opacity-60 transition-opacity duration-300">
             <ToolLogos />
           </div>

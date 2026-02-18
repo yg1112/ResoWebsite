@@ -1,7 +1,16 @@
 import React from 'react';
 import { ArrowRight, Download } from 'lucide-react';
+import { useAppPreferences } from '../contexts/AppPreferencesContext';
+import { getLocalizedCopy } from '../i18n/localize';
 
 const DownloadButton = ({ variant = 'primary', size = 'lg', className = '', children, ...props }) => {
+  const { language } = useAppPreferences();
+  const copy = getLocalizedCopy({
+    en: 'Download on the Mac App Store',
+    zh: '在 Mac App Store 下载',
+    ja: 'Mac App Store からダウンロード',
+  }, language);
+
   // TODO: Replace with actual App Store URL when available
   const appStoreUrl = "https://apps.apple.com/app/reso/idXXXXXXXXX"; // Placeholder URL
   
@@ -45,7 +54,7 @@ const DownloadButton = ({ variant = 'primary', size = 'lg', className = '', chil
       {children || (
         <>
           <Download size={20} />
-          <span>Download on the Mac App Store</span>
+          <span>{copy}</span>
         </>
       )}
     </a>

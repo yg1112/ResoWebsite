@@ -1,6 +1,8 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
 import { Mail, Sun, Moon } from 'lucide-react';
+import { useAppPreferences } from '../contexts/AppPreferencesContext';
+import { getLocalizedCopy } from '../i18n/localize';
 
 // X (Twitter) logo icon
 const XIcon = ({ size = 14 }) => (
@@ -10,29 +12,27 @@ const XIcon = ({ size = 14 }) => (
 );
 
 const Footer = () => {
-  const [isDark, setIsDark] = useState(false);
-
-  useEffect(() => {
-    const savedTheme = localStorage.getItem('theme');
-    const prefersDark = savedTheme === 'dark';
-    setIsDark(prefersDark);
-    if (prefersDark) {
-      document.documentElement.classList.add('dark');
-    }
-  }, []);
-
-  const toggleTheme = () => {
-    const newIsDark = !isDark;
-    setIsDark(newIsDark);
-
-    if (newIsDark) {
-      document.documentElement.classList.add('dark');
-      localStorage.setItem('theme', 'dark');
-    } else {
-      document.documentElement.classList.remove('dark');
-      localStorage.setItem('theme', 'light');
-    }
-  };
+  const { language, setTheme, theme } = useAppPreferences();
+  const copy = getLocalizedCopy({
+    en: {
+      privacy: 'Privacy',
+      terms: 'Terms',
+      light: 'Switch to light mode',
+      dark: 'Switch to dark mode',
+    },
+    zh: {
+      privacy: '隐私',
+      terms: '条款',
+      light: '切换到浅色模式',
+      dark: '切换到深色模式',
+    },
+    ja: {
+      privacy: 'プライバシー',
+      terms: '利用規約',
+      light: 'ライトモードに切り替え',
+      dark: 'ダークモードに切り替え',
+    },
+  }, language);
 
   return (
     <>
@@ -40,8 +40,8 @@ const Footer = () => {
         <div className="max-w-6xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-4">
           <span>&copy; 2025 DZG STUDIO LLC.</span>
           <div className="flex items-center gap-6">
-            <a href="/privacy.html" className="hover:text-gray-900 dark:hover:text-gray-100 transition-colors">Privacy</a>
-            <a href="/terms.html" className="hover:text-gray-900 dark:hover:text-gray-100 transition-colors">Terms</a>
+            <a href="/privacy.html" className="hover:text-gray-900 dark:hover:text-gray-100 transition-colors">{copy.privacy}</a>
+            <a href="/terms.html" className="hover:text-gray-900 dark:hover:text-gray-100 transition-colors">{copy.terms}</a>
             <div className="w-px h-3 bg-gray-300 dark:bg-gray-700"></div>
             <a href="https://x.com/DzgStudio" target="_blank" rel="noreferrer" className="flex items-center gap-1.5 hover:text-gray-900 dark:hover:text-gray-100 transition-colors">
               <XIcon size={14} />
@@ -51,18 +51,18 @@ const Footer = () => {
             </Link>
             <div className="w-px h-3 bg-gray-300 dark:bg-gray-700"></div>
             <button
-              onClick={toggleTheme}
+              onClick={() => setTheme('light')}
               className="flex items-center gap-1.5 hover:text-gray-900 dark:hover:text-gray-100 transition-colors"
-              aria-label="Toggle light mode"
+              aria-label={copy.light}
             >
-              <Sun size={14} />
+              <Sun size={14} className={theme === 'light' ? 'text-amber-500' : ''} />
             </button>
             <button
-              onClick={toggleTheme}
+              onClick={() => setTheme('dark')}
               className="flex items-center gap-1.5 hover:text-gray-900 dark:hover:text-gray-100 transition-colors"
-              aria-label="Toggle dark mode"
+              aria-label={copy.dark}
             >
-              <Moon size={14} />
+              <Moon size={14} className={theme === 'dark' ? 'text-blue-400' : ''} />
             </button>
           </div>
         </div>

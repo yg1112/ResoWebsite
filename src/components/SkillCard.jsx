@@ -1,6 +1,33 @@
 import React from 'react';
+import { useAppPreferences } from '../contexts/AppPreferencesContext';
+import { getLocalizedCopy } from '../i18n/localize';
 
 export default function SkillCard({ skill, onInstall, isTone = false }) {
+  const { language } = useAppPreferences();
+  const copy = getLocalizedCopy({
+    en: {
+      pro: 'Pro',
+      more: 'more',
+      install: 'Install',
+      tone: 'Tone',
+      skill: 'Skill',
+    },
+    zh: {
+      pro: 'Pro',
+      more: '更多',
+      install: '安装',
+      tone: 'Tone',
+      skill: 'Skill',
+    },
+    ja: {
+      pro: 'Pro',
+      more: '件',
+      install: 'インストール',
+      tone: 'Tone',
+      skill: 'Skill',
+    },
+  }, language);
+
   return (
     <div className="bg-white dark:bg-gray-800 rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300 p-6 border border-gray-200 dark:border-gray-700">
       {/* Icon & Title */}
@@ -23,7 +50,7 @@ export default function SkillCard({ skill, onInstall, isTone = false }) {
         </div>
         {skill.requiresPro && (
           <span className="px-2 py-1 text-xs font-medium bg-purple-100 dark:bg-purple-900 text-purple-800 dark:text-purple-200 rounded">
-            Pro
+            {copy.pro}
           </span>
         )}
       </div>
@@ -46,7 +73,7 @@ export default function SkillCard({ skill, onInstall, isTone = false }) {
           ))}
           {skill.keywords.length > 3 && (
             <span className="px-2 py-1 text-xs text-gray-500 dark:text-gray-400">
-              +{skill.keywords.length - 3} more
+              +{skill.keywords.length - 3} {copy.more}
             </span>
           )}
         </div>
@@ -70,7 +97,7 @@ export default function SkillCard({ skill, onInstall, isTone = false }) {
             d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"
           />
         </svg>
-        <span>Install {isTone ? 'Tone' : 'Skill'}</span>
+        <span>{copy.install} {isTone ? copy.tone : copy.skill}</span>
       </button>
     </div>
   );

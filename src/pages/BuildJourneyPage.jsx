@@ -1,25 +1,61 @@
 import React, { useEffect, useMemo, useState } from 'react';
 import { useLocation } from 'react-router-dom';
-import { journeyPosts } from '../data/journeyPosts';
+import { journeyPostsByLanguage } from '../data/journeyPosts';
 import JourneyPostContent, { extractJourneyHeadings } from '../components/JourneyPostContent';
+import { useAppPreferences } from '../contexts/AppPreferencesContext';
+import { getLocalizedCopy } from '../i18n/localize';
+
+const pageCopy = {
+  en: {
+    title: 'Build Journey',
+    subtitle: 'Field notes on design, tradeoffs, and the product decisions behind Reso.',
+    selectPost: 'Select a post',
+    posts: 'Posts',
+    onThisPost: 'On this post',
+  },
+  zh: {
+    title: 'Build Journey',
+    subtitle: '记录 Reso 在设计、取舍与实现过程中的关键决策。',
+    selectPost: '选择篇章',
+    posts: '篇章',
+    onThisPost: '本篇目录',
+  },
+  ja: {
+    title: 'Build Journey',
+    subtitle: 'Reso の設計・トレードオフ・意思決定を記録した開発ノートです。',
+    selectPost: '記事を選択',
+    posts: '記事一覧',
+    onThisPost: 'この投稿',
+  },
+};
 
 const BuildJourneyPage = () => {
   const location = useLocation();
-  const [activePostId, setActivePostId] = useState(`journey-${journeyPosts[0]?.id || ''}`);
+  const { language } = useAppPreferences();
+  const localizedPosts = getLocalizedCopy(journeyPostsByLanguage, language);
+  const copy = getLocalizedCopy(pageCopy, language);
+  const [activePostId, setActivePostId] = useState(`journey-${localizedPosts[0]?.id || ''}`);
 
   useEffect(() => {
+    if (!localizedPosts.length) return;
+
+    if (!localizedPosts.find((post) => `journey-${post.id}` === activePostId)) {
+      setActivePostId(`journey-${localizedPosts[0].id}`);
+      return;
+    }
+
     if (!location.hash) return;
 
     const sectionId = location.hash.slice(1);
-    const targetPost = journeyPosts.find((post) => `journey-${post.id}` === sectionId);
+    const targetPost = localizedPosts.find((post) => `journey-${post.id}` === sectionId);
 
     if (targetPost) {
       setActivePostId(sectionId);
     }
-  }, [location.hash]);
+  }, [activePostId, localizedPosts, location.hash]);
 
   const activePost =
-    journeyPosts.find((post) => `journey-${post.id}` === activePostId) || journeyPosts[0];
+    localizedPosts.find((post) => `journey-${post.id}` === activePostId) || localizedPosts[0];
 
   const postHeadings = useMemo(
     () => extractJourneyHeadings(activePost?.content, activePostId),
@@ -37,16 +73,16 @@ const BuildJourneyPage = () => {
       <div className="max-w-6xl mx-auto px-6">
         <section className="mb-12 max-w-3xl">
           <h1 className="text-4xl md:text-5xl leading-tight tracking-tight font-medium text-gray-900 dark:text-gray-100 mb-5">
-            Build Journey
+            {copy.title}
           </h1>
           <p className="text-base md:text-lg text-gray-600 dark:text-gray-400 leading-relaxed">
-            Field notes on design, tradeoffs, and the product decisions behind Reso.
+            {copy.subtitle}
           </p>
         </section>
 
         <div className="mb-6 lg:hidden">
           <label htmlFor="journey-post-select" className="block text-sm text-gray-500 dark:text-gray-400 mb-2">
-            Select a post
+            {copy.selectPost}
           </label>
           <select
             id="journey-post-select"
@@ -54,7 +90,7 @@ const BuildJourneyPage = () => {
             onChange={(event) => switchPost(event.target.value)}
             className="w-full rounded-lg border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-900 px-3 py-2 text-sm text-gray-800 dark:text-gray-100"
           >
-            {journeyPosts.map((post) => (
+            {localizedPosts.map((post) => (
               <option key={post.id} value={`journey-${post.id}`}>
                 {post.title}
               </option>
@@ -65,10 +101,10 @@ const BuildJourneyPage = () => {
         <div className="grid grid-cols-1 lg:grid-cols-[240px_minmax(0,1fr)] xl:grid-cols-[240px_minmax(0,1fr)_180px] gap-8 xl:gap-10">
           <aside className="hidden lg:block lg:sticky lg:top-28 lg:self-start lg:max-h-[calc(100vh-8rem)] lg:overflow-y-auto">
             <p className="text-xs uppercase tracking-wider text-gray-400 dark:text-gray-500 mb-3">
-              Posts
+              {copy.posts}
             </p>
             <nav className="space-y-1">
-              {journeyPosts.map((post) => {
+              {localizedPosts.map((post) => {
                 const postId = `journey-${post.id}`;
                 const isActive = activePostId === postId;
 
@@ -102,7 +138,7 @@ const BuildJourneyPage = () => {
             {postHeadings.length > 0 && (
               <div>
                 <p className="text-xs uppercase tracking-wider text-gray-400 dark:text-gray-500 mb-3">
-                  On this post
+                  {copy.onThisPost}
                 </p>
                 <nav className="space-y-1">
                   {postHeadings.map((heading) => (
