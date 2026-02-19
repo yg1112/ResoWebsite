@@ -250,13 +250,13 @@ const Navbar = ({ isScrolled = false }) => {
           <div
             ref={resourcesMenuRef}
             className="relative"
-            onPointerEnter={(e) => {
-              console.log('🟢 ENTER parent container', e.target.className);
+            onMouseEnter={(e) => {
+              console.log('🟢 MOUSE ENTER parent container');
               resourcesHoveringRef.current = true;
               openResourcesMenu();
             }}
-            onPointerLeave={(e) => {
-              console.log('🔴 LEAVE parent container', e.target.className, 'relatedTarget:', e.relatedTarget?.className);
+            onMouseLeave={(e) => {
+              console.log('🔴 MOUSE LEAVE parent container');
               resourcesHoveringRef.current = false;
               closeResourcesMenu();
             }}
