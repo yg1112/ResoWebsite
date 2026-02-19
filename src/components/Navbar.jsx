@@ -250,11 +250,13 @@ const Navbar = ({ isScrolled = false }) => {
           <div
             ref={resourcesMenuRef}
             className="relative"
-            onPointerEnter={() => {
+            onPointerEnter={(e) => {
+              console.log('🟢 ENTER parent container', e.target.className);
               resourcesHoveringRef.current = true;
               openResourcesMenu();
             }}
-            onPointerLeave={() => {
+            onPointerLeave={(e) => {
+              console.log('🔴 LEAVE parent container', e.target.className, 'relatedTarget:', e.relatedTarget?.className);
               resourcesHoveringRef.current = false;
               closeResourcesMenu();
             }}
@@ -284,12 +286,17 @@ const Navbar = ({ isScrolled = false }) => {
               <>
                 {/* Invisible hover area extending down to cover entire dropdown */}
                 <div
-                  className="absolute top-0 -left-4 right-0 bottom-0 h-[360px]"
+                  className="absolute top-0 -left-4 right-0 h-[360px] pointer-events-none"
                   aria-hidden="true"
+                  style={{ background: 'rgba(255,0,0,0.1)' }}
+                  onPointerEnter={(e) => console.log('🟡 ENTER invisible overlay')}
+                  onPointerLeave={(e) => console.log('🟠 LEAVE invisible overlay')}
                 />
                 {/* Dropdown menu */}
                 <div
                   className="absolute top-full left-0 mt-2 w-52 min-w-full rounded-xl border border-black/10 dark:border-white/10 bg-white/98 dark:bg-black/95 backdrop-blur-xl shadow-lg p-1.5 z-10"
+                  onPointerEnter={(e) => console.log('🔵 ENTER dropdown menu')}
+                  onPointerLeave={(e) => console.log('🟣 LEAVE dropdown menu')}
                 >
                   {resourceLinks.map((resource) => {
                     if (resource.external) {
