@@ -59,112 +59,36 @@
         }
     </style>
 </head>
-<body class="antialiased text-gray-500 dark:text-gray-400 dark:text-gray-400">
+<body class="antialiased text-gray-500 dark:text-gray-400">
 
     <div class="max-w-3xl mx-auto px-6 py-20">
-        
+
+        <!-- Language Switcher -->
+        <div class="mb-8 flex justify-end gap-2">
+            <button onclick="setLanguage('en')" class="language-btn px-3 py-1.5 rounded-lg text-sm transition-colors" data-lang="en">English</button>
+            <button onclick="setLanguage('zh')" class="language-btn px-3 py-1.5 rounded-lg text-sm transition-colors" data-lang="zh">简体中文</button>
+            <button onclick="setLanguage('ja')" class="language-btn px-3 py-1.5 rounded-lg text-sm transition-colors" data-lang="ja">日本語</button>
+        </div>
+
         <header class="mb-12">
-            <h1 class="text-4xl font-bold mb-4 text-gray-900 dark:text-gray-100">Terms of Service</h1>
-            <p class="text-gray-500 dark:text-gray-400 text-sm">Last updated: December 19, 2025</p>
+            <h1 id="page-title" class="text-4xl font-bold mb-4 text-gray-900 dark:text-gray-100">Terms of Service</h1>
+            <p id="last-updated" class="text-gray-500 dark:text-gray-400 text-sm">Last updated: February 18, 2026</p>
         </header>
 
-        <section class="space-y-10 text-gray-500 dark:text-gray-400 leading-relaxed">
-            <div>
-                <h2 class="text-xl font-semibold text-gray-900 dark:text-gray-100 mb-3">1. Agreement to Terms</h2>
-                <p>
-                    These Terms of Service constitute a legally binding agreement made between you ("User") and DZG STUDIO LLC ("Company", "we", "us", or "our"), concerning your access to and use of the Reso macOS application. By accessing or using the Application, you agree to be bound by these Terms.
-                </p>
-            </div>
-
-            <div>
-                <h2 class="text-xl font-semibold text-gray-900 dark:text-gray-100 mb-3">2. Lifetime License</h2>
-                <p>Reso is available as a one-time purchase with a Lifetime License:</p>
-                <ul class="list-disc pl-5 mt-3 space-y-3">
-                    <li>
-                        <strong class="text-gray-900 dark:text-gray-100">Lifetime License ($29.99 one-time payment):</strong> Provides permanent access to the Application. Your license never expires and you can use the app forever on your authorized devices.
-                    </li>
-                    <li>
-                        <strong class="text-gray-900 dark:text-gray-100">Updates:</strong> Lifetime License includes 1 year of free updates from the date of purchase. After this period, you may continue using the Application indefinitely with the version you have, or optionally extend updates for an additional year at a discounted rate.
-                    </li>
-                    <li>
-                        <strong class="text-gray-900 dark:text-gray-100">Multi-Device:</strong> License purchases allow activation on up to 2 personal Macs.
-                    </li>
-                </ul>
-                <p class="mt-3 text-sm">
-                    Payment is processed securely by LemonSqueezy.
-                </p>
-            </div>
-
-            <div>
-                <h2 class="text-xl font-semibold text-gray-900 dark:text-gray-100 mb-3">3. License Activation</h2>
-                <p>
-                    Upon purchase, you will receive a unique activation key via email. License keys are valid for activation on up to 2 personal devices. Licenses are non-transferable and for personal use only.
-                </p>
-            </div>
-
-            <div>
-                <h2 class="text-xl font-semibold text-gray-900 dark:text-gray-100 mb-3">4. Use of the Application</h2>
-                <p>
-                    You agree not to modify, reverse engineer, decompile, or disassemble the Application. You acknowledge that the Application uses local AI models for processing and does not transmit your voice or text content to our servers.
-                </p>
-            </div>
-
-            <div>
-                <h2 class="text-xl font-semibold text-gray-900 dark:text-gray-100 mb-3">5. Intellectual Property</h2>
-                <p>
-                    The Application, including its source code, design, and functionality, is owned by DZG STUDIO LLC and is protected by copyright, trademark, and other intellectual property laws.
-                </p>
-            </div>
-
-            <div>
-                <h2 class="text-xl font-semibold text-gray-900 dark:text-gray-100 mb-3">6. Disclaimer of Warranty</h2>
-                <p class="uppercase text-xs tracking-wide mb-2 text-gray-500 dark:text-gray-400">READ CAREFULLY</p>
-                <p>
-                    The Application is provided "AS IS" and "AS AVAILABLE" without warranties of any kind, either express or implied. We do not guarantee that the Application will be error-free or uninterrupted. The accuracy of voice transcription depends on various factors including audio quality and hardware performance.
-                </p>
-            </div>
-
-            <div>
-                <h2 class="text-xl font-semibold text-gray-900 dark:text-gray-100 mb-3">7. Limitation of Liability</h2>
-                <p>
-                    In no event shall DZG STUDIO LLC be liable for any indirect, consequential, incidental, or punitive damages arising out of your use or inability to use the Application. Our total liability to you for any claims shall not exceed the amount you paid for the Application in the past 12 months.
-                </p>
-            </div>
-
-            <div>
-                <h2 class="text-xl font-semibold text-gray-900 dark:text-gray-100 mb-3">8. Refunds</h2>
-                <p>
-                    We offer a 30-day money-back guarantee. If you are not satisfied for any reason, please contact us at <a href="mailto:dev@dzgapp.com" class="text-orange-500 hover:underline">dev@dzgapp.com</a> within 30 days of purchase for a full refund, no questions asked.
-                </p>
-            </div>
-
-            <div>
-                <h2 class="text-xl font-semibold text-gray-900 dark:text-gray-100 mb-3">9. Changes to Terms</h2>
-                <p>
-                    We reserve the right to modify these Terms at any time. We will notify you of any changes by posting the new Terms on this page. Continued use of the Application after changes constitutes acceptance of the new Terms.
-                </p>
-            </div>
-
-            <div>
-                <h2 class="text-xl font-semibold text-gray-900 dark:text-gray-100 mb-3">10. Contact</h2>
-                <p>
-                    If you have questions regarding these Terms, please contact: <a href="mailto:dev@dzgapp.com" class="text-orange-500 hover:underline">dev@dzgapp.com</a>.
-                </p>
-            </div>
-        </section>
+        <div id="content"></div>
 
         <footer class="mt-20 pt-8 border-t border-gray-200 dark:border-gray-800 text-sm text-gray-500 dark:text-gray-400">
             <div class="flex justify-between items-center">
-                <p>&copy; 2025 DZG STUDIO LLC.</p>
+                <p>&copy; 2026 DZG STUDIO LLC.</p>
                 <div class="flex items-center gap-4">
-                    <a href="/" class="hover:text-gray-900 dark:hover:text-gray-100 transition-colors">Back to Home</a>
+                    <a href="/" class="hover:text-gray-900 dark:hover:text-gray-100 transition-colors" id="back-home">Back to Home</a>
                     <div class="w-px h-3 bg-gray-300 dark:bg-gray-700"></div>
                     <button
                         onclick="toggleTheme()"
                         class="text-gray-400 dark:text-gray-500 hover:text-gray-600 dark:hover:text-gray-300 transition-colors"
-                        aria-label="Toggle light mode"
+                        aria-label="Toggle theme"
                     >
-                        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <svg class="dark:hidden" xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                             <circle cx="12" cy="12" r="5"></circle>
                             <line x1="12" y1="1" x2="12" y2="3"></line>
                             <line x1="12" y1="21" x2="12" y2="23"></line>
@@ -175,13 +99,7 @@
                             <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
                             <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
                         </svg>
-                    </button>
-                    <button
-                        onclick="toggleTheme()"
-                        class="text-gray-400 dark:text-gray-500 hover:text-gray-600 dark:hover:text-gray-300 transition-colors"
-                        aria-label="Toggle dark mode"
-                    >
-                        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <svg class="hidden dark:block" xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                             <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
                         </svg>
                     </button>
@@ -192,12 +110,231 @@
     </div>
 
     <script>
-        // Theme toggle functionality
+        const content = {
+            en: {
+                title: 'Terms of Service',
+                lastUpdated: 'Last updated: February 18, 2026',
+                backHome: 'Back to Home',
+                sections: [
+                    {
+                        title: '1. Agreement to Terms',
+                        content: 'These Terms of Service constitute a legally binding agreement made between you ("User") and DZG STUDIO LLC ("Company", "we", "us", or "our"), concerning your access to and use of the Reso macOS application. By accessing or using the Application, you agree to be bound by these Terms.'
+                    },
+                    {
+                        title: '2. Lifetime License',
+                        content: 'Reso is available as a one-time purchase with a Lifetime License:',
+                        list: [
+                            '<strong class="text-gray-900 dark:text-gray-100">Lifetime License ($29.99 one-time payment):</strong> Provides permanent access to the Application. Your license never expires and you can use the app forever on your authorized devices.',
+                            '<strong class="text-gray-900 dark:text-gray-100">Updates:</strong> Lifetime License includes 1 year of free updates from the date of purchase. After this period, you may continue using the Application indefinitely with the version you have, or optionally extend updates for an additional year at a discounted rate.',
+                            '<strong class="text-gray-900 dark:text-gray-100">Multi-Device:</strong> License purchases allow activation on up to 2 personal Macs.'
+                        ],
+                        footer: 'Payment is processed securely by LemonSqueezy.'
+                    },
+                    {
+                        title: '3. License Activation',
+                        content: 'Upon purchase, you will receive a unique activation key via email. License keys are valid for activation on up to 2 personal devices. Licenses are non-transferable and for personal use only.'
+                    },
+                    {
+                        title: '4. Use of the Application',
+                        content: 'You agree not to modify, reverse engineer, decompile, or disassemble the Application. You acknowledge that the Application uses local AI models for processing and does not transmit your voice or text content to our servers.'
+                    },
+                    {
+                        title: '5. Intellectual Property',
+                        content: 'The Application, including its source code, design, and functionality, is owned by DZG STUDIO LLC and is protected by copyright, trademark, and other intellectual property laws.'
+                    },
+                    {
+                        title: '6. Disclaimer of Warranty',
+                        label: 'READ CAREFULLY',
+                        content: 'The Application is provided "AS IS" and "AS AVAILABLE" without warranties of any kind, either express or implied. We do not guarantee that the Application will be error-free or uninterrupted. The accuracy of voice transcription depends on various factors including audio quality and hardware performance.'
+                    },
+                    {
+                        title: '7. Limitation of Liability',
+                        content: 'In no event shall DZG STUDIO LLC be liable for any indirect, consequential, incidental, or punitive damages arising out of your use or inability to use the Application. Our total liability to you for any claims shall not exceed the amount you paid for the Application in the past 12 months.'
+                    },
+                    {
+                        title: '8. Refunds',
+                        content: 'We offer a 30-day money-back guarantee. If you are not satisfied for any reason, please contact us at <a href="mailto:dev@dzgapp.com" class="text-orange-500 hover:underline">dev@dzgapp.com</a> within 30 days of purchase for a full refund, no questions asked.'
+                    },
+                    {
+                        title: '9. Changes to Terms',
+                        content: 'We reserve the right to modify these Terms at any time. We will notify you of any changes by posting the new Terms on this page. Continued use of the Application after changes constitutes acceptance of the new Terms.'
+                    },
+                    {
+                        title: '10. Contact',
+                        content: 'If you have questions regarding these Terms, please contact: <a href="mailto:dev@dzgapp.com" class="text-orange-500 hover:underline">dev@dzgapp.com</a>.'
+                    }
+                ]
+            },
+            zh: {
+                title: '服务条款',
+                lastUpdated: '最后更新：2026 年 2 月 18 日',
+                backHome: '返回首页',
+                sections: [
+                    {
+                        title: '1. 条款协议',
+                        content: '本服务条款构成您（"用户"）与 DZG STUDIO LLC（"公司"、"我们"）之间具有法律约束力的协议，涉及您对 Reso macOS 应用程序的访问和使用。访问或使用本应用程序即表示您同意受本条款约束。'
+                    },
+                    {
+                        title: '2. 终身许可证',
+                        content: 'Reso 提供一次性购买的终身许可证：',
+                        list: [
+                            '<strong class="text-gray-900 dark:text-gray-100">终身许可证（$29.99 一次性付款）：</strong>提供对应用程序的永久访问权限。您的许可证永不过期，您可以在授权设备上永久使用该应用。',
+                            '<strong class="text-gray-900 dark:text-gray-100">更新：</strong>终身许可证包括自购买之日起 1 年的免费更新。此期限后，您可以继续无限期使用现有版本，或选择以折扣价延长更新一年。',
+                            '<strong class="text-gray-900 dark:text-gray-100">多设备：</strong>许可证购买允许在最多 2 台个人 Mac 上激活。'
+                        ],
+                        footer: '付款由 LemonSqueezy 安全处理。'
+                    },
+                    {
+                        title: '3. 许可证激活',
+                        content: '购买后，您将通过电子邮件收到唯一的激活密钥。许可证密钥可在最多 2 台个人设备上激活。许可证不可转让，仅供个人使用。'
+                    },
+                    {
+                        title: '4. 应用程序使用',
+                        content: '您同意不修改、逆向工程、反编译或反汇编本应用程序。您确认本应用程序使用本地 AI 模型进行处理，不会将您的语音或文本内容传输到我们的服务器。'
+                    },
+                    {
+                        title: '5. 知识产权',
+                        content: '本应用程序（包括其源代码、设计和功能）由 DZG STUDIO LLC 拥有，并受版权、商标和其他知识产权法保护。'
+                    },
+                    {
+                        title: '6. 免责声明',
+                        label: '请仔细阅读',
+                        content: '本应用程序按"原样"和"可用"提供，不提供任何明示或暗示的保证。我们不保证应用程序将无错误或不间断。语音转录的准确性取决于各种因素，包括音频质量和硬件性能。'
+                    },
+                    {
+                        title: '7. 责任限制',
+                        content: 'DZG STUDIO LLC 在任何情况下均不对因您使用或无法使用本应用程序而产生的任何间接、后果性、附带或惩罚性损害承担责任。我们对您的任何索赔的总责任不得超过您在过去 12 个月内为本应用程序支付的金额。'
+                    },
+                    {
+                        title: '8. 退款',
+                        content: '我们提供 30 天退款保证。如果您因任何原因不满意，请在购买后 30 天内通过 <a href="mailto:dev@dzgapp.com" class="text-orange-500 hover:underline">dev@dzgapp.com</a> 联系我们，获得全额退款，无需任何理由。'
+                    },
+                    {
+                        title: '9. 条款变更',
+                        content: '我们保留随时修改这些条款的权利。我们将通过在本页面发布新条款来通知您任何变更。变更后继续使用应用程序即表示接受新条款。'
+                    },
+                    {
+                        title: '10. 联系方式',
+                        content: '如果您对这些条款有任何疑问，请联系：<a href="mailto:dev@dzgapp.com" class="text-orange-500 hover:underline">dev@dzgapp.com</a>。'
+                    }
+                ]
+            },
+            ja: {
+                title: '利用規約',
+                lastUpdated: '最終更新：2026年2月18日',
+                backHome: 'ホームに戻る',
+                sections: [
+                    {
+                        title: '1. 規約への同意',
+                        content: '本利用規約は、お客様（「ユーザー」）と DZG STUDIO LLC（「当社」）との間の法的拘束力のある契約であり、Reso macOS アプリケーションへのアクセスおよび使用に関するものです。本アプリケーションにアクセスまたは使用することにより、お客様は本規約に拘束されることに同意したものとみなされます。'
+                    },
+                    {
+                        title: '2. 永久ライセンス',
+                        content: 'Reso は永久ライセンスの一回限りの購入として提供されます：',
+                        list: [
+                            '<strong class="text-gray-900 dark:text-gray-100">永久ライセンス（$29.99 一回払い）：</strong>アプリケーションへの永続的なアクセスを提供します。ライセンスは期限切れになることなく、承認されたデバイスで永久に使用できます。',
+                            '<strong class="text-gray-900 dark:text-gray-100">アップデート：</strong>永久ライセンスには、購入日から1年間の無料アップデートが含まれます。この期間後、現在のバージョンを無期限に使用し続けるか、割引価格で1年間アップデートを延長することができます。',
+                            '<strong class="text-gray-900 dark:text-gray-100">マルチデバイス：</strong>ライセンス購入により、最大2台の個人用 Mac でアクティベーションが可能です。'
+                        ],
+                        footer: '支払いは LemonSqueezy によって安全に処理されます。'
+                    },
+                    {
+                        title: '3. ライセンスのアクティベーション',
+                        content: '購入後、メールで固有のアクティベーションキーが送信されます。ライセンスキーは最大2台の個人用デバイスでアクティベーション可能です。ライセンスは譲渡不可で、個人使用のみです。'
+                    },
+                    {
+                        title: '4. アプリケーションの使用',
+                        content: 'お客様は、本アプリケーションを変更、リバースエンジニアリング、逆コンパイル、または逆アセンブルしないことに同意します。本アプリケーションは処理にローカル AI モデルを使用しており、音声やテキストコンテンツを当社のサーバーに送信しないことを確認します。'
+                    },
+                    {
+                        title: '5. 知的財産権',
+                        content: '本アプリケーション（ソースコード、デザイン、機能を含む）は DZG STUDIO LLC が所有し、著作権、商標、その他の知的財産法によって保護されています。'
+                    },
+                    {
+                        title: '6. 保証の免責',
+                        label: 'よくお読みください',
+                        content: '本アプリケーションは「現状のまま」および「利用可能な状態で」提供され、明示的または黙示的な保証はありません。アプリケーションがエラーフリーまたは中断されないことを保証しません。音声転写の精度は、音質やハードウェア性能など、さまざまな要因に依存します。'
+                    },
+                    {
+                        title: '7. 責任の制限',
+                        content: 'DZG STUDIO LLC は、本アプリケーションの使用または使用不能から生じる間接的、結果的、付随的、または懲罰的損害について一切の責任を負いません。お客様に対する当社の総責任は、過去12か月間に本アプリケーションに対してお支払いいただいた金額を超えないものとします。'
+                    },
+                    {
+                        title: '8. 返金',
+                        content: '30日間の返金保証を提供しています。何らかの理由でご満足いただけない場合は、購入から30日以内に <a href="mailto:dev@dzgapp.com" class="text-orange-500 hover:underline">dev@dzgapp.com</a> までご連絡いただければ、全額返金いたします。理由は問いません。'
+                    },
+                    {
+                        title: '9. 規約の変更',
+                        content: '当社はいつでも本規約を変更する権利を留保します。本ページに新しい規約を掲載することにより、変更をお知らせします。変更後も継続してアプリケーションを使用することは、新しい規約への同意を意味します。'
+                    },
+                    {
+                        title: '10. お問い合わせ',
+                        content: '本規約に関するご質問がございましたら、<a href="mailto:dev@dzgapp.com" class="text-orange-500 hover:underline">dev@dzgapp.com</a> までご連絡ください。'
+                    }
+                ]
+            }
+        };
+
+        function renderContent(lang) {
+            const data = content[lang];
+            const contentDiv = document.getElementById('content');
+
+            let html = '<section class="space-y-10 text-gray-500 dark:text-gray-400 leading-relaxed">';
+
+            data.sections.forEach(section => {
+                html += '<div>';
+                html += `<h2 class="text-xl font-semibold text-gray-900 dark:text-gray-100 mb-3">${section.title}</h2>`;
+
+                if (section.label) {
+                    html += `<p class="uppercase text-xs tracking-wide mb-2 text-gray-500 dark:text-gray-400">${section.label}</p>`;
+                }
+
+                html += `<p>${section.content}</p>`;
+
+                if (section.list) {
+                    html += '<ul class="list-disc pl-5 mt-3 space-y-3">';
+                    section.list.forEach(item => {
+                        html += `<li>${item}</li>`;
+                    });
+                    html += '</ul>';
+                }
+
+                if (section.footer) {
+                    html += `<p class="mt-3 text-sm">${section.footer}</p>`;
+                }
+
+                html += '</div>';
+            });
+
+            html += '</section>';
+            contentDiv.innerHTML = html;
+
+            document.getElementById('page-title').textContent = data.title;
+            document.getElementById('last-updated').textContent = data.lastUpdated;
+            document.getElementById('back-home').textContent = data.backHome;
+        }
+
+        function setLanguage(lang) {
+            localStorage.setItem('language', lang);
+            renderContent(lang);
+            updateLanguageButtons(lang);
+        }
+
+        function updateLanguageButtons(lang) {
+            document.querySelectorAll('.language-btn').forEach(btn => {
+                if (btn.dataset.lang === lang) {
+                    btn.classList.add('bg-black', 'dark:bg-white', 'text-white', 'dark:text-black');
+                    btn.classList.remove('text-gray-600', 'dark:text-gray-400', 'hover:bg-gray-100', 'dark:hover:bg-gray-800');
+                } else {
+                    btn.classList.remove('bg-black', 'dark:bg-white', 'text-white', 'dark:text-black');
+                    btn.classList.add('text-gray-600', 'dark:text-gray-400', 'hover:bg-gray-100', 'dark:hover:bg-gray-800');
+                }
+            });
+        }
+
         function initTheme() {
             const savedTheme = localStorage.getItem('theme');
-            const prefersDark = savedTheme === 'dark';
-
-            if (prefersDark) {
+            if (savedTheme === 'dark') {
                 document.documentElement.classList.add('dark');
             }
         }
@@ -207,8 +344,10 @@
             localStorage.setItem('theme', isDark ? 'dark' : 'light');
         }
 
-        // Initialize theme on load
+        // Initialize
         initTheme();
+        const savedLang = localStorage.getItem('language') || 'en';
+        setLanguage(savedLang);
     </script>
 
 </body>

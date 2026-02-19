@@ -5,10 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Privacy Policy - Reso</title>
     <meta name="description" content="Privacy Policy for Reso - 100% Local, Secure Voice Processing.">
-
-    <!-- Switzer Font -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fontsource/switzer@5.0.0/index.min.css" />
-
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
         tailwind.config = {
@@ -16,14 +13,12 @@
         }
     </script>
     <style>
-        /* Grid paper background */
         body {
             background-color: #fafafa;
             position: relative;
             font-family: 'Switzer', sans-serif;
             transition: background-color 0.3s ease;
         }
-
         body::before {
             content: '';
             position: fixed;
@@ -39,19 +34,14 @@
             -webkit-mask-image: radial-gradient(ellipse 80% 60% at 50% 40%, black 0%, transparent 100%);
             pointer-events: none;
             z-index: -1;
-            transition: opacity 0.3s ease;
         }
-
         body > * {
             position: relative;
             z-index: 1;
         }
-
-        /* Dark mode */
         html.dark body {
             background-color: #1a1a1a;
         }
-
         html.dark body::before {
             background-image:
                 linear-gradient(rgba(255, 255, 255, 0.06) 1px, transparent 1px),
@@ -59,111 +49,26 @@
         }
     </style>
 </head>
-<body class="antialiased text-gray-500 dark:text-gray-400 dark:text-gray-400">
-
+<body class="antialiased text-gray-500 dark:text-gray-400">
     <div class="max-w-3xl mx-auto px-6 py-20">
-        
+        <div class="mb-8 flex justify-end gap-2">
+            <button onclick="setLanguage('en')" class="language-btn px-3 py-1.5 rounded-lg text-sm transition-colors" data-lang="en">English</button>
+            <button onclick="setLanguage('zh')" class="language-btn px-3 py-1.5 rounded-lg text-sm transition-colors" data-lang="zh">简体中文</button>
+            <button onclick="setLanguage('ja')" class="language-btn px-3 py-1.5 rounded-lg text-sm transition-colors" data-lang="ja">日本語</button>
+        </div>
         <header class="mb-12">
-            <h1 class="text-4xl font-bold mb-4 text-gray-900 dark:text-gray-100">Privacy Policy</h1>
-            <p class="text-gray-500 dark:text-gray-400">Last updated: December 27, 2025</p>
+            <h1 id="page-title" class="text-4xl font-bold mb-4 text-gray-900 dark:text-gray-100"></h1>
+            <p id="last-updated" class="text-gray-500 dark:text-gray-400"></p>
         </header>
-
-        <section class="space-y-8 text-gray-500 dark:text-gray-400 leading-relaxed">
-            <div>
-                <h2 class="text-xl font-semibold text-gray-900 dark:text-gray-100 mb-3">1. Introduction</h2>
-                <p>
-                    Reso ("we", "our", or "us") respects your privacy. Our core philosophy is simple: 
-                    <strong class="text-gray-900 dark:text-gray-100">What happens on your Mac, stays on your Mac.</strong> 
-                    This Privacy Policy explains how our macOS application handles your data.
-                </p>
-            </div>
-
-            <div>
-                <h2 class="text-xl font-semibold text-gray-900 dark:text-gray-100 mb-3">2. Local Processing</h2>
-                <p>
-                    Reso is designed as a privacy-first application. All voice processing, transcription, and text generation occurs directly on your device using the Apple Neural Engine and local AI models. 
-                </p>
-                <ul class="list-disc pl-5 mt-2 space-y-1">
-                    <li>We do <strong>not</strong> upload your voice recordings to any cloud server.</li>
-                    <li>We do <strong>not</strong> send your transcribed text to any third party.</li>
-                    <li>Your content remains entirely on your local machine.</li>
-                </ul>
-            </div>
-
-            <div>
-                <h2 class="text-xl font-semibold text-gray-900 dark:text-gray-100 mb-3">3. Optional Analytics (Your Choice)</h2>
-                <p>
-                    To help us improve Reso, you may <strong class="text-gray-900 dark:text-gray-100">choose</strong> to share anonymous usage statistics. This is entirely optional and can be toggled on or off in the app settings at any time.
-                </p>
-                <p class="mt-3">
-                    We use <strong class="text-gray-900 dark:text-gray-100">TelemetryDeck</strong> to collect anonymized usage statistics. This helps us understand feature usage frequency (e.g., session starts). All data is anonymized and does not contain your voice, text, or any personally identifiable information.
-                </p>
-                <p class="mt-3 text-sm">If enabled, we may collect:</p>
-                <ul class="list-disc pl-5 mt-2 space-y-1 text-sm">
-                    <li>App usage patterns (e.g., feature usage frequency, session duration)</li>
-                    <li>Device type and macOS version</li>
-                    <li>Crash reports and performance metrics</li>
-                </ul>
-                <p class="mt-3 text-sm">We <strong>never</strong> collect:</p>
-                <ul class="list-disc pl-5 mt-2 space-y-1 text-sm">
-                    <li>Your voice recordings or transcribed content</li>
-                    <li>Personal identifiable information</li>
-                    <li>Data from other applications</li>
-                </ul>
-            </div>
-
-            <div>
-                <h2 class="text-xl font-semibold text-gray-900 dark:text-gray-100 mb-3">4. Billing, Licenses &amp; Personal Data</h2>
-                <p class="mb-3">
-                    All payments and subscriptions are processed securely via <strong class="text-gray-900 dark:text-gray-100">LemonSqueezy</strong>. LemonSqueezy acts as our merchant of record and handles all payment processing. We <strong class="text-gray-900 dark:text-gray-100">do not</strong> store your credit card information. We retain your <strong class="text-gray-900 dark:text-gray-100">email address</strong> solely to deliver your license key, validate your license activation, and provide customer support.
-                </p>
-                <p class="mt-4 text-sm">
-                    The application may periodically connect to our servers to validate your license key status and check for available updates.
-                </p>
-            </div>
-
-            <div>
-                <h2 class="text-xl font-semibold text-gray-900 dark:text-gray-100 mb-3">5. Third-Party Services</h2>
-                <p>
-                    Our website uses basic analytics to measure site traffic. This does not connect to the Reso application itself. The application is completely isolated from website tracking.
-                </p>
-            </div>
-
-            <div>
-                <h2 class="text-xl font-semibold text-gray-900 dark:text-gray-100 mb-3">6. Your Data Rights</h2>
-                <p class="mb-3">
-                    You own the data generated on your Mac. You can delete the app and all local data at any time.
-                </p>
-                <ul class="list-disc pl-5 mt-2 space-y-3">
-                    <li>
-                        <strong class="text-gray-900 dark:text-gray-100">Marketing:</strong> We will <strong class="text-gray-900 dark:text-gray-100">never</strong> sell your email address or data to third parties.
-                    </li>
-                    <li>
-                        <strong class="text-gray-900 dark:text-gray-100">Deletion:</strong> If you purchased directly via Stripe and wish to have your purchase record/email removed from our database, please contact us at <a href="mailto:dev@dzgapp.com" class="text-orange-500 hover:underline">dev@dzgapp.com</a>.
-                    </li>
-                </ul>
-            </div>
-
-            <div>
-                <h2 class="text-xl font-semibold text-gray-900 dark:text-gray-100 mb-3">7. Contact Us</h2>
-                <p>
-                    If you have any questions about this Privacy Policy, please contact us at: <a href="mailto:dev@dzgapp.com" class="text-orange-500 hover:underline">dev@dzgapp.com</a>.
-                </p>
-            </div>
-        </section>
-
+        <div id="content"></div>
         <footer class="mt-20 pt-8 border-t border-gray-200 dark:border-gray-800 text-sm text-gray-500 dark:text-gray-400">
             <div class="flex justify-between items-center">
-                <p>&copy; 2025 DZG STUDIO LLC.</p>
+                <p>&copy; 2026 DZG STUDIO LLC.</p>
                 <div class="flex items-center gap-4">
-                    <a href="/" class="hover:text-gray-900 dark:hover:text-gray-100 transition-colors">Back to Home</a>
+                    <a href="/" id="back-home" class="hover:text-gray-900 dark:hover:text-gray-100 transition-colors"></a>
                     <div class="w-px h-3 bg-gray-300 dark:bg-gray-700"></div>
-                    <button
-                        onclick="toggleTheme()"
-                        class="text-gray-400 dark:text-gray-500 hover:text-gray-600 dark:hover:text-gray-300 transition-colors"
-                        aria-label="Toggle light mode"
-                    >
-                        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <button onclick="toggleTheme()" class="text-gray-400 dark:text-gray-500 hover:text-gray-600 dark:hover:text-gray-300 transition-colors">
+                        <svg class="dark:hidden" xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                             <circle cx="12" cy="12" r="5"></circle>
                             <line x1="12" y1="1" x2="12" y2="3"></line>
                             <line x1="12" y1="21" x2="12" y2="23"></line>
@@ -174,42 +79,119 @@
                             <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
                             <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
                         </svg>
-                    </button>
-                    <button
-                        onclick="toggleTheme()"
-                        class="text-gray-400 dark:text-gray-500 hover:text-gray-600 dark:hover:text-gray-300 transition-colors"
-                        aria-label="Toggle dark mode"
-                    >
-                        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <svg class="hidden dark:block" xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                             <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
                         </svg>
                     </button>
                 </div>
             </div>
         </footer>
-
     </div>
-
     <script>
-        // Theme toggle functionality
-        function initTheme() {
-            const savedTheme = localStorage.getItem('theme');
-            const prefersDark = savedTheme === 'dark';
+const content = {
+    en: {
+        title: 'Privacy Policy',
+        lastUpdated: 'Last updated: February 18, 2026',
+        backHome: 'Back to Home',
+        tagline: '<strong class="text-gray-900 dark:text-gray-100">What happens on your Mac, stays on your Mac.</strong>',
+        sections: [
+            { title: '1. Introduction', content: 'Reso ("we", "our", or "us") respects your privacy. Our core philosophy is simple: <strong class="text-gray-900 dark:text-gray-100">What happens on your Mac, stays on your Mac.</strong> This Privacy Policy explains how our macOS application handles your data.' },
+            { title: '2. Local Processing', content: 'Reso is designed as a privacy-first application. All voice processing, transcription, and text generation occurs directly on your device using the Apple Neural Engine and local AI models.', list: ['We do <strong>not</strong> upload your voice recordings to any cloud server.', 'We do <strong>not</strong> send your transcribed text to any third party.', 'Your content remains entirely on your local machine.'] },
+            { title: '3. Optional Analytics (Your Choice)', content: 'To help us improve Reso, you may <strong class="text-gray-900 dark:text-gray-100">choose</strong> to share anonymous usage statistics. This is entirely optional and can be toggled on or off in the app settings at any time.<br><br>We use <strong class="text-gray-900 dark:text-gray-100">TelemetryDeck</strong> to collect anonymized usage statistics. This helps us understand feature usage frequency (e.g., session starts). All data is anonymized and does not contain your voice, text, or any personally identifiable information.', collect: 'If enabled, we may collect:', collectList: ['App usage patterns (e.g., feature usage frequency, session duration)', 'Device type and macOS version', 'Crash reports and performance metrics'], never: 'We <strong>never</strong> collect:', neverList: ['Your voice recordings or transcribed content', 'Personal identifiable information', 'Data from other applications'] },
+            { title: '4. Billing, Licenses & Personal Data', content: 'All payments and subscriptions are processed securely via <strong class="text-gray-900 dark:text-gray-100">LemonSqueezy</strong>. LemonSqueezy acts as our merchant of record and handles all payment processing. We <strong class="text-gray-900 dark:text-gray-100">do not</strong> store your credit card information. We retain your <strong class="text-gray-900 dark:text-gray-100">email address</strong> solely to deliver your license key, validate your license activation, and provide customer support.<br><br><span class="text-sm">The application may periodically connect to our servers to validate your license key status and check for available updates.</span>' },
+            { title: '5. Third-Party Services', content: 'Our website uses basic analytics to measure site traffic. This does not connect to the Reso application itself. The application is completely isolated from website tracking.' },
+            { title: '6. Your Data Rights', content: 'You own the data generated on your Mac. You can delete the app and all local data at any time.', list: ['<strong class="text-gray-900 dark:text-gray-100">Marketing:</strong> We will <strong class="text-gray-900 dark:text-gray-100">never</strong> sell your email address or data to third parties.', '<strong class="text-gray-900 dark:text-gray-100">Deletion:</strong> If you wish to have your purchase record/email removed from our database, please contact us at <a href="mailto:dev@dzgapp.com" class="text-orange-500 hover:underline">dev@dzgapp.com</a>.'] },
+            { title: '7. Contact Us', content: 'If you have any questions about this Privacy Policy, please contact us at: <a href="mailto:dev@dzgapp.com" class="text-orange-500 hover:underline">dev@dzgapp.com</a>.' }
+        ]
+    },
+    zh: {
+        title: '隐私政策',
+        lastUpdated: '最后更新：2026 年 2 月 18 日',
+        backHome: '返回首页',
+        sections: [
+            { title: '1. 简介', content: 'Reso（"我们"）尊重您的隐私。我们的核心理念很简单：<strong class="text-gray-900 dark:text-gray-100">在您 Mac 上发生的事情，就留在您的 Mac 上。</strong>本隐私政策说明我们的 macOS 应用程序如何处理您的数据。' },
+            { title: '2. 本地处理', content: 'Reso 设计为隐私优先的应用程序。所有语音处理、转录和文本生成都直接在您的设备上使用 Apple Neural Engine 和本地 AI 模型进行。', list: ['我们<strong>不会</strong>将您的语音录音上传到任何云服务器。', '我们<strong>不会</strong>将您的转录文本发送给任何第三方。', '您的内容完全保留在本地设备上。'] },
+            { title: '3. 可选分析（您的选择）', content: '为了帮助我们改进 Reso，您可以<strong class="text-gray-900 dark:text-gray-100">选择</strong>分享匿名使用统计数据。这完全是可选的，可以随时在应用设置中开启或关闭。<br><br>我们使用 <strong class="text-gray-900 dark:text-gray-100">TelemetryDeck</strong> 收集匿名使用统计数据。这帮助我们了解功能使用频率（例如会话启动）。所有数据都是匿名的，不包含您的语音、文本或任何个人身份信息。', collect: '如果启用，我们可能会收集：', collectList: ['应用使用模式（例如功能使用频率、会话持续时间）', '设备类型和 macOS 版本', '崩溃报告和性能指标'], never: '我们<strong>从不</strong>收集：', neverList: ['您的语音录音或转录内容', '个人身份信息', '来自其他应用程序的数据'] },
+            { title: '4. 账单、许可证和个人数据', content: '所有付款和订阅均由 <strong class="text-gray-900 dark:text-gray-100">LemonSqueezy</strong> 安全处理。LemonSqueezy 作为我们的记录商家，处理所有付款处理。我们<strong class="text-gray-900 dark:text-gray-100">不会</strong>存储您的信用卡信息。我们仅保留您的<strong class="text-gray-900 dark:text-gray-100">电子邮件地址</strong>以交付许可证密钥、验证许可证激活和提供客户支持。<br><br><span class="text-sm">应用程序可能会定期连接到我们的服务器以验证您的许可证密钥状态并检查可用更新。</span>' },
+            { title: '5. 第三方服务', content: '我们的网站使用基本分析来衡量网站流量。这不会连接到 Reso 应用程序本身。应用程序与网站跟踪完全隔离。' },
+            { title: '6. 您的数据权利', content: '您拥有在 Mac 上生成的数据。您可以随时删除应用程序和所有本地数据。', list: ['<strong class="text-gray-900 dark:text-gray-100">营销：</strong>我们<strong class="text-gray-900 dark:text-gray-100">绝不会</strong>向第三方出售您的电子邮件地址或数据。', '<strong class="text-gray-900 dark:text-gray-100">删除：</strong>如果您希望从我们的数据库中删除您的购买记录/电子邮件，请通过 <a href="mailto:dev@dzgapp.com" class="text-orange-500 hover:underline">dev@dzgapp.com</a> 联系我们。'] },
+            { title: '7. 联系我们', content: '如果您对本隐私政策有任何疑问，请通过以下方式联系我们：<a href="mailto:dev@dzgapp.com" class="text-orange-500 hover:underline">dev@dzgapp.com</a>。' }
+        ]
+    },
+    ja: {
+        title: 'プライバシーポリシー',
+        lastUpdated: '最終更新：2026年2月18日',
+        backHome: 'ホームに戻る',
+        sections: [
+            { title: '1. はじめに', content: 'Reso（「当社」）はお客様のプライバシーを尊重します。当社の核となる哲学はシンプルです：<strong class="text-gray-900 dark:text-gray-100">お客様の Mac で起こることは、Mac の中にとどまります。</strong>このプライバシーポリシーは、当社の macOS アプリケーションがデータをどのように扱うかを説明します。' },
+            { title: '2. ローカル処理', content: 'Reso はプライバシー第一のアプリケーションとして設計されています。すべての音声処理、文字起こし、テキスト生成は、Apple Neural Engine とローカル AI モデルを使用してデバイス上で直接行われます。', list: ['音声録音をクラウドサーバーにアップロード<strong>しません</strong>。', '文字起こしされたテキストを第三者に送信<strong>しません</strong>。', 'コンテンツは完全にローカルマシン上に残ります。'] },
+            { title: '3. オプションの分析（お客様の選択）', content: 'Reso の改善を支援するため、匿名使用統計を共有することを<strong class="text-gray-900 dark:text-gray-100">選択</strong>できます。これは完全にオプションで、いつでもアプリ設定でオン/オフを切り替えることができます。<br><br><strong class="text-gray-900 dark:text-gray-100">TelemetryDeck</strong> を使用して匿名使用統計を収集します。これにより、機能の使用頻度（例：セッション開始）を理解できます。すべてのデータは匿名化されており、音声、テキスト、または個人を特定できる情報は含まれません。', collect: '有効にした場合、以下を収集することがあります：', collectList: ['アプリの使用パターン（例：機能使用頻度、セッション期間）', 'デバイスタイプと macOS バージョン', 'クラッシュレポートとパフォーマンスメトリクス'], never: '以下は<strong>決して</strong>収集しません：', neverList: ['音声録音または文字起こしされたコンテンツ', '個人を特定できる情報', '他のアプリケーションからのデータ'] },
+            { title: '4. 請求、ライセンス、個人データ', content: 'すべての支払いとサブスクリプションは <strong class="text-gray-900 dark:text-gray-100">LemonSqueezy</strong> によって安全に処理されます。LemonSqueezy は当社の記録商人として機能し、すべての支払い処理を扱います。クレジットカード情報は<strong class="text-gray-900 dark:text-gray-100">保存しません</strong>。<strong class="text-gray-900 dark:text-gray-100">メールアドレス</strong>は、ライセンスキーの配信、ライセンスアクティベーションの検証、カスタマーサポートの提供のためにのみ保持します。<br><br><span class="text-sm">アプリケーションは、ライセンスキーのステータスを検証し、利用可能な更新を確認するため、定期的にサーバーに接続する場合があります。</span>' },
+            { title: '5. サードパーティサービス', content: '当社のウェブサイトは、サイトトラフィックを測定するために基本的な分析を使用します。これは Reso アプリケーション自体には接続しません。アプリケーションはウェブサイトトラッキングから完全に隔離されています。' },
+            { title: '6. データの権利', content: 'Mac で生成されたデータはお客様のものです。いつでもアプリとすべてのローカルデータを削除できます。', list: ['<strong class="text-gray-900 dark:text-gray-100">マーケティング：</strong>お客様のメールアドレスやデータを第三者に販売することは<strong class="text-gray-900 dark:text-gray-100">決してありません</strong>。', '<strong class="text-gray-900 dark:text-gray-100">削除：</strong>購入記録/メールをデータベースから削除したい場合は、<a href="mailto:dev@dzgapp.com" class="text-orange-500 hover:underline">dev@dzgapp.com</a> までご連絡ください。'] },
+            { title: '7. お問い合わせ', content: 'このプライバシーポリシーに関するご質問がございましたら、<a href="mailto:dev@dzgapp.com" class="text-orange-500 hover:underline">dev@dzgapp.com</a> までご連絡ください。' }
+        ]
+    }
+};
 
-            if (prefersDark) {
-                document.documentElement.classList.add('dark');
-            }
+function renderContent(lang) {
+    const data = content[lang];
+    let html = '<section class="space-y-8 text-gray-500 dark:text-gray-400 leading-relaxed">';
+    data.sections.forEach(s => {
+        html += '<div>';
+        html += `<h2 class="text-xl font-semibold text-gray-900 dark:text-gray-100 mb-3">${s.title}</h2>`;
+        html += `<p>${s.content}</p>`;
+        if (s.list) {
+            html += '<ul class="list-disc pl-5 mt-2 space-y-1">';
+            s.list.forEach(i => html += `<li>${i}</li>`);
+            html += '</ul>';
         }
-
-        function toggleTheme() {
-            const isDark = document.documentElement.classList.toggle('dark');
-            localStorage.setItem('theme', isDark ? 'dark' : 'light');
+        if (s.collect) {
+            html += `<p class="mt-3 text-sm">${s.collect}</p>`;
+            html += '<ul class="list-disc pl-5 mt-2 space-y-1 text-sm">';
+            s.collectList.forEach(i => html += `<li>${i}</li>`);
+            html += '</ul>';
+            html += `<p class="mt-3 text-sm">${s.never}</p>`;
+            html += '<ul class="list-disc pl-5 mt-2 space-y-1 text-sm">';
+            s.neverList.forEach(i => html += `<li>${i}</li>`);
+            html += '</ul>';
         }
+        html += '</div>';
+    });
+    html += '</section>';
+    document.getElementById('content').innerHTML = html;
+    document.getElementById('page-title').textContent = data.title;
+    document.getElementById('last-updated').textContent = data.lastUpdated;
+    document.getElementById('back-home').textContent = data.backHome;
+}
 
-        // Initialize theme on load
-        initTheme();
+function setLanguage(lang) {
+    localStorage.setItem('language', lang);
+    renderContent(lang);
+    document.querySelectorAll('.language-btn').forEach(btn => {
+        if (btn.dataset.lang === lang) {
+            btn.classList.add('bg-black', 'dark:bg-white', 'text-white', 'dark:text-black');
+            btn.classList.remove('text-gray-600', 'dark:text-gray-400', 'hover:bg-gray-100', 'dark:hover:bg-gray-800');
+        } else {
+            btn.classList.remove('bg-black', 'dark:bg-white', 'text-white', 'dark:text-black');
+            btn.classList.add('text-gray-600', 'dark:text-gray-400', 'hover:bg-gray-100', 'dark:hover:bg-gray-800');
+        }
+    });
+}
+
+function initTheme() {
+    if (localStorage.getItem('theme') === 'dark') {
+        document.documentElement.classList.add('dark');
+    }
+}
+
+function toggleTheme() {
+    const isDark = document.documentElement.classList.toggle('dark');
+    localStorage.setItem('theme', isDark ? 'dark' : 'light');
+}
+
+initTheme();
+setLanguage(localStorage.getItem('language') || 'en');
     </script>
-
 </body>
 </html>
-
