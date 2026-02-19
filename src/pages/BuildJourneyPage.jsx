@@ -1,7 +1,7 @@
-import React, { useEffect, useMemo, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import { journeyPostsByLanguage } from '../data/journeyPosts';
-import JourneyPostContent, { extractJourneyHeadings } from '../components/JourneyPostContent';
+import JourneyPostContent from '../components/JourneyPostContent';
 import { useAppPreferences } from '../contexts/AppPreferencesContext';
 import { getLocalizedCopy } from '../i18n/localize';
 
@@ -11,21 +11,18 @@ const pageCopy = {
     subtitle: 'Field notes on design, tradeoffs, and the thinking behind Reso.',
     selectPost: 'Select a post',
     posts: 'Posts',
-    onThisPost: 'On this post',
   },
   zh: {
     title: 'Build Journey',
     subtitle: '记录 Reso 在设计、取舍与实现过程中的思考。',
     selectPost: '选择篇章',
     posts: '篇章',
-    onThisPost: '本篇目录',
   },
   ja: {
     title: 'Build Journey',
     subtitle: 'Reso の設計・トレードオフ・実装における思考の記録。',
     selectPost: '記事を選択',
     posts: '記事一覧',
-    onThisPost: 'この投稿',
   },
 };
 
@@ -56,11 +53,6 @@ const BuildJourneyPage = () => {
 
   const activePost =
     localizedPosts.find((post) => `journey-${post.id}` === activePostId) || localizedPosts[0];
-
-  const postHeadings = useMemo(
-    () => extractJourneyHeadings(activePost?.content, activePostId),
-    [activePost, activePostId]
-  );
 
   const switchPost = (postId) => {
     setActivePostId(postId);
@@ -98,7 +90,7 @@ const BuildJourneyPage = () => {
           </select>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-[240px_minmax(0,1fr)] xl:grid-cols-[240px_minmax(0,1fr)_180px] gap-8 xl:gap-10">
+        <div className="grid grid-cols-1 lg:grid-cols-[240px_minmax(0,1fr)] gap-8">
           <aside className="hidden lg:block lg:sticky lg:top-28 lg:self-start lg:max-h-[calc(100vh-8rem)] lg:overflow-y-auto">
             <p className="text-xs uppercase tracking-wider text-gray-400 dark:text-gray-500 mb-3">
               {copy.posts}
@@ -133,27 +125,6 @@ const BuildJourneyPage = () => {
               </section>
             )}
           </article>
-
-          <aside className="hidden xl:block xl:sticky xl:top-28 xl:self-start">
-            {postHeadings.length > 0 && (
-              <div>
-                <p className="text-xs uppercase tracking-wider text-gray-400 dark:text-gray-500 mb-3">
-                  {copy.onThisPost}
-                </p>
-                <nav className="space-y-1">
-                  {postHeadings.map((heading) => (
-                    <a
-                      key={heading.id}
-                      href={`#${heading.id}`}
-                      className="block text-sm text-gray-500 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white transition-colors"
-                    >
-                      {heading.label}
-                    </a>
-                  ))}
-                </nav>
-              </div>
-            )}
-          </aside>
         </div>
       </div>
     </main>
