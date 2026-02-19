@@ -61,7 +61,7 @@ const Navbar = ({ isScrolled = false }) => {
   ];
 
   const resourceLinks = [
-    { key: 'licenseManager', href: 'https://reso.dzgapp.com/retrieve.html', external: true },
+    { key: 'licenseManager', to: '/retrieve' },
     { key: 'buildBlocks', to: '/build-blocks' },
   ];
   const resourcesCloseTimerRef = useRef(null);
@@ -283,8 +283,29 @@ const Navbar = ({ isScrolled = false }) => {
             {resourcesOpen && (
               <>
                 {/* Bridge keeps hover continuity from trigger to panel. */}
-                <div className="absolute top-full left-0 h-4 w-52 min-w-full" aria-hidden="true" />
-                <div className="absolute top-full left-0 translate-y-3 w-52 min-w-full rounded-xl border border-black/10 dark:border-white/10 bg-white/98 dark:bg-black/95 backdrop-blur-xl shadow-lg p-1.5">
+                <div
+                  className="absolute top-full left-0 h-4 w-52 min-w-full"
+                  aria-hidden="true"
+                  onPointerEnter={() => {
+                    resourcesHoveringRef.current = true;
+                    clearResourcesCloseTimer();
+                  }}
+                  onPointerLeave={() => {
+                    resourcesHoveringRef.current = false;
+                    scheduleResourcesClose();
+                  }}
+                />
+                <div
+                  className="absolute top-full left-0 translate-y-3 w-52 min-w-full rounded-xl border border-black/10 dark:border-white/10 bg-white/98 dark:bg-black/95 backdrop-blur-xl shadow-lg p-1.5"
+                  onPointerEnter={() => {
+                    resourcesHoveringRef.current = true;
+                    clearResourcesCloseTimer();
+                  }}
+                  onPointerLeave={() => {
+                    resourcesHoveringRef.current = false;
+                    scheduleResourcesClose();
+                  }}
+                >
                   {resourceLinks.map((resource) => {
                     if (resource.external) {
                       return (
