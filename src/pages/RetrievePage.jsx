@@ -2,12 +2,71 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowLeft, Sun, Moon } from 'lucide-react';
 import { useAppPreferences } from '../contexts/AppPreferencesContext';
+import { getLocalizedCopy } from '../i18n/localize';
 import ResoIcon from '../assets/ResoIcon_512.png';
+
+const retrieveCopy = {
+  en: {
+    backToHome: 'Back to Home',
+    title: 'Recover Your License',
+    subtitle: 'Enter the email you used during purchase to retrieve your license key.',
+    emailLabel: 'Email Address',
+    emailPlaceholder: 'name@example.com',
+    emailError: 'Please enter a valid email.',
+    findLicense: 'Find License',
+    searching: 'Searching...',
+    licenseFound: 'License Found',
+    status: 'Status',
+    copy: 'Copy',
+    copied: 'Copied!',
+    openApp: 'Open App to Activate',
+    error: 'Error',
+    needHelp: 'Need help?',
+    contactSupport: 'Contact Support',
+  },
+  zh: {
+    backToHome: '返回首页',
+    title: '找回你的许可证',
+    subtitle: '输入你购买时使用的邮箱来找回许可证密钥。',
+    emailLabel: '邮箱地址',
+    emailPlaceholder: 'name@example.com',
+    emailError: '请输入有效的邮箱地址。',
+    findLicense: '查找许可证',
+    searching: '搜索中...',
+    licenseFound: '已找到许可证',
+    status: '状态',
+    copy: '复制',
+    copied: '已复制！',
+    openApp: '打开 App 激活',
+    error: '错误',
+    needHelp: '需要帮助？',
+    contactSupport: '联系支持',
+  },
+  ja: {
+    backToHome: 'ホームに戻る',
+    title: 'ライセンスを復元',
+    subtitle: '購入時に使用したメールアドレスを入力して、ライセンスキーを取得してください。',
+    emailLabel: 'メールアドレス',
+    emailPlaceholder: 'name@example.com',
+    emailError: '有効なメールアドレスを入力してください。',
+    findLicense: 'ライセンスを検索',
+    searching: '検索中...',
+    licenseFound: 'ライセンスが見つかりました',
+    status: 'ステータス',
+    copy: 'コピー',
+    copied: 'コピーしました！',
+    openApp: 'アプリを開いて有効化',
+    error: 'エラー',
+    needHelp: 'ヘルプが必要ですか？',
+    contactSupport: 'サポートに連絡',
+  },
+};
 
 const WORKER_URL = 'https://reso-verify.gaoyukun1205.workers.dev';
 
 const RetrievePage = () => {
-  const { theme, setTheme } = useAppPreferences();
+  const { theme, setTheme, language } = useAppPreferences();
+  const copy = getLocalizedCopy(retrieveCopy, language);
   const [email, setEmail] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   const [result, setResult] = useState(null);
@@ -76,28 +135,27 @@ const RetrievePage = () => {
           className="inline-flex items-center gap-2 text-sm text-gray-500 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white transition-colors"
         >
           <ArrowLeft size={16} />
-          <span>Back to Home</span>
+          <span>{copy.backToHome}</span>
         </Link>
       </div>
 
       {/* Main Content */}
       <div className="flex items-center justify-center min-h-screen px-6">
         <div className="max-w-md w-full text-center">
-          {/* App Icon - clean style like Navbar */}
-          <Link to="/" className="inline-flex items-center justify-center gap-2.5 mb-8">
+          {/* App Icon */}
+          <Link to="/" className="inline-flex items-center justify-center mb-8">
             <img
               src={ResoIcon}
               alt="Reso"
-              className="w-10 h-10 rounded-xl"
+              className="w-28 h-28 rounded-3xl"
             />
-            <span className="text-gray-900 dark:text-gray-100 font-medium text-2xl tracking-tight">Reso</span>
           </Link>
 
           <h1 className="text-3xl font-bold mb-3 tracking-tight text-gray-900 dark:text-gray-100">
-            Recover Your License
+            {copy.title}
           </h1>
           <p className="text-gray-600 dark:text-gray-400 mb-12 text-base leading-relaxed">
-            Enter the email you used during purchase to retrieve your license key.
+            {copy.subtitle}
           </p>
 
           {/* Form Area */}
@@ -106,12 +164,12 @@ const RetrievePage = () => {
               htmlFor="email"
               className="block text-xs font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wider mb-3 ml-1"
             >
-              Email Address
+              {copy.emailLabel}
             </label>
             <input
               type="email"
               id="email"
-              placeholder="name@example.com"
+              placeholder={copy.emailPlaceholder}
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               onKeyDown={handleKeyDown}
@@ -119,7 +177,7 @@ const RetrievePage = () => {
               required
             />
             {emailError && (
-              <p className="mt-2 text-sm text-red-500 pl-1">Please enter a valid email.</p>
+              <p className="mt-2 text-sm text-red-500 pl-1">{copy.emailError}</p>
             )}
           </div>
 
@@ -130,7 +188,7 @@ const RetrievePage = () => {
               isLoading ? 'opacity-75 cursor-not-allowed' : ''
             }`}
           >
-            <span>{isLoading ? 'Searching...' : 'Find License'}</span>
+            <span>{isLoading ? copy.searching : copy.findLicense}</span>
             {isLoading && (
               <svg
                 className="w-5 h-5 ml-2 animate-spin"
@@ -163,7 +221,7 @@ const RetrievePage = () => {
                   <svg className="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7" />
                   </svg>
-                  License Found
+                  {copy.licenseFound}
                 </p>
                 <div className="bg-white dark:bg-gray-800 border border-green-100 dark:border-green-800 rounded-lg p-3 flex items-center justify-between">
                   <code className="font-mono text-sm text-gray-800 dark:text-gray-200 break-all select-all">
@@ -173,11 +231,11 @@ const RetrievePage = () => {
                     onClick={copyCode}
                     className="ml-3 text-sm font-bold text-[#5423e7] hover:text-purple-600 uppercase tracking-wider"
                   >
-                    {copied ? 'Copied!' : 'Copy'}
+                    {copied ? copy.copied : copy.copy}
                   </button>
                 </div>
                 <p className="text-xs text-green-600 dark:text-green-400 mt-3">
-                  Status: <span className="font-medium">{result.status}</span>
+                  {copy.status}: <span className="font-medium">{result.status}</span>
                 </p>
               </div>
 
@@ -185,7 +243,7 @@ const RetrievePage = () => {
                 href={`reso://activate?key=${encodeURIComponent(result.licenseKey)}`}
                 className="block mt-6 font-medium hover:underline text-[#5423e7]"
               >
-                Open App to Activate &rarr;
+                {copy.openApp} &rarr;
               </a>
             </div>
           )}
@@ -193,22 +251,20 @@ const RetrievePage = () => {
           {/* Error Area */}
           {error && (
             <div className="mt-6 p-4 bg-red-50 dark:bg-red-900/20 text-red-500 dark:text-red-400 rounded-xl text-sm text-left">
-              <span className="font-bold">Error:</span> <span>{error}</span>
+              <span className="font-bold">{copy.error}:</span> <span>{error}</span>
             </div>
           )}
 
           {/* Footer */}
           <div className="mt-16 pt-8 border-t border-gray-100 dark:border-gray-800">
             <p className="text-sm text-gray-500 dark:text-gray-400 mb-4">
-              Need help?{' '}
-              <a
-                href="https://tally.so/r/obDo51"
-                target="_blank"
-                rel="noreferrer"
+              {copy.needHelp}{' '}
+              <Link
+                to="/contact"
                 className="underline hover:opacity-70 transition-opacity text-[#5423e7]"
               >
-                Contact Support
-              </a>
+                {copy.contactSupport}
+              </Link>
             </p>
             <div className="mt-6 flex items-center justify-center gap-4">
               <button
