@@ -26,7 +26,7 @@ const pricingCopy = {
         features: [
           'Bring your own API for text processing or dictation.',
           'Local voice processing on your device.',
-          'Common features: Diary & Dictation, Shadow Writer, Write with your command.',
+          'Essential skills for dictation and text processing.',
         ],
         cta: 'Download Free',
         checkoutUrl: CHECKOUT_LINKS.free,
@@ -108,7 +108,7 @@ const pricingCopy = {
         features: [
           '使用你自己的 API 进行文本处理或听写。',
           '语音处理在设备本地完成。',
-          '核心能力：Diary & Dictation、Shadow Writer、Write with your command。',
+          '听写与文本处理的核心能力。',
         ],
         cta: '免费下载',
         checkoutUrl: CHECKOUT_LINKS.free,
@@ -185,11 +185,11 @@ const pricingCopy = {
         priceMain: '無料',
         priceSup: '',
         cadence: '',
-        description: '基本的なテキスト処理と dictation に、好みの API を利用',
+        description: '基本的なテキスト処理とディクテーションに、好みの API を利用',
         features: [
-          'テキスト処理または dictation 用に自分の API を利用。',
+          'テキスト処理やディクテーション用に自分の API を利用。',
           '音声処理はデバイス上でローカル実行。',
-          '主な機能: Diary & Dictation、Shadow Writer、Write with your command。',
+          'ディクテーションとテキスト処理の基本機能。',
         ],
         cta: '無料でダウンロード',
         checkoutUrl: CHECKOUT_LINKS.free,
