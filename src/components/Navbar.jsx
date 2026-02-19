@@ -256,12 +256,12 @@ const Navbar = ({ isScrolled = false }) => {
             }}
             onPointerLeave={() => {
               resourcesHoveringRef.current = false;
-              scheduleResourcesClose();
+              closeResourcesMenu();
             }}
             onFocus={openResourcesMenu}
             onBlur={(event) => {
               if (!resourcesHoveringRef.current && !event.currentTarget.contains(event.relatedTarget)) {
-                scheduleResourcesClose();
+                closeResourcesMenu();
               }
             }}
           >
@@ -284,27 +284,11 @@ const Navbar = ({ isScrolled = false }) => {
               <>
                 {/* Bridge keeps hover continuity from trigger to panel. */}
                 <div
-                  className="absolute top-full left-0 h-6 w-52 min-w-full -translate-x-2"
+                  className="absolute top-full left-0 h-8 w-64 -left-4"
                   aria-hidden="true"
-                  onPointerEnter={() => {
-                    resourcesHoveringRef.current = true;
-                    clearResourcesCloseTimer();
-                  }}
-                  onPointerLeave={() => {
-                    resourcesHoveringRef.current = false;
-                    scheduleResourcesClose();
-                  }}
                 />
                 <div
                   className="absolute top-full left-0 translate-y-2 w-52 min-w-full rounded-xl border border-black/10 dark:border-white/10 bg-white/98 dark:bg-black/95 backdrop-blur-xl shadow-lg p-1.5"
-                  onPointerEnter={() => {
-                    resourcesHoveringRef.current = true;
-                    clearResourcesCloseTimer();
-                  }}
-                  onPointerLeave={() => {
-                    resourcesHoveringRef.current = false;
-                    scheduleResourcesClose();
-                  }}
                 >
                   {resourceLinks.map((resource) => {
                     if (resource.external) {
