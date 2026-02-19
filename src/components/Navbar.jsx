@@ -166,7 +166,7 @@ const Navbar = ({ isScrolled = false }) => {
     <nav
       className={`!fixed top-0 left-0 right-0 !z-[120] transition-all duration-300 ${
         isScrolled
-          ? 'bg-white/92 dark:bg-black/86 backdrop-blur-xl border-b border-black/8 dark:border-white/10'
+          ? 'bg-white dark:bg-black border-b border-black/[0.08] dark:border-white/[0.08]'
           : 'bg-transparent'
       }`}
     >
@@ -233,7 +233,7 @@ const Navbar = ({ isScrolled = false }) => {
               <div className="absolute top-full -left-4 z-[90] pt-2 pointer-events-auto">
                 {/* Dropdown menu */}
                 <div
-                  className="w-52 overflow-hidden rounded-xl border border-black/10 dark:border-white/10 bg-white/98 dark:bg-black/95 backdrop-blur-xl shadow-lg p-1.5"
+                  className="w-52 overflow-hidden rounded-xl border border-black/[0.08] dark:border-white/[0.08] bg-white dark:bg-black shadow-lg p-1.5"
                 >
                   {resourceLinks.map((resource) => {
                     if (resource.external) {
@@ -294,7 +294,7 @@ const Navbar = ({ isScrolled = false }) => {
 
       {/* Mobile Menu */}
       {mobileMenuOpen && (
-        <div className="md:hidden bg-white/98 dark:bg-black/95 backdrop-blur-xl border-b border-black/10 dark:border-white/10 px-6 py-4 space-y-2">
+        <div className="md:hidden bg-white dark:bg-black border-b border-black/[0.08] dark:border-white/[0.08] px-6 py-4 space-y-2">
           {navLinks.map((link) => {
             if (link.external) {
               return (
