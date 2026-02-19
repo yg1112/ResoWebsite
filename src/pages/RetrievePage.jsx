@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { ArrowLeft, Sun, Moon } from 'lucide-react';
+import { ArrowLeft, Sun, Moon, Globe, ChevronDown } from 'lucide-react';
 import { useAppPreferences } from '../contexts/AppPreferencesContext';
 import { getLocalizedCopy } from '../i18n/localize';
 import ResoIcon from '../assets/ResoIcon_512.png';
@@ -64,8 +64,15 @@ const retrieveCopy = {
 
 const WORKER_URL = 'https://reso-verify.gaoyukun1205.workers.dev';
 
+const languageOptions = [
+  { value: 'en', label: 'English' },
+  { value: 'zh', label: '简体中文' },
+  { value: 'ja', label: '日本語' },
+  { value: 'zh-TW', label: '繁體中文' },
+];
+
 const RetrievePage = () => {
-  const { theme, setTheme, language } = useAppPreferences();
+  const { theme, setTheme, language, setLanguage } = useAppPreferences();
   const copy = getLocalizedCopy(retrieveCopy, language);
   const [email, setEmail] = useState('');
   const [isLoading, setIsLoading] = useState(false);
@@ -281,6 +288,22 @@ const RetrievePage = () => {
               >
                 <Moon size={14} className={theme === 'dark' ? 'text-blue-400' : ''} />
               </button>
+              <div className="relative">
+                <Globe size={14} className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-500 dark:text-gray-400 pointer-events-none" />
+                <select
+                  value={language}
+                  onChange={(e) => setLanguage(e.target.value)}
+                  aria-label="Language"
+                  className="appearance-none bg-black/[0.04] dark:bg-white/[0.08] text-gray-700 dark:text-gray-200 text-xs rounded-full pl-8 pr-7 py-1.5 border border-black/10 dark:border-white/10 focus:outline-none focus:ring-2 focus:ring-black/20 dark:focus:ring-white/20 cursor-pointer"
+                >
+                  {languageOptions.map((option) => (
+                    <option key={option.value} value={option.value}>
+                      {option.label}
+                    </option>
+                  ))}
+                </select>
+                <ChevronDown size={12} className="absolute right-2.5 top-1/2 -translate-y-1/2 text-gray-500 dark:text-gray-400 pointer-events-none" />
+              </div>
             </div>
           </div>
         </div>
