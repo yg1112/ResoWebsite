@@ -2,6 +2,230 @@
 
 const localizedJourneyPosts = [
   {
+    id: 12,
+    date: 'Feb 2026',
+    category: 'Product',
+    title: {
+      en: 'Building Code, Seeing Self',
+      zh: '开发的过程也是在照见自己',
+      ja: 'コードを書くことは自分を見ること',
+    },
+    summary: {
+      en: "I used to think the strongest model would deliver the best output. Turns out collaboration with AI agents mirrors working with people: fit matters more than firepower, and inefficiency often reveals gaps in my own thinking.",
+      zh: '我曾以为最强的模型就能产出最好的结果。后来发现和 AI agent 合作就像和人合作：契合度比火力重要，低效往往暴露的是我自己思考的漏洞。',
+      ja: '最強のモデルが最高の成果を出すと思っていた。AI agent との協働は人との協働と似ている：相性が火力より大事で、非効率は自分の思考の穴を映す。',
+    },
+    content: {
+      en: `Last month I hit a wall refactoring the backend. I kept switching models, expecting one to magically solve it.
+
+Then I realized: I wasn't treating them as collaborators with different strengths. I was looking for a silver bullet.
+
+### The Strongest Model Doesn't Always Win
+
+I've worked with Sonnet 4.5, Opus 4.5, and Codex GPT-5.3 Extreme High. On paper, you'd think the most advanced one wins.
+
+In practice, that's not how it works.
+
+Sonnet crushes backend debugging and refactoring. Its context handling is so strong it doesn't fall into patch-upon-patch memory traps.
+
+Opus sometimes has brilliant moments. It draws on knowledge Sonnet doesn't have and breaks through bottlenecks I couldn't solve alone.
+
+But most of the time, I'm not facing twisty puzzles that need that extra spark. I'm fixing routing logic, cleaning up state management, or ironing out edge cases.
+
+### Good Habits Beat Extra Firepower
+
+If I map out the technical landscape before I start—common architectures, model tradeoffs, adjustable parameters—I don't need Opus's unique edge as often.
+
+It's like working with people. More credentials doesn't always mean better output. Sometimes I need someone with strong context retention and domain insight who can grind through real problems—that's Sonnet.
+
+Opus feels more fragile. It shines when the problem is just right, but I can't rely on it for day-to-day sprints.
+
+### Codex Surprised Me
+
+Codex GPT-5.3 is solid in ways I didn't expect.
+
+First: it doesn't over-promise. If something's uncertain, it says so.
+
+Second: higher completion rate. When my instructions have room for interpretation, it handles ambiguity well or asks for clarification instead of guessing wrong.
+
+Fun fact: when prototyping web interfaces, some models produce output that immediately signals "this was AI-generated"—the stylistic fingerprint is too obvious. Codex writes code that feels more neutral.
+
+Third: better collaboration logic. Codex clearly trained on more interaction feedback. It understands that agents shouldn't fight each other. I've noticed Anthropic's models, when they overlap in task scope, keep editing each other's work endlessly. Codex knows when to stop.
+
+### How I Use Each Model Now
+
+Sonnet 4.5 is my go-to for debugging. Geeky, relentless, fires through problems like a committed engineer.
+
+Codex feels like an earnest engineer who really wants to contribute. Grounded answers, never rolls back arbitrarily, sometimes gives genuinely insightful suggestions.
+
+Opus is particular. It makes decisions on its own, and when things break, it rolls back instead of pushing through. Tasks don't finish efficiently even when it ends with "all good."
+
+### Working with AI Mirrors Working with Myself
+
+Here's what surprised me most: collaborating with coding agents became a mirror for my own thinking process.
+
+When things feel inefficient, it's usually not the model's fault. It's amplifying gaps in my own planning:
+
+1. Did I map out the workflow in advance?
+2. Am I overcomplicating the problem?
+3. Have I clarified the ultimate goal?
+
+The process reminds me of stochastic gradient descent. Good optimization doesn't converge instantly from the first step. It uses randomness and proper step sizes to reach near-optimal solutions from different starting points, avoiding local minima.
+
+That's what working with AI feels like when I do it right. It surfaces where my thinking was unclear, breaks illusions I held onto—like blindly trusting the biggest model the same way people trust credentials or titles.
+
+Nothing is "always best." It's about fit. Like playing cards: you don't need all kings, you need to position the right cards in the right places.
+
+When you're clear, execution gets easier. The interesting part is realizing mid-work that you weren't clear to begin with.
+
+At first it's just an idea. But building sharpens it. The process keeps asking: "Is this really it?"
+
+The further you go, the work itself tells you if it makes sense. After doing this enough, I've stopped caring much about external validation.
+
+Eventually, you know.
+
+Do you believe in it?`,
+      zh: `上个月重构后端时,我一直在换模型,以为总有一个能神奇地解决问题。
+
+后来我意识到:我不是在把它们当成各有所长的协作者,而是在找万能钥匙。
+
+### 最强的模型不一定赢
+
+我用过 Sonnet 4.5、Opus 4.5,还有 Codex 的 GPT-5.3 Extreme High。账面上看,你会觉得最先进的那个应该最好。
+
+实际情况不是这样的。
+
+Sonnet 在后端 debug 和重构时表现极强。它的 context 处理能力让它不会陷入"打补丁"式的记忆陷阱。
+
+Opus 有时会有特别机灵的时刻。它能调用 Sonnet 没有的知识,突破我一个人解决不了的瓶颈。
+
+但大部分时间,我面对的不是那种扭曲的难题。我在修路由逻辑、清理状态管理,或者处理边界情况。
+
+### 好习惯抵消额外火力
+
+如果我提前做好技术地图——常见架构、模型取舍、可调参数——我就不那么需要 Opus 的独特优势。
+
+这就像和人合作。资历深不一定产出更好。有时候我需要的是 context 强、对专业领域有洞察、能扎实解决实战问题的人——那就是 Sonnet。
+
+Opus 给我的感觉更娇气。问题刚好对路时它很亮眼,但日常 sprint 我没法指望它。
+
+### Codex 让我意外
+
+Codex GPT-5.3 的扎实超出我预期。
+
+第一:它不会过度承诺。不确定的事它会说清楚。
+
+第二:完成度更高。当我的指令不够准确、还存在一些发挥空间时,它会处理得很好,或者会进一步追问,而不是瞎猜。
+
+有个有意思的事:做 web prototype 时,有些模型做出来的东西一看就是 AI 做的,风格特征太明显。Codex 写出来的代码感觉更中性。
+
+第三:协作逻辑更好。Codex 明显经过更多交互反馈训练,知道 agent 协作时不该互相打架。Anthropic 的其他模型如果任务范围有 overlap,会互相改来改去停不下来。Codex 知道什么时候该收手。
+
+### 我现在怎么用这些模型
+
+Sonnet 4.5 是我的 go-to model,尤其是 debug。很 geeky,很坚韧,像个有工兵精神的中坚力量,能 fire through problems。
+
+Codex 像个很诚恳、很想贡献代码的工程师。回答扎实,不会擅自退回,有时还能给出很有洞察力的建议。
+
+Opus 比较特殊。它会擅自做决定,遇到错误直接 roll back,任务没有高效完成,最后还说"没问题"。
+
+### 和 AI 合作,像是在和自己合作
+
+最让我意外的是:和 coding agent 磨合,变成了照见自己思考过程的镜子。
+
+觉得低效时,通常不是模型的问题,而是放大了我自己计划中的漏洞:
+
+1. 工作流程有没有提前规划?
+2. 是不是把问题过度复杂化了?
+3. 最终目标想清楚了吗?
+
+这个过程让我想起随机梯度下降。好的优化过程不会第一步就直接收敛,而是通过随机性和适当的步长,能从不同起点稳健地找到接近最优的解,避免困在局部最优里。
+
+和 AI 合作如果做对了,就是这种感觉。它会浮现出我思考不清晰的地方,破除我过去抱着的幌子——比如盲目迷信大模型,就像人总会迷信权威或头衔一样。
+
+没有什么是"一定最好",更多的是"适合"。就像打牌:你不需要全都摸到大王,关键是把合适的牌放到合适的位置。
+
+想清楚了,做起来反而没那么难。有意思的是,很多时候在做的过程中,你才意识到自己没想清楚。
+
+一开始只是个想法。但做的过程会反复打磨它,一直追问:"是这样吗?真的是这样吗?"
+
+你越往下走,这个事情本身就会告诉你它说不说得通。做多了以后,我不太在意别人同不同意,或者友善的支持。
+
+那些当然好。但做到后面,自己心里是知道的。
+
+Do you believe in it?`,
+      ja: `先月、バックエンドのリファクタリングで壁にぶつかり、モデルを切り替え続けた。どれかが魔法のように解決してくれると思っていた。
+
+その後気づいた。私はそれぞれの強みを持つ協力者として扱っていなかった。万能の答えを探していただけだった。
+
+### 最強のモデルが必ず勝つわけではない
+
+Sonnet 4.5、Opus 4.5、Codex GPT-5.3 Extreme High を使ってきた。書類上では、最も進んだものが勝つと思うだろう。
+
+実際はそうならない。
+
+Sonnet はバックエンドの debug とリファクタリングで圧倒的に強い。context 処理能力が高く、継ぎはぎ式の記憶の罠に陥らない。
+
+Opus は時々鮮やかな瞬間がある。Sonnet にはない知識を引き出し、一人では突破できなかった壁を越える。
+
+でも大半の時間、そんなにひねくれた難題には直面していない。ルーティングロジックを直したり、状態管理を整理したり、エッジケースを処理している。
+
+### 良い習慣が余分な火力に勝る
+
+事前に技術マップを作っておけば——一般的なアーキテクチャ、モデルのトレードオフ、調整可能なパラメータ——Opus の独自の強みはそれほど必要ない。
+
+人と働くのと同じ。資格が多いほど成果が良いとは限らない。時には context 保持力が強く、専門分野への洞察があり、実戦的な問題を着実に解決できる人が必要——それが Sonnet だ。
+
+Opus はもっと繊細に感じる。問題がぴったり合えば輝くが、日々の sprint では頼れない。
+
+### Codex は意外だった
+
+Codex GPT-5.3 は予想外にしっかりしている。
+
+第一:過度な約束をしない。不確実なことがあれば言ってくれる。
+
+第二:完成度が高い。私の指示が曖昧で解釈の余地があるとき、適切に処理するか、推測せずに確認を求める。
+
+面白い事実:web prototype を作るとき、一部のモデルは「これは AI が作った」とすぐ分かる出力を生成する——文体的な特徴が明らかすぎる。Codex が書くコードはより中立的に感じる。
+
+第三:協働ロジックが優れている。Codex は明らかにより多くのインタラクションフィードバックで訓練されていて、agent が協働するとき互いに争うべきでないことを理解している。Anthropic の他のモデルは、タスク範囲が重なると互いに延々と編集し合う。Codex はいつ止めるべきかを知っている。
+
+### 今、各モデルをどう使っているか
+
+Sonnet 4.5 は私の go-to model、特に debug で。とても geeky で、relentless で、献身的なエンジニアのように問題を突破する。
+
+Codex は真面目で貢献したいエンジニアのように感じる。しっかりした回答、勝手に rollback しない、時々本当に洞察に富んだ提案をくれる。
+
+Opus は特殊。自分で決定を下し、問題が起きると rollback する。タスクは効率的に終わらず、最後に「問題なし」と言う。
+
+### AI との協働は自分自身を映す鏡
+
+最も驚いたのは: coding agent との協働が、自分の思考プロセスを映す鏡になったこと。
+
+非効率に感じるとき、通常はモデルの問題ではない。自分の計画の穴を拡大している:
+
+1. ワークフローを事前に計画したか?
+2. 問題を過度に複雑化していないか?
+3. 最終目標を明確にしたか?
+
+このプロセスは確率的勾配降下法を思い出させる。良い最適化は最初のステップで即座に収束しない。ランダム性と適切なステップサイズを使って、異なる出発点から最適に近い解を見つけ、局所最適を避ける。
+
+AI と適切に協働すると、そんな感じになる。思考が不明瞭だった場所が浮かび上がり、抱いていた幻想を壊す——大きなモデルを盲目的に信じることは、人が権威や肩書きを信じるのと同じように。
+
+「常に最高」なものはない。「適合」が重要。カードゲームと同じ:すべてキングである必要はなく、適切なカードを適切な場所に配置することが大切。
+
+明確なら、実行は簡単になる。面白いのは、作業の途中で自分が明確でなかったことに気づくこと。
+
+最初はただのアイデア。でも作る過程がそれを磨く。このプロセスは繰り返し問いかける:「本当にこれか?」
+
+進めば進むほど、作業自体が筋が通っているか教えてくれる。これを十分やった後は、外部の承認や友好的な支持をあまり気にしなくなった。
+
+最終的には、自分で分かる。
+
+Do you believe in it?`,
+    },
+  },
+  {
     id: 11,
     date: 'Feb 2026',
     category: 'Product',
@@ -24,9 +248,7 @@ That moment was clear: I'm not standing outside the people I build for. I wear b
 
 ### I Don't Observe from Distance
 
-With the builder hat on, I think about activation flow, edge branches, and extensibility.
-
-With the user hat on, I care about three things: Is it smooth? Is it fast? Does it interrupt me?
+With the builder hat on, I think about activation flow, edge branches, extensibility. With the user hat on: Is it smooth? Is it fast? Does it interrupt me?
 
 Because both feelings live in the same body, I now avoid saying "users might feel..." and write "I just got stuck here."
 
@@ -96,11 +318,9 @@ I'm still on this path. Design is never a one-shot answer for me. It grows with 
 
 ### 我不是在“观察使用者”，我是“来自使用者”
 
-我戴着构造者这顶帽子时，会想 activation flow、异常分支、可扩展性。
+我戴着构造者这顶帽子时，会想 activation flow、异常分支、可扩展性。戴着使用者这顶帽子时：顺不顺、快不快、会不会打断我。
 
-我戴着使用者这顶帽子时，只在意三件事：顺不顺、快不快、会不会打断我。
-
-这两套感受都在我身上，所以我现在尽量少说“使用者可能会怎样”，而是直接写“我刚刚就是这样卡住的”。
+这两套感受都在我身上，所以我现在尽量少说"使用者可能会怎样"，而是直接写"我刚刚就是这样卡住的"。
 
 ### 创作最脆弱的，是开头那几分钟
 
@@ -168,9 +388,7 @@ I'm still on this path. Design is never a one-shot answer for me. It grows with 
 
 ### 私は「使い手を理解する人」ではなく「使い手の側の人」
 
-作り手の帽子をかぶると、activation flow、異常分岐、拡張性を考えます。
-
-使い手の帽子をかぶると、気になるのは3つだけです。滑らかか、速いか、途中で邪魔されないか。
+作り手の帽子をかぶると、activation flow、異常分岐、拡張性を考えます。使い手の帽子をかぶると：滑らかか、速いか、途中で邪魔されないか。
 
 この二つの感覚が同時に自分の中にあるので、最近は「使い手はこう感じるはず」とは書かず、「今ここで自分が詰まった」と書くようにしています。
 
@@ -935,9 +1153,7 @@ That's the magic—making the invisible visible.`,
       ja: 'multi-provider routing は冗長化のためだけではない。私自身が、いつでも新モデルを試せる playground を必要としていた。',
     },
     content: {
-      en: `I'm the kind of person who tries every new model the moment it drops.
-
-New Claude version? I want to feel the difference. GPT update? Let me compare. A new player enters the scene? Sign me up. It's not just about benchmarks—I genuinely enjoy experiencing how different models *think*.
+      en: `I try every new model the moment it drops. New Claude version? I want to feel the difference. GPT update? Let me compare. It's not just benchmarks—I genuinely enjoy experiencing how different models *think*.
 
 So when I built Reso's LLM integration, I knew one API slot wouldn't be enough. Not for me, anyway.
 
@@ -985,9 +1201,7 @@ The core routing logic is maybe 50 lines. The error handling is 200+. That's jus
 But when it works, you don't notice it. You just feel like the app is responsive, flexible, and... fun.
 
 That's the goal. Not just reliability. A playground.`,
-      zh: `我属于那种新模型一发布就会立刻去试的人。
-
-Claude 出新版本？我想亲自感受差异。GPT 更新？我要对比一下。新玩家进场？立刻报名。对我来说不只是 benchmark，我是真的喜欢体验不同模型*思考*方式的差别。
+      zh: `新模型一发布我就会立刻去试。Claude 出新版本？我想亲自感受差异。GPT 更新？我要对比一下。对我来说不只是 benchmark，我是真的喜欢体验不同模型*思考*方式的差别。
 
 所以做 Reso 的 LLM 集成时，我很早就知道：一个 API 槽位肯定不够，至少对我不够。
 
@@ -1035,9 +1249,7 @@ Claude 出新版本？我想亲自感受差异。GPT 更新？我要对比一下
 但它一旦工作良好，你几乎感受不到。你只会觉得这个应用反应快、很灵活，而且……挺好玩。
 
 这才是目标。不只是稳定性，而是一个 playground。`,
-      ja: `私は新しいモデルが出た瞬間に試したくなるタイプです。
-
-Claude の新版本？差を体感したい。GPT の更新？比較したい。新規プレイヤー参入？すぐ触りたい。ベンチマークだけじゃなく、モデルごとの*思考の癖*を味わうのが好きなんです。
+      ja: `新しいモデルが出た瞬間に試したくなります。Claude の新版本？差を体感したい。GPT の更新？比較したい。ベンチマークだけじゃなく、モデルごとの*思考の癖*を味わうのが好きなんです。
 
 だから Reso の LLM 連携を作るとき、API スロット1つでは足りないと最初から分かっていました。少なくとも私には。
 
@@ -1706,14 +1918,7 @@ I nearly fell out of my chair.
 
 ### The Cost of Knowledge
 
-Here's the frustrating part: This isn't documented anywhere obvious.
-
-I found it by:
-1. Reading Whisper.cpp GitHub issues
-2. Experimenting with compiler flags
-3. Profiling dozens of builds with Instruments
-
-It took two weeks of trial and error.
+This isn't documented anywhere obvious. I found it through GitHub issues, compiler flag experiments, and profiling dozens of builds. Two weeks of trial and error.
 
 But the result: Reso transcribes audio **faster than you can speak it**. On an M2 Pro, an 8-second clip processes in 0.75 seconds.
 
@@ -1772,14 +1977,7 @@ Whisper.cpp 是 C++ 写的。你在 Xcode 里构建 Swift 应用时，Swift 代�
 
 ### 知识成本
 
-最让人抓狂的是：这些信息没有明显文档告诉你。
-
-我是靠下面这些方式挖出来的：
-1. 翻 Whisper.cpp 的 GitHub issues
-2. 一个个试 compiler flags
-3. 用 Instruments 做几十次 profile
-
-前后折腾了两周。
+这些信息没有明显文档告诉你。我是靠翻 GitHub issues、试 compiler flags、做几十次 profile 挖出来的。前后折腾了两周。
 
 但结果值得：Reso 的转写已经**比你开口说话还快**。在 M2 Pro 上，8 秒音频大约 0.75 秒处理完。
 
@@ -1838,14 +2036,7 @@ Whisper.cpp は C++。Swift アプリを Xcode でビルドすると、Swift は
 
 ### 知識のコスト
 
-いちばん厄介なのは、これが分かりやすく文書化されていないことです。
-
-私は次の手順で辿り着きました。
-1. Whisper.cpp の GitHub issues を読む
-2. compiler flags を実験する
-3. Instruments で何十ビルドもプロファイルする
-
-試行錯誤に2週間。
+これは分かりやすく文書化されていません。GitHub issues、compiler flags の実験、何十ビルドのプロファイルで辿り着きました。試行錯誤に2週間。
 
 でも結果は大きい。Reso は **話す速度より速く** 文字起こしできます。M2 Pro なら 8 秒クリップを 0.75 秒で処理。
 
@@ -1891,14 +2082,9 @@ That's what Reso does. We take care of the typing so you can focus on contemplat
 
 ### More Than a Voice Recorder
 
-There are plenty of recording tools and transcription APIs out there. But going from a raw thought to a usable artifact—and eventually to a *thought partner*—that journey matters.
+There are plenty of recording tools out there. But Reso goes further—helping you discover ideas you didn't know you had, reflect on how you think, and track how your time flows.
 
-Reso helps you:
-- **Discover ideas** you didn't know you had
-- **Reflect** on how you think, not just what you think
-- **Track** how your time flows and what you're building
-
-When I look back at my voice notes from months ago, I'm not just reading words. I'm seeing where my time went. What I got right. How my thinking evolved. It's a record of building—and a tool for self-discovery.
+When I look back at old voice notes, I'm seeing where my time went, what I got right, how my thinking evolved. It's a record of building and a tool for self-discovery.
 
 ### Why Voice Is Different
 
@@ -1942,14 +2128,9 @@ The goal isn't to capture your voice. It's to **resonate with how you work**.`,
 
 ### 不只是录音工具
 
-市场上并不缺录音工具和转写 API。但从“原始想法”走到“可用产物”，再走到“思维伙伴”，这段路径本身才关键。
+市场上并不缺录音工具。但 Reso 更进一步——帮你发现原本没意识到的想法，反思你的思维方式，追踪时间的流向。
 
-Reso 帮你：
-- **发现想法**：看见你原本没意识到的线索
-- **反思思维**：不仅看你在想什么，也看你是怎么想的
-- **追踪时间**：理解你的时间流向和你真正在构建什么
-
-当我回看几个月前的语音笔记，我不只是看文字。我看到的是时间去了哪里、哪些判断做对了、思路怎么演化了。它既是构建记录，也是自我发现工具。
+回看旧的语音笔记时，我看到的是时间去了哪里、哪些判断做对了、思路怎么演化了。它既是构建记录，也是自我发现工具。
 
 ### 为什么语音不一样
 
@@ -1993,14 +2174,9 @@ Reso 帮你：
 
 ### ただの録音ツールではない
 
-録音ツールや転写 API は世の中に十分あります。けれど「生の思考」から「使える成果物」、そして最終的に「thought partner」へ進む道筋こそ重要です。
+録音ツールは世の中に十分あります。でも Reso はさらに進んで——気づかなかったアイデアを発見し、思考の仕方を内省し、時間の流れを追跡する助けをします。
 
-Reso が助けるのは次の3点です。
-- **発見する**: 自分でも気づかなかったアイデアを見つける
-- **内省する**: 何を考えたかだけでなく、どう考えたかを見る
-- **追跡する**: 時間の流れと、自分が何を作ってきたかを把握する
-
-数か月前の音声メモを見返すとき、私は単に文字を読むわけではありません。時間の使い方、正しかった判断、思考の変化が見える。build の記録であり、自己発見の道具でもあります。
+古い音声メモを見返すとき、時間の使い方、正しかった判断、思考の変化が見える。build の記録であり、自己発見の道具でもあります。
 
 ### なぜ音声は特別か
 

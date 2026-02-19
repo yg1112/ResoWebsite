@@ -12,12 +12,6 @@ const BuildTogether = () => {
       subtitle: 'Follow what changed, why we changed it, and what is next.',
       cards: [
         {
-          title: 'Docs',
-          body: 'Product architecture and workflow guides.',
-          href: '/docs',
-          cta: 'Open Docs',
-        },
-        {
           title: 'Build Journey',
           body: 'Development updates and product evolution.',
           href: 'https://resoapp.xyz/build-journey',
@@ -32,12 +26,6 @@ const BuildTogether = () => {
       subtitle: '你可以看到我们改了什么、为什么改、下一步做什么。',
       cards: [
         {
-          title: '文档',
-          body: '产品架构与 workflow 指南。',
-          href: '/docs',
-          cta: '查看文档',
-        },
-        {
           title: '开发历程',
           body: '开发更新与产品演进记录。',
           href: 'https://resoapp.xyz/build-journey',
@@ -51,12 +39,6 @@ const BuildTogether = () => {
       title: '進捗を公開しながら継続的に出荷。',
       subtitle: '何を変えたか、なぜ変えたか、次に何をするかを追えます。',
       cards: [
-        {
-          title: 'Docs',
-          body: 'プロダクト設計と workflow ガイド。',
-          href: '/docs',
-          cta: 'Docs を開く',
-        },
         {
           title: 'Build Journey',
           body: '開発アップデートと製品の進化。',

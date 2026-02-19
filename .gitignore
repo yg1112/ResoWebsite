@@ -19,3 +19,8 @@ workers/contact-form-admin/wrangler.toml
 
 ### Wrangler
 .wrangler/
+
+### Internal writing guides (local only)
+BUILD_JOURNEY_STYLE_GUIDE.md
+BUILD_JOURNEY_BRIEF_TEMPLATE.md
+AGENTS.md

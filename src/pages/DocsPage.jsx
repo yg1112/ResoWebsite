@@ -6,7 +6,7 @@ import { getLocalizedCopy } from '../i18n/localize';
 
 const docsCopy = {
   en: {
-    headerTitle: 'Reso Documentation',
+    headerTitle: 'Documentation',
     headerSubtitle: 'Learn how to capture ideas with your voice, process them with AI, and build your personal knowledge system.',
     onThisPage: 'On this page',
     nav: {
@@ -416,7 +416,7 @@ const docsCopy = {
     },
   },
   zh: {
-    headerTitle: 'Reso 文档',
+    headerTitle: '文档',
     headerSubtitle: '了解如何用语音捕捉想法，通过 AI 处理，并构建你的个人知识系统。',
     onThisPage: '本页内容',
     nav: {
@@ -826,7 +826,7 @@ const docsCopy = {
     },
   },
   ja: {
-    headerTitle: 'Reso ドキュメント',
+    headerTitle: 'ドキュメント',
     headerSubtitle: '音声でアイデアをキャプチャし、AIで処理し、パーソナルナレッジシステムを構築する方法を学びましょう。',
     onThisPage: 'このページ',
     nav: {
@@ -1236,7 +1236,7 @@ const docsCopy = {
     },
   },
   'zh-TW': {
-    headerTitle: 'Reso 說明文件',
+    headerTitle: '說明文件',
     headerSubtitle: '了解如何用語音捕捉想法，透過 AI 處理，並建立你的個人知識系統。',
     onThisPage: '本頁內容',
     nav: {

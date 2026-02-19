@@ -83,7 +83,7 @@ function App() {
               <Route path="/pricing" element={<PricingPage />} />
               <Route path="/discover" element={<DiscoverPage />} />
               <Route path="/marketplace" element={<MarketplacePage />} />
-              <Route path="/docs" element={<DocsPage />} />
+              {/* <Route path="/docs" element={<DocsPage />} /> */}
               <Route path="/build-journey" element={<BuildJourneyPage />} />
               <Route path="/build-blocks" element={<BuildBlocksPage />} />
               <Route path="/contact" element={<ContactPage />} />

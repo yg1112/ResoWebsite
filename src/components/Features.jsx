@@ -226,6 +226,7 @@ const Features = () => {
                   <p className="text-base md:text-lg text-gray-500 dark:text-gray-400 leading-relaxed mb-6">
                     {feature.description}
                   </p>
+                  {/* Learn more links hidden until docs are ready
                   <Link
                     to={feature.learnMoreLink}
                     className="inline-flex items-center gap-2 text-amber-600 dark:text-amber-500 font-medium hover:text-amber-700 dark:hover:text-amber-400 transition-colors group"
@@ -233,6 +234,7 @@ const Features = () => {
                     <span>{feature.learnMoreText}</span>
                     <ArrowRight size={16} className="transition-transform group-hover:translate-x-1" />
                   </Link>
+                  */}
                 </div>
 
                 {/* Image */}
