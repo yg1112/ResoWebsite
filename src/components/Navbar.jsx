@@ -284,9 +284,9 @@ const Navbar = ({ isScrolled = false }) => {
 
             {resourcesOpen && (
               <>
-                {/* Invisible hover area extending down to cover entire dropdown */}
+                {/* Invisible hover area BEHIND dropdown */}
                 <div
-                  className="absolute top-0 -left-4 right-0 h-[360px]"
+                  className="absolute top-0 -left-4 w-64 h-[360px] z-0"
                   aria-hidden="true"
                   style={{ background: 'rgba(255,0,0,0.1)' }}
                   onPointerEnter={(e) => console.log('🟡 ENTER invisible overlay')}
