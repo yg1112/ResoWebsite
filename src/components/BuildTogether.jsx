@@ -20,7 +20,7 @@ const BuildTogether = () => {
         {
           title: 'Build Journey',
           body: 'Development updates and product evolution.',
-          href: '/changelog',
+          href: 'https://resoapp.xyz/build-journey',
           cta: 'View Updates',
         },
       ],
@@ -40,7 +40,7 @@ const BuildTogether = () => {
         {
           title: '开发历程',
           body: '开发更新与产品演进记录。',
-          href: '/changelog',
+          href: 'https://resoapp.xyz/build-journey',
           cta: '查看更新',
         },
       ],
@@ -60,7 +60,7 @@ const BuildTogether = () => {
         {
           title: 'Build Journey',
           body: '開発アップデートと製品の進化。',
-          href: '/changelog',
+          href: 'https://resoapp.xyz/build-journey',
           cta: 'アップデートを見る',
         },
       ],
