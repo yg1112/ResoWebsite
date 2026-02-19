@@ -22,11 +22,11 @@ const pricingCopy = {
         priceMain: 'Free',
         priceSup: '',
         cadence: '',
-        description: 'Bring your favorite API for essential text processing or dictation',
+        description: 'Bring your own API for essential voice capture',
         features: [
-          'Bring your own API for text processing or dictation.',
-          'Local voice processing on your device.',
-          'Essential skills for dictation and text processing.',
+          'Bring your own API for LLM access.',
+          'Basic dictation, text processing, and command drafting.',
+          'Local-first. Voice never leaves your device.',
         ],
         cta: 'Download Free',
         checkoutUrl: CHECKOUT_LINKS.free,
@@ -34,16 +34,16 @@ const pricingCopy = {
       },
       {
         id: 'plus',
-        name: 'Reso+',
+        name: 'Reso Pro',
         mode: 'All-in-One',
         priceMain: '$19',
         priceSup: '.99',
         cadence: '/month',
-        description: 'A voice-first workspace that captures, connects, and executes.',
+        description: 'All-inclusive LLM, or bring your own. Maximum flexibility.',
         features: [
-          'Diary, dictation, shadow writing, and write-with-command in one flow.',
-          'Context that evolves with you: sense the present and link your past notes.',
-          'From random sparks to cohesive insights, with local-first privacy and zero data retention.',
+          'LLM included, or use your own API. Your choice.',
+          'Unlock all skills: context linking, smart pipelines, and more.',
+          'Local-first. Zero data retention. Your thoughts stay yours.',
         ],
         cta: 'Start Subscription',
         checkoutUrl: CHECKOUT_LINKS.plus,
@@ -57,16 +57,16 @@ const pricingCopy = {
     howItWorks: 'How it works',
     steps: ['Get your key', 'Paste in Reso', "You're all set"],
     stepDescription:
-      'Reso Free starts with your own API key. Reso+ connects your subscription instantly for an all-in-one workflow.',
+      'Reso Free starts with your own API key. Reso Pro connects your subscription instantly for an all-in-one workflow.',
     faqTitle: 'Questions & Answers',
     faqs: [
       {
-        q: 'How should I choose between Reso Free and Reso+?',
-        a: 'Choose Reso Free if you want a free BYOK setup for essential voice dictation and writing flows. Choose Reso+ if you want an all-in-one monthly plan with integrated execution.',
+        q: 'How should I choose between Reso Free and Reso Pro?',
+        a: 'Choose Reso Free if you want a free BYOK setup for essential voice dictation and writing flows. Choose Reso Pro if you want an all-in-one monthly plan with integrated execution.',
       },
       {
         q: 'Do I need to configure API keys?',
-        a: 'For Reso Free, yes. You can use Anthropic, OpenAI, Groq, or Google keys. For Reso+, no. API access is integrated and ready out of the box.',
+        a: 'For Reso Free, yes. You can use Anthropic, OpenAI, Groq, or Google keys. For Reso Pro, no. API access is integrated and ready out of the box.',
       },
       {
         q: 'What can I do with Reso as a voice tool?',
@@ -78,11 +78,11 @@ const pricingCopy = {
       },
       {
         q: 'How does activation work after payment?',
-        a: 'Reso Free is free and can be used right away with your own API key. Reso+ issues a LemonSqueezy license key that unlocks the all-in-one subscription.',
+        a: 'Reso Free is free and can be used right away with your own API key. Reso Pro issues a LemonSqueezy license key that unlocks the all-in-one subscription.',
       },
       {
         q: 'Are model API costs included?',
-        a: 'Reso Free does not include model costs because usage is billed directly by your provider account. Reso+ includes API costs during subscription, subject to fair use.',
+        a: 'Reso Free does not include model costs because usage is billed directly by your provider account. Reso Pro includes API costs during subscription, subject to fair use.',
       },
       {
         q: 'Can I switch tiers later?',
@@ -104,11 +104,11 @@ const pricingCopy = {
         priceMain: '免费',
         priceSup: '',
         cadence: '',
-        description: '自带 API，满足基础文本处理与语音记录',
+        description: '自带 API，满足基础语音捕捉需求',
         features: [
-          '使用你自己的 API 进行文本处理或听写。',
-          '语音处理在设备本地完成。',
-          '听写与文本处理的核心能力。',
+          '使用你自己的 API 访问大语言模型。',
+          '基础听写、文本处理、命令草拟。',
+          '本地优先，语音永不离开设备。',
         ],
         cta: '免费下载',
         checkoutUrl: CHECKOUT_LINKS.free,
@@ -116,16 +116,16 @@ const pricingCopy = {
       },
       {
         id: 'plus',
-        name: 'Reso+',
+        name: 'Reso Pro',
         mode: 'All-in-One',
         priceMain: '$19',
         priceSup: '.99',
         cadence: '/月',
-        description: '一个集捕捉、连接与执行于一体的语音工作空间。',
+        description: '一口价包含大语言模型，也可自带 API，灵活自选。',
         features: [
-          '日记、听写、影子写作、命令写作整合在同一 flow。',
-          '上下文随你成长：理解当下，并连接过往笔记。',
-          '从零散想法到结构化洞察，兼顾本地优先隐私与零数据留存。',
+          '内置 LLM，也支持自带 API，随你选择。',
+          '解锁全部技能：上下文关联、智能流水线等。',
+          '本地优先，零数据留存，想法只属于你。',
         ],
         cta: '开始订阅',
         checkoutUrl: CHECKOUT_LINKS.plus,
@@ -138,16 +138,16 @@ const pricingCopy = {
     privacyPromise: '你的想法只属于你。我们不会用你的数据做训练。',
     howItWorks: '如何开始',
     steps: ['获取密钥', '粘贴到 Reso', '即可开始使用'],
-    stepDescription: 'Reso Free 使用你自己的 API key。Reso+ 订阅开通后即可一站式使用。',
+    stepDescription: 'Reso Free 使用你自己的 API key。Reso Pro 订阅开通后即可一站式使用。',
     faqTitle: '常见问题',
     faqs: [
       {
-        q: 'Reso Free 和 Reso+ 该如何选择？',
-        a: '如果你希望免费 BYOK，满足基础语音听写和写作流程，选 Reso Free。若你想要一体化月订阅和集成执行能力，选 Reso+。',
+        q: 'Reso Free 和 Reso Pro 该如何选择？',
+        a: '如果你希望免费 BYOK，满足基础语音听写和写作流程，选 Reso Free。若你想要一体化月订阅和集成执行能力，选 Reso Pro。',
       },
       {
         q: '需要自己配置 API key 吗？',
-        a: 'Reso Free 需要。支持 Anthropic、OpenAI、Groq、Google。Reso+ 不需要，开通后即可直接使用。',
+        a: 'Reso Free 需要。支持 Anthropic、OpenAI、Groq、Google。Reso Pro 不需要，开通后即可直接使用。',
       },
       {
         q: 'Reso 作为语音工具可以做什么？',
@@ -159,11 +159,11 @@ const pricingCopy = {
       },
       {
         q: '支付后如何激活？',
-        a: 'Reso Free 可直接使用并绑定你的 API key。Reso+ 会通过 LemonSqueezy 发放 license key，用于激活订阅。',
+        a: 'Reso Free 可直接使用并绑定你的 API key。Reso Pro 会通过 LemonSqueezy 发放 license key，用于激活订阅。',
       },
       {
         q: '模型 API 成本是否包含在内？',
-        a: 'Reso Free 不包含模型成本，按你在服务商账号中的实际用量计费。Reso+ 在订阅期间包含 API 使用，遵循合理使用原则。',
+        a: 'Reso Free 不包含模型成本，按你在服务商账号中的实际用量计费。Reso Pro 在订阅期间包含 API 使用，遵循合理使用原则。',
       },
       {
         q: '之后可以切换套餐吗？',
@@ -185,11 +185,11 @@ const pricingCopy = {
         priceMain: '無料',
         priceSup: '',
         cadence: '',
-        description: '基本的なテキスト処理とディクテーションに、好みの API を利用',
+        description: '自分の API で基本的な音声キャプチャを実現',
         features: [
-          'テキスト処理やディクテーション用に自分の API を利用。',
-          '音声処理はデバイス上でローカル実行。',
-          'ディクテーションとテキスト処理の基本機能。',
+          '自分の API で LLM にアクセス。',
+          '基本的なディクテーション、テキスト処理、コマンド下書き。',
+          'ローカル優先。音声はデバイスから出ません。',
         ],
         cta: '無料でダウンロード',
         checkoutUrl: CHECKOUT_LINKS.free,
@@ -197,16 +197,16 @@ const pricingCopy = {
       },
       {
         id: 'plus',
-        name: 'Reso+',
+        name: 'Reso Pro',
         mode: 'All-in-One',
         priceMain: '$19',
         priceSup: '.99',
         cadence: '/月',
-        description: 'キャプチャ・接続・実行を一体化した音声ワークスペース。',
+        description: 'LLM 込みの定額制、または自分の API も利用可能。柔軟に選択。',
         features: [
-          '日記、dictation、shadow writing、write-with-command を 1 つの flow で。',
-          '今の文脈を捉え、過去ノートとつなげる進化するコンテキスト。',
-          'ランダムな着想を一貫した洞察へ。ローカル優先プライバシーとゼロ保持設計。',
+          'LLM 内蔵、または自分の API を利用。お好みで。',
+          '全スキル解放：コンテキスト連携、スマートパイプラインなど。',
+          'ローカル優先。データ保持ゼロ。思考は自分だけのもの。',
         ],
         cta: 'サブスクを開始',
         checkoutUrl: CHECKOUT_LINKS.plus,
@@ -219,16 +219,16 @@ const pricingCopy = {
     privacyPromise: 'あなたの思考はあなたのもの。データを学習に利用しません。',
     howItWorks: '利用開始まで',
     steps: ['キーを取得', 'Reso に貼り付け', '準備完了'],
-    stepDescription: 'Reso Free は自分の API key で開始。Reso+ は購読後すぐに一体型 workflow を利用できます。',
+    stepDescription: 'Reso Free は自分の API key で開始。Reso Pro は購読後すぐに一体型 workflow を利用できます。',
     faqTitle: 'よくある質問',
     faqs: [
       {
-        q: 'Reso Free と Reso+ はどう選べばよいですか？',
-        a: '無料の BYOK で基本的な音声 dictation と執筆を使うなら Reso Free。統合実行まで含む月額プランなら Reso+ が適しています。',
+        q: 'Reso Free と Reso Pro はどう選べばよいですか？',
+        a: '無料の BYOK で基本的な音声 dictation と執筆を使うなら Reso Free。統合実行まで含む月額プランなら Reso Pro が適しています。',
       },
       {
         q: 'API key の設定は必要ですか？',
-        a: 'Reso Free は必要です。Anthropic / OpenAI / Groq / Google に対応。Reso+ は不要で、すぐに使えます。',
+        a: 'Reso Free は必要です。Anthropic / OpenAI / Groq / Google に対応。Reso Pro は不要で、すぐに使えます。',
       },
       {
         q: 'Reso を音声ツールとして何に使えますか？',
@@ -240,11 +240,11 @@ const pricingCopy = {
       },
       {
         q: '支払い後のアクティベーションは？',
-        a: 'Reso Free はすぐ利用でき、API key を設定します。Reso+ は LemonSqueezy の license key でサブスク機能を有効化します。',
+        a: 'Reso Free はすぐ利用でき、API key を設定します。Reso Pro は LemonSqueezy の license key でサブスク機能を有効化します。',
       },
       {
         q: 'モデル API コストは含まれますか？',
-        a: 'Reso Free は含まれず、各プロバイダのアカウントで課金されます。Reso+ はサブスク期間中の API 利用を含みます（公正利用範囲内）。',
+        a: 'Reso Free は含まれず、各プロバイダのアカウントで課金されます。Reso Pro はサブスク期間中の API 利用を含みます（公正利用範囲内）。',
       },
       {
         q: '後からプラン変更できますか？',
