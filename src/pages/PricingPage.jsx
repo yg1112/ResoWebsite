@@ -121,7 +121,7 @@ const pricingCopy = {
         priceMain: '$19',
         priceSup: '.99',
         cadence: '/月',
-        description: '包含高级模型额度，并解锁所有自动化生产力工具。',
+        description: '包含高级模型额度，解锁所有生产力工具。',
         features: [
           '无需配置 API Key，开箱即用。',
           '解锁长期记忆与智能工作流：一键生成周报、推文或代码。',
