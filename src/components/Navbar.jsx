@@ -284,7 +284,7 @@ const Navbar = ({ isScrolled = false }) => {
               <>
                 {/* Bridge keeps hover continuity from trigger to panel. */}
                 <div
-                  className="absolute top-full left-0 h-8 w-64 -left-4"
+                  className="absolute top-full left-0 h-16 w-64 -left-4"
                   aria-hidden="true"
                 />
                 <div
