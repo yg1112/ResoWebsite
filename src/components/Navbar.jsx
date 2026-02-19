@@ -284,7 +284,7 @@ const Navbar = ({ isScrolled = false }) => {
               <>
                 {/* Invisible hover area extending down to cover entire dropdown */}
                 <div
-                  className="absolute top-0 -left-4 right-0 bottom-0 h-[180px]"
+                  className="absolute top-0 -left-4 right-0 bottom-0 h-[360px]"
                   aria-hidden="true"
                 />
                 {/* Dropdown menu */}
