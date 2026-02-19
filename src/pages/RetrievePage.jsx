@@ -132,9 +132,9 @@ const RetrievePage = () => {
       <div className="absolute top-6 left-6">
         <Link
           to="/"
-          className="inline-flex items-center gap-2 text-sm text-gray-500 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white transition-colors"
+          className="inline-flex items-center gap-2 px-4 py-2 text-sm font-medium text-gray-700 dark:text-gray-200 bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm rounded-full border border-gray-200 dark:border-gray-700 hover:bg-gray-100 dark:hover:bg-gray-700 hover:border-gray-300 dark:hover:border-gray-600 transition-all shadow-sm"
         >
-          <ArrowLeft size={16} />
+          <ArrowLeft size={18} />
           <span>{copy.backToHome}</span>
         </Link>
       </div>
