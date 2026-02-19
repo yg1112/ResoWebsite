@@ -39,11 +39,13 @@ const pricingCopy = {
         priceMain: '$19',
         priceSup: '.99',
         cadence: '/month',
-        description: 'Premium model credits included, with all productivity tools unlocked.',
+        description: 'Your local intelligence hub, unlocking complete automation and knowledge insights.',
         features: [
-          'No API setup needed. Ready out of the box.',
-          'Long-term memory & smart workflows: generate reports, tweets, or code instantly.',
-          'Local-first. Zero data retention. Your thoughts stay yours.',
+          'Insight Discovery: Auto-organizes scattered notes, discovers connections, builds knowledge structure.',
+          'One-Sentence Workflows: State your goal, system assembles and executes automatically.',
+          'Perfect Recall: Simply say "share those two ideas from last week with him," auto-retrieves and extracts.',
+          'Cross-App Execution: Results sent directly to IDE, terminal, or target software.',
+          'Local Knowledge Base: Code and files stay on device, 100% data privacy.',
         ],
         cta: 'Start Subscription',
         checkoutUrl: CHECKOUT_LINKS.plus,
@@ -121,11 +123,13 @@ const pricingCopy = {
         priceMain: '$19',
         priceSup: '.99',
         cadence: '/月',
-        description: '包含高级模型额度，解锁所有生产力工具。',
+        description: '你的本地智能中枢，解锁全套自动化与知识洞察。',
         features: [
-          '无需配置 API Key，开箱即用。',
-          '解锁长期记忆与智能工作流：一键生成周报、推文或代码。',
-          '本地优先，零数据留存，想法只属于你。',
+          '灵感发现：自动梳理碎片笔记，发现关联，整理知识脉络。',
+          '一句话工作流：说出目标，系统自动组装执行。',
+          '过目不忘：直接说"把上周那两个想法分享给他"，自动检索提取。',
+          '跨应用执行：结果直接发送到 IDE、终端或目标软件。',
+          '本地知识库：代码、文件永留设备，100% 数据隐私。',
         ],
         cta: '开始订阅',
         checkoutUrl: CHECKOUT_LINKS.plus,
@@ -202,11 +206,13 @@ const pricingCopy = {
         priceMain: '$19',
         priceSup: '.99',
         cadence: '/月',
-        description: 'プレミアムモデルクレジット込み、全生産性ツール解放。',
+        description: 'あなたのローカル知能ハブ、完全な自動化と知識洞察を解放。',
         features: [
-          'API 設定不要。すぐに使える。',
-          '長期記憶＆スマートワークフロー：レポート、ツイート、コード生成が即座に。',
-          'ローカル優先。データ保持ゼロ。思考は自分だけのもの。',
+          'インサイト発見：散在メモを自動整理、関連発見、知識構造を構築。',
+          '一言ワークフロー：目標を述べるだけ、システムが自動組み立て実行。',
+          '完璧な記憶：「先週のあの2つのアイデアを彼に共有して」と言うだけ、自動検索・抽出。',
+          'アプリ間実行：結果を IDE、ターミナル、目標ソフトに直接送信。',
+          'ローカル知識ベース：コード・ファイルはデバイスに保存、100% データプライバシー。',
         ],
         cta: 'サブスクを開始',
         checkoutUrl: CHECKOUT_LINKS.plus,
@@ -279,14 +285,14 @@ const PricingPage = () => {
           <div className="relative mb-24">
             <div className="pointer-events-none absolute -inset-4 md:-inset-x-20 top-20 h-72 bg-gradient-to-r from-orange-500/15 via-sky-400/15 to-emerald-400/15 blur-3xl opacity-50 dark:opacity-40"></div>
 
-            <div className="relative grid grid-cols-1 lg:grid-cols-2 gap-6">
+            <div className="relative grid grid-cols-1 lg:grid-cols-2 gap-6 items-stretch">
               {copy.tiers.map((tier) => {
                 const isDisabled = !tier.checkoutUrl;
 
                 return (
                   <article
                     key={tier.id}
-                    className={`group relative rounded-3xl p-8 md:p-10 backdrop-blur-xl transition-all duration-300 ${
+                    className={`group relative rounded-3xl p-8 md:p-10 backdrop-blur-xl transition-all duration-300 flex flex-col ${
                       tier.featured
                         ? 'text-white hover:-translate-y-1'
                         : 'bg-white/80 dark:bg-[#0A0A0A]/90 text-gray-900 dark:text-gray-100 border border-gray-200 dark:border-gray-800 hover:border-gray-300 dark:hover:border-gray-700 hover:-translate-y-1'
@@ -341,7 +347,7 @@ const PricingPage = () => {
                         }`} />
                       </div>
 
-                      <ul className="space-y-4 mb-8">
+                      <ul className="space-y-4 mb-8 flex-1">
                         {tier.features.map((feature, idx) => (
                           <li key={idx} className="flex gap-3 items-start group/item">
                             <div className={`mt-0.5 shrink-0 w-5 h-5 rounded-full flex items-center justify-center transition-colors ${
@@ -362,7 +368,7 @@ const PricingPage = () => {
                         ))}
                       </ul>
 
-                      <div className="flex flex-col gap-3">
+                      <div className="flex flex-col gap-3 mt-auto">
                         {isDisabled ? (
                           <span className="w-full group flex items-center justify-center gap-2 text-sm py-3 px-6 rounded-full font-medium bg-gray-300 text-gray-500 cursor-not-allowed">
                             <span>{tier.cta}</span>
