@@ -2,7 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Light mode grid background with gradient fade */
+/* Light mode dot background with gradient fade */
 .grid-paper-bg {
   background-color: #fafafa;
   position: relative;
@@ -13,10 +13,8 @@
   content: '';
   position: fixed;
   inset: 0;
-  background-image:
-    linear-gradient(rgba(0, 0, 0, 0.08) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(0, 0, 0, 0.08) 1px, transparent 1px);
-  background-size: 24px 24px;
+  background-image: radial-gradient(circle, rgba(0, 0, 0, 0.12) 1px, transparent 1px);
+  background-size: 20px 20px;
   mask-image: radial-gradient(ellipse 80% 60% at 50% 40%, black 0%, transparent 100%);
   -webkit-mask-image: radial-gradient(ellipse 80% 60% at 50% 40%, black 0%, transparent 100%);
   pointer-events: none;
@@ -29,16 +27,14 @@
   z-index: 1;
 }
 
-/* Dark mode grid background */
+/* Dark mode dot background */
 .dark .grid-paper-bg {
   background-color: #000000;
 }
 
 .dark .grid-paper-bg::before {
-  background-size: 32px 32px;
-  background-image:
-    linear-gradient(rgba(255, 255, 255, 0.15) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255, 255, 255, 0.15) 1px, transparent 1px);
+  background-size: 24px 24px;
+  background-image: radial-gradient(circle, rgba(255, 255, 255, 0.15) 1px, transparent 1px);
   /* Subtle radial gradient mask for depth */
   mask-image: radial-gradient(ellipse 100% 80% at 50% 40%, black 0%, rgba(0, 0, 0, 0.6) 100%);
   -webkit-mask-image: radial-gradient(ellipse 100% 80% at 50% 40%, black 0%, rgba(0, 0, 0, 0.6) 100%);
