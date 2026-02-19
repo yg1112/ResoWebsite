@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { Menu, X as XIcon, ArrowUpRight, ChevronDown } from 'lucide-react';
+import { Menu, X as XIcon, ArrowUpRight } from 'lucide-react';
 import ResoIcon from '../assets/ResoIcon_512.png';
 import { useAppPreferences } from '../contexts/AppPreferencesContext';
 import { getLocalizedCopy } from '../i18n/localize';
@@ -38,8 +38,6 @@ const navCopy = {
   },
 };
 
-const RESOURCES_CLOSE_DELAY_MS = 300;
-
 const Navbar = ({ isScrolled = false }) => {
   const location = useLocation();
   const { language } = useAppPreferences();
@@ -49,7 +47,6 @@ const Navbar = ({ isScrolled = false }) => {
   const logoTriggerRef = useRef(null);
   const logoIconRef = useRef(null);
   const resourcesMenuRef = useRef(null);
-  const resourcesHoveringRef = useRef(false);
   const copy = getLocalizedCopy(navCopy, language);
 
   const navLinks = [
@@ -64,33 +61,9 @@ const Navbar = ({ isScrolled = false }) => {
     { key: 'licenseManager', to: '/retrieve' },
     { key: 'buildBlocks', to: '/build-blocks' },
   ];
-  const resourcesCloseTimerRef = useRef(null);
-
-  const clearResourcesCloseTimer = () => {
-    if (resourcesCloseTimerRef.current) {
-      window.clearTimeout(resourcesCloseTimerRef.current);
-      resourcesCloseTimerRef.current = null;
-    }
-  };
-
-  const openResourcesMenu = () => {
-    clearResourcesCloseTimer();
-    setResourcesOpen(true);
-  };
 
   const closeResourcesMenu = () => {
-    clearResourcesCloseTimer();
     setResourcesOpen(false);
-  };
-
-  const scheduleResourcesClose = () => {
-    clearResourcesCloseTimer();
-    resourcesCloseTimerRef.current = window.setTimeout(() => {
-      if (!resourcesHoveringRef.current) {
-        setResourcesOpen(false);
-      }
-      resourcesCloseTimerRef.current = null;
-    }, RESOURCES_CLOSE_DELAY_MS);
   };
 
   // Logo rotation animation
@@ -162,7 +135,6 @@ const Navbar = ({ isScrolled = false }) => {
   useEffect(() => {
     setMobileMenuOpen(false);
     setMobileResourcesOpen(false);
-    clearResourcesCloseTimer();
     setResourcesOpen(false);
   }, [location.pathname]);
 
@@ -190,13 +162,9 @@ const Navbar = ({ isScrolled = false }) => {
     };
   }, [resourcesOpen]);
 
-  useEffect(() => () => {
-    clearResourcesCloseTimer();
-  }, []);
-
   return (
     <nav
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+      className={`!fixed top-0 left-0 right-0 !z-[120] transition-all duration-300 ${
         isScrolled
           ? 'bg-white/92 dark:bg-black/86 backdrop-blur-xl border-b border-black/8 dark:border-white/10'
           : 'bg-transparent'
@@ -247,50 +215,25 @@ const Navbar = ({ isScrolled = false }) => {
             );
           })}
 
-          <div ref={resourcesMenuRef} className="relative">
+          <div ref={resourcesMenuRef} className="relative z-[80]">
             <button
               onClick={() => {
-                clearResourcesCloseTimer();
                 setResourcesOpen((prev) => !prev);
               }}
-              onMouseEnter={() => {
-                console.log('🟢 MOUSE ENTER button');
-                resourcesHoveringRef.current = true;
-                openResourcesMenu();
-              }}
-              className={`inline-flex items-center gap-1 transition-colors hover:text-gray-900 dark:hover:text-white ${
+              className={`inline-flex items-center transition-colors hover:text-gray-900 dark:hover:text-white ${
                 location.pathname === '/build-blocks' ? 'text-gray-900 dark:text-white' : ''
               }`}
               aria-haspopup="menu"
               aria-expanded={resourcesOpen}
             >
               <span>{copy.resources}</span>
-              <ChevronDown size={15} className={`transition-transform ${resourcesOpen ? 'rotate-180' : ''}`} />
             </button>
 
             {resourcesOpen && (
-              <div
-                className="absolute top-0 -left-4 w-64 pt-10"
-                onMouseEnter={() => {
-                  console.log('🟢 MOUSE ENTER dropdown area');
-                  resourcesHoveringRef.current = true;
-                }}
-                onMouseLeave={() => {
-                  console.log('🔴 MOUSE LEAVE dropdown area');
-                  resourcesHoveringRef.current = false;
-                  closeResourcesMenu();
-                }}
-                onFocus={openResourcesMenu}
-                onBlur={(event) => {
-                  if (!resourcesHoveringRef.current && !event.currentTarget.contains(event.relatedTarget)) {
-                    closeResourcesMenu();
-                  }
-                }}
-                style={{ background: 'rgba(255,0,0,0.05)' }}
-              >
+              <div className="absolute top-full -left-4 z-[90] pt-2 pointer-events-auto">
                 {/* Dropdown menu */}
                 <div
-                  className="mt-2 w-52 rounded-xl border border-black/10 dark:border-white/10 bg-white/98 dark:bg-black/95 backdrop-blur-xl shadow-lg p-1.5"
+                  className="w-52 overflow-hidden rounded-xl border border-black/10 dark:border-white/10 bg-white/98 dark:bg-black/95 backdrop-blur-xl shadow-lg p-1.5"
                 >
                   {resourceLinks.map((resource) => {
                     if (resource.external) {
@@ -394,11 +337,10 @@ const Navbar = ({ isScrolled = false }) => {
 
           <button
             onClick={() => setMobileResourcesOpen((prev) => !prev)}
-            className="w-full flex items-center justify-between py-2 text-base text-gray-700 dark:text-gray-200"
+            className="w-full py-2 text-left text-base text-gray-700 dark:text-gray-200"
             aria-expanded={mobileResourcesOpen}
           >
-            <span>{copy.resources}</span>
-            <ChevronDown size={18} className={`transition-transform ${mobileResourcesOpen ? 'rotate-180' : ''}`} />
+            {copy.resources}
           </button>
           {mobileResourcesOpen && (
             <div className="ml-3 border-l border-gray-200 dark:border-gray-700 pl-3 space-y-1">

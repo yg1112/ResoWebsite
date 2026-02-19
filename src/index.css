@@ -24,7 +24,7 @@
   transition: opacity 0.3s ease;
 }
 
-.grid-paper-bg > * {
+.grid-paper-bg > :not(nav) {
   position: relative;
   z-index: 1;
 }
