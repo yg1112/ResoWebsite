@@ -247,30 +247,16 @@ const Navbar = ({ isScrolled = false }) => {
             );
           })}
 
-          <div
-            ref={resourcesMenuRef}
-            className="relative"
-            onMouseEnter={(e) => {
-              console.log('🟢 MOUSE ENTER parent container');
-              resourcesHoveringRef.current = true;
-              openResourcesMenu();
-            }}
-            onMouseLeave={(e) => {
-              console.log('🔴 MOUSE LEAVE parent container');
-              resourcesHoveringRef.current = false;
-              closeResourcesMenu();
-            }}
-            onFocus={openResourcesMenu}
-            onBlur={(event) => {
-              if (!resourcesHoveringRef.current && !event.currentTarget.contains(event.relatedTarget)) {
-                closeResourcesMenu();
-              }
-            }}
-          >
+          <div ref={resourcesMenuRef} className="relative">
             <button
               onClick={() => {
                 clearResourcesCloseTimer();
                 setResourcesOpen((prev) => !prev);
+              }}
+              onMouseEnter={() => {
+                console.log('🟢 MOUSE ENTER button');
+                resourcesHoveringRef.current = true;
+                openResourcesMenu();
               }}
               className={`inline-flex items-center gap-1 transition-colors hover:text-gray-900 dark:hover:text-white ${
                 location.pathname === '/build-blocks' ? 'text-gray-900 dark:text-white' : ''
@@ -283,20 +269,28 @@ const Navbar = ({ isScrolled = false }) => {
             </button>
 
             {resourcesOpen && (
-              <>
-                {/* Invisible hover area BEHIND dropdown */}
-                <div
-                  className="absolute top-0 -left-4 w-64 h-[360px] z-0"
-                  aria-hidden="true"
-                  style={{ background: 'rgba(255,0,0,0.1)' }}
-                  onPointerEnter={(e) => console.log('🟡 ENTER invisible overlay')}
-                  onPointerLeave={(e) => console.log('🟠 LEAVE invisible overlay')}
-                />
+              <div
+                className="absolute top-0 -left-4 w-64 pt-10"
+                onMouseEnter={() => {
+                  console.log('🟢 MOUSE ENTER dropdown area');
+                  resourcesHoveringRef.current = true;
+                }}
+                onMouseLeave={() => {
+                  console.log('🔴 MOUSE LEAVE dropdown area');
+                  resourcesHoveringRef.current = false;
+                  closeResourcesMenu();
+                }}
+                onFocus={openResourcesMenu}
+                onBlur={(event) => {
+                  if (!resourcesHoveringRef.current && !event.currentTarget.contains(event.relatedTarget)) {
+                    closeResourcesMenu();
+                  }
+                }}
+                style={{ background: 'rgba(255,0,0,0.05)' }}
+              >
                 {/* Dropdown menu */}
                 <div
-                  className="absolute top-full left-0 mt-2 w-52 min-w-full rounded-xl border border-black/10 dark:border-white/10 bg-white/98 dark:bg-black/95 backdrop-blur-xl shadow-lg p-1.5 z-10"
-                  onPointerEnter={(e) => console.log('🔵 ENTER dropdown menu')}
-                  onPointerLeave={(e) => console.log('🟣 LEAVE dropdown menu')}
+                  className="mt-2 w-52 rounded-xl border border-black/10 dark:border-white/10 bg-white/98 dark:bg-black/95 backdrop-blur-xl shadow-lg p-1.5"
                 >
                   {resourceLinks.map((resource) => {
                     if (resource.external) {
@@ -326,7 +320,7 @@ const Navbar = ({ isScrolled = false }) => {
                     );
                   })}
                 </div>
-              </>
+              </div>
             )}
           </div>
 
