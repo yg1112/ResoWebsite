@@ -249,7 +249,7 @@ const Navbar = ({ isScrolled = false }) => {
 
           <div
             ref={resourcesMenuRef}
-            className="relative"
+            className="relative pb-32"
             onPointerEnter={() => {
               resourcesHoveringRef.current = true;
               openResourcesMenu();
