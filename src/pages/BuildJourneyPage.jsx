@@ -8,21 +8,21 @@ import { getLocalizedCopy } from '../i18n/localize';
 const pageCopy = {
   en: {
     title: 'Build Journey',
-    subtitle: 'Field notes on design, tradeoffs, and the product decisions behind Reso.',
+    subtitle: 'Field notes on design, tradeoffs, and the thinking behind Reso.',
     selectPost: 'Select a post',
     posts: 'Posts',
     onThisPost: 'On this post',
   },
   zh: {
     title: 'Build Journey',
-    subtitle: '记录 Reso 在设计、取舍与实现过程中的关键决策。',
+    subtitle: '记录 Reso 在设计、取舍与实现过程中的思考。',
     selectPost: '选择篇章',
     posts: '篇章',
     onThisPost: '本篇目录',
   },
   ja: {
     title: 'Build Journey',
-    subtitle: 'Reso の設計・トレードオフ・意思決定を記録した開発ノートです。',
+    subtitle: 'Reso の設計・トレードオフ・実装における思考の記録。',
     selectPost: '記事を選択',
     posts: '記事一覧',
     onThisPost: 'この投稿',

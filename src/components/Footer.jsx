@@ -38,10 +38,10 @@ const Footer = () => {
   }, language);
 
   const languageOptions = [
-    { value: 'zh', label: '简体中文' },
-    { value: 'zh-TW', label: '繁體中文' },
     { value: 'en', label: 'English' },
+    { value: 'zh', label: '简体中文' },
     { value: 'ja', label: '日本語' },
+    { value: 'zh-TW', label: '繁體中文' },
   ];
 
   return (
