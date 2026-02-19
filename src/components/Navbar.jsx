@@ -249,7 +249,7 @@ const Navbar = ({ isScrolled = false }) => {
 
           <div
             ref={resourcesMenuRef}
-            className="relative pb-32"
+            className="relative pb-40"
             onPointerEnter={() => {
               resourcesHoveringRef.current = true;
               openResourcesMenu();
@@ -282,13 +282,9 @@ const Navbar = ({ isScrolled = false }) => {
 
             {resourcesOpen && (
               <>
-                {/* Bridge keeps hover continuity from trigger to panel - covers entire dropdown area */}
+                {/* Dropdown menu - no bridge needed, extends parent boundary */}
                 <div
-                  className="absolute top-full left-0 h-48 w-64 -left-4"
-                  aria-hidden="true"
-                />
-                <div
-                  className="absolute top-full left-0 translate-y-2 w-52 min-w-full rounded-xl border border-black/10 dark:border-white/10 bg-white/98 dark:bg-black/95 backdrop-blur-xl shadow-lg p-1.5"
+                  className="absolute top-full left-0 mt-2 w-52 min-w-full rounded-xl border border-black/10 dark:border-white/10 bg-white/98 dark:bg-black/95 backdrop-blur-xl shadow-lg p-1.5"
                 >
                   {resourceLinks.map((resource) => {
                     if (resource.external) {
