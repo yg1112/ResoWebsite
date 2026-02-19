@@ -249,7 +249,7 @@ const Navbar = ({ isScrolled = false }) => {
 
           <div
             ref={resourcesMenuRef}
-            className="relative pb-40"
+            className="relative"
             onPointerEnter={() => {
               resourcesHoveringRef.current = true;
               openResourcesMenu();
@@ -282,9 +282,14 @@ const Navbar = ({ isScrolled = false }) => {
 
             {resourcesOpen && (
               <>
-                {/* Dropdown menu - no bridge needed, extends parent boundary */}
+                {/* Invisible hover area extending down to cover entire dropdown */}
                 <div
-                  className="absolute top-full left-0 mt-2 w-52 min-w-full rounded-xl border border-black/10 dark:border-white/10 bg-white/98 dark:bg-black/95 backdrop-blur-xl shadow-lg p-1.5"
+                  className="absolute top-0 -left-4 right-0 bottom-0 h-[180px]"
+                  aria-hidden="true"
+                />
+                {/* Dropdown menu */}
+                <div
+                  className="absolute top-full left-0 mt-2 w-52 min-w-full rounded-xl border border-black/10 dark:border-white/10 bg-white/98 dark:bg-black/95 backdrop-blur-xl shadow-lg p-1.5 z-10"
                 >
                   {resourceLinks.map((resource) => {
                     if (resource.external) {
