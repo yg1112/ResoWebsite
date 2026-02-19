@@ -53,7 +53,7 @@ const Navbar = ({ isScrolled = false }) => {
     { key: 'product', href: '/#features' },
     { key: 'pricing', to: '/pricing' },
     // { key: 'discover', to: '/discover' },  // Hidden until feature is complete
-    { key: 'docs', to: '/docs' },
+    // { key: 'docs', to: '/docs' },  // Hidden until docs are polished - access via /docs URL directly
     { key: 'buildJourney', to: '/build-journey' },
   ];
 
