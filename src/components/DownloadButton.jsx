@@ -1,23 +1,17 @@
 import React from 'react';
-import { ArrowRight, Download } from 'lucide-react';
+import { Download } from 'lucide-react';
 import { useAppPreferences } from '../contexts/AppPreferencesContext';
 import { getLocalizedCopy } from '../i18n/localize';
 
 const DownloadButton = ({ variant = 'primary', size = 'lg', className = '', children, ...props }) => {
   const { language } = useAppPreferences();
   const copy = getLocalizedCopy({
-    en: 'Download on the Mac App Store',
-    zh: '在 Mac App Store 下载',
-    ja: 'Mac App Store からダウンロード',
+    en: 'Download for macOS',
+    zh: '下载 macOS 版本',
+    ja: 'macOS 版をダウンロード',
   }, language);
 
-  // TODO: Replace with actual App Store URL when available
-  const appStoreUrl = "https://apps.apple.com/app/reso/idXXXXXXXXX"; // Placeholder URL
-  
-  // For development/testing, fall back to DMG download
-  const downloadUrl = appStoreUrl.includes('idXXXXXXXXX') 
-    ? "https://github.com/yg1112/reso-releases/releases/latest/download/Reso.dmg"
-    : appStoreUrl;
+  const downloadUrl = "https://github.com/yg1112/reso-releases/releases/latest/download/Reso.dmg";
 
   const variantStyles = {
     primary: 'px-8 py-4 bg-black text-white rounded-2xl font-semibold text-base hover:bg-gray-800 transition-all shadow-xl hover:shadow-2xl hover:-translate-y-0.5',
@@ -26,17 +20,10 @@ const DownloadButton = ({ variant = 'primary', size = 'lg', className = '', chil
   };
 
   const handleClick = (e) => {
-    // Only track if going to real App Store
-    if (!downloadUrl.includes('github.com') && typeof window.gtag === 'function') {
-      window.gtag('event', 'app_store_click', {
-        'event_category': 'App Store',
-        'event_label': 'Mac App Store Link',
-        'value': 1
-      });
-    } else if (typeof window.gtag === 'function') {
+    if (typeof window.gtag === 'function') {
       window.gtag('event', 'download', {
-        'event_category': 'App',
-        'event_label': 'Reso 1.0 DMG',
+        'event_category': 'Direct Download',
+        'event_label': 'Reso DMG from Website',
         'value': 1
       });
     }
@@ -45,8 +32,7 @@ const DownloadButton = ({ variant = 'primary', size = 'lg', className = '', chil
   return (
     <a
       href={downloadUrl}
-      target="_blank"
-      rel="noopener noreferrer"
+      download
       onClick={handleClick}
       className={`inline-flex items-center gap-3 ${variantStyles[variant]} ${className}`}
       {...props}
