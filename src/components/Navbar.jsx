@@ -282,9 +282,9 @@ const Navbar = ({ isScrolled = false }) => {
 
             {resourcesOpen && (
               <>
-                {/* Bridge keeps hover continuity from trigger to panel. */}
+                {/* Bridge keeps hover continuity from trigger to panel - covers entire dropdown area */}
                 <div
-                  className="absolute top-full left-0 h-16 w-64 -left-4"
+                  className="absolute top-full left-0 h-48 w-64 -left-4"
                   aria-hidden="true"
                 />
                 <div
