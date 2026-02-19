@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowLeft, Sun, Moon } from 'lucide-react';
 import { useAppPreferences } from '../contexts/AppPreferencesContext';
+import ResoIcon from '../assets/ResoIcon_512.png';
 
 const WORKER_URL = 'https://reso-verify.gaoyukun1205.workers.dev';
 
@@ -82,14 +83,14 @@ const RetrievePage = () => {
       {/* Main Content */}
       <div className="flex items-center justify-center min-h-screen px-6">
         <div className="max-w-md w-full text-center">
-          {/* App Icon with purple glow */}
-          <Link to="/" className="inline-block relative mb-8">
-            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[150%] h-[150%] bg-[radial-gradient(circle,rgba(84,35,231,0.2)_0%,rgba(255,255,255,0)_70%)] blur-[40px] -z-10" />
+          {/* App Icon - clean style like Navbar */}
+          <Link to="/" className="inline-flex items-center justify-center gap-2.5 mb-8">
             <img
-              src="/ResoIcon_512.png"
-              alt="Reso App Icon"
-              className="w-20 h-20 mx-auto hover:scale-105 transition-transform duration-300 rounded-2xl"
+              src={ResoIcon}
+              alt="Reso"
+              className="w-10 h-10 rounded-xl"
             />
+            <span className="text-gray-900 dark:text-gray-100 font-medium text-2xl tracking-tight">Reso</span>
           </Link>
 
           <h1 className="text-3xl font-bold mb-3 tracking-tight text-gray-900 dark:text-gray-100">
