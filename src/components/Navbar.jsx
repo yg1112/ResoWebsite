@@ -38,6 +38,16 @@ const navCopy = {
   },
 };
 
+const trackDownload = (source) => {
+  if (typeof window.gtag === 'function') {
+    window.gtag('event', 'download', {
+      event_category: 'Direct Download',
+      event_label: `Reso DMG from ${source}`,
+      value: 1,
+    });
+  }
+};
+
 const Navbar = ({ isScrolled = false }) => {
   const location = useLocation();
   const { language } = useAppPreferences();
@@ -270,6 +280,7 @@ const Navbar = ({ isScrolled = false }) => {
           <a
             href="https://github.com/yg1112/reso-releases/releases/latest/download/Reso.dmg"
             download
+            onClick={() => trackDownload('Navbar Desktop')}
             className="px-[18px] py-2 rounded-full bg-[#1f2017] dark:bg-white text-white dark:text-black font-medium text-[14px] leading-none hover:bg-black dark:hover:bg-gray-100 transition-all"
           >
             {copy.download}
@@ -384,6 +395,7 @@ const Navbar = ({ isScrolled = false }) => {
           <a
             href="https://github.com/yg1112/reso-releases/releases/latest/download/Reso.dmg"
             download
+            onClick={() => trackDownload('Navbar Mobile')}
             className="block w-full text-center mt-2 px-5 py-2 rounded-full bg-[#1f2017] dark:bg-white text-white dark:text-black text-sm font-medium"
           >
             {copy.download}

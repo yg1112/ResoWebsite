@@ -69,6 +69,15 @@ const HeroSection = () => {
           <a
             href="https://github.com/yg1112/reso-releases/releases/latest/download/Reso.dmg"
             download
+            onClick={() => {
+              if (typeof window.gtag === 'function') {
+                window.gtag('event', 'download', {
+                  event_category: 'Direct Download',
+                  event_label: 'Reso DMG from Hero',
+                  value: 1,
+                });
+              }
+            }}
             className="inline-flex items-center gap-2 bg-black dark:bg-white text-white dark:text-black rounded-full font-medium text-sm hover:bg-gray-800 dark:hover:bg-gray-100 transition-all px-6 py-3"
           >
             <span>{copy.download}</span>
