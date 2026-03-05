@@ -2,6 +2,204 @@
 
 const localizedJourneyPosts = [
   {
+    id: 13,
+    date: 'Mar 2026',
+    category: 'Product',
+    title: {
+      en: 'The Art of Restraint',
+      zh: '克制',
+      ja: '削ぎ落とすこと',
+    },
+    summary: {
+      en: 'I cut 20% of the features this week. Not because they were bad ideas, but because the foundation matters more than the skyline.',
+      zh: '这周我砍掉了 20% 的功能。不是因为那些想法不好，而是地基比天际线更重要。',
+      ja: '今週、機能の20%を削った。アイデアが悪かったからではない。土台のほうが空の輪郭より大事だからだ。',
+    },
+    content: {
+      en: `I've been away from this project for about a week, working on other code. When I came back and opened it again, something shifted.
+
+When you build every day, everything feels sticky. You poured hours into each feature, so naturally every piece feels essential. But step away for a week, lose that attachment, and things get clearer.
+
+### What Distance Showed Me
+
+Without the daily attachment, practical concerns surfaced:
+
+I had designed ambitious workflows—multi-step, branching, deeply configurable. The vision was exciting. But looking at it with fresh eyes, I saw cognitive overload. How many people would actually navigate all of that? That's not a certain number.
+
+The honest move was to revisit the old question: can the core features run smoothly, and can they be the best version of themselves?
+
+### Foundations Before Skyscrapers
+
+I'm fine with having a grand blueprint. But trying to build a skyscraper in week one is a different thing entirely. Lay the foundation first. The penthouse can wait.
+
+This isn't about commitment or ambition. It's about sequencing. Having a clear sense of what's urgent versus what's aspirational.
+
+At this stage, the real question is: do I spend time polishing existing features into a complete product loop, or do I expand horizontally and open more threads? There are plenty of impressive things I could build. But each one eats into the time I need for getting the basics right, and stretches the development cycle.
+
+### Month One vs. Month Six
+
+When I looked at everything with fresh eyes, some features felt like where this product should be six months from now. Others clearly belonged in month one.
+
+So I pulled out nearly everything that belongs in month six or year one. Not deleted—stored. This frees up space to think about how to express the fundamentals clearly.
+
+### The Tendency to Over-Explain
+
+Here's something I noticed while building: even though I use this product daily, I kept worrying that I hadn't explained it well enough. I'd over-explain, add extra guidance, hedge against confusion.
+
+That comes from not knowing whether others will get it. And the truth is, I won't know until it's in the market. The best feedback is customer feedback. Without it, there's a tendency to keep polishing in a vacuum—moved by your own effort rather than by real signals.
+
+### Why I Wouldn't Have Done This a Month Ago
+
+A month ago, if you told me to cut features and ship less, I'd have resisted. It would have felt like limiting imagination, thinking too small.
+
+But I've come to see that good ideas don't all need to ship at once. You can't get there in one bite. Some ideas need to sit, and the real question is whether they're needed *now*.
+
+### Watermelons and Sesame Seeds
+
+When tasks pile up, the core question keeps coming back: what am I actually trying to do? A product that tries to do everything ends up doing nothing well. Energy scatters.
+
+When you're exhausted, the answer isn't grinding harder. It's stepping back and asking: about all of this, what am I doing?
+
+It's not about having ten or a hundred agent skills. It's about understanding how much value those ten actually deliver. Where should this be in three months? In six?
+
+This isn't about squeezing more productivity from each day. It's about seeing how the product evolves across time—finding its place in the ecosystem.
+
+### Software as Communication
+
+How does this product interact with people? What matters most in that interaction?
+
+It's like talking to someone. Speaking faster doesn't mean you have more to say. When you have a lot to communicate, that's exactly when you need to figure out what matters most—and say that.
+
+Not everything at once. Just the things both sides can actually engage with.
+
+Building software forces you to confront this: what exactly are you trying to say? What's the most important thing?
+
+In the end, writing code is practice in expressing yourself clearly.`,
+      zh: `这一个礼拜我在准备其他的代码，没怎么碰这个项目。等我回来重新打开它的时候，看到的东西不太一样了。
+
+每天都在做的时候，你会觉得每个功能都很有粘性——毕竟是你投了大量时间开发出来的，每一块都觉得不可或缺。但放下一个礼拜，没有了那种粘着感，事情反而清晰了。
+
+### 距离让我看见了什么
+
+少了每天的惯性投入，一些现实的考量浮了上来。
+
+我之前设计了特别多工作流，想法很 ambitious——多步骤、多分支、深度可配置。想象很兴奋，但换了双眼睛再看，我看到的是认知负担。到底有多少人会真的走完那些流程？这不是一个确定的数字。
+
+更诚实的做法是回到那句老话：基础功能能不能跑通，能不能做到最好用？
+
+### 先打地基，再盖楼
+
+有一个宏大的蓝图我是同意的。但第一周就要建摩天大楼，那是另一回事。先把地基打好，顶层的事可以之后再来。
+
+这不是在说投入够不够，也不是在质疑想象力。而是关于"有的放矢"——分清楚什么是紧迫的，什么是愿景。
+
+这个阶段真正要权衡的是：我是花时间打磨已有的功能、形成产品闭环？还是开更多线程、做横向扩张？确实有很多可以做得很惊艳的东西，但每做一个，都在挤压打磨基础场景的时间，也在拉长开发周期。
+
+### 第一个月和第六个月
+
+重新审视的时候，我发现有些功能像是这个产品六个月以后的样子，有些则是第一个月就该想清楚的。
+
+所以我把几乎所有属于第六个月甚至第一年的东西，从当前版本里拿掉了。不是删掉，是存起来。这样做是为了留出空间，去思考怎么把最基础的东西表达清楚。
+
+### 过度解释的倾向
+
+有一件事是我在构建过程中发现的：虽然我每天都在用这个产品，但我一直在担心自己有没有交代清楚它到底是做什么的。会不自觉地加更多引导、做更多解释、试图挡住所有可能的困惑。
+
+根源在于我不知道别人会不会用它。而真相是，没有进入市场就不会知道。最好的反馈永远是用户反馈。没有它，就容易陷入一种在真空里打磨的状态——被自己的投入感动，而不是被真实信号驱动。
+
+所以这周我砍掉了 20% 的功能。我觉得还是要把这个做得更具体一些。
+
+### 一个月前的我不会这么做
+
+一个月前如果有人跟我说砍功能、少做一点，我大概会觉得：凭什么要限制自己？那样感觉想象力受到了束缚，想得不够远。
+
+但后来我在想，很多想法虽然好，并不意味着一次就要把功能仓库塞满。一口吃不成胖子。有些想法需要放一放，关键是它们现在是不是被需要的。
+
+### 西瓜和芝麻
+
+当面对越来越多的问题和 task 时，核心问题会反复浮现：你到底想做什么？一个什么都想做的产品，最后什么都做不好，精力会很分散。
+
+觉得疲劳的时候，答案不是花更多时间把所有事情都做完。有时候你需要跳出来，站在更高的地方看一看：关于这一切，我到底在做什么？
+
+关键不是你有十个还是一百个 agent skill，而是弄清楚这十个到底发挥了多大作用。三个月以后它应该是什么样？六个月以后呢？
+
+这不是要从每天挤出更多 productivity，而是在时间维度上去看这个产品怎么演化——从自己的 ecosystem 出发，找到它的生态位。
+
+### 写软件也是在练习表达
+
+这个产品以什么方式和人交互？在这个交互里，什么是最重要的？
+
+就像和人说话一样。语速快不代表你要说的更多。恰恰是在你有大量信息要传达的时候，更要想清楚什么是最重要的，然后说那个。
+
+不是把所有东西一股脑列出来，而是抓双方都能有效沟通的东西说。
+
+写软件会倒逼你想清楚这件事：你到底想说什么？什么是最重要的？
+
+说到底，写代码也是在练习如何清晰地表达自己。`,
+      ja: `この一週間、別のコードに取り組んでいて、このプロジェクトにはほぼ触れなかった。戻ってきて改めて開いたとき、見え方が変わっていた。
+
+毎日作っていると、どの機能にも粘着力を感じる。大量の時間を注いだのだから、どれも欠かせないと思える。でも一週間離れると、その粘りが消えて、物事がはっきり見えるようになる。
+
+### 距離が見せてくれたもの
+
+日々の慣性がなくなると、現実的な問いが浮かんできた。
+
+以前、非常に ambitious なワークフローを設計していた。多段階、多分岐、細かく設定可能。構想は面白かったが、新鮮な目で見直すと、認知負荷の重さが見えた。あのフローを最後まで使い切る人がどれだけいるのか。確かな数字ではない。
+
+正直に戻ると、あの基本の問いに行きつく。コア機能はちゃんと動くか。最も使いやすい形になっているか。
+
+### 超高層ビルより先に土台
+
+大きな青写真があること自体は賛成だ。でも一週目で超高層を建てようとするのは別の話。まず土台を固める。最上階のことは後でいい。
+
+これは情熱や想像力の問題ではない。順序の問題だ。今すぐ必要なことと、将来のビジョンを見分けること。
+
+今の段階で本当に問うべきは：既存の機能を磨いてプロダクトの輪を閉じるのか、それとも横に広げて新しいスレッドを増やすのか。驚くようなものを作る余地はたくさんある。でもそのひとつひとつが基本シナリオを磨く時間を削り、開発サイクルを伸ばす。
+
+### 一ヶ月目と六ヶ月目
+
+改めて見直したとき、ある機能は六ヶ月後のプロダクトに見えた。別の機能は一ヶ月目に解決すべきものだった。
+
+だから六ヶ月目や一年目に属するものは、ほぼすべて現行バージョンから外した。削除ではなく保管。こうすることで、基礎をどう明確に伝えるかを考える余白が生まれる。
+
+### 説明しすぎる傾向
+
+作りながら気づいたことがある。毎日使っているのに、これが何をするものなのか、ちゃんと伝わっているかずっと不安だった。無意識にガイドを増やし、説明を重ね、あらゆる混乱を先回りして防ごうとしていた。
+
+根にあるのは、他の人が使ってくれるか分からないということ。そして真実は、市場に出すまで分からない。最良のフィードバックは使い手のフィードバックだ。それがなければ、真空の中で磨き続ける傾向に陥る——実際の信号ではなく、自分の投入量に感動してしまう。
+
+だから今週、機能の20%を削った。もっと具体的にしたかった。
+
+### 一ヶ月前なら、こうはしなかった
+
+一ヶ月前に「機能を減らせ」と言われたら、たぶん抵抗していた。想像力を制限される感覚、視野が狭くなる感覚。
+
+でも今は分かる。良いアイデアだからといって、一度に全部を詰め込む必要はない。一口では太れない。いくつかのアイデアは寝かせておくべきで、問われるのは「今それが必要か」だ。
+
+### スイカとゴマ
+
+タスクと問題が増えるほど、核心の問いが繰り返し戻ってくる。自分は一体何を作ろうとしているのか。何でもやろうとするプロダクトは、結局どれも中途半端になる。エネルギーが散る。
+
+疲れたとき、答えは「もっと頑張る」ではない。一歩引いて、上から眺めること。この全体について、自分は何をしているのか。
+
+大事なのは agent skill が十個あるか百個あるかではない。その十個がどれだけの価値を出しているか。三ヶ月後、これはどうあるべきか。六ヶ月後は。
+
+一日からもっと多くの生産性を絞り出すことではない。時間の軸でプロダクトがどう進化するか——自分のエコシステムの中で、その立ち位置を見つけること。
+
+### ソフトウェアは表現の練習
+
+このプロダクトはどうやって人と関わるのか。その関わりの中で、何が一番大事なのか。
+
+人との会話と同じだ。早口は、伝えたいことが多い証拠にはならない。むしろ伝えたいことが山ほどあるときこそ、何が最も重要かを見極めて、それを言う。
+
+全部を並べるのではなく、双方が実際に噛み合えるものを選んで伝える。
+
+ソフトウェアを書くと、この問いに向き合わされる。自分は一体何を言いたいのか。何が一番大事なのか。
+
+結局、コードを書くことは、自分を明確に表現する練習でもある。`,
+    },
+  },
+  {
     id: 12,
     date: 'Feb 2026',
     category: 'Product',
