@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom';
+import { BrowserRouter, Routes, Route, Outlet, useLocation } from 'react-router-dom';
 import Navbar from './components/Navbar';
 import HeroSection from './components/HeroSection';
 import Features from './components/Features';
@@ -47,12 +47,12 @@ function HashScrollHandler() {
   return null;
 }
 
-function MainLayout({ children, isScrolled }) {
+function MainLayout({ isScrolled }) {
   return (
     <div className="min-h-screen grid-paper-bg text-gray-900 dark:text-gray-100 font-sans selection:bg-orange-100 dark:selection:bg-brand-primary/30 scroll-smooth overflow-x-hidden">
       <HashScrollHandler />
       <Navbar isScrolled={isScrolled} />
-      {children}
+      <Outlet />
       <Footer />
     </div>
   );
@@ -76,20 +76,16 @@ function App() {
         <Route path="/retrieve" element={<RetrievePage />} />
 
         {/* Pages with main layout */}
-        <Route path="/*" element={
-          <MainLayout isScrolled={isScrolled}>
-            <Routes>
-              <Route path="/" element={<HomePage />} />
-              <Route path="/pricing" element={<PricingPage />} />
-              <Route path="/discover" element={<DiscoverPage />} />
-              <Route path="/marketplace" element={<MarketplacePage />} />
-              {/* <Route path="/docs" element={<DocsPage />} /> */}
-              <Route path="/build-journey" element={<BuildJourneyPage />} />
-              <Route path="/build-blocks" element={<BuildBlocksPage />} />
-              <Route path="/contact" element={<ContactPage />} />
-            </Routes>
-          </MainLayout>
-        } />
+        <Route element={<MainLayout isScrolled={isScrolled} />}>
+          <Route index element={<HomePage />} />
+          <Route path="pricing" element={<PricingPage />} />
+          <Route path="discover" element={<DiscoverPage />} />
+          <Route path="marketplace" element={<MarketplacePage />} />
+          <Route path="docs" element={<DocsPage />} />
+          <Route path="build-journey" element={<BuildJourneyPage />} />
+          <Route path="build-blocks" element={<BuildBlocksPage />} />
+          <Route path="contact" element={<ContactPage />} />
+        </Route>
       </Routes>
     </BrowserRouter>
   );
