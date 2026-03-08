@@ -26,6 +26,17 @@ const pageCopy = {
   },
 };
 
+const getPostIdFromHash = (hash, posts) => {
+  const sectionId = hash.startsWith('#') ? hash.slice(1) : hash;
+  if (!sectionId) return null;
+
+  const exactMatch = posts.find((post) => `journey-${post.id}` === sectionId);
+  if (exactMatch) return `journey-${exactMatch.id}`;
+
+  const prefixMatch = posts.find((post) => sectionId.startsWith(`journey-${post.id}-`));
+  return prefixMatch ? `journey-${prefixMatch.id}` : null;
+};
+
 const BuildJourneyPage = () => {
   const location = useLocation();
   const { language } = useAppPreferences();
@@ -43,11 +54,10 @@ const BuildJourneyPage = () => {
 
     if (!location.hash) return;
 
-    const sectionId = location.hash.slice(1);
-    const targetPost = localizedPosts.find((post) => `journey-${post.id}` === sectionId);
+    const postIdFromHash = getPostIdFromHash(location.hash, localizedPosts);
 
-    if (targetPost) {
-      setActivePostId(sectionId);
+    if (postIdFromHash && postIdFromHash !== activePostId) {
+      setActivePostId(postIdFromHash);
     }
   }, [activePostId, localizedPosts, location.hash]);
 
@@ -110,7 +120,6 @@ const BuildJourneyPage = () => {
                         : 'text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white'
                     }`}
                   >
-                    <p className="text-[11px] uppercase tracking-wide opacity-70 mb-1">{post.date}</p>
                     <p>{post.title}</p>
                   </button>
                 );

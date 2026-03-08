@@ -23,11 +23,11 @@ const featureCopy = {
         id: 'privacy',
         title: 'Your thoughts stay yours',
         description:
-          'Transcription runs locally on Apple Silicon. When cloud features are needed, sensitive data is masked before it ever leaves your Mac.',
+          'Capture only starts when you trigger it. Reso keeps recovery audio local, then routes transcription and generation through Reso Engine or your own provider based on your setup.',
         learnMoreText: 'Learn about privacy',
         learnMoreLink: '/docs#privacy',
         imageSlot: 'feature-privacy.png',
-        imageHint: 'PII Shield / local processing flow',
+        imageHint: 'Permissions / data flow / provider routing',
       },
       {
         id: 'skills',
@@ -79,11 +79,11 @@ const featureCopy = {
         id: 'privacy',
         title: '你的想法只属于你',
         description:
-          '转录在 Apple Silicon 本地完成。只有在需要云端能力时，敏感信息才会先被遮蔽，再离开你的 Mac。',
+          '只有在你主动触发时才会开始捕捉。Reso 会把恢复用音频保留在本地，再根据你的设置把转写和生成路由到 Reso Engine 或你自己的 provider。',
         learnMoreText: '了解隐私设计',
         learnMoreLink: '/docs#privacy',
         imageSlot: 'feature-privacy.png',
-        imageHint: 'PII Shield / local processing flow',
+        imageHint: 'Permissions / data flow / provider routing',
       },
       {
         id: 'skills',
@@ -135,11 +135,11 @@ const featureCopy = {
         id: 'privacy',
         title: 'あなたの思考はあなたのもの',
         description:
-          '文字起こしは Apple Silicon 上でローカル実行。クラウド機能が必要な場合も、機微情報はマスクしてから送信されます。',
+          'capture はあなたが明示的に起動したときだけ始まります。Reso は recovery 用 audio をローカルに保持し、その後の transcription と generation は設定に応じて Reso Engine か自分の provider に流します。',
         learnMoreText: 'Privacy を見る',
         learnMoreLink: '/docs#privacy',
         imageSlot: 'feature-privacy.png',
-        imageHint: 'PII Shield / local processing flow',
+        imageHint: 'Permissions / data flow / provider routing',
       },
       {
         id: 'skills',
@@ -226,7 +226,6 @@ const Features = () => {
                   <p className="text-base md:text-lg text-gray-500 dark:text-gray-400 leading-relaxed mb-6">
                     {feature.description}
                   </p>
-                  {/* Learn more links hidden until docs are ready
                   <Link
                     to={feature.learnMoreLink}
                     className="inline-flex items-center gap-2 text-amber-600 dark:text-amber-500 font-medium hover:text-amber-700 dark:hover:text-amber-400 transition-colors group"
@@ -234,7 +233,6 @@ const Features = () => {
                     <span>{feature.learnMoreText}</span>
                     <ArrowRight size={16} className="transition-transform group-hover:translate-x-1" />
                   </Link>
-                  */}
                 </div>
 
                 {/* Image */}
