@@ -63,11 +63,11 @@ const Navbar = ({ isScrolled = false }) => {
     { key: 'product', href: '/#features' },
     { key: 'pricing', to: '/pricing' },
     // { key: 'discover', to: '/discover' },  // Hidden until feature is complete
-    // { key: 'docs', to: '/docs' },  // Hidden until docs are polished - access via /docs URL directly
     { key: 'buildJourney', to: '/build-journey' },
   ];
 
   const resourceLinks = [
+    { key: 'docs', to: '/docs' },
     { key: 'licenseManager', to: '/retrieve' },
     { key: 'buildBlocks', to: '/build-blocks' },
   ];
@@ -231,7 +231,7 @@ const Navbar = ({ isScrolled = false }) => {
                 setResourcesOpen((prev) => !prev);
               }}
               className={`inline-flex items-center transition-colors hover:text-gray-900 dark:hover:text-white ${
-                location.pathname === '/build-blocks' ? 'text-gray-900 dark:text-white' : ''
+                ['/docs', '/retrieve', '/build-blocks'].includes(location.pathname) ? 'text-gray-900 dark:text-white' : ''
               }`}
               aria-haspopup="menu"
               aria-expanded={resourcesOpen}
