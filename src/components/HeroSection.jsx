@@ -1,69 +1,113 @@
-import React, { useState, useEffect, useRef } from 'react';
-import { createPortal } from 'react-dom';
+import React, { useState, useEffect, lazy, Suspense } from 'react';
 import ToolLogos from './ToolLogos';
 import { Download } from 'lucide-react';
 import { useAppPreferences } from '../contexts/AppPreferencesContext';
 import { getLocalizedCopy } from '../i18n/localize';
 
+const ResoHeroMockup = lazy(() => import('./mockups/ResoHeroMockup'));
+
 const heroCopy = {
   en: {
-    title: 'Capture thoughts. Anywhere.',
-    local: 'Locally.',
+    titleA: 'Capture thoughts.',
+    titleB: 'Anywhere.',
+    titleC: 'Thoughtfully.',
     download: 'Download for macOS',
     worksWith: 'Works seamlessly with',
   },
   zh: {
-    title: '随时捕捉想法。',
-    local: '本地完成。',
+    titleA: '捕捉想法。',
+    titleB: '随时随地。',
+    titleC: '用心地。',
     download: '下载 macOS 版本',
     worksWith: '无缝兼容',
   },
   ja: {
-    title: '思考を、どこでも記録。',
-    local: 'ローカルで。',
+    titleA: '思考をキャプチャ。',
+    titleB: 'どこでも。',
+    titleC: '思慮深く。',
     download: 'macOS 版をダウンロード',
     worksWith: 'シームレスに連携',
   },
 };
 
+const HERO_SCENES = [
+  {
+    id: 'capture',
+    label: { en: 'Capture', zh: '捕捉', ja: 'キャプチャ' },
+    caption: {
+      en: 'Hold Option. The capsule listens, refines, and lands the action.',
+      zh: '按住 Option，胶囊开始听、提炼、然后落地动作。',
+      ja: 'Option を押すだけ。カプセルが聞き取り、磨き上げて、行動に落とします。',
+    },
+  },
+  {
+    id: 'workflow',
+    label: { en: 'Orchestrate', zh: '编排', ja: 'オーケストレート' },
+    caption: {
+      en: 'Don\'t just dictate. Orchestrate every voice through rules you control.',
+      zh: '别只是听写——把每一段语音编排进你定义的规则链。',
+      ja: 'ただの口述ではなく、あなたのルールで声をオーケストレーションする。',
+    },
+  },
+  {
+    id: 'indexing',
+    label: { en: 'Memory', zh: '记忆库', ja: 'メモリ' },
+    caption: {
+      en: 'Embed files for context. All files stay on your Mac.',
+      zh: '把文件嵌入做上下文理解，所有文件都留在你的 Mac 上。',
+      ja: 'ファイルを文脈理解のために embedding。ファイルは Mac に残る。',
+    },
+  },
+  {
+    id: 'discover',
+    label: { en: 'Discover', zh: '星云', ja: 'ディスカバリー' },
+    caption: {
+      en: 'Drift through your private Nebula — see how your thoughts cluster on their own.',
+      zh: '在你私人的星云里漂流——看你的想法如何自己聚成片。',
+      ja: 'あなただけの Nebula を漂い、思考がどう自然に繋がるかを眺める。',
+    },
+  },
+];
+
+const SCENE_INTERVAL_MS = 4200;
+
+const HERO_INTERNAL_WIDTH = 1080;
+const HERO_INTERNAL_HEIGHT = 640;
+const HERO_SCALE = 0.65;
+const HERO_DISPLAY_WIDTH = Math.round(HERO_INTERNAL_WIDTH * HERO_SCALE);
+const HERO_DISPLAY_HEIGHT = Math.round(HERO_INTERNAL_HEIGHT * HERO_SCALE);
+
 const HeroSection = () => {
   const { language } = useAppPreferences();
-  const [isModalOpen, setIsModalOpen] = useState(false);
-  const modalVideoRef = useRef(null);
   const copy = getLocalizedCopy(heroCopy, language);
+  const [activeSceneIndex, setActiveSceneIndex] = useState(0);
+  const [isPaused, setIsPaused] = useState(false);
+
+  const currentScene = HERO_SCENES[activeSceneIndex];
+  const currentCaption = getLocalizedCopy(currentScene.caption, language);
 
   useEffect(() => {
-    const handleEsc = (e) => {
-      if (e.key === 'Escape') setIsModalOpen(false);
-    };
-    if (isModalOpen) {
-      document.addEventListener('keydown', handleEsc);
-      document.body.style.overflow = 'hidden';
-    }
-    return () => {
-      document.removeEventListener('keydown', handleEsc);
-      document.body.style.overflow = '';
-    };
-  }, [isModalOpen]);
+    if (typeof window === 'undefined') return undefined;
 
-  useEffect(() => {
-    if (isModalOpen && modalVideoRef.current) {
-      modalVideoRef.current.play();
-    }
-    if (!isModalOpen && modalVideoRef.current) {
-      modalVideoRef.current.pause();
-      modalVideoRef.current.currentTime = 0;
-    }
-  }, [isModalOpen]);
+    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+    if (reduceMotion.matches || isPaused) return undefined;
+
+    const id = window.setInterval(() => {
+      setActiveSceneIndex((current) => (current + 1) % HERO_SCENES.length);
+    }, SCENE_INTERVAL_MS);
+    return () => window.clearInterval(id);
+  }, [isPaused]);
 
   return (
-    <section className="relative z-10 pt-32 pb-20 min-h-screen">
+    <section className="relative z-10 pt-24 pb-16">
       <div className="max-w-6xl mx-auto px-6">
 
         {/* Title + Button */}
-        <div className="mb-14 max-w-3xl">
-          <h1 className="text-3xl md:text-5xl font-medium tracking-tight leading-[1.15] mb-6 text-black dark:text-white">
-            {copy.title} <span className="text-gray-500 dark:text-gray-400">{copy.local}</span>
+        <div className="mb-6 max-w-3xl">
+          <h1 className="text-3xl md:text-5xl font-medium tracking-tight leading-[1.15] mb-5 text-black dark:text-white">
+            {copy.titleA}{' '}
+            {copy.titleB}{' '}
+            <span className="text-gray-500 dark:text-gray-400">{copy.titleC}</span>
           </h1>
 
           <a
@@ -85,38 +129,90 @@ const HeroSection = () => {
           </a>
         </div>
 
-        {/* Video */}
-        <div className="relative w-full mb-16">
-          {/* 环境光晕 */}
+        {/* Caption + Scene Tabs */}
+        <div className="mb-3 flex flex-col gap-3 xl:flex-row xl:items-end xl:justify-between xl:gap-8">
+          <div className="max-w-2xl">
+            <h2 className="text-base md:text-lg font-medium tracking-tight text-gray-900 dark:text-gray-100">
+              {currentCaption}
+            </h2>
+          </div>
+          <div className="flex flex-wrap items-center gap-x-5 gap-y-2 xl:justify-end">
+            {HERO_SCENES.map((scene, index) => {
+              const sceneLabel = getLocalizedCopy(scene.label, language);
+              const isActive = index === activeSceneIndex;
+              return (
+                <button
+                  key={scene.id}
+                  type="button"
+                  onClick={() => {
+                    setActiveSceneIndex(index);
+                    setIsPaused(true);
+                  }}
+                  className={`pb-1 text-sm font-medium transition-all border-b-2 ${
+                    isActive
+                      ? 'text-gray-900 dark:text-white border-gray-900 dark:border-white'
+                      : 'text-gray-400 dark:text-gray-500 border-transparent hover:text-gray-600 dark:hover:text-gray-300'
+                  }`}
+                >
+                  {sceneLabel}
+                </button>
+              );
+            })}
+          </div>
+        </div>
+
+        {/* Mockup canvas — sized exactly to scaled content so there is no blank gutter */}
+        <div
+          className="relative mb-12 mx-auto"
+          style={{
+            width: '100%',
+            maxWidth: HERO_DISPLAY_WIDTH,
+            height: HERO_DISPLAY_HEIGHT,
+          }}
+          onMouseEnter={() => setIsPaused(true)}
+          onMouseLeave={() => setIsPaused(false)}
+        >
+          {/* Ambient glow */}
           <div
-            className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 -z-10"
+            aria-hidden
+            className="absolute -inset-16 -z-10"
             style={{
-              width: '120%',
-              height: '120%',
-              background: 'radial-gradient(circle, rgba(120, 80, 255, 0.1) 0%, rgba(255, 255, 255, 0) 70%)',
+              background:
+                'radial-gradient(circle at 50% 40%, rgba(120, 80, 255, 0.22) 0%, rgba(120, 80, 255, 0) 65%)',
               filter: 'blur(60px)',
             }}
           />
           <div
-            className="relative w-full aspect-video bg-black rounded-2xl overflow-hidden shadow-[0_20px_60px_-20px_rgba(0,0,0,0.2)] cursor-pointer group"
-            onClick={() => setIsModalOpen(true)}
+            style={{
+              position: 'relative',
+              width: '100%',
+              height: '100%',
+              overflow: 'hidden',
+              borderRadius: 18,
+            }}
           >
-            <video
-              autoPlay
-              loop
-              muted
-              playsInline
-              className="w-full h-full object-cover"
+            <div
+              style={{
+                width: HERO_INTERNAL_WIDTH,
+                height: HERO_INTERNAL_HEIGHT,
+                transform: `scale(${HERO_SCALE})`,
+                transformOrigin: 'top left',
+              }}
             >
-              <source src="/Reso_Demo_v3.mp4" type="video/mp4" />
-            </video>
-            {/* Play Button Overlay */}
-            <div className="absolute inset-0 flex items-center justify-center">
-              <div className="w-12 h-12 md:w-14 md:h-14 bg-white rounded-full flex items-center justify-center shadow-[0_4px_24px_rgba(0,0,0,0.15)] transition-all duration-300 group-hover:scale-105 group-hover:shadow-[0_8px_32px_rgba(102,0,255,0.25)]">
-                <svg className="w-5 h-5 md:w-6 md:h-6 ml-0.5" viewBox="0 0 24 24" fill="none">
-                  <path d="M8.5 5.5C8.5 4.89 9.18 4.52 9.7 4.86L19.2 11.36C19.67 11.67 19.67 12.33 19.2 12.64L9.7 19.14C9.18 19.48 8.5 19.11 8.5 18.5V5.5Z" fill="#5423e7" />
-                </svg>
-              </div>
+              <Suspense
+                fallback={
+                  <div
+                    style={{
+                      width: HERO_INTERNAL_WIDTH,
+                      height: HERO_INTERNAL_HEIGHT,
+                      borderRadius: 16,
+                      background: '#0a0a0d',
+                    }}
+                  />
+                }
+              >
+                <ResoHeroMockup activeScene={currentScene.id} />
+              </Suspense>
             </div>
           </div>
         </div>
@@ -129,38 +225,6 @@ const HeroSection = () => {
           </div>
         </div>
       </div>
-
-      {/* Fullscreen Video Modal */}
-      {isModalOpen && createPortal(
-        <div
-          className="fixed inset-0 z-[9999] flex items-center justify-center bg-black/90 backdrop-blur-sm"
-          onClick={() => setIsModalOpen(false)}
-        >
-          <button
-            onClick={() => setIsModalOpen(false)}
-            className="absolute top-6 right-6 w-11 h-11 bg-white/10 hover:bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center transition-all duration-200"
-          >
-            <svg className="w-5 h-5 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round">
-              <path d="M18 6L6 18M6 6l12 12" />
-            </svg>
-          </button>
-
-          <div
-            className="relative w-[90vw] max-w-5xl aspect-video rounded-2xl overflow-hidden shadow-2xl"
-            onClick={(e) => e.stopPropagation()}
-          >
-            <video
-              ref={modalVideoRef}
-              controls
-              playsInline
-              className="w-full h-full object-contain bg-black"
-            >
-              <source src="/Reso_Demo_v3.mp4" type="video/mp4" />
-            </video>
-          </div>
-        </div>,
-        document.body
-      )}
     </section>
   );
 };
