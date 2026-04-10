@@ -20,43 +20,48 @@ import {
  * Layout reverse-engineered from the original macOS app screenshot.
  */
 
-const NODE_WIDTH = 188;
-const NODE_HEIGHT = 56;
+const NODE_WIDTH = 174;
+const NODE_HEIGHT = 54;
+const CHART_CENTER_Y = 222;
 
+// Layout matches Reso2/Models/WorkflowBuilder/PipelineGraph.swift:
+//   INPUT (Voice Input) → BRANCH (Context + Revise stacked) → RULES → merge → DELIVER
+// All columns are vertically centered around CHART_CENTER_Y so the main path
+// stays visually straight, exactly like PipelineGraphView's alignment guide.
 const NODES = [
-  // INPUT column
+  // INPUT column — Voice Input alone (centered)
   {
     id: 'voice-input',
     title: 'Voice Input',
     subtitle: 'Hold Option · capture + transcribe',
-    x: 36,
-    y: 174,
+    x: 30,
+    y: 195,
     column: 'INPUT',
+  },
+  // BRANCH column (no label) — Context Awareness + Revise stacked, 44pt apart
+  {
+    id: 'context',
+    title: 'Context Awareness',
+    subtitle: 'Bring in live app and text context',
+    x: 254,
+    y: 146,
+    column: '',
   },
   {
     id: 'revise',
     title: 'Revise Last Result',
     subtitle: 'Update the previous result',
-    x: 36,
-    y: 286,
-    column: 'INPUT',
-  },
-  // CONTEXT (between INPUT and RULES)
-  {
-    id: 'context',
-    title: 'Context Awareness',
-    subtitle: 'Bring in live app and text context',
-    x: 256,
-    y: 230,
+    x: 254,
+    y: 244,
     column: '',
   },
-  // RULES column
+  // RULES column — Clean / Refine / Translate, 8pt apart
   {
     id: 'clean',
     title: 'Clean',
     subtitle: 'Faithful dictation cleanup rule',
-    x: 476,
-    y: 158,
+    x: 478,
+    y: 133,
     column: 'RULES',
     cog: false,
   },
@@ -64,8 +69,8 @@ const NODES = [
     id: 'refine',
     title: 'Refine',
     subtitle: 'Structure rule inside the same pass',
-    x: 476,
-    y: 234,
+    x: 478,
+    y: 195,
     column: 'RULES',
     cog: true,
   },
@@ -73,57 +78,82 @@ const NODES = [
     id: 'translate',
     title: 'Translate',
     subtitle: 'Language rule inside the same pass',
-    x: 476,
-    y: 310,
+    x: 478,
+    y: 257,
     column: 'RULES',
     cog: true,
     disabled: true,
   },
-  // DELIVER column
+  // JUNCTION column (no label) — small merge dot, sits on the chart center
+  {
+    id: 'merge',
+    kind: 'junction',
+    x: 690,
+    y: CHART_CENTER_Y,
+  },
+  // DELIVER column — Auto Insert / Result Card, 8pt apart
   {
     id: 'auto-insert',
     title: 'Auto Insert',
     subtitle: 'Insert at cursor when safe',
-    x: 700,
-    y: 196,
+    x: 720,
+    y: 164,
     column: 'DELIVER',
   },
   {
     id: 'result-card',
     title: 'Result Card',
     subtitle: 'Show result card notification',
-    x: 700,
-    y: 274,
+    x: 720,
+    y: 226,
     column: 'DELIVER',
     cog: true,
   },
 ];
 
+// Edges match buildEdges() in PipelineGraph.swift:
 const CONNECTIONS = [
-  // Voice Input → Context Awareness
+  // Voice Input → Context Awareness + Revise (both branches off the same input)
   { from: 'voice-input', to: 'context' },
-  // Revise → Result Card (long arc bypassing the rules)
-  { from: 'revise', to: 'result-card', curve: 'low' },
-  // Context → Clean / Refine / Translate
+  { from: 'voice-input', to: 'revise' },
+  // Context Awareness → Clean / Refine / Translate (rules are applied to the main branch)
   { from: 'context', to: 'clean' },
   { from: 'context', to: 'refine' },
   { from: 'context', to: 'translate', dim: true },
-  // Clean → Auto Insert
-  { from: 'clean', to: 'auto-insert' },
-  // Refine → Result Card
-  { from: 'refine', to: 'result-card' },
-  // Translate → Result Card (dim)
-  { from: 'translate', to: 'result-card', dim: true },
+  // Rules → merge → Deliver
+  { from: 'clean', to: 'merge' },
+  { from: 'refine', to: 'merge' },
+  { from: 'translate', to: 'merge', dim: true },
+  { from: 'merge', to: 'auto-insert' },
+  { from: 'merge', to: 'result-card' },
+  // Revise Last Result → Result Card (long arc bypassing rules)
+  { from: 'revise', to: 'result-card', curve: 'low' },
 ];
 
 const lookupNode = (id) => NODES.find((n) => n.id === id);
 
+const JUNCTION_RADIUS = 6;
+
+/** Right-edge anchor (where outgoing edges leave a node). */
+const rightAnchor = (node) =>
+  node.kind === 'junction'
+    ? { x: node.x + JUNCTION_RADIUS, y: node.y }
+    : { x: node.x + NODE_WIDTH, y: node.y + NODE_HEIGHT / 2 };
+
+/** Left-edge anchor (where incoming edges enter a node). */
+const leftAnchor = (node) =>
+  node.kind === 'junction'
+    ? { x: node.x - JUNCTION_RADIUS, y: node.y }
+    : { x: node.x, y: node.y + NODE_HEIGHT / 2 };
+
 /** Build a smooth horizontal Bezier between two node anchors. */
 const buildPath = (a, b, curve) => {
-  const ax = a.x + NODE_WIDTH;
-  const ay = a.y + NODE_HEIGHT / 2;
-  const bx = b.x;
-  const by = b.y + NODE_HEIGHT / 2;
+  const start = rightAnchor(a);
+  const end = leftAnchor(b);
+  const ax = start.x;
+  const ay = start.y;
+  const bx = end.x;
+  const by = end.y;
   const dx = Math.max(40, (bx - ax) * 0.55);
   if (curve === 'low') {
     // Bypass arc that drops below the rules column to avoid visual collision
@@ -167,6 +197,23 @@ const SvgCog = ({ x, y }) => (
 );
 
 const SvgWorkflowNode = ({ node, selected, onSelect }) => {
+  // Junction merge dot — small filled circle with no label, sits on its center.
+  if (node.kind === 'junction') {
+    return (
+      <g transform={`translate(${node.x},${node.y})`} style={{ pointerEvents: 'none' }}>
+        <circle
+          cx="0"
+          cy="0"
+          r={JUNCTION_RADIUS}
+          fill={RESO_TOKENS.bgCard}
+          stroke={RESO_TOKENS.border}
+          strokeWidth="1"
+        />
+        <circle cx="0" cy="0" r="2.4" fill={RESO_TOKENS.textTertiary} opacity="0.8" />
+      </g>
+    );
+  }
+
   const opacity = node.disabled ? 0.42 : 1;
   const greenColor = node.disabled
     ? 'rgba(34, 197, 94, 0.35)'
@@ -319,10 +366,11 @@ export const WorkflowCanvas = ({ maxWidth }) => {
         );
       })}
 
-      {/* Column labels */}
-      <SvgColumnLabel text="INPUT" x={36 + NODE_WIDTH / 2 - 14} y={150} />
-      <SvgColumnLabel text="RULES" x={476 + NODE_WIDTH / 2 - 14} y={134} />
-      <SvgColumnLabel text="DELIVER" x={700 + NODE_WIDTH / 2 - 22} y={172} />
+      {/* Column labels — branch (Context+Revise) and junction columns intentionally have no label.
+          Each label sits ~22pt above its column's topmost node, exactly like the real app. */}
+      <SvgColumnLabel text="INPUT" x={30 + NODE_WIDTH / 2 - 14} y={173} />
+      <SvgColumnLabel text="RULES" x={478 + NODE_WIDTH / 2 - 14} y={111} />
+      <SvgColumnLabel text="DELIVER" x={720 + NODE_WIDTH / 2 - 22} y={142} />
 
       {/* Nodes */}
       {NODES.map((node) => (

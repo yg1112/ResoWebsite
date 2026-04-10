@@ -62,13 +62,6 @@ const FolderGlyph = ({ size = 16, color = 'rgba(255,255,255,0.6)' }) => (
   </svg>
 );
 
-const NoteGlyph = ({ size = 16 }) => (
-  <svg width={size} height={size} viewBox="0 0 18 18" fill="none">
-    <rect x="3" y="2.5" width="12" height="13" rx="2" stroke="rgba(255,255,255,0.6)" strokeWidth="1.4" fill="none" />
-    <path d="M5.5 6h7M5.5 9h7M5.5 12h4" stroke="rgba(255,255,255,0.45)" strokeWidth="1.3" strokeLinecap="round" />
-  </svg>
-);
-
 const CheckIcon = () => (
   <div
     className="flex items-center justify-center"
@@ -114,12 +107,9 @@ const RefreshIcon = () => (
   <div
     className="flex items-center justify-center"
     style={{
-      width: 24,
+      width: 22,
       height: 22,
-      borderRadius: 6,
-      background: 'rgba(255,255,255,0.05)',
-      border: '1px solid rgba(255,255,255,0.08)',
-      color: RESO_TOKENS.textSecondary,
+      color: RESO_TOKENS.textTertiary,
     }}
   >
     <svg width="11" height="11" viewBox="0 0 14 14" fill="none">
@@ -135,16 +125,13 @@ const RefreshIcon = () => (
   </div>
 );
 
-const TrashIcon = () => (
+const TrashIcon = ({ color = 'inherit' }) => (
   <div
     className="flex items-center justify-center"
     style={{
-      width: 24,
+      width: 22,
       height: 22,
-      borderRadius: 6,
-      background: 'rgba(255,255,255,0.05)',
-      border: '1px solid rgba(255,255,255,0.08)',
-      color: RESO_TOKENS.textSecondary,
+      color,
     }}
   >
     <svg width="11" height="11" viewBox="0 0 14 14" fill="none">
@@ -221,7 +208,6 @@ const Toggle = ({ on = true }) => (
 const FOLDERS = [
   {
     id: 'documents',
-    icon: <FolderGlyph color="rgba(255,255,255,0.7)" />,
     title: 'Documents',
     badge: 'Obsidian',
     subtitle: '3,062 indexed · 434 discovered',
@@ -230,7 +216,6 @@ const FOLDERS = [
   },
   {
     id: 'evaluation',
-    icon: <FolderGlyph color="rgba(255,255,255,0.7)" />,
     title: 'evaluation',
     subtitle: '11 indexed · 11 discovered',
     actions: ['refresh', 'unlink', 'trash'],
@@ -238,7 +223,6 @@ const FOLDERS = [
   },
   {
     id: 'apple-notes',
-    icon: <NoteGlyph />,
     title: 'Apple Notes',
     subtitle: 'Ready to import',
     actions: ['import'],
@@ -400,34 +384,44 @@ export const IndexingContent = () => {
       </div>
 
       {/* Folder add input — dashed border signals "tap to fill" without
-          adding another solid card to the page */}
-      <div
-        className="flex items-center"
-        style={{
-          height: 34,
-          borderRadius: 8,
-          background: 'transparent',
-          border: `1px dashed ${RESO_TOKENS.borderStrong}`,
-          padding: '0 12px',
-          gap: 10,
-          marginBottom: 8,
-        }}
-      >
-        <FolderGlyph color="rgba(255,255,255,0.35)" size={14} />
-        <span style={{ fontSize: 11, color: RESO_TOKENS.textTertiary, flex: 1 }}>
-          Add a folder path or browse…
-        </span>
+          adding another solid card to the page. Browse button sits OUTSIDE
+          the dashed border, matching the real app. */}
+      <div className="flex items-center" style={{ gap: 8, marginBottom: 8 }}>
+        <div
+          className="flex items-center"
+          style={{
+            flex: 1,
+            height: 34,
+            borderRadius: 8,
+            background: 'transparent',
+            border: `1px dashed ${RESO_TOKENS.borderStrong}`,
+            padding: '0 12px',
+            gap: 8,
+          }}
+        >
+          <FolderGlyph color="rgba(255,255,255,0.35)" size={12} />
+          <span style={{ fontSize: 12, color: RESO_TOKENS.textTertiary, flex: 1 }}>
+            Add a folder path or browse…
+          </span>
+        </div>
         <div
           className="flex items-center justify-center"
           style={{
-            width: 22,
-            height: 22,
-            borderRadius: 6,
-            background: 'rgba(255,255,255,0.06)',
-            color: RESO_TOKENS.textSecondary,
+            width: 30,
+            height: 30,
+            color: RESO_TOKENS.textTertiary,
           }}
         >
-          <FolderGlyph size={12} color="rgba(255,255,255,0.7)" />
+          <svg width="14" height="14" viewBox="0 0 18 18" fill="none">
+            <path
+              d="M2 5.5a1.5 1.5 0 0 1 1.5-1.5h3.4l1.4 1.6h6.2A1.5 1.5 0 0 1 16 7.1V13a1.5 1.5 0 0 1-1.5 1.5h-11A1.5 1.5 0 0 1 2 13V5.5z"
+              stroke="currentColor"
+              strokeWidth="1.4"
+              fill="none"
+              strokeLinejoin="round"
+            />
+            <path d="M9 9v3M7.5 10.5h3" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" />
+          </svg>
         </div>
       </div>
 
@@ -466,52 +460,46 @@ export const IndexingContent = () => {
               >
                 <Checkbox checked={checked} />
               </button>
-              <div className="flex items-center" style={{ gap: 8, flex: 1, minWidth: 0 }}>
-                {folder.icon}
-                <div style={{ minWidth: 0 }}>
-                  <div className="flex items-center" style={{ gap: 6 }}>
-                    <span style={{ fontSize: 12, fontWeight: 600, color: RESO_TOKENS.textPrimary }}>
-                      {folder.title}
+              <div style={{ flex: 1, minWidth: 0 }}>
+                <div className="flex items-center" style={{ gap: 6 }}>
+                  <span style={{ fontSize: 12, fontWeight: 600, color: RESO_TOKENS.textPrimary }}>
+                    {folder.title}
+                  </span>
+                  {folder.badge && (
+                    <span
+                      style={{
+                        fontSize: 9,
+                        fontWeight: 600,
+                        padding: '1px 5px',
+                        borderRadius: 4,
+                        background: 'rgba(84,35,231,0.18)',
+                        border: '1px solid rgba(84,35,231,0.32)',
+                        color: '#c4b6ff',
+                        letterSpacing: 0.2,
+                      }}
+                    >
+                      {folder.badge}
                     </span>
-                    {folder.badge && (
-                      <span
-                        style={{
-                          fontSize: 9,
-                          fontWeight: 600,
-                          padding: '1px 5px',
-                          borderRadius: 4,
-                          background: 'rgba(84,35,231,0.18)',
-                          border: '1px solid rgba(84,35,231,0.32)',
-                          color: '#c4b6ff',
-                          letterSpacing: 0.2,
-                        }}
-                      >
-                        {folder.badge}
-                      </span>
-                    )}
-                  </div>
-                  <div style={{ fontSize: 10, color: RESO_TOKENS.textTertiary, marginTop: 1 }}>
-                    {folder.subtitle}
-                  </div>
+                  )}
+                </div>
+                <div style={{ fontSize: 10, color: RESO_TOKENS.textTertiary, marginTop: 1 }}>
+                  {folder.subtitle}
                 </div>
               </div>
               {folder.actions.includes('refresh') && <RefreshIcon />}
               {folder.actions.includes('unlink') && (
                 <div
                   style={{
-                    fontSize: 10,
+                    fontSize: 11,
                     fontWeight: 500,
-                    color: RESO_TOKENS.textSecondary,
-                    padding: '4px 9px',
-                    borderRadius: 999,
-                    background: 'rgba(255,255,255,0.05)',
-                    border: '1px solid rgba(255,255,255,0.1)',
+                    color: RESO_TOKENS.textTertiary,
+                    padding: '4px 8px',
                   }}
                 >
                   Unlink
                 </div>
               )}
-              {folder.actions.includes('trash') && <TrashIcon />}
+              {folder.actions.includes('trash') && <TrashIcon color={RESO_TOKENS.textTertiary} />}
               {folder.actions.includes('import') && (
                 <div
                   style={{
@@ -674,34 +662,31 @@ export const IndexingFeatureCard = () => (
           }}
         >
           {folder.checked ? <CheckIcon /> : <div style={{ width: 18 }} />}
-          <div className="flex items-center" style={{ gap: 8, flex: 1, minWidth: 0 }}>
-            {folder.icon}
-            <div style={{ minWidth: 0, flex: 1 }}>
-              <div className="flex items-center" style={{ gap: 6 }}>
-                <span style={{ fontSize: 11, fontWeight: 600, color: RESO_TOKENS.textPrimary, whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>
-                  {folder.title}
+          <div style={{ minWidth: 0, flex: 1 }}>
+            <div className="flex items-center" style={{ gap: 6 }}>
+              <span style={{ fontSize: 11, fontWeight: 600, color: RESO_TOKENS.textPrimary, whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>
+                {folder.title}
+              </span>
+              {folder.badge && (
+                <span
+                  style={{
+                    fontSize: 8,
+                    fontWeight: 600,
+                    padding: '1px 5px',
+                    borderRadius: 4,
+                    background: 'rgba(84,35,231,0.18)',
+                    border: '1px solid rgba(84,35,231,0.32)',
+                    color: '#c4b6ff',
+                    letterSpacing: 0.2,
+                    flexShrink: 0,
+                  }}
+                >
+                  {folder.badge}
                 </span>
-                {folder.badge && (
-                  <span
-                    style={{
-                      fontSize: 8,
-                      fontWeight: 600,
-                      padding: '1px 5px',
-                      borderRadius: 4,
-                      background: 'rgba(84,35,231,0.18)',
-                      border: '1px solid rgba(84,35,231,0.32)',
-                      color: '#c4b6ff',
-                      letterSpacing: 0.2,
-                      flexShrink: 0,
-                    }}
-                  >
-                    {folder.badge}
-                  </span>
-                )}
-              </div>
-              <div style={{ fontSize: 9, color: RESO_TOKENS.textTertiary, marginTop: 1, whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>
-                {folder.subtitle}
-              </div>
+              )}
+            </div>
+            <div style={{ fontSize: 9, color: RESO_TOKENS.textTertiary, marginTop: 1, whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>
+              {folder.subtitle}
             </div>
           </div>
           {folder.actions.includes('refresh') && <RefreshIcon />}

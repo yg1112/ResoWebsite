@@ -24,8 +24,8 @@ const NebulaShowcase = lazy(() =>
  * Stateful "Home" window for Reso2.
  *
  * Two layers of navigation:
- *   1. Sidebar — Search / Nebula / Settings
- *   2. Settings tabs — System / Workflow / Mindscape / Plan & Usage
+ *   1. Sidebar — Nebula / Settings
+ *   2. Settings tabs — System / Workflow / Memory / Plan & Usage
  *
  * Plus a hide-sidebar button for immersive Nebula viewing.
  */
@@ -444,7 +444,7 @@ const PlanUsageContent = () => {
           <div style={{ flex: 1, minWidth: 0 }}>
             <div className="flex items-baseline" style={{ gap: 8 }}>
               <span style={{ fontSize: 18, fontWeight: 600, color: RESO_TOKENS.textPrimary }}>Reso</span>
-              <span style={{ fontSize: 11, color: RESO_TOKENS.textTertiary, fontFamily: '"SF Mono", monospace' }}>1.0 (42a885)</span>
+              <span style={{ fontSize: 11, color: RESO_TOKENS.textTertiary, fontFamily: '"SF Mono", monospace' }}>1.0 (72f38c)</span>
             </div>
             <div className="flex items-center" style={{ gap: 6, marginTop: 8 }}>
               <span
@@ -591,6 +591,48 @@ const PlanUsageContent = () => {
             }}
           >
             More ▾
+          </span>
+        </div>
+
+        {/* Footer — © DZG Studio + Website / Contact buttons (matches the
+            real app's StatusTabView footer at the bottom of the scroll view) */}
+        <div
+          className="flex items-center"
+          style={{
+            marginTop: 28,
+            paddingTop: 14,
+            borderTop: `1px solid ${RESO_TOKENS.border}`,
+            gap: 8,
+          }}
+        >
+          <span style={{ fontSize: 11, color: RESO_TOKENS.textTertiary, flex: 1 }}>
+            © 2026 DZG Studio LLC. All Rights Reserved.
+          </span>
+          <span
+            style={{
+              fontSize: 11,
+              fontWeight: 500,
+              padding: '4px 12px',
+              borderRadius: 6,
+              background: 'rgba(255,255,255,0.04)',
+              border: '1px solid rgba(255,255,255,0.12)',
+              color: RESO_TOKENS.textPrimary,
+            }}
+          >
+            Website
+          </span>
+          <span
+            style={{
+              fontSize: 11,
+              fontWeight: 500,
+              padding: '4px 12px',
+              borderRadius: 6,
+              background: 'rgba(255,255,255,0.04)',
+              border: '1px solid rgba(255,255,255,0.12)',
+              color: RESO_TOKENS.textPrimary,
+            }}
+          >
+            Contact
           </span>
         </div>
       </div>
