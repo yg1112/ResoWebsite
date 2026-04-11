@@ -7,9 +7,6 @@ import { getLocalizedCopy } from '../i18n/localize';
 const CapsuleShowcase = lazy(() =>
   import('./mockups/CapsuleMockup').then((m) => ({ default: m.CapsuleShowcase })),
 );
-const PrivacyShowcase = lazy(() =>
-  import('./mockups/PrivacyMockup').then((m) => ({ default: m.PrivacyShowcase })),
-);
 const ResoSettingsWindow = lazy(() =>
   import('./mockups/ResoSettingsWindow').then((m) => ({ default: m.ResoSettingsWindow })),
 );
@@ -23,170 +20,141 @@ const MindscapeCard = (props) => <ResoSettingsWindow defaultTab="indexing" {...p
 
 const featureCopy = {
   en: {
-    sectionTitle: 'Built for how you think',
-    sectionSubtitle: 'From capture to insight—a workspace that adapts to your workflow.',
+    sectionTitle: 'Think out loud. We handle the rest.',
+    sectionSubtitle:
+      'A workspace that adapts to your mind, from first thought to final output.',
     features: [
       {
         id: 'capture',
-        title: 'Capture thoughts as they happen',
+        title: 'Speak your mind, anywhere.',
         description:
-          'Ideas are fleeting. Reso runs in the background, ready to record whenever inspiration strikes. No app to open, no friction—just speak and move on.',
-        learnMoreText: 'Learn about frictionless capture',
+          'Press Option in any app to start talking. Reso captures your voice, reads your screen context, and drops polished text right at your cursor.',
+        learnMoreText: 'See how capture works',
         learnMoreLink: '/docs#capture',
         imageSlot: 'feature-capture.png',
         imageHint: 'Shadow recording / notch bar UI',
       },
       {
-        id: 'privacy',
-        title: 'Your thoughts stay yours',
-        description:
-          'Capture only starts when you trigger it. Reso keeps recovery audio local, then routes transcription and generation through Reso Engine or your own provider based on your setup.',
-        learnMoreText: 'Learn about privacy',
-        learnMoreLink: '/docs#privacy',
-        imageSlot: 'feature-privacy.png',
-        imageHint: 'Permissions / data flow / provider routing',
-      },
-      {
         id: 'orchestrate',
-        title: 'Don\'t just dictate. Orchestrate.',
+        title: 'Build pipelines, not just prompts.',
         description:
-          'Reso isn\'t a smart keyboard; it\'s a cognitive pipeline. Your voice passes through your custom rules, references your active app\'s context, and delivers a polished result exactly where you need it.',
+          'Route your voice through custom workflows. Translate, format, or pipe the output straight into shell scripts and macOS Shortcuts.',
         learnMoreText: 'See how Voice Workflow works',
         learnMoreLink: '/docs#workflow',
         imageSlot: 'feature-orchestrate.png',
         imageHint: 'Voice Workflow pipeline',
       },
       {
-        id: 'discovery',
-        title: 'Your thoughts, drifting in a Nebula',
-        description:
-          'Every recording gets embedded and placed in your private Nebula. Drift through clusters to see how your thinking has connected over time—no folders, no tags.',
-        learnMoreText: 'Learn about Nebula',
-        learnMoreLink: '/docs#nebula',
-        imageSlot: 'feature-discovery.png',
-        imageHint: 'Nebula clustering view',
-      },
-      {
         id: 'mindscape',
-        title: 'Build your personalized AI Memory.',
+        title: 'Your knowledge, strictly local.',
         description:
-          'Connect Obsidian vaults, Apple Notes, or local folders. Reso embeds them into your private Memory — the grounding source every voice workflow draws from, and the foundation Nebula clusters into a navigable galaxy of ideas.',
+          'Connect Obsidian or Apple Notes to give Reso your personal context. Everything stays on your Mac — your private data never trains a public model.',
         learnMoreText: 'Learn about Memory',
         learnMoreLink: '/docs#memory',
         imageSlot: 'feature-memory.png',
         imageHint: 'Personalized AI memory',
       },
+      {
+        id: 'discovery',
+        title: 'Watch your ideas connect.',
+        description:
+          'Every recording lands in Nebula, a 3D space where thoughts cluster by meaning. Drift through your ideas and find connections without folders or tags.',
+        learnMoreText: 'Explore Nebula',
+        learnMoreLink: '/docs#nebula',
+        imageSlot: 'feature-discovery.png',
+        imageHint: 'Nebula clustering view',
+      },
     ],
   },
   zh: {
-    sectionTitle: '为你的思考方式而构建',
-    sectionSubtitle: '从记录到洞察，一个会适应你 workflow 的工作空间。',
+    sectionTitle: '大声思考，剩下的交给我们。',
+    sectionSubtitle: '从闪念到输出，一个顺应你思维直觉的工作空间。',
     features: [
       {
         id: 'capture',
-        title: '在灵感出现时立即捕捉',
+        title: '随时随地，开口即写。',
         description:
-          '想法稍纵即逝。Reso 在后台随时待命，灵感一来就能记录。无需先打开应用，没有多余步骤，开口就能继续前进。',
-        learnMoreText: '了解无摩擦捕捉',
+          '在任何软件里按住 Option 即可说话。Reso 会捕捉语音、读取屏幕上下文，把精炼后的文字直接落到光标处。',
+        learnMoreText: '看看捕捉怎么用',
         learnMoreLink: '/docs#capture',
         imageSlot: 'feature-capture.png',
         imageHint: 'Shadow recording / notch bar UI',
       },
       {
-        id: 'privacy',
-        title: '你的想法只属于你',
-        description:
-          '只有在你主动触发时才会开始捕捉。Reso 会把恢复用音频保留在本地，再根据你的设置把转写和生成路由到 Reso Engine 或你自己的 provider。',
-        learnMoreText: '了解隐私设计',
-        learnMoreLink: '/docs#privacy',
-        imageSlot: 'feature-privacy.png',
-        imageHint: 'Permissions / data flow / provider routing',
-      },
-      {
         id: 'orchestrate',
-        title: '别只是听写，编排你的工作流',
+        title: '编排工作流，不只是写提示词。',
         description:
-          'Reso 不是一个智能键盘——它是一个认知流水线。你的声音会经过你定义的规则链、引用当前 app 的上下文，然后把精炼后的结果直接交付到你需要的地方。',
+          '让语音穿过你定义的处理管线。翻译、格式化，或者把结果直接交给 Shell 脚本与快捷指令——一气呵成。',
         learnMoreText: '了解 Voice Workflow',
         learnMoreLink: '/docs#workflow',
         imageSlot: 'feature-orchestrate.png',
         imageHint: 'Voice Workflow pipeline',
       },
       {
-        id: 'discovery',
-        title: '在你的星云里漂流',
-        description:
-          '每条记录都会做语义 embedding 落到你私人的星云里。漂过聚类节点，就能看到你的思考是如何随时间联结的——不用文件夹，不用标签。',
-        learnMoreText: '了解 Nebula',
-        learnMoreLink: '/docs#nebula',
-        imageSlot: 'feature-discovery.png',
-        imageHint: 'Nebula clustering view',
-      },
-      {
         id: 'mindscape',
-        title: '构建你的私人 AI 记忆库',
+        title: '你的知识库，绝对本地。',
         description:
-          '接入 Obsidian、Apple Notes 或本地文件夹。Reso 把它们嵌入你的私人 Memory ——每一次 Voice Workflow 调用的 grounding 源，也是 Nebula 聚类成可漫游星云的地基。',
+          '接入 Obsidian 或 Apple Notes，让 Reso 拥有你的专属语境。所有文件都留在 Mac 上，你的私人数据永远不会被用于训练公开模型。',
         learnMoreText: '了解 Memory',
         learnMoreLink: '/docs#memory',
         imageSlot: 'feature-memory.png',
         imageHint: 'Personalized AI memory',
       },
+      {
+        id: 'discovery',
+        title: '看见想法自然生长。',
+        description:
+          '每段录音都会落进 Nebula——一个按语义自动聚类的 3D 空间。没有文件夹，没有标签，在漫游中发现思维的隐秘关联。',
+        learnMoreText: '走进 Nebula',
+        learnMoreLink: '/docs#nebula',
+        imageSlot: 'feature-discovery.png',
+        imageHint: 'Nebula clustering view',
+      },
     ],
   },
   ja: {
-    sectionTitle: '思考の流れに合わせて設計',
-    sectionSubtitle: 'キャプチャから洞察まで。あなたの workflow に適応するワークスペース。',
+    sectionTitle: '声に出して考える。あとはお任せ。',
+    sectionSubtitle: 'ひらめきから出力まで、あなたの思考に寄り添うワークスペース。',
     features: [
       {
         id: 'capture',
-        title: '思いついた瞬間にキャプチャ',
+        title: 'どこでも、話すだけで書き留める。',
         description:
-          'アイデアは一瞬で消えます。Reso はバックグラウンドで待機し、ひらめいた瞬間に録音できます。アプリを開く手間は不要です。',
-        learnMoreText: 'Frictionless Capture を見る',
+          'どのアプリでも Option を押して話すだけ。Reso が音声を捉え、画面の文脈を読み取り、洗練されたテキストをカーソル位置に直接入力します。',
+        learnMoreText: 'Capture の仕組みを見る',
         learnMoreLink: '/docs#capture',
         imageSlot: 'feature-capture.png',
         imageHint: 'Shadow recording / notch bar UI',
       },
       {
-        id: 'privacy',
-        title: 'あなたの思考はあなたのもの',
-        description:
-          'capture はあなたが明示的に起動したときだけ始まります。Reso は recovery 用 audio をローカルに保持し、その後の transcription と generation は設定に応じて Reso Engine か自分の provider に流します。',
-        learnMoreText: 'Privacy を見る',
-        learnMoreLink: '/docs#privacy',
-        imageSlot: 'feature-privacy.png',
-        imageHint: 'Permissions / data flow / provider routing',
-      },
-      {
         id: 'orchestrate',
-        title: 'ただの口述ではなく、思考をオーケストレーションする',
+        title: 'プロンプトではなく、パイプラインを組む。',
         description:
-          'Reso はスマートなキーボードではなく、認知のパイプラインです。あなたの声はカスタムルールを通り、現在の app のコンテキストを参照し、洗練された結果を必要な場所へ届けます。',
+          '音声を独自のワークフローで処理。翻訳やフォーマット調整はもちろん、結果を Shell スクリプトやショートカットへそのまま渡せます。',
         learnMoreText: 'Voice Workflow を見る',
         learnMoreLink: '/docs#workflow',
         imageSlot: 'feature-orchestrate.png',
         imageHint: 'Voice Workflow pipeline',
       },
       {
-        id: 'discovery',
-        title: 'あなたの思考が、Nebula を漂う',
-        description:
-          'すべての録音は意味 embedding され、あなただけの Nebula に配置されます。クラスタを漂いながら、時間とともに思考がどう繋がってきたかを見渡せます — フォルダもタグも不要。',
-        learnMoreText: 'Nebula を見る',
-        learnMoreLink: '/docs#nebula',
-        imageSlot: 'feature-discovery.png',
-        imageHint: 'Nebula clustering view',
-      },
-      {
         id: 'mindscape',
-        title: 'あなただけの AI Memory を構築',
+        title: 'あなたの知識は、完全にローカル。',
         description:
-          'Obsidian、Apple Notes、ローカルフォルダを Reso に接続。あなたの私的な Memory に embedding され、Voice Workflow の grounding 源となり、Nebula が漂える星雲としてクラスタ化する基盤になります。',
+          'Obsidian や Apple Notes を連携し、Reso にあなただけの文脈を与えます。すべてのファイルは Mac 内に留まり、プライバシーは守られます。',
         learnMoreText: 'Memory を見る',
         learnMoreLink: '/docs#memory',
         imageSlot: 'feature-memory.png',
         imageHint: 'Personalized AI memory',
+      },
+      {
+        id: 'discovery',
+        title: 'アイデアが繋がる瞬間を眺める。',
+        description:
+          'すべての録音は Nebula に配置され、意味ごとに 3D 空間で自然にまとまります。フォルダやタグなしで、思考の繋がりを探索できます。',
+        learnMoreText: 'Nebula を探索する',
+        learnMoreLink: '/docs#nebula',
+        imageSlot: 'feature-discovery.png',
+        imageHint: 'Nebula clustering view',
       },
     ],
   },
@@ -199,10 +167,9 @@ const featureCopy = {
  */
 const FEATURE_MOCKUP_COMPONENTS = {
   capture: CapsuleShowcase,
-  privacy: PrivacyShowcase,
   orchestrate: OrchestrateCard,
-  discovery: NebulaShowcase,
   mindscape: MindscapeCard,
+  discovery: NebulaShowcase,
 };
 
 // Features that need an explicit window aspect ratio (since ResoSettingsWindow stretches).

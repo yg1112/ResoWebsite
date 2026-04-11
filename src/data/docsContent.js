@@ -24,7 +24,7 @@ export const docsContent = {
       skills: 'Skills & Workflows',
       routing: 'Engines & Routing',
       privacy: 'Privacy & Data',
-      discovery: 'Discovery & Mira',
+      discovery: 'Nebula & Discovery',
       troubleshooting: 'Troubleshooting',
     },
     sections: {
@@ -36,7 +36,7 @@ export const docsContent = {
             size: 'lg',
             paragraphs: [
               'Reso is a macOS voice workspace. It captures speech, routes it through workflows, and delivers the result as inserted text, saved notes, or downstream actions.',
-              'The current product is best understood as three layers: fast capture, workflow-based processing, and knowledge surfaces like Smart Links, Thread Discovery, and Mira.',
+              'The current product is best understood as three layers: fast capture, workflow-based processing, and a knowledge layer that surfaces connections through Nebula and discovery features.',
             ],
           },
           {
@@ -105,7 +105,7 @@ export const docsContent = {
             size: 'lg',
             paragraphs: [
               'Main capture starts from a global recording shortcut. In the current app build, the default is Option + Space, and you can rebind it in settings.',
-              'Reso also supports long-hold activation and separate quick-action shortcuts for focused jobs such as diary capture, action dispatch, refine, translate, and commenter flows.',
+              'Reso also supports long-hold activation, plus a separate Nebula shortcut to jump straight into the 3D thought space.',
             ],
           },
           {
@@ -133,7 +133,7 @@ export const docsContent = {
             paragraphs: [
               'Workflows are the real unit of behavior in Reso. Each workflow combines an input mode, enabled skills, and terminal actions.',
               'The visual Workflow Builder lets you reorder skill nodes, dry-run a workflow, and attach local actions such as Shortcuts or shell-based steps.',
-              'Release presets center on Dictation, Diary, and Shadow Writer, while focused action flows such as Action, Refine, Translate, Commenter, and Architect remain available where they fit.',
+              'The current release ships three built-in presets — Dictation, Diary, and External Save — each a pre-tuned pipeline built from the same core skills (Context Awareness, Clean, Revise, Writing Style, Translate), differing mainly in how the final text is delivered.',
             ],
           },
           {
@@ -217,7 +217,7 @@ export const docsContent = {
             checklist: [
               'Microphone: required for all voice capture',
               'Accessibility: required for Insert at Cursor and app-context reads',
-              'Screen Recording: required for OCR-based screen context and Architect',
+              'Screen Recording: required only when you enable OCR-based screen context in a workflow',
             ],
             paragraphs: [
               'Accessibility does not bypass macOS secure-field protections, and Screen Recording is used for snapshots when context features are triggered, not continuous video capture.',
@@ -237,29 +237,21 @@ export const docsContent = {
       discovery: {
         entries: [
           {
-            id: 'connected-history',
-            title: 'From History To Structure',
+            id: 'nebula',
+            title: 'Nebula: Visualizing Thoughts',
             size: 'lg',
             paragraphs: [
-              'Discovery features turn captured records and imported notes into a usable knowledge layer instead of a flat archive.',
-            ],
-            checklist: [
-              'Smart Links: connect a new record to high-confidence prior context',
-              'Auto Tags: categorize records with your evolving tag structure',
-              'Thread Discovery: group related records into recurring themes',
-              'Insight Discovery: surface deeper cross-record patterns',
-            ],
-            paragraphs2: [
-              'These features are the paid, stateful side of the product and work best when you have real history or imported knowledge to draw from.',
+              'Nebula is an immersive 3D space where every recording and imported note is embedded and placed by meaning. Related ideas drift toward each other and form clusters you can explore without folders or tags.',
+              'Open Nebula from the sidebar or its dedicated shortcut. Grab a cluster to navigate into it, or let it float and notice which themes have been gathering weight lately.',
             ],
           },
           {
-            id: 'mira',
-            title: 'What Mira Adds',
+            id: 'memory-grounding',
+            title: 'Memory As Grounding',
             size: 'md',
             paragraphs: [
-              'Mira is Reso’s insight surface for patterns worth acting on, not just polished summaries.',
-              'Each card is meant to carry a thesis, supporting evidence, a caveat, and a next probe so you can decide what to test or write next.',
+              'Every Voice Workflow can pull from the same local Memory that Nebula visualizes. Instead of repeating context to the model, Reso retrieves only the smallest relevant slices of your notes and history for each run.',
+              'Memory grows the more you capture and import. Both Nebula and the grounding retrieval benefit from real history — they become noticeably sharper after a few dozen real records or an Obsidian vault import.',
             ],
           },
         ],
@@ -313,7 +305,7 @@ export const docsContent = {
       skills: '技能与工作流',
       routing: '引擎与路由',
       privacy: '隐私与数据',
-      discovery: 'Discovery 与 Mira',
+      discovery: 'Nebula 与 Discovery',
       troubleshooting: '排障',
     },
     sections: {
@@ -325,7 +317,7 @@ export const docsContent = {
             size: 'lg',
             paragraphs: [
               'Reso 是一个 macOS 语音工作空间。它负责捕捉语音，把输入送进 workflow，再把结果落到光标位置、笔记存储或下游动作里。',
-              '理解当前产品，最有效的方式是把它看成三层：快速捕捉、基于 workflow 的处理，以及 Smart Links、Thread Discovery、Mira 这类知识层。',
+              '理解当前产品，最有效的方式是把它看成三层：快速捕捉、基于 workflow 的处理，以及通过 Nebula 与 discovery 功能浮现关联的知识层。',
             ],
           },
           {
@@ -394,7 +386,7 @@ export const docsContent = {
             size: 'lg',
             paragraphs: [
               '主捕捉入口是全局录音快捷键。当前 app build 里默认值是 Option + Space，而且可以在设置里重新绑定。',
-              'Reso 也支持 long-hold 触发，以及一组面向特定任务的 quick actions，比如 diary、action dispatch、refine、translate 和 commenter。',
+              'Reso 还支持 long-hold 触发，以及一个独立的 Nebula 快捷键——直接跳进 3D 思维空间。',
             ],
           },
           {
@@ -422,7 +414,7 @@ export const docsContent = {
             paragraphs: [
               '在 Reso 里，真正决定行为的单位是 workflow。每个 workflow 组合了输入模式、启用的 skills 和终端动作。',
               '可视化 Workflow Builder 允许你重排 skill nodes、先做 dry run，再接入本地动作，比如 macOS Shortcuts 或 shell steps。',
-              '当前 release 的预设中心是 Dictation、Diary 和 Shadow Writer，同时也保留了 Action、Refine、Translate、Commenter、Architect 这类更聚焦的 action flows。',
+              '当前 release 自带三个预设：Dictation、Diary、External Save。它们共享同一组核心 skills（Context Awareness、Clean、Revise、Writing Style、Translate），区别只在最终输出落到哪里。',
             ],
           },
           {
@@ -506,7 +498,7 @@ export const docsContent = {
             checklist: [
               'Microphone：所有语音捕捉都需要',
               'Accessibility：Insert at Cursor 和 app context 读取需要',
-              'Screen Recording：OCR 型屏幕上下文和 Architect 都需要',
+              'Screen Recording：仅当你在 workflow 中启用 OCR 型屏幕上下文时需要',
             ],
             paragraphs: [
               '辅助功能不会绕过 macOS 对安全输入框的保护；屏幕录制也只在你触发上下文能力时用于截图，不是持续录像。',
@@ -526,29 +518,21 @@ export const docsContent = {
       discovery: {
         entries: [
           {
-            id: 'connected-history',
-            title: '从历史记录到知识结构',
+            id: 'nebula',
+            title: 'Nebula：思维可视化',
             size: 'lg',
             paragraphs: [
-              'Discovery 的目标不是把记录堆成扁平归档，而是把 capture history 和 imported notes 变成一个可用的知识层。',
-            ],
-            checklist: [
-              'Smart Links：把新记录连接到高置信度的历史上下文',
-              'Auto Tags：按你持续演化的标签结构自动归类',
-              'Thread Discovery：把相关记录组织成反复出现的主题',
-              'Insight Discovery：从跨记录关系里提炼更深层模式',
-            ],
-            paragraphs2: [
-              '这部分是产品里付费、带状态的那一层，只有在你已经积累足够历史或导入知识后才会真正显出价值。',
+              'Nebula 是一个沉浸式的 3D 空间：每段录音与导入的笔记都会按语义嵌入、落到各自的位置，关联的想法会自然聚拢成簇——无需文件夹，也无需标签。',
+              '从侧边栏或专用快捷键进入 Nebula。抓住某个簇就能钻进去看，或者让它自己漂浮，看看最近哪几条主题在悄悄变重。',
             ],
           },
           {
-            id: 'mira',
-            title: 'Mira 增加了什么',
+            id: 'memory-grounding',
+            title: '把 Memory 作为 grounding 源',
             size: 'md',
             paragraphs: [
-              'Mira 不是把内容重新包装成漂亮摘要，而是聚焦那些值得行动的模式。',
-              '一张 Mira 卡片理想上会同时给你 thesis、supporting evidence、caveat 和 next probe，帮助你决定下一步该验证什么或写什么。',
+              '每次 Voice Workflow 运行都可以从同一个本地 Memory 中取上下文——也就是 Nebula 在可视化的那份。Reso 不会把整篇笔记扔给模型，而是只检索与当次任务最相关的片段。',
+              'Memory 会随着你的捕捉与导入不断生长。Nebula 的聚类和 grounding 的检索都会随真实历史变得更准——积累几十条真实记录或导入一次 Obsidian 库之后，差别会非常明显。',
             ],
           },
         ],
@@ -603,7 +587,7 @@ export const docsContent = {
       skills: 'Skills と Workflow',
       routing: 'Engine と Routing',
       privacy: 'Privacy と Data',
-      discovery: 'Discovery と Mira',
+      discovery: 'Nebula と Discovery',
       troubleshooting: 'トラブルシュート',
     },
     sections: {
@@ -615,7 +599,7 @@ export const docsContent = {
             size: 'lg',
             paragraphs: [
               'Reso は macOS 向けの voice workspace です。音声を capture し、workflow に流し、結果をカーソル位置、保存先メモ、または次の action に届けます。',
-              '現在の製品は、fast capture、workflow-based processing、そして Smart Links・Thread Discovery・Mira のような knowledge layer の三層で理解するのが正確です。',
+              '現在の製品は、fast capture、workflow-based processing、そして Nebula と discovery 機能によって繋がりを浮かび上がらせる knowledge layer の三層で理解するのが正確です。',
             ],
           },
           {
@@ -684,7 +668,7 @@ export const docsContent = {
             size: 'lg',
             paragraphs: [
               'メインの capture はグローバル録音ショートカットから始まります。現在の app build ではデフォルトが Option + Space で、settings から再割り当てできます。',
-              'Reso には long-hold activation もあり、diary、action dispatch、refine、translate、commenter などに向いた quick-action shortcut も別に用意されています。',
+              'Reso には long-hold activation に加え、3D 思考空間へ直接飛び込める専用の Nebula ショートカットも用意されています。',
             ],
           },
           {
@@ -712,7 +696,7 @@ export const docsContent = {
             paragraphs: [
               'Reso で実際の振る舞いを決める単位は workflow です。各 workflow は input mode、enabled skills、terminal actions の組み合わせです。',
               '視覚的な Workflow Builder では skill node の並び替え、dry run、Shortcuts や shell-based steps の接続ができます。',
-              '現在の release では Dictation、Diary、Shadow Writer が中心ですが、Action、Refine、Translate、Commenter、Architect のような focused action flow も利用できます。',
+              '現在の release には Dictation、Diary、External Save の 3 つのプリセットが同梱されています。いずれも Context Awareness、Clean、Revise、Writing Style、Translate という共通の core skills で構成され、違いは出力をどこへ届けるかにあります。',
             ],
           },
           {
@@ -796,7 +780,7 @@ export const docsContent = {
             checklist: [
               'Microphone: すべての voice capture に必要',
               'Accessibility: Insert at Cursor と app context read に必要',
-              'Screen Recording: OCR ベースの screen context と Architect に必要',
+              'Screen Recording: workflow で OCR ベースの screen context を有効にしたときのみ必要',
             ],
             paragraphs: [
               'Accessibility でも macOS の secure field 保護は突破できません。Screen Recording も context feature を起動したときの snapshot 用であり、連続録画ではありません。',
@@ -816,29 +800,21 @@ export const docsContent = {
       discovery: {
         entries: [
           {
-            id: 'connected-history',
-            title: '履歴から knowledge layer へ',
+            id: 'nebula',
+            title: 'Nebula：思考の視覚化',
             size: 'lg',
             paragraphs: [
-              'Discovery の役割は、capture history と imported notes を単なるアーカイブではなく、使える knowledge layer に変えることです。',
-            ],
-            checklist: [
-              'Smart Links: 新しい記録を高信頼な過去コンテキストへつなぐ',
-              'Auto Tags: あなたの tag structure に沿って自動分類する',
-              'Thread Discovery: 関連記録を反復テーマとして束ねる',
-              'Insight Discovery: 記録を横断する深いパターンを見つける',
-            ],
-            paragraphs2: [
-              'ここは製品の有料かつ stateful な側面で、十分な履歴や imported knowledge があるほど価値が出ます。',
+              'Nebula は没入型の 3D 空間です。すべての録音と取り込んだノートは意味ごとに埋め込まれ、関連するアイデアは自然と寄り合い、クラスタを形成していきます——フォルダもタグも不要。',
+              'サイドバーまたは専用ショートカットから Nebula に入れます。クラスタを掴んで中に飛び込むもよし、漂わせながら最近どのテーマが重くなってきたかを眺めるもよし。',
             ],
           },
           {
-            id: 'mira',
-            title: 'Mira が加えるもの',
+            id: 'memory-grounding',
+            title: 'Memory を grounding 源として使う',
             size: 'md',
             paragraphs: [
-              'Mira は単なる要約面ではなく、行動に値するパターンを出す insight surface です。',
-              '理想的な Mira card は thesis、supporting evidence、caveat、next probe を持ち、次に何を検証し、何を書くかを判断しやすくします。',
+              'すべての Voice Workflow は、Nebula が可視化しているのと同じローカル Memory から文脈を取得できます。Reso はノート全体をモデルに渡すのではなく、その実行に最も関連する断片だけを取り出します。',
+              'Memory はあなたの capture と import に応じて育ちます。Nebula のクラスタリングも grounding の検索も、実際の履歴が増えるほど精度が上がります——数十件の実データや Obsidian vault の取り込みを経ると、違いがはっきりと現れます。',
             ],
           },
         ],

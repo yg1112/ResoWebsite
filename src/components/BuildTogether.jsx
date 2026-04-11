@@ -7,13 +7,13 @@ const BuildTogether = () => {
   const { language } = useAppPreferences();
   const copy = getLocalizedCopy({
     en: {
-      tag: 'Build Together',
-      title: 'Transparent progress, shipped in public.',
-      subtitle: 'Follow what changed, why we changed it, and what is next.',
+      tag: 'Changelog',
+      title: 'Built in public.',
+      subtitle: 'See exactly what we are shipping, why we are building it, and where Reso is heading next.',
       cards: [
         {
           title: 'Build Journey',
-          body: 'Development updates and product evolution.',
+          body: 'Field notes on what we changed and why.',
           href: 'https://resoapp.xyz/build-journey',
           cta: 'View Updates',
         },
@@ -21,13 +21,13 @@ const BuildTogether = () => {
       browse: 'Browse all resources',
     },
     zh: {
-      tag: '共建中',
-      title: '公开迭代，透明推进。',
-      subtitle: '你可以看到我们改了什么、为什么改、下一步做什么。',
+      tag: '更新日志',
+      title: '公开构建。',
+      subtitle: '我们在做什么、为什么这么做、下一步走向何方——你都能看到。',
       cards: [
         {
           title: '开发历程',
-          body: '开发更新与产品演进记录。',
+          body: '关于每一次改动以及背后原因的笔记。',
           href: 'https://resoapp.xyz/build-journey',
           cta: '查看更新',
         },
@@ -35,13 +35,13 @@ const BuildTogether = () => {
       browse: '浏览全部资源',
     },
     ja: {
-      tag: 'Build Together',
-      title: '進捗を公開しながら継続的に出荷。',
-      subtitle: '何を変えたか、なぜ変えたか、次に何をするかを追えます。',
+      tag: '更新履歴',
+      title: 'パブリックに構築。',
+      subtitle: '私たちが何をリリースし、なぜそれを作るのか。Reso の次なる展開もここで分かります。',
       cards: [
         {
           title: 'Build Journey',
-          body: '開発アップデートと製品の進化。',
+          body: '何をどう変えたか、その理由のフィールドノート。',
           href: 'https://resoapp.xyz/build-journey',
           cta: 'アップデートを見る',
         },

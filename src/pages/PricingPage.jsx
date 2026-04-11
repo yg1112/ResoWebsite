@@ -10,10 +10,10 @@ const CHECKOUT_LINKS = {
 
 const pricingCopy = {
   en: {
-    titleLine1: 'Pick the workflow.',
-    titleLine2: 'Keep the speed.',
+    titleLine1: 'Choose your engine.',
+    titleLine2: 'Keep your flow.',
     subtitle:
-      'A voice-first dictation and writing workflow: capture diary notes, shape drafts, and write with commands.',
+      'Start free with your own API keys, or upgrade to Reso Engine for zero-config, fully managed intelligence.',
     tiers: [
       {
         id: 'free',
@@ -39,13 +39,13 @@ const pricingCopy = {
         priceMain: '$19',
         priceSup: '.99',
         cadence: '/month',
-        description: 'Your local intelligence hub, unlocking complete automation and knowledge insights.',
+        description: 'Your complete voice-to-action workspace, powered by Reso Engine.',
         features: [
-          'Insight Discovery: Auto-organizes scattered notes, discovers connections, builds knowledge structure.',
-          'One-Sentence Workflows: State your goal, system assembles and executes automatically.',
-          'Perfect Recall: Simply say "share those two ideas from last week with him," auto-retrieves and extracts.',
-          'Cross-App Execution: Results sent directly to IDE, terminal, or target software.',
-          'Local Knowledge Base: Code and files stay on device, 100% data privacy.',
+          'Zero-config Reso Engine access — no API keys needed.',
+          'Unlimited Skill Pipelines and action routing.',
+          'Full local Memory indexing for Obsidian, Apple Notes, and folders.',
+          'Unrestricted Nebula 3D exploration of your thoughts.',
+          'Advanced ASR correction that learns your voice.',
         ],
         cta: 'Start Subscription',
         checkoutUrl: CHECKOUT_LINKS.plus,
@@ -72,7 +72,7 @@ const pricingCopy = {
       },
       {
         q: 'What can I do with Reso as a voice tool?',
-        a: 'Reso is built for diary and dictation capture, shadow writing, and write-with-command workflows.',
+        a: 'Reso turns voice into polished text at your cursor in any app. Dictate cleanly, draft content from spoken commands (Intent Drafting), save to a diary, or pipe the output through your own workflows — all grounded in your local notes and Memory.',
       },
       {
         q: 'Which model providers are supported?',
@@ -95,9 +95,9 @@ const pricingCopy = {
     ctaButton: 'Download for macOS',
   },
   zh: {
-    titleLine1: '选择你的 workflow。',
-    titleLine2: '保留你的速度。',
-    subtitle: '语音优先的写作与记录流程：捕捉日记灵感、整理草稿、用命令完成写作。',
+    titleLine1: '选择你的引擎。',
+    titleLine2: '保持你的心流。',
+    subtitle: '免费接入你自己的 API Key，或升级至 Reso Engine，享受开箱即用的全托管智能服务。',
     tiers: [
       {
         id: 'free',
@@ -123,13 +123,13 @@ const pricingCopy = {
         priceMain: '$19',
         priceSup: '.99',
         cadence: '/月',
-        description: '你的本地智能中枢，解锁全套自动化与知识洞察。',
+        description: '由 Reso Engine 驱动，完整的语音到动作工作空间。',
         features: [
-          '灵感发现：自动梳理碎片笔记，发现关联，整理知识脉络。',
-          '一句话工作流：说出目标，系统自动组装执行。',
-          '过目不忘：直接说"把上周那两个想法分享给他"，自动检索提取。',
-          '跨应用执行：结果直接发送到 IDE、终端或目标软件。',
-          '本地知识库：代码、文件永留设备，100% 数据隐私。',
+          '开箱即用的 Reso Engine 接入——无需自配 API Key。',
+          '无限量 Skill Pipeline 与动作路由。',
+          '完整的本地 Memory 索引：Obsidian、备忘录与本地文件夹。',
+          '无限制的 Nebula 3D 思维空间漫游。',
+          '高级语音识别纠错——会逐渐学会你的发音。',
         ],
         cta: '开始订阅',
         checkoutUrl: CHECKOUT_LINKS.plus,
@@ -142,7 +142,7 @@ const pricingCopy = {
     privacyPromise: '你的想法只属于你。我们不会用你的数据做训练。',
     howItWorks: '如何开始',
     steps: ['获取密钥', '粘贴到 Reso', '即可开始使用'],
-    stepDescription: 'Reso Free 使用你自己的 API key。Reso Pro 订阅开通后即可一站式使用。',
+    stepDescription: 'Reso Free 用你自己的 API Key。Reso Pro 订阅开通后立刻就能用,不用再配任何东西。',
     faqTitle: '常见问题',
     faqs: [
       {
@@ -155,7 +155,7 @@ const pricingCopy = {
       },
       {
         q: 'Reso 作为语音工具可以做什么？',
-        a: 'Reso 适用于日记与听写记录、shadow writing 以及 write-with-command workflows。',
+        a: 'Reso 把你说的话直接变成光标处的文本——无论在哪个 app。你可以干净地听写、用语音下达指令让 AI 起草内容（Intent Drafting）、写进日记，或者把输出交给自定义的 workflow，全部以本地笔记作为 grounding。',
       },
       {
         q: '支持哪些模型服务商？',
@@ -178,9 +178,9 @@ const pricingCopy = {
     ctaButton: '下载 macOS 版本',
   },
   ja: {
-    titleLine1: 'workflow を選ぶ。',
-    titleLine2: 'スピードはそのまま。',
-    subtitle: '音声優先の記録・執筆フロー。日記メモを捉え、下書きを整え、コマンドで仕上げます。',
+    titleLine1: 'エンジンを選ぶ。',
+    titleLine2: 'フローを保つ。',
+    subtitle: '自分の API キーで無料から始めるか、Reso Engine にアップグレードして設定不要のインテリジェンスを活用。',
     tiers: [
       {
         id: 'free',
@@ -206,13 +206,13 @@ const pricingCopy = {
         priceMain: '$19',
         priceSup: '.99',
         cadence: '/月',
-        description: 'あなたのローカル知能ハブ、完全な自動化と知識洞察を解放。',
+        description: 'Reso Engine が駆動する、音声からアクションへの完全なワークスペース。',
         features: [
-          'インサイト発見：散在メモを自動整理、関連発見、知識構造を構築。',
-          '一言ワークフロー：目標を述べるだけ、システムが自動組み立て実行。',
-          '完璧な記憶：「先週のあの2つのアイデアを彼に共有して」と言うだけ、自動検索・抽出。',
-          'アプリ間実行：結果を IDE、ターミナル、目標ソフトに直接送信。',
-          'ローカル知識ベース：コード・ファイルはデバイスに保存、100% データプライバシー。',
+          '設定不要の Reso Engine アクセス——API キー不要。',
+          '無制限の Skill Pipeline とアクションルーティング。',
+          'Obsidian・Apple Notes・ローカルフォルダの完全 Memory インデックス。',
+          '制限なしの Nebula 3D 思考空間探索。',
+          'あなたの発音を学習する高度な音声認識補正。',
         ],
         cta: 'サブスクを開始',
         checkoutUrl: CHECKOUT_LINKS.plus,
@@ -238,7 +238,7 @@ const pricingCopy = {
       },
       {
         q: 'Reso を音声ツールとして何に使えますか？',
-        a: '日記・dictation の記録、shadow writing、write-with-command workflows に最適化されています。',
+        a: 'Reso は音声をそのまま、どの app でもカーソル位置に洗練されたテキストとして落とします。きれいに書き取るだけでなく、音声コマンドから AI に文章を起草させたり（Intent Drafting）、日記に保存したり、自作の workflow に流したりできます。すべてローカルのノートを grounding として活用します。',
       },
       {
         q: '対応しているモデルプロバイダは？',

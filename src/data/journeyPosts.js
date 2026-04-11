@@ -1707,6 +1707,11 @@ discovery アルゴリズム、clustering、チップ最適化などは端末内
       zh: '我做 Architect Mode，是为了把“我已经看见的问题”更快地变成 AI coding assistant 能执行的规格。',
       ja: 'Architect Mode は、画面で見えている修正点を AI coding assistant が実行できる仕様へ最短で落とすために作った。',
     },
+    historicalNote: {
+      en: 'Historical post. Architect Mode was an experimental feature we built and later removed from the shipping product. This post is kept as a record of the thinking behind it at the time — it does not describe a feature currently in Reso.',
+      zh: '历史篇章。Architect Mode 是我们曾经做过、后来又从正式版里移除的实验性功能。这篇文章作为当时思路的记录保留下来——它描述的并不是 Reso 当前版本里的功能。',
+      ja: 'ヒストリカルポスト。Architect Mode は一度構築し、その後の製品リリースから外した実験的な機能です。当時の思考プロセスの記録として残していますが、現在の Reso には含まれていません。',
+    },
     content: {
       en: `As developers, we often know *exactly* what we want to build. The bottleneck isn't understanding—it's communication.
 
@@ -2396,11 +2401,12 @@ The goal isn't to capture your voice. It's to **resonate with how you work**.`,
 const SUPPORTED_JOURNEY_LANGUAGES = ['en', 'zh', 'ja'];
 
 const mapPostsForLanguage = (language) =>
-  localizedJourneyPosts.map(({ title, summary, content, ...rest }) => ({
+  localizedJourneyPosts.map(({ title, summary, content, historicalNote, ...rest }) => ({
     ...rest,
     title: title[language],
     summary: summary[language],
     content: content[language],
+    historicalNote: historicalNote ? historicalNote[language] : undefined,
   }));
 
 export const journeyPostsByLanguage = SUPPORTED_JOURNEY_LANGUAGES.reduce(

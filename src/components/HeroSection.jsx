@@ -1,4 +1,4 @@
-import React, { useState, useEffect, lazy, Suspense } from 'react';
+import React, { useState, useEffect, useRef, lazy, Suspense } from 'react';
 import ToolLogos from './ToolLogos';
 import { Download } from 'lucide-react';
 import { useAppPreferences } from '../contexts/AppPreferencesContext';
@@ -8,25 +8,22 @@ const ResoHeroMockup = lazy(() => import('./mockups/ResoHeroMockup'));
 
 const heroCopy = {
   en: {
-    titleA: 'Capture thoughts.',
-    titleB: 'Anywhere.',
-    titleC: 'Thoughtfully.',
+    title: 'The voice-first AI workspace for Mac.',
+    subtitle: 'Hold Option anywhere to speak. Files stay local. Workflows stay uninterrupted.',
     download: 'Download for macOS',
-    worksWith: 'Works seamlessly with',
+    worksWith: 'Integrates with',
   },
   zh: {
-    titleA: '捕捉想法。',
-    titleB: '随时随地。',
-    titleC: '用心地。',
-    download: '下载 macOS 版本',
-    worksWith: '无缝兼容',
+    title: 'Mac 原生的语音 AI 工作空间。',
+    subtitle: '随时随地按住 Option 即可开口。文件全在本地，思路绝不打断。',
+    download: '下载 macOS 版',
+    worksWith: '轻松接入',
   },
   ja: {
-    titleA: '思考をキャプチャ。',
-    titleB: 'どこでも。',
-    titleC: '思慮深く。',
+    title: 'Mac ネイティブの音声 AI ワークスペース。',
+    subtitle: 'どこでも Option を押して話すだけ。ファイルはローカルに留まり、思考を妨げません。',
     download: 'macOS 版をダウンロード',
-    worksWith: 'シームレスに連携',
+    worksWith: '対応アプリ',
   },
 };
 
@@ -35,36 +32,36 @@ const HERO_SCENES = [
     id: 'capture',
     label: { en: 'Capture', zh: '捕捉', ja: 'キャプチャ' },
     caption: {
-      en: 'Hold Option. The capsule listens, refines, and lands the action.',
-      zh: '按住 Option，胶囊开始听、提炼、然后落地动作。',
-      ja: 'Option を押すだけ。カプセルが聞き取り、磨き上げて、行動に落とします。',
+      en: 'Hold Option anywhere. Speak, and Reso refines and inserts the text.',
+      zh: '随时按住 Option 说话，Reso 会自动提炼并输入文本。',
+      ja: 'どこでも Option を押して話すだけ。Reso がテキストを整えて入力します。',
     },
   },
   {
     id: 'workflow',
     label: { en: 'Orchestrate', zh: '编排', ja: 'オーケストレート' },
     caption: {
-      en: 'Don\'t just dictate. Orchestrate every voice through rules you control.',
-      zh: '别只是听写——把每一段语音编排进你定义的规则链。',
-      ja: 'ただの口述ではなく、あなたのルールで声をオーケストレーションする。',
+      en: 'Build voice pipelines. Route your words through your own rules and scripts.',
+      zh: '编排语音工作流。让你的话语穿过自定义的规则与脚本。',
+      ja: '音声ワークフローを構築。話した言葉を独自のルールやスクリプトで処理します。',
     },
   },
   {
     id: 'indexing',
-    label: { en: 'Memory', zh: '记忆库', ja: 'メモリ' },
+    label: { en: 'Memory', zh: '记忆', ja: 'メモリ' },
     caption: {
-      en: 'Embed files for context. All files stay on your Mac.',
-      zh: '把文件嵌入做上下文理解，所有文件都留在你的 Mac 上。',
-      ja: 'ファイルを文脈理解のために embedding。ファイルは Mac に残る。',
+      en: 'Connect your notes. Reso reads local files to give AI your personal context.',
+      zh: '连入你的笔记。Reso 通过读取本地文件，让 AI 懂你的上下文。',
+      ja: 'ノートを連携。ローカルファイルを読み込み、AI にあなたの文脈を理解させます。',
     },
   },
   {
     id: 'discover',
-    label: { en: 'Discover', zh: '星云', ja: 'ディスカバリー' },
+    label: { en: 'Discover', zh: '发现', ja: 'ディスカバリー' },
     caption: {
-      en: 'Drift through your private Nebula — see how your thoughts cluster on their own.',
-      zh: '在你私人的星云里漂流——看你的想法如何自己聚成片。',
-      ja: 'あなただけの Nebula を漂い、思考がどう自然に繋がるかを眺める。',
+      en: 'Explore your mind. Watch recorded thoughts cluster naturally in a 3D space.',
+      zh: '漫游你的思维。看所有录音在 3D 空间中自然聚类成星云。',
+      ja: '思考を探索。録音されたアイデアが 3D 空間で自然に結びつくのを眺めます。',
     },
   },
 ];
@@ -73,7 +70,7 @@ const SCENE_INTERVAL_MS = 4200;
 
 const HERO_INTERNAL_WIDTH = 1080;
 const HERO_INTERNAL_HEIGHT = 640;
-const HERO_SCALE = 0.65;
+const HERO_SCALE = 1.0;
 const HERO_DISPLAY_WIDTH = Math.round(HERO_INTERNAL_WIDTH * HERO_SCALE);
 const HERO_DISPLAY_HEIGHT = Math.round(HERO_INTERNAL_HEIGHT * HERO_SCALE);
 
@@ -82,6 +79,8 @@ const HeroSection = () => {
   const copy = getLocalizedCopy(heroCopy, language);
   const [activeSceneIndex, setActiveSceneIndex] = useState(0);
   const [isPaused, setIsPaused] = useState(false);
+  const mockupWrapperRef = useRef(null);
+  const [mockupScale, setMockupScale] = useState(HERO_SCALE);
 
   const currentScene = HERO_SCENES[activeSceneIndex];
   const currentCaption = getLocalizedCopy(currentScene.caption, language);
@@ -98,17 +97,32 @@ const HeroSection = () => {
     return () => window.clearInterval(id);
   }, [isPaused]);
 
+  // Responsively scale the fixed-size 1080×640 mockup to fit the wrapper width.
+  useEffect(() => {
+    const node = mockupWrapperRef.current;
+    if (!node || typeof ResizeObserver === 'undefined') return undefined;
+    const observer = new ResizeObserver((entries) => {
+      for (const entry of entries) {
+        const w = entry.contentRect.width;
+        if (w > 0) setMockupScale(Math.min(HERO_SCALE, w / HERO_INTERNAL_WIDTH));
+      }
+    });
+    observer.observe(node);
+    return () => observer.disconnect();
+  }, []);
+
   return (
     <section className="relative z-10 pt-24 pb-16">
-      <div className="max-w-6xl mx-auto px-6">
+      <div className="max-w-7xl mx-auto px-6">
 
-        {/* Title + Button */}
-        <div className="mb-6 max-w-3xl">
-          <h1 className="text-3xl md:text-5xl font-medium tracking-tight leading-[1.15] mb-5 text-black dark:text-white">
-            {copy.titleA}{' '}
-            {copy.titleB}{' '}
-            <span className="text-gray-500 dark:text-gray-400">{copy.titleC}</span>
+        {/* Title + Subtitle + Button — Cursor-style focused hero */}
+        <div className="mb-12 max-w-4xl">
+          <h1 className="text-4xl md:text-6xl font-medium tracking-tight leading-[1.1] mb-6 text-black dark:text-white">
+            {copy.title}
           </h1>
+          <p className="text-lg md:text-xl text-gray-600 dark:text-gray-400 leading-relaxed mb-8 max-w-2xl">
+            {copy.subtitle}
+          </p>
 
           <a
             href="https://github.com/yg1112/reso-releases/releases/latest/download/Reso.dmg"
@@ -122,15 +136,15 @@ const HeroSection = () => {
                 });
               }
             }}
-            className="inline-flex items-center gap-2 bg-black dark:bg-white text-white dark:text-black rounded-full font-medium text-sm hover:bg-gray-800 dark:hover:bg-gray-100 transition-all px-6 py-3"
+            className="inline-flex items-center gap-2 bg-black dark:bg-white text-white dark:text-black rounded-full font-medium text-base hover:bg-gray-800 dark:hover:bg-gray-100 transition-all px-7 py-3.5"
           >
             <span>{copy.download}</span>
-            <Download size={16} />
+            <Download size={18} />
           </a>
         </div>
 
-        {/* Caption + Scene Tabs */}
-        <div className="mb-3 flex flex-col gap-3 xl:flex-row xl:items-end xl:justify-between xl:gap-8">
+        {/* Scene Caption + Tabs (above the big mockup) */}
+        <div className="mb-4 flex flex-col gap-3 xl:flex-row xl:items-end xl:justify-between xl:gap-8">
           <div className="max-w-2xl">
             <h2 className="text-base md:text-lg font-medium tracking-tight text-gray-900 dark:text-gray-100">
               {currentCaption}
@@ -161,13 +175,14 @@ const HeroSection = () => {
           </div>
         </div>
 
-        {/* Mockup canvas — sized exactly to scaled content so there is no blank gutter */}
+        {/* Big mockup canvas — full container width on desktop, gracefully shrinks on smaller screens */}
         <div
-          className="relative mb-12 mx-auto"
+          ref={mockupWrapperRef}
+          className="relative mb-16 mx-auto"
           style={{
             width: '100%',
             maxWidth: HERO_DISPLAY_WIDTH,
-            height: HERO_DISPLAY_HEIGHT,
+            aspectRatio: `${HERO_INTERNAL_WIDTH} / ${HERO_INTERNAL_HEIGHT}`,
           }}
           onMouseEnter={() => setIsPaused(true)}
           onMouseLeave={() => setIsPaused(false)}
@@ -195,7 +210,7 @@ const HeroSection = () => {
               style={{
                 width: HERO_INTERNAL_WIDTH,
                 height: HERO_INTERNAL_HEIGHT,
-                transform: `scale(${HERO_SCALE})`,
+                transform: `scale(${mockupScale})`,
                 transformOrigin: 'top left',
               }}
             >

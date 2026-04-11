@@ -43,7 +43,7 @@ const discoverCopy = {
     appNotOpened: 'Reso 没有打开？请先确认你已安装 Reso。',
     loading: '正在加载 Skills...',
     title: '用 Skills 扩展 Reso。',
-    subtitle: '由社区打造的实用能力，帮助你升级语音 workflow。',
+    subtitle: '社区贡献的实用能力,给你的语音 workflow 加件趁手的工具。',
     featured: '精选',
     installSkill: '安装 Skill',
     install: '安装',

@@ -86,6 +86,14 @@ const JourneyPostContent = ({ post, headingPrefix = 'journey' }) => {
         </h2>
       </div>
 
+      {post.historicalNote && (
+        <div className="mb-8 rounded-xl border border-amber-300/60 dark:border-amber-500/40 bg-amber-50/70 dark:bg-amber-500/10 px-5 py-4 text-sm text-amber-900 dark:text-amber-100">
+          <p className="leading-relaxed">
+            {parseInlineMarkdown(post.historicalNote)}
+          </p>
+        </div>
+      )}
+
       <div className="prose-content">
         {post.content.split('\n\n').map((paragraph, idx) => {
           if (paragraph.startsWith('### ')) {
