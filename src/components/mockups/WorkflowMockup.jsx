@@ -8,7 +8,7 @@
  *   (Voice Workflow nodes: Voice Input, Revise Last Result, Context Awareness, Clean, Refine,
  *   Translate, Auto Insert, Result Card; bezier connections; INPUT/RULES/DELIVER column labels)
  */
-import React, { useState } from 'react';
+import React from 'react';
 import {
   RESO_TOKENS,
   ResoWindowShell,
@@ -68,7 +68,7 @@ const NODES = [
   {
     id: 'refine',
     title: 'Refine',
-    subtitle: 'Structure rule inside the same pass',
+    subtitle: 'Add structure and clarity in one pass',
     x: 478,
     y: 195,
     column: 'RULES',
@@ -103,7 +103,7 @@ const NODES = [
   {
     id: 'result-card',
     title: 'Result Card',
-    subtitle: 'Show result card notification',
+    subtitle: 'Show result card',
     x: 720,
     y: 226,
     column: 'DELIVER',
@@ -156,9 +156,15 @@ const buildPath = (a, b, curve) => {
   const by = end.y;
   const dx = Math.max(40, (bx - ax) * 0.55);
   if (curve === 'low') {
-    // Bypass arc that drops below the rules column to avoid visual collision
-    const dropY = Math.max(ay, by) + 110;
-    return `M ${ax} ${ay} C ${ax + dx * 1.4} ${dropY}, ${bx - dx * 1.4} ${dropY}, ${bx} ${by}`;
+    // Match app routing: keep a smooth lower lane without control-point crossover.
+    const occupiedMaxY = NODES
+      .filter((node) => node.id !== a.id && node.id !== b.id && node.kind !== 'junction')
+      .reduce((maxY, node) => Math.max(maxY, node.y + NODE_HEIGHT), Math.max(ay, by));
+    const routeY = Math.max(occupiedMaxY + 34, ay + 36, by + 22);
+    const span = Math.max(1, bx - ax);
+    const startPull = Math.min(170, Math.max(72, span * 0.28));
+    const endPull = Math.min(190, Math.max(84, span * 0.3));
+    return `M ${ax} ${ay} C ${ax + startPull} ${routeY}, ${bx - endPull} ${routeY}, ${bx} ${by}`;
   }
   return `M ${ax} ${ay} C ${ax + dx} ${ay}, ${bx - dx} ${by}, ${bx} ${by}`;
 };
@@ -196,7 +202,7 @@ const SvgCog = ({ x, y }) => (
   </g>
 );
 
-const SvgWorkflowNode = ({ node, selected, onSelect }) => {
+const SvgWorkflowNode = ({ node }) => {
   // Junction merge dot — small filled circle with no label, sits on its center.
   if (node.kind === 'junction') {
     return (
@@ -217,21 +223,15 @@ const SvgWorkflowNode = ({ node, selected, onSelect }) => {
   const opacity = node.disabled ? 0.42 : 1;
   const greenColor = node.disabled
     ? 'rgba(34, 197, 94, 0.35)'
-    : selected
-      ? '#4ade80'
-      : RESO_TOKENS.workflowGreen;
-  const borderColor = selected ? 'rgba(74, 222, 128, 0.65)' : RESO_TOKENS.border;
-  const borderWidth = selected ? 1.5 : 1;
-  const cardFill = selected ? 'rgba(34,197,94,0.08)' : RESO_TOKENS.bgCard;
+    : RESO_TOKENS.workflowGreen;
+  const borderColor = RESO_TOKENS.border;
+  const borderWidth = 1;
+  const cardFill = RESO_TOKENS.bgCard;
   return (
     <g
       transform={`translate(${node.x},${node.y})`}
       opacity={opacity}
-      onClick={(e) => {
-        e.stopPropagation();
-        if (!node.disabled) onSelect?.(node.id);
-      }}
-      style={{ cursor: node.disabled ? 'default' : 'pointer' }}
+      style={{ cursor: 'default' }}
     >
       {/* Card background */}
       <rect
@@ -246,22 +246,6 @@ const SvgWorkflowNode = ({ node, selected, onSelect }) => {
         strokeWidth={borderWidth}
         style={{ transition: 'fill 0.18s, stroke 0.18s, stroke-width 0.18s' }}
       />
-      {/* Selected glow */}
-      {selected && (
-        <rect
-          x="-1"
-          y="-1"
-          width={NODE_WIDTH + 2}
-          height={NODE_HEIGHT + 2}
-          rx="11"
-          ry="11"
-          fill="none"
-          stroke="#4ade80"
-          strokeWidth="1"
-          opacity="0.4"
-          style={{ filter: 'blur(2px)' }}
-        />
-      )}
       {/* Green accent bar */}
       <rect
         x="6"
@@ -314,15 +298,9 @@ const SvgColumnLabel = ({ text, x, y }) => (
 
 /**
  * Responsive workflow chart. Renders at any width via SVG viewBox.
- * Nodes are clickable — clicking selects/deselects them with visual highlight.
+ * Static by design to mirror the app screenshot state.
  */
 export const WorkflowCanvas = ({ maxWidth }) => {
-  const [selectedId, setSelectedId] = useState('refine');
-
-  // Highlight any connection touching the selected node
-  const isConnectionLit = (c) =>
-    selectedId && (c.from === selectedId || c.to === selectedId);
-
   return (
     <svg
       viewBox={`0 0 ${VIEW_BOX_WIDTH} ${VIEW_BOX_HEIGHT}`}
@@ -340,10 +318,6 @@ export const WorkflowCanvas = ({ maxWidth }) => {
           <stop offset="0%" stopColor="rgba(255,255,255,0.55)" />
           <stop offset="100%" stopColor="rgba(255,255,255,0.22)" />
         </linearGradient>
-        <linearGradient id="connStrokeLit" x1="0" y1="0" x2="1" y2="0">
-          <stop offset="0%" stopColor="rgba(74,222,128,0.95)" />
-          <stop offset="100%" stopColor="rgba(74,222,128,0.45)" />
-        </linearGradient>
       </defs>
 
       {/* Connections (drawn first so nodes sit on top) */}
@@ -351,15 +325,14 @@ export const WorkflowCanvas = ({ maxWidth }) => {
         const a = lookupNode(c.from);
         const b = lookupNode(c.to);
         if (!a || !b) return null;
-        const lit = isConnectionLit(c);
         return (
           <path
             key={i}
             d={buildPath(a, b, c.curve)}
             fill="none"
-            stroke={lit ? 'url(#connStrokeLit)' : 'url(#connStroke)'}
-            strokeWidth={lit ? 1.4 : 1.1}
-            opacity={c.dim ? 0.18 : lit ? 0.95 : 0.6}
+            stroke="url(#connStroke)"
+            strokeWidth={1.1}
+            opacity={c.dim ? 0.18 : 0.6}
             strokeLinecap="round"
             style={{ transition: 'stroke-width 0.18s, opacity 0.18s' }}
           />
@@ -374,12 +347,7 @@ export const WorkflowCanvas = ({ maxWidth }) => {
 
       {/* Nodes */}
       {NODES.map((node) => (
-        <SvgWorkflowNode
-          key={node.id}
-          node={node}
-          selected={selectedId === node.id}
-          onSelect={(id) => setSelectedId(selectedId === id ? null : id)}
-        />
+        <SvgWorkflowNode key={node.id} node={node} />
       ))}
     </svg>
   );

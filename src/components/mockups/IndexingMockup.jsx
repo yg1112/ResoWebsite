@@ -209,7 +209,6 @@ const FOLDERS = [
   {
     id: 'documents',
     title: 'Documents',
-    badge: 'Obsidian',
     subtitle: '3,062 indexed · 434 discovered',
     actions: ['refresh', 'unlink', 'trash'],
     checked: true,

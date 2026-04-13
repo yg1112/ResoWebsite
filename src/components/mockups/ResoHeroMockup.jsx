@@ -186,34 +186,58 @@ const FauxNotesDocument = () => (
       right: 90,
       bottom: 70,
       borderRadius: 14,
-      background: 'linear-gradient(180deg, rgba(255,255,255,0.025) 0%, rgba(255,255,255,0.01) 100%)',
-      border: '1px solid rgba(255,255,255,0.05)',
-      padding: '24px 32px',
-      color: 'rgba(255,255,255,0.45)',
-      fontSize: 12,
-      lineHeight: 1.6,
+      background: 'linear-gradient(180deg, rgba(255,255,255,0.03) 0%, rgba(255,255,255,0.012) 100%)',
+      border: '1px solid rgba(255,255,255,0.08)',
+      padding: '20px 24px',
       backdropFilter: 'blur(2px)',
     }}
   >
-    <div style={{ fontSize: 14, fontWeight: 700, color: 'rgba(255,255,255,0.85)', marginBottom: 4 }}>
-      Saturday — engine router
+    <div className="flex items-center justify-between" style={{ marginBottom: 12 }}>
+      <div
+        style={{
+          fontSize: 10,
+          fontWeight: 600,
+          letterSpacing: 0.3,
+          color: 'rgba(255,255,255,0.78)',
+          background: 'rgba(255,255,255,0.06)',
+          border: '1px solid rgba(255,255,255,0.14)',
+          borderRadius: 999,
+          padding: '4px 10px',
+        }}
+      >
+        Draft Input
+      </div>
+      <div style={{ fontSize: 10, color: 'rgba(150,255,186,0.82)', letterSpacing: 0.2 }}>
+        Typing...
+      </div>
     </div>
-    <div style={{ fontSize: 10, color: 'rgba(255,255,255,0.32)', marginBottom: 18 }}>
-      April 9 · Apple Notes
-    </div>
-    <div style={{ marginBottom: 8 }}>
-      Open questions before Monday standup:
-    </div>
-    <div style={{ marginBottom: 6 }}>
-      • Does the new router still need the legacy fallback path, or can the
-      flag retire after the canary?
-    </div>
-    <div style={{ marginBottom: 6 }}>
-      • Where should we land the smoke pack so it runs against staging
-      every PR without doubling CI time?
-    </div>
-    <div style={{ marginBottom: 14 }}>
-      ▍
+    <div
+      style={{
+        height: '100%',
+        borderRadius: 10,
+        border: '1px solid rgba(255,255,255,0.08)',
+        backgroundColor: 'rgba(3,5,16,0.64)',
+        backgroundImage: 'linear-gradient(180deg, rgba(255,255,255,0.03) 0%, rgba(255,255,255,0.01) 100%), repeating-linear-gradient(to bottom, rgba(255,255,255,0.06) 0px, rgba(255,255,255,0.06) 1px, transparent 1px, transparent 34px)',
+        boxShadow: 'inset 0 1px 0 rgba(255,255,255,0.06), inset 0 0 0 1px rgba(0,0,0,0.3)',
+        padding: '18px 22px',
+        color: 'rgba(235,240,255,0.84)',
+        fontSize: 13,
+        lineHeight: 1.9,
+      }}
+    >
+      <div style={{ fontSize: 15, fontWeight: 700, color: 'rgba(255,255,255,0.9)' }}>
+        Saturday - engine router
+      </div>
+      <div style={{ fontSize: 10, color: 'rgba(255,255,255,0.42)', marginBottom: 8 }}>
+        April 9 · live dictation
+      </div>
+      <div>Can we retire the legacy fallback after a full canary week?</div>
+      <div>Need the provider switch behind one seam before merge.</div>
+      <div>Smoke pack should run on staging for every PR.</div>
+      <div className="flex items-center" style={{ gap: 4 }}>
+        <span>Confirm rollout notes and owner by Monday standup</span>
+        <span style={{ color: 'rgba(255,255,255,0.92)', textShadow: '0 0 8px rgba(255,255,255,0.35)' }}>▍</span>
+      </div>
     </div>
   </div>
 );
