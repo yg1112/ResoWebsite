@@ -72,7 +72,7 @@ const pricingCopy = {
       },
       {
         q: 'What can I do with Reso as a voice tool?',
-        a: 'Reso turns voice into polished text at your cursor in any app. Dictate cleanly, draft content from spoken commands (Intent Drafting), save to a diary, or pipe the output through your own workflows — all grounded in your local notes and Memory.',
+        a: 'Reso turns voice into polished text at your cursor in any app. Dictate cleanly, save to a diary, or pipe the output through your own workflows — all grounded in your local notes and Memory.',
       },
       {
         q: 'Which model providers are supported?',
@@ -155,7 +155,7 @@ const pricingCopy = {
       },
       {
         q: 'Reso 作为语音工具可以做什么？',
-        a: 'Reso 把你说的话直接变成光标处的文本——无论在哪个 app。你可以干净地听写、用语音下达指令让 AI 起草内容（Intent Drafting）、写进日记，或者把输出交给自定义的 workflow，全部以本地笔记作为 grounding。',
+        a: 'Reso 把你说的话直接变成光标处的文本——无论在哪个 app。你可以干净地听写、写进日记，或者把输出交给自定义的 workflow，全部以本地笔记作为 grounding。',
       },
       {
         q: '支持哪些模型服务商？',
@@ -238,7 +238,7 @@ const pricingCopy = {
       },
       {
         q: 'Reso を音声ツールとして何に使えますか？',
-        a: 'Reso は音声をそのまま、どの app でもカーソル位置に洗練されたテキストとして落とします。きれいに書き取るだけでなく、音声コマンドから AI に文章を起草させたり（Intent Drafting）、日記に保存したり、自作の workflow に流したりできます。すべてローカルのノートを grounding として活用します。',
+        a: 'Reso は音声をそのまま、どの app でもカーソル位置に洗練されたテキストとして落とします。きれいに書き取るだけでなく、日記に保存したり、自作の workflow に流したりできます。すべてローカルのノートを grounding として活用します。',
       },
       {
         q: '対応しているモデルプロバイダは？',
