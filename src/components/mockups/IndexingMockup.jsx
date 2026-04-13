@@ -4,8 +4,8 @@
  * See /Users/yukungao/github/Reso2/CLAUDE.md "Website Mockup Sync" for the full mapping.
  *
  * App source of truth:
- * - IndexingContent / FOLDERS ← Reso2/Views/IndexingTabView.swift
- *   (Memory Status card with progress, Folders list with checkboxes, Speech Learning toggle,
+ * - IndexingContent / SOURCES ← Reso2/Views/IndexingTabView.swift
+ *   (Memory Status card with progress, Sources list with checkboxes, Speech Learning toggle,
  *   Sync All button)
  */
 import React, { useState, useRef, useEffect } from 'react';
@@ -205,7 +205,7 @@ const Toggle = ({ on = true }) => (
   </div>
 );
 
-const FOLDERS = [
+const SOURCES = [
   {
     id: 'documents',
     title: 'Documents',
@@ -284,7 +284,7 @@ export const IndexingContent = () => {
 
   const totalFiles = 3073;
   const filesIndexed = Math.round(totalFiles * (syncPct / 100));
-  const folderCount = Object.values(folderState).filter((v) => v && v !== false).length;
+  const sourceCount = Object.values(folderState).filter((v) => v && v !== false).length;
 
   return (
     <DottedBackdrop>
@@ -312,7 +312,7 @@ export const IndexingContent = () => {
                 Memory Status
               </div>
               <div style={{ fontSize: 11, color: RESO_TOKENS.textTertiary, marginTop: 2 }}>
-                {Math.round(syncPct)}% · {filesIndexed.toLocaleString()} of {totalFiles.toLocaleString()} files · {folderCount} folders
+                {Math.round(syncPct)}% · {filesIndexed.toLocaleString()} of {totalFiles.toLocaleString()} files · {sourceCount} sources
               </div>
             </div>
             {/* Action buttons inline right */}
@@ -368,7 +368,7 @@ export const IndexingContent = () => {
           </div>
         </div>
 
-      {/* Folders section — uppercase label, matches the System tab style */}
+      {/* Sources section — uppercase label, matches the System tab style */}
       <div
         style={{
           fontSize: 11,
@@ -379,10 +379,10 @@ export const IndexingContent = () => {
           marginBottom: 12,
         }}
       >
-        FOLDERS
+        SOURCES
       </div>
 
-      {/* Folder add input — dashed border signals "tap to fill" without
+      {/* Source add input — dashed border signals "tap to fill" without
           adding another solid card to the page. Browse button sits OUTSIDE
           the dashed border, matching the real app. */}
       <div className="flex items-center" style={{ gap: 8, marginBottom: 8 }}>
@@ -400,7 +400,7 @@ export const IndexingContent = () => {
         >
           <FolderGlyph color="rgba(255,255,255,0.35)" size={12} />
           <span style={{ fontSize: 12, color: RESO_TOKENS.textTertiary, flex: 1 }}>
-            Add a folder path or browse…
+            Add a file or folder path or browse…
           </span>
         </div>
         <div
@@ -424,11 +424,11 @@ export const IndexingContent = () => {
         </div>
       </div>
 
-      {/* Folder rows — completely flat. No row backgrounds. The only visual
+      {/* Source rows — completely flat. No row backgrounds. The only visual
           affordance is the checkbox glyph (purple when checked). Rows are
           separated by hairline dividers between items only. */}
       <div style={{ display: 'flex', flexDirection: 'column' }}>
-        {FOLDERS.map((folder, idx) => {
+        {SOURCES.map((folder, idx) => {
           const checked = !!folderState[folder.id];
           return (
             <div
@@ -437,7 +437,7 @@ export const IndexingContent = () => {
               style={{
                 height: 44,
                 background: 'transparent',
-                borderBottom: idx < FOLDERS.length - 1
+                borderBottom: idx < SOURCES.length - 1
                   ? `1px solid ${RESO_TOKENS.border}`
                   : '1px solid transparent',
                 padding: '0 4px',
@@ -606,7 +606,7 @@ export const IndexingFeatureCard = () => (
             Memory Status
           </div>
           <div style={{ fontSize: 10, color: RESO_TOKENS.textTertiary, marginTop: 2 }}>
-            100% · 3,073 of 3,073 files · 2 folders
+            100% · 3,073 of 3,073 files · 2 sources
           </div>
         </div>
       </div>
@@ -631,7 +631,7 @@ export const IndexingFeatureCard = () => (
       </div>
     </div>
 
-    {/* Folders heading */}
+    {/* Sources heading */}
     <div
       style={{
         fontSize: 11,
@@ -642,12 +642,12 @@ export const IndexingFeatureCard = () => (
         letterSpacing: -0.1,
       }}
     >
-      Folders
+      Sources
     </div>
 
-    {/* Folder rows — only show first two for compactness */}
+    {/* Source rows — only show first two for compactness */}
     <div style={{ display: 'flex', flexDirection: 'column', gap: 6 }}>
-      {FOLDERS.slice(0, 3).map((folder) => (
+      {SOURCES.slice(0, 3).map((folder) => (
         <div
           key={folder.id}
           className="flex items-center"

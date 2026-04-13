@@ -6,7 +6,7 @@
  * App source of truth:
  * - SystemContent     ← Reso2/Views/SettingsWindowView.swift (System tab rows: Launch at Login,
  *                       Sound Effects, Microphone Priority, Accessibility, Recording Shortcut,
- *                       Nebula Shortcut, Indicator Style, Pause Media)
+ *                       Nebula Shortcut, Indicator Style, Pause Media, AI Services)
  * - PlanUsageContent  ← Reso2/Views/StatusTabView.swift (Plan & Usage)
  * - NebulaContent     ← Reso2/Views/NebulaTabView.swift (in-window WKWebView nebula)
  * - sidebar mode routing ← Reso2/Views/SettingsWindowView.swift (selectedSidebarMode)
@@ -211,6 +211,8 @@ const KeyIcon = () => <svg width="13" height="13" viewBox="0 0 14 14" fill="none
 const SparklesIcon = () => <svg width="13" height="13" viewBox="0 0 14 14" fill="none"><path d="M7 1.5l1 2.5 2.5 1-2.5 1L7 8.5 6 5l-2.5-1L6 3l1-1.5z" fill="currentColor" /><circle cx="11" cy="9.5" r="0.7" fill="currentColor" /><circle cx="3" cy="10" r="0.5" fill="currentColor" /></svg>;
 const IndicatorIcon = () => <svg width="13" height="13" viewBox="0 0 14 14" fill="none"><rect x="2" y="6" width="10" height="2" rx="1" stroke="currentColor" strokeWidth="1.3" fill="none" /></svg>;
 const PauseIcon = () => <svg width="13" height="13" viewBox="0 0 14 14" fill="none"><rect x="4" y="3" width="2.2" height="8" rx="0.5" fill="currentColor" /><rect x="7.8" y="3" width="2.2" height="8" rx="0.5" fill="currentColor" /></svg>;
+const BrainIcon = () => <svg width="13" height="13" viewBox="0 0 14 14" fill="none"><path d="M5.2 2.3a2 2 0 0 0-2 2v.4a1.9 1.9 0 0 0-1.2 1.8 2 2 0 0 0 1 1.7v1.2a1.9 1.9 0 0 0 2 1.9M8.8 2.3a2 2 0 0 1 2 2v.4a1.9 1.9 0 0 1 1.2 1.8 2 2 0 0 1-1 1.7v1.2a1.9 1.9 0 0 1-2 1.9M7 2v9.8M5.5 5.2h1.5M7 8.2h1.6" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round" /></svg>;
+const RedactionIcon = () => <svg width="13" height="13" viewBox="0 0 14 14" fill="none"><rect x="2" y="2.2" width="10" height="9.6" rx="1.8" stroke="currentColor" strokeWidth="1.2" /><path d="M4.1 5.1h5.8M4.1 7h4.4M4.1 8.9h3" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" /></svg>;
 const PlayIcon = () => <svg width="11" height="11" viewBox="0 0 14 14" fill="none"><circle cx="7" cy="7" r="6" stroke="rgba(255,255,255,0.4)" strokeWidth="1.2" /><path d="M5.8 4.8L9.2 7l-3.4 2.2V4.8z" fill="rgba(255,255,255,0.78)" /></svg>;
 
 const SystemContent = () => {
@@ -218,6 +220,9 @@ const SystemContent = () => {
   const [pauseMedia, setPauseMedia] = useState(true);
   const [launchAtLogin, setLaunchAtLogin] = useState(false);
   const [menuBarRecent, setMenuBarRecent] = useState(5);
+  const [resoEngineEnabled, setResoEngineEnabled] = useState(true);
+  const [byoAPIEnabled, setByoAPIEnabled] = useState(false);
+  const [byoExpanded, setByoExpanded] = useState(false);
 
   return (
     <DottedBackdrop>
@@ -383,6 +388,83 @@ const SystemContent = () => {
             </div>
           }
         />
+
+        <SectionLabel marginTop={18}>AI SERVICES</SectionLabel>
+
+        <SystemRow
+          icon={<BrainIcon />}
+          title="Reso Engine"
+          subtitle="Fully managed speech, text, and embeddings."
+          right={(
+            <div className="flex items-center" style={{ gap: 8 }}>
+              <Pill>{resoEngineEnabled ? 'Active' : 'Off'}</Pill>
+              <button
+                type="button"
+                onClick={(e) => { e.stopPropagation(); setResoEngineEnabled((v) => !v); }}
+                style={{ background: 'transparent', border: 'none', padding: 0, cursor: 'pointer' }}
+              >
+                <Toggle on={resoEngineEnabled} />
+              </button>
+            </div>
+          )}
+        />
+
+        <SystemRow
+          icon={<RedactionIcon />}
+          title="Bring Your Own API"
+          subtitle="Use your own speech-to-text provider. Text cleanup stays on Reso Engine."
+          right={(
+            <div className="flex items-center" style={{ gap: 8 }}>
+              <Pill>{byoAPIEnabled ? 'STT: Groq' : 'Off'}</Pill>
+              <button
+                type="button"
+                onClick={(e) => { e.stopPropagation(); setByoAPIEnabled((v) => !v); }}
+                style={{ background: 'transparent', border: 'none', padding: 0, cursor: 'pointer' }}
+              >
+                <Toggle on={byoAPIEnabled} />
+              </button>
+              <button
+                type="button"
+                onClick={(e) => { e.stopPropagation(); setByoExpanded((v) => !v); }}
+                style={{
+                  width: 16,
+                  height: 16,
+                  border: 'none',
+                  background: 'transparent',
+                  color: RESO_TOKENS.textTertiary,
+                  cursor: 'pointer',
+                  padding: 0,
+                }}
+              >
+                <svg width="10" height="10" viewBox="0 0 12 12" fill="none" style={{ transform: `rotate(${byoExpanded ? 180 : 0}deg)`, transition: 'transform 0.2s ease' }}>
+                  <path d="M3 4.5l3 3 3-3" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round" />
+                </svg>
+              </button>
+            </div>
+          )}
+        />
+
+        {byoExpanded && (
+          <div
+            style={{
+              marginLeft: 40,
+              marginTop: 10,
+              borderRadius: 10,
+              border: `1px solid ${RESO_TOKENS.border}`,
+              background: 'rgba(255,255,255,0.03)',
+              padding: '10px 12px',
+            }}
+          >
+            <div className="flex items-center" style={{ justifyContent: 'space-between', gap: 10 }}>
+              <span style={{ fontSize: 11, color: RESO_TOKENS.textSecondary }}>Speech-to-Text</span>
+              <Pill>Groq</Pill>
+            </div>
+            <div className="flex items-center" style={{ justifyContent: 'space-between', gap: 10, marginTop: 8 }}>
+              <span style={{ fontSize: 11, color: RESO_TOKENS.textSecondary }}>Text Cleanup</span>
+              <Pill>Reso Engine</Pill>
+            </div>
+          </div>
+        )}
       </div>
     </DottedBackdrop>
   );
@@ -519,7 +601,7 @@ const PlanUsageContent = () => {
         {sectionLabel('ENGINE CONFIGURATION')}
         {[
           { label: 'Reso Engine', tier: 'Off', sub: 'Fully managed speech, text, and embeddings.', toneOff: true },
-          { label: 'Bring Your Own API', tier: 'STT: Groq · 1 text', sub: 'Connect your own API keys and providers.' },
+          { label: 'Bring Your Own API', tier: 'STT: Groq', sub: 'Use your own speech-to-text provider. Text cleanup stays on Reso Engine.' },
         ].map((row, i) => (
           <div
             key={i}
