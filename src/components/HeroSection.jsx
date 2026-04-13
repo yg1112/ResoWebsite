@@ -47,15 +47,6 @@ const HERO_SCENES = [
     },
   },
   {
-    id: 'indexing',
-    label: { en: 'Memory', zh: '记忆', ja: 'メモリ' },
-    caption: {
-      en: 'Connect your notes. Reso reads local files to give AI your personal context.',
-      zh: '连入你的笔记。Reso 通过读取本地文件，让 AI 懂你的上下文。',
-      ja: 'ノートを連携。ローカルファイルを読み込み、AI にあなたの文脈を理解させます。',
-    },
-  },
-  {
     id: 'discover',
     label: { en: 'Discover', zh: '发现', ja: 'ディスカバリー' },
     caption: {
