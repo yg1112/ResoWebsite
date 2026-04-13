@@ -62,7 +62,7 @@ const retrieveCopy = {
   },
 };
 
-const WORKER_URL = 'https://reso-verify.gaoyukun1205.workers.dev';
+const WORKER_URL = 'https://resodashboard.dzgapp.com/v1/licenses/retrieve';
 
 const languageOptions = [
   { value: 'en', label: 'English' },
@@ -99,18 +99,21 @@ const RetrievePage = () => {
       const response = await fetch(WORKER_URL, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ action: 'retrieve', email: trimmedEmail }),
+        body: JSON.stringify({ email: trimmedEmail }),
       });
 
-      const data = await response.json();
+      const data = await response.json().catch(() => ({}));
+      const message = typeof data?.error === 'string'
+        ? data.error
+        : data?.error?.message || 'No license found for this email.';
 
-      if (data.success && data.license_key) {
+      if (response.ok && data.success && data.license_key) {
         setResult({
           licenseKey: data.license_key,
           status: data.status || 'Active',
         });
       } else {
-        throw new Error(data.error || 'No license found for this email.');
+        throw new Error(message);
       }
     } catch (err) {
       console.error(err);

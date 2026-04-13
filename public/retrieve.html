@@ -208,7 +208,7 @@
 
     <script>
         // Cloudflare Worker URL for LemonSqueezy API proxy
-        const WORKER_URL = "https://reso-verify.gaoyukun1205.workers.dev";
+        const WORKER_URL = "https://resodashboard.dzgapp.com/v1/licenses/retrieve";
 
         async function findLicense() {
             const emailInput = document.getElementById('email');
@@ -241,12 +241,15 @@
                 const response = await fetch(WORKER_URL, {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ action: 'retrieve', email: email })
+                    body: JSON.stringify({ email: email })
                 });
 
-                const data = await response.json();
+                const data = await response.json().catch(() => ({}));
+                const message = typeof data?.error === 'string'
+                    ? data.error
+                    : data?.error?.message || 'No license found for this email.';
 
-                if (data.success && data.license_key) {
+                if (response.ok && data.success && data.license_key) {
                     // Success - display license key
                     document.getElementById('license-key').textContent = data.license_key;
                     document.getElementById('license-status').textContent = data.status || 'Active';
@@ -256,7 +259,7 @@
 
                     resultArea.classList.remove('hidden');
                 } else {
-                    throw new Error(data.error || 'No license found for this email.');
+                    throw new Error(message);
                 }
 
             } catch (err) {
