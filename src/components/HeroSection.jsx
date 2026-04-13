@@ -8,20 +8,20 @@ const ResoHeroMockup = lazy(() => import('./mockups/ResoHeroMockup'));
 
 const heroCopy = {
   en: {
-    title: 'The voice-first AI workspace for Mac.',
-    subtitle: 'Hold Option anywhere to speak. Files stay local. Workflows stay uninterrupted.',
+    title: 'Think out loud. Work takes shape.',
+    subtitle: 'Hold Option anywhere to speak. Everything stays local. Flow stays unbroken.',
     download: 'Download for macOS',
     worksWith: 'Integrates with',
   },
   zh: {
-    title: 'Mac 原生的语音 AI 工作空间。',
-    subtitle: '随时随地按住 Option 即可开口。文件全在本地，思路绝不打断。',
+    title: '思考出声，工作成型。',
+    subtitle: '按住 Option，脱口而出。全在本地，心流不断。',
     download: '下载 macOS 版',
     worksWith: '轻松接入',
   },
   ja: {
-    title: 'Mac ネイティブの音声 AI ワークスペース。',
-    subtitle: 'どこでも Option を押して話すだけ。ファイルはローカルに留まり、思考を妨げません。',
+    title: '声で考え、仕事が形になる。',
+    subtitle: 'Option を押して話すだけ。すべてローカル処理、フローは途切れない。',
     download: 'macOS 版をダウンロード',
     worksWith: '対応アプリ',
   },
