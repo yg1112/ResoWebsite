@@ -180,7 +180,7 @@ const Navbar = ({ isScrolled = false }) => {
           : 'bg-transparent'
       }`}
     >
-      <div className="max-w-6xl mx-auto px-6 h-20 flex items-center justify-between">
+      <div className="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
         <Link to="/" ref={logoTriggerRef} className="flex items-center gap-2.5">
           <div className="w-8 h-8">
             <img ref={logoIconRef} src={ResoIcon} alt="Reso" className="brand-logo-icon w-full h-full rounded-lg" />
