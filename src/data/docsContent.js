@@ -14,7 +14,7 @@ export const docsContent = {
   en: {
     headerTitle: 'Docs',
     headerSubtitle:
-      'Practical reference for the current Reso release: capture, workflows, engines, permissions, and discovery.',
+      'Practical reference for the current Reso release: capture, workflows, engines, permissions, and Nebula.',
     onThisPage: 'On this page',
     nav: {
       gettingStarted: 'Getting Started',
@@ -24,7 +24,7 @@ export const docsContent = {
       skills: 'Skills & Workflows',
       routing: 'Engines & Routing',
       privacy: 'Privacy & Data',
-      discovery: 'Nebula & Discovery',
+      discovery: 'Nebula',
       troubleshooting: 'Troubleshooting',
     },
     sections: {
@@ -36,7 +36,7 @@ export const docsContent = {
             size: 'lg',
             paragraphs: [
               'Reso is a macOS voice workspace. It captures speech, routes it through workflows, and delivers the result as inserted text, saved notes, or downstream actions.',
-              'The current product is best understood as three layers: fast capture, workflow-based processing, and a knowledge layer that surfaces connections through Nebula and discovery features.',
+              'The current product is best understood as three layers: fast capture, workflow-based processing, and a knowledge layer that surfaces connections through Nebula.',
             ],
           },
           {
@@ -44,10 +44,10 @@ export const docsContent = {
             title: 'The Right Mental Model',
             size: 'md',
             checklist: [
-              'Capture: start with the main recording shortcut or a focused quick action',
+              'Capture: start with the main recording shortcut',
               'Workflow: every run has an input mode, available skills, and an output path',
-              'Engine: use Reso Engine for the managed path or bring your own providers',
-              'Discovery: imported notes and captured history can later become links, tags, threads, and insight cards',
+              'Engine: the exact path is determined by your current Engine settings',
+              'Nebula: what appears depends on your available features and real history data',
             ],
           },
         ],
@@ -118,8 +118,7 @@ export const docsContent = {
             ],
             checklist: [
               'Insert at Cursor: requires Accessibility and a real editable field',
-              'Diary-style flows can save output into your chosen storage pattern',
-              'Selection-based quick actions operate on currently selected text when required',
+              'Other output paths are determined by your current workflow configuration',
             ],
           },
         ],
@@ -143,17 +142,7 @@ export const docsContent = {
             checklist: [
               'Insert at Cursor: place output into the focused app',
               'Screen Context: read the active app, selected text, and optional OCR context',
-              'Intent Drafting: treat your voice as instructions instead of literal dictation',
               'Generated Skills: create app automations backed by AppleScript or deep links',
-            ],
-          },
-          {
-            id: 'dictation-vs-intent',
-            title: 'Dictation vs Intent Drafting',
-            size: 'md',
-            paragraphs: [
-              'Dictation preserves what you said. Intent Drafting rewrites your spoken instruction into the target output.',
-              'In the current release, explicit workflow choice is the reliable mental model. Legacy Smart mode still exists, but the product is moving toward clearer workflow activation.',
             ],
           },
         ],
@@ -169,7 +158,7 @@ export const docsContent = {
               'In the current build, Reso Engine STT is the default managed transcription path when it is enabled. BYOK cloud providers can be selected in Engine settings.',
             ],
             checklist: [
-              'Reso Engine: managed setup, no personal key, required for managed discovery features',
+              'Reso Engine: managed setup, no personal key, required for managed Nebula features',
               'Personal API: OpenAI, Anthropic, Google, or Groq with your own billing and model choice',
             ],
           },
@@ -187,7 +176,7 @@ export const docsContent = {
             title: 'Routing Behavior',
             size: 'md',
             paragraphs: [
-              'Reso can use different providers for different steps, and some product-managed routing still exists outside full Pro discovery.',
+              'Reso can use different providers for different steps, and some product-managed routing still exists outside full Pro Nebula access.',
               'If a workflow needs a provider or entitlement you have not configured, the app surfaces that blocker instead of sending the job into a black box.',
             ],
           },
@@ -281,12 +270,12 @@ export const docsContent = {
           },
           {
             id: 'engine-or-discovery',
-            title: 'Engine Or Discovery Problems',
+            title: 'Engine Or Nebula Problems',
             size: 'md',
             checklist: [
               'Re-check your API key or provider selection in Engine settings',
               'If you rely on Reso Engine, confirm your current plan or trial status',
-              'If discovery outputs are thin, import more real notes and history first',
+              'If Nebula outputs are thin, import more real notes and history first',
             ],
           },
         ],
@@ -295,7 +284,7 @@ export const docsContent = {
   },
   zh: {
     headerTitle: 'Docs',
-    headerSubtitle: '围绕当前 Reso release 的实用参考：捕捉、workflow、引擎、权限与 discovery。',
+    headerSubtitle: '围绕当前 Reso release 的实用参考：捕捉、workflow、引擎、权限与星云。',
     onThisPage: '本页内容',
     nav: {
       gettingStarted: '快速开始',
@@ -305,7 +294,7 @@ export const docsContent = {
       skills: '技能与工作流',
       routing: '引擎与路由',
       privacy: '隐私与数据',
-      discovery: 'Nebula 与 Discovery',
+      discovery: '星云',
       troubleshooting: '排障',
     },
     sections: {
@@ -317,7 +306,7 @@ export const docsContent = {
             size: 'lg',
             paragraphs: [
               'Reso 是一个 macOS 语音工作空间。它负责捕捉语音，把输入送进 workflow，再把结果落到光标位置、笔记存储或下游动作里。',
-              '理解当前产品，最有效的方式是把它看成三层：快速捕捉、基于 workflow 的处理，以及通过 Nebula 与 discovery 功能浮现关联的知识层。',
+              '理解当前产品，最有效的方式是把它看成三层：快速捕捉、基于 workflow 的处理，以及通过 Nebula（星云）浮现关联的知识层。',
             ],
           },
           {
@@ -325,10 +314,10 @@ export const docsContent = {
             title: '更准确的使用心智模型',
             size: 'md',
             checklist: [
-              'Capture：从主录音快捷键或某个 quick action 开始',
+              'Capture：从主录音快捷键开始',
               'Workflow：每次运行都会带着输入模式、可用 skills 和输出路径',
-              'Engine：可以走 Reso Engine，也可以接你自己的 provider',
-              'Discovery：导入的笔记和历史记录会进一步变成 links、tags、threads 和 insight cards',
+              'Engine：具体链路由你当前的 Engine 设置决定',
+              '星云：呈现内容取决于你当前可用能力和真实历史数据',
             ],
           },
         ],
@@ -399,8 +388,7 @@ export const docsContent = {
             ],
             checklist: [
               'Insert at Cursor：需要辅助功能权限和真实可编辑输入框',
-              'Diary 类 workflow 可以按你设定的命名和存储策略保存',
-              '依赖选中文本的 quick action 会直接作用于当前 selection',
+              '其他输出路径是否可用，取决于当前 workflow 配置',
             ],
           },
         ],
@@ -424,17 +412,7 @@ export const docsContent = {
             checklist: [
               'Insert at Cursor：把结果送进当前 app',
               'Screen Context：读取当前 app、选中文本和可选的 OCR 上下文',
-              'Intent Drafting：把你的语音当成指令，而不是逐字听写',
               'Generated Skills：生成基于 AppleScript 或 deep link 的 app 自动化',
-            ],
-          },
-          {
-            id: 'dictation-vs-intent',
-            title: 'Dictation 与 Intent Drafting 的区别',
-            size: 'md',
-            paragraphs: [
-              'Dictation 更接近忠实转写你说的话。Intent Drafting 则会把你的口头指令改写成目标输出。',
-              '对当前 release 来说，最可靠的使用方式是明确选择 workflow。Legacy Smart mode 仍然存在，但产品正在往更清晰的 workflow activation 演进。',
             ],
           },
         ],
@@ -450,7 +428,7 @@ export const docsContent = {
               '当前 build 里，只要 Reso Engine 可用，它就是默认的托管 STT 路径。你也可以在 Engine 设置里改成 BYOK 的云端 provider。',
             ],
             checklist: [
-              'Reso Engine：托管配置、无需个人 key、也是托管 discovery 能力的前提',
+              'Reso Engine：托管配置、无需个人 key、也是托管星云能力的前提',
               'Personal API：支持 OpenAI、Anthropic、Google、Groq，由你控制账单和模型选择',
             ],
           },
@@ -460,7 +438,7 @@ export const docsContent = {
             size: 'md',
             paragraphs: [
               '如果你已经有稳定的 provider 和 API key，或者你更在意直接控制权，选 Personal API。',
-              '如果你想减少配置项、直接走产品托管路径，并使用完整的托管 inference 与 discovery，选 Reso Engine。价格、trial 和 quota 可能会变，所以商业信息以 Pricing 页面为准。',
+              '如果你想减少配置项、直接走产品托管路径，并使用完整的托管 inference 与星云，选 Reso Engine。价格、trial 和 quota 可能会变，所以商业信息以 Pricing 页面为准。',
             ],
           },
           {
@@ -468,7 +446,7 @@ export const docsContent = {
             title: '当前的路由行为',
             size: 'md',
             paragraphs: [
-              'Reso 可以在不同步骤上使用不同 provider，而且有些产品托管的 routing 即使不在完整 Pro discovery 下也会继续存在。',
+              'Reso 可以在不同步骤上使用不同 provider，而且有些产品托管的 routing 即使不在完整 Pro 星云下也会继续存在。',
               '如果某个 workflow 依赖你尚未配置的 provider 或 entitlement，app 会明确暴露这个 blocker，而不是把请求丢进黑箱。',
             ],
           },
@@ -562,12 +540,12 @@ export const docsContent = {
           },
           {
             id: 'engine-or-discovery',
-            title: '引擎或 Discovery 出问题',
+            title: '引擎或星云出问题',
             size: 'md',
             checklist: [
               '重新检查 Engine 设置里的 provider 选择和 API key',
               '如果你依赖 Reso Engine，确认当前 plan 或 trial 状态',
-              '如果 discovery 结果很薄，先导入更多真实笔记和历史记录',
+              '如果星云结果很薄，先导入更多真实笔记和历史记录',
             ],
           },
         ],
@@ -577,7 +555,7 @@ export const docsContent = {
   ja: {
     headerTitle: 'Docs',
     headerSubtitle:
-      '現在の Reso release を前提にした実用リファレンスです。capture、workflow、engine、permissions、discovery をまとめています。',
+      '現在の Reso release を前提にした実用リファレンスです。capture、workflow、engine、permissions、Nebula をまとめています。',
     onThisPage: 'このページ',
     nav: {
       gettingStarted: 'はじめに',
@@ -587,7 +565,7 @@ export const docsContent = {
       skills: 'Skills と Workflow',
       routing: 'Engine と Routing',
       privacy: 'Privacy と Data',
-      discovery: 'Nebula と Discovery',
+      discovery: 'Nebula',
       troubleshooting: 'トラブルシュート',
     },
     sections: {
@@ -599,7 +577,7 @@ export const docsContent = {
             size: 'lg',
             paragraphs: [
               'Reso は macOS 向けの voice workspace です。音声を capture し、workflow に流し、結果をカーソル位置、保存先メモ、または次の action に届けます。',
-              '現在の製品は、fast capture、workflow-based processing、そして Nebula と discovery 機能によって繋がりを浮かび上がらせる knowledge layer の三層で理解するのが正確です。',
+              '現在の製品は、fast capture、workflow-based processing、そして Nebula 機能によって繋がりを浮かび上がらせる knowledge layer の三層で理解するのが正確です。',
             ],
           },
           {
@@ -607,10 +585,10 @@ export const docsContent = {
             title: '使い方のメンタルモデル',
             size: 'md',
             checklist: [
-              'Capture: メイン録音ショートカットか quick action から始める',
+              'Capture: メイン録音ショートカットから始める',
               'Workflow: すべての実行には input mode、skills、output path がある',
-              'Engine: Reso Engine か自分の provider を使う',
-              'Discovery: 取り込んだノートや履歴が links、tags、threads、insight cards へ育つ',
+              'Engine: 実際の経路は現在の Engine settings によって決まる',
+              'Nebula: 表示内容は利用可能な機能と実データ量に依存する',
             ],
           },
         ],
@@ -681,8 +659,7 @@ export const docsContent = {
             ],
             checklist: [
               'Insert at Cursor: Accessibility と editable field が必要',
-              'Diary 系 workflow は保存先や命名ルールに従って保存できる',
-              'selection ベースの quick action は必要に応じて現在の選択テキストを使う',
+              'そのほかの出力経路は現在の workflow 設定に依存する',
             ],
           },
         ],
@@ -706,17 +683,7 @@ export const docsContent = {
             checklist: [
               'Insert at Cursor: 出力をフォーカス中の app に入れる',
               'Screen Context: active app、selected text、必要なら OCR context を読む',
-              'Intent Drafting: 音声を逐語入力ではなく指示として扱う',
               'Generated Skills: AppleScript や deep link を使う app automation を作る',
-            ],
-          },
-          {
-            id: 'dictation-vs-intent',
-            title: 'Dictation と Intent Drafting',
-            size: 'md',
-            paragraphs: [
-              'Dictation は話した内容を保ちます。Intent Drafting は話した指示を目的の出力へ書き換えます。',
-              '現在の release では、明示的に workflow を選ぶのが最も信頼できる使い方です。Legacy Smart mode は残っていますが、製品はより明確な workflow activation に向かっています。',
             ],
           },
         ],
@@ -732,7 +699,7 @@ export const docsContent = {
               '現在の build では、Reso Engine が有効ならそれがデフォルトの managed STT path です。Engine settings で BYOK の cloud provider に切り替えることもできます。',
             ],
             checklist: [
-              'Reso Engine: managed setup、個人 key 不要、managed discovery に必要',
+              'Reso Engine: managed setup、個人 key 不要、managed Nebula に必要',
               'Personal API: OpenAI、Anthropic、Google、Groq を自分の課金で使う',
             ],
           },
@@ -742,7 +709,7 @@ export const docsContent = {
             size: 'md',
             paragraphs: [
               '既に安定した provider や API key を持っているなら Personal API が向いています。',
-              '設定項目を減らし、製品側が管理する inference と discovery を使いたいなら Reso Engine が向いています。価格、trial、quota は変わり得るので、商用条件は Pricing ページを参照してください。',
+              '設定項目を減らし、製品側が管理する inference と Nebula を使いたいなら Reso Engine が向いています。価格、trial、quota は変わり得るので、商用条件は Pricing ページを参照してください。',
             ],
           },
           {
@@ -750,7 +717,7 @@ export const docsContent = {
             title: '現在の routing の振る舞い',
             size: 'md',
             paragraphs: [
-              'Reso はステップごとに別の provider を使えます。また、完全な Pro discovery 以外でも一部の product-managed routing は存在します。',
+              'Reso はステップごとに別の provider を使えます。また、完全な Pro Nebula 以外でも一部の product-managed routing は存在します。',
               'workflow が未設定の provider や entitlement を必要とする場合、app はその blocker を明示し、ブラックボックス的に処理を進めません。',
             ],
           },
@@ -844,12 +811,12 @@ export const docsContent = {
           },
           {
             id: 'engine-or-discovery',
-            title: 'Engine や Discovery の問題',
+            title: 'Engine や Nebula の問題',
             size: 'md',
             checklist: [
               'Engine settings で provider と API key を再確認する',
               'Reso Engine 依存なら current plan や trial status を確認する',
-              'Discovery の出力が薄い場合は、まず本物のノートや履歴を増やす',
+              'Nebula の出力が薄い場合は、まず本物のノートや履歴を増やす',
             ],
           },
         ],
