@@ -13,6 +13,7 @@ const navCopy = {
     buildJourney: 'Build Journey',
     resources: 'Resources',
     licenseManager: 'License Manager',
+    contact: 'Contact Us',
     buildBlocks: 'Build Blocks',
     download: 'Download',
   },
@@ -23,6 +24,7 @@ const navCopy = {
     buildJourney: 'Build Journey',
     resources: '资源',
     licenseManager: '许可证管理器',
+    contact: '联系我们',
     buildBlocks: 'Build Blocks',
     download: '下载',
   },
@@ -33,6 +35,7 @@ const navCopy = {
     buildJourney: 'Build Journey',
     resources: 'リソース',
     licenseManager: 'ライセンスマネージャー',
+    contact: 'お問い合わせ',
     buildBlocks: 'Build Blocks',
     download: 'ダウンロード',
   },
@@ -69,6 +72,7 @@ const Navbar = ({ isScrolled = false }) => {
   const resourceLinks = [
     { key: 'docs', to: '/docs' },
     { key: 'licenseManager', to: '/retrieve' },
+    { key: 'contact', to: '/contact' },
   ];
 
   const closeResourcesMenu = () => {
@@ -230,7 +234,7 @@ const Navbar = ({ isScrolled = false }) => {
                 setResourcesOpen((prev) => !prev);
               }}
               className={`inline-flex items-center transition-colors hover:text-gray-900 dark:hover:text-white ${
-                ['/docs', '/retrieve'].includes(location.pathname) ? 'text-gray-900 dark:text-white' : ''
+                ['/docs', '/retrieve', '/contact'].includes(location.pathname) ? 'text-gray-900 dark:text-white' : ''
               }`}
               aria-haspopup="menu"
               aria-expanded={resourcesOpen}
