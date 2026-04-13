@@ -22,7 +22,7 @@ const pricingCopy = {
         priceMain: 'Free',
         priceSup: '',
         cadence: '',
-        description: 'Experience the full Pro magic for 14 days, then keep core dictation forever.',
+        description: '14-day full Pro trial. Core dictation free forever.',
         features: [
           'Fast capture: dictate raw text at your cursor.',
           'Total privacy: all audio stays on your device.',
@@ -39,7 +39,7 @@ const pricingCopy = {
         priceMain: '$9',
         priceSup: '.99',
         cadence: '/month',
-        description: 'Low friction, high flow. Add your knowledge, speak your mind, get polished output.',
+        description: 'Speak your mind, get polished output. All-in-one, zero setup.',
         features: [
           'Perfect output: toggle between raw and AI-polished text.',
           'Automate tasks: build visual skill chains for dictations.',
@@ -106,7 +106,7 @@ const pricingCopy = {
         priceMain: '免费',
         priceSup: '',
         cadence: '',
-        description: '畅享 14 天完整专业版体验，随后永久保留核心听写功能。',
+        description: '14 天专业版试用，核心听写永久免费。',
         features: [
           '极速输入：在光标处直接输出转写文本。',
           '隐私安全：语音音频绝不离开您的设备。',
@@ -123,7 +123,7 @@ const pricingCopy = {
         priceMain: '$9',
         priceSup: '.99',
         cadence: '/月',
-        description: '低摩擦，高心流。导入知识，开口就说，输出即精炼。',
+        description: '开口就说，输出即精炼。',
         features: [
           '完美输出：自由切换原始转写与 AI 润色模式。',
           '自动处理：可视化构建专属听写工作流。',
@@ -189,7 +189,7 @@ const pricingCopy = {
         priceMain: '無料',
         priceSup: '',
         cadence: '',
-        description: '14日間の Pro 体験付き。その後もコアディクテーションは永久無料。',
+        description: '14日間 Pro 体験付き。コア機能は永久無料。',
         features: [
           '高速入力：カーソル位置にテキストを即出力。',
           '完全プライバシー：音声はデバイスから出ません。',
@@ -206,7 +206,7 @@ const pricingCopy = {
         priceMain: '$9',
         priceSup: '.99',
         cadence: '/月',
-        description: 'ローフリクション、ハイフロー。知識を取り込み、話すだけで洗練されたアウトプットに。',
+        description: '話すだけで洗練されたアウトプットに。',
         features: [
           '完璧な出力：生テキストと AI 整文を自由に切替。',
           'タスク自動化：ビジュアルなスキルチェーンを構築。',
@@ -307,7 +307,7 @@ const PricingPage = () => {
                       </>
                     )}
 
-                    <div className="relative">
+                    <div className="relative flex flex-col flex-1">
                       <div className="flex items-start justify-between mb-8">
                         <div>
                           <p className={`text-xs tracking-[0.2em] uppercase mb-3 font-mono ${tier.featured ? 'text-gray-400' : 'text-gray-500 dark:text-gray-500'}`}>
@@ -347,7 +347,7 @@ const PricingPage = () => {
                         }`} />
                       </div>
 
-                      <ul className="space-y-4 mb-8 flex-1">
+                      <ul className="space-y-4 mb-8 flex-1 grow">
                         {tier.features.map((feature, idx) => (
                           <li key={idx} className="flex gap-3 items-start group/item">
                             <div className={`mt-0.5 shrink-0 w-5 h-5 rounded-full flex items-center justify-center transition-colors ${
