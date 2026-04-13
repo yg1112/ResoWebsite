@@ -199,7 +199,7 @@ export const FloatingCapsule = ({ scale = 1, state = 'recording' }) => {
       <StageText
         animKey="inserted"
         title="Inserted"
-        subtitle="done 5 · fail 1"
+        subtitle="done · 1.4s"
         scale={scale}
       />
     );

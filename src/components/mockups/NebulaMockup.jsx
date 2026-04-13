@@ -1,126 +1,334 @@
 /**
- * MOCKUP SYNC: This file mirrors Reso2 macOS app UI for the marketing website.
- * When the corresponding app code changes, you MUST update this file too.
- * See /Users/yukungao/github/Reso2/CLAUDE.md "Website Mockup Sync" for the full mapping.
- *
- * App source of truth:
- * - NebulaShowcase / CLUSTERS ← Reso2/Resources/nebula_graph.html (3D Three.js nebula)
- *   This is a CSS/SVG approximation since the WebGL view is too heavy and data-bound.
- *   The cluster sample data is fictional (PII-safe) but the visual style should match.
+ * NebulaMockup — Canvas-based nebula cluster animation.
+ * Replicates the real app's rendering engine (nebula_graph.html):
+ *   - Pure black background
+ *   - globalCompositeOperation = 'screen' for additive glow blending
+ *   - SuperHub: real-time radialGradient + white core arc
+ *   - Hub: sprite radialGradient + white core
+ *   - Star dust: sub-pixel arcs
+ *   - Connecting edges: linear-gradient strokes
+ * Simplified for marketing: no search/settings panels, fictional clusters only.
  */
-import React, { useState } from 'react';
+import React, { useRef, useEffect, useState, useCallback } from 'react';
 
-/**
- * Recreation of Reso2's Nebula view (the 3D knowledge-graph visualization).
- * Original lives at /Users/yukungao/github/Reso2/Reso2/Resources/nebula_graph.html
- * and is rendered with Three.js / WebGL — too heavy and data-bound to embed
- * directly. This is a CSS/SVG approximation that captures the same dreamy
- * starfield aesthetic with deterministic, fictional cluster labels.
- *
- * Each cluster is clickable: tapping a star opens a small note card preview.
- */
-
-// Fictional clusters — PII-safe, cleared for the public marketing page.
-// Each cluster has a sample note preview shown on click.
-const CLUSTERS = [
-  {
-    x: 18, y: 32, label: 'Architecture decisions', color: '#6ad0ff',
-    preview: { date: 'Mar 28', title: 'Engine router seam', body: 'Move provider switch behind the existing flag. Smoke pack against canary before merge.' },
-  },
-  {
-    x: 33, y: 58, label: 'Design system audit', color: '#9aa6ff',
-    preview: { date: 'Apr 02', title: 'Token drift', body: 'Three card components ship slightly different shadow tokens. Consolidate into elevation.medium.' },
-  },
-  {
-    x: 49, y: 24, label: 'Q2 launch retrospective', color: '#c8a8ff',
-    preview: { date: 'Apr 04', title: 'What worked', body: 'Public soft-launch on Friday > announcement Monday. Discovery tab attribution doubled vs Q1.' },
-  },
-  {
-    x: 64, y: 45, label: 'Voice → action ideas', color: '#ffc4d6',
-    preview: { date: 'Mar 30', title: 'Save to Diary node', body: 'Result Card needs an explicit "Save to Diary" branch so longform notes do not need a manual paste.' },
-  },
-  {
-    x: 72, y: 18, label: 'Reading notes · ML', color: '#7fe7c4',
-    preview: { date: 'Mar 22', title: 'Speculative decoding', body: 'Draft model can be 5x smaller as long as accept rate stays above 0.7. Revisit for capsule latency.' },
-  },
-  {
-    x: 82, y: 38, label: 'Hiring conversations', color: '#ffd690',
-    preview: { date: 'Apr 06', title: 'Founding designer', body: 'Looking for someone who has shipped a macOS app, not just web. Pixel discipline matters here.' },
-  },
-  {
-    x: 24, y: 78, label: 'Late-night journals', color: '#b8c8ff',
-    preview: { date: 'Apr 01', title: 'Why this matters', body: 'A thought-processor, not a recorder. The differentiation is grounding, not transcription quality.' },
-  },
-  {
-    x: 44, y: 84, label: 'Pricing experiments', color: '#9affc8',
-    preview: { date: 'Mar 25', title: 'BYOK + Pro', body: 'Pro tier should bundle Reso Engine credits, BYOK should be free. Friction reversed from the v1 plan.' },
-  },
-  {
-    x: 68, y: 72, label: 'Brand voice drafts', color: '#ffb3a8',
-    preview: { date: 'Apr 03', title: 'Anti-Whisper positioning', body: 'Stop selling a microphone. Start selling a personalized thought-processor.' },
-  },
-  {
-    x: 86, y: 70, label: 'Customer interviews', color: '#a4e3ff',
-    preview: { date: 'Apr 07', title: 'Power user pattern', body: 'Three out of four heavy users built a custom Refine rule in week one. Onboarding should surface this earlier.' },
-  },
-  {
-    x: 12, y: 54, label: 'Weekly review', color: '#d6c2ff',
-    preview: { date: 'Apr 05', title: 'This week', body: 'Mindscape interactivity, capsule rewrite, hero copy. Next: Plan & Usage tab + ASR correction tuning.' },
-  },
-  {
-    x: 56, y: 62, label: 'Pipeline cleanup ideas', color: '#9af0ff',
-    preview: { date: 'Mar 31', title: 'Drop legacy fallback', body: 'Old single-pass router can retire after the canary holds for 7 days without regressions.' },
-  },
+// Sentiment spectrum (from nebula_graph.html SENTIMENT_SPECTRUM)
+const SPECTRUM = [
+  { stop: 0.00, r: 0,   g: 242, b: 254 },
+  { stop: 0.25, r: 79,  g: 172, b: 254 },
+  { stop: 0.50, r: 200, g: 210, b: 222 },
+  { stop: 0.75, r: 255, g: 177, b: 153 },
+  { stop: 1.00, r: 246, g: 211, b: 101 },
 ];
 
-const EDGES = [
-  // Index pairs into CLUSTERS — connect related clusters
-  [0, 1], [0, 2], [1, 4], [2, 3], [2, 5], [3, 5],
-  [3, 7], [4, 9], [5, 9], [6, 10], [7, 11], [8, 11],
-  [10, 11], [1, 11], [3, 11], [6, 7], [7, 8],
+function colorAtT(t) {
+  t = Math.max(0, Math.min(1, t));
+  for (let i = 0; i < SPECTRUM.length - 1; i++) {
+    const a = SPECTRUM[i], b = SPECTRUM[i + 1];
+    if (t >= a.stop && t <= b.stop) {
+      const lt = (t - a.stop) / (b.stop - a.stop);
+      return {
+        r: Math.round(a.r + (b.r - a.r) * lt),
+        g: Math.round(a.g + (b.g - a.g) * lt),
+        b: Math.round(a.b + (b.b - a.b) * lt),
+      };
+    }
+  }
+  return SPECTRUM[SPECTRUM.length - 1];
+}
+function cs(c, a) { return `rgba(${c.r},${c.g},${c.b},${a})`; }
+
+// ─── One large dense cluster (center) + two secondary clusters + scatter ─────
+//
+// The main cluster has ~22 hubs spread over ±380 units — enough to fill the
+// canvas. Edges are AUTO-GENERATED in the render loop (same as the real app):
+// any two hub/superHub nodes within MAX_EDGE_DIST connect automatically,
+// creating the dense crossing-line web visible in the app screenshot.
+//
+// Cluster A  (center, moonlight silver ~0.48-0.56):  large, 22 hubs
+// Cluster B  (far upper-left, cold cyan ~0.10-0.20):  5 hubs tight together
+// Cluster C  (far lower-right, warm gold ~0.85-0.96): 5 hubs tight together
+// ─────────────────────────────────────────────────────────────────────────────
+const NODES = [
+  // ── Cluster A — large dense main cluster ────────────────────────────────
+  { id:  0, ox:   0, oy:   0, oz:   0, baseSize:22, kind:'superHub', sentiment:0.52,
+    label:'Voice workflow', preview:'Drop the provider switch behind the existing flag. Smoke pack against canary before merge.' },
+  { id:  1, ox:-160, oy:-130, oz: 110, baseSize:10, kind:'hub', sentiment:0.48, label:'Pipeline cleanup', preview:'Old single-pass router retires after canary holds 7 days without regressions.' },
+  { id:  2, ox: 180, oy:-150, oz: -70, baseSize:11, kind:'hub', sentiment:0.55, label:'Brand voice drafts', preview:'Stop selling a microphone. Start selling a personalized thought-processor.' },
+  { id:  3, ox: 140, oy: 160, oz:  90, baseSize: 9, kind:'hub', sentiment:0.44, label:'Customer interviews', preview:'3 of 4 power users built a custom Refine rule in week one. Surface this earlier.' },
+  { id:  4, ox:-170, oy: 140, oz: -90, baseSize: 8, kind:'hub', sentiment:0.58, label:'Release notes', preview:'v2.4 ships: instant revision, new capsule stages, sentiment-based nebula coloring.' },
+  { id:  5, ox:  90, oy: -90, oz:-170, baseSize: 7, kind:'hub', sentiment:0.50, label:'Weekly review', preview:'Mindscape interactivity, capsule rewrite, hero copy. Next: Plan & Usage + ASR tuning.' },
+  { id:  6, ox:-230, oy:  60, oz: -50, baseSize: 8, kind:'hub', sentiment:0.46, label:'Product strategy', preview:'Focus on power users building custom workflows, not casual dictation users.' },
+  { id:  7, ox: 260, oy:  30, oz:  80, baseSize: 7, kind:'hub', sentiment:0.54, label:'ASR correction', preview:'Edit-distance threshold at 0.15 catches most substitution errors without over-correcting.' },
+  { id:  8, ox:  60, oy: 240, oz:-130, baseSize: 8, kind:'hub', sentiment:0.42, label:'Refine rule ideas', preview:'Default rule: strip filler words. Advanced: domain-specific vocabulary injection.' },
+  { id:  9, ox: -80, oy:-230, oz:  60, baseSize: 7, kind:'hub', sentiment:0.56, label:'Nebula tuning', preview:'Sentiment percentile mapping smooths color transitions. Cold→neutral→warm spectrum.' },
+  { id: 10, ox: 310, oy:-200, oz: -40, baseSize: 9, kind:'hub', sentiment:0.38, label:'Hiring conversations', preview:'Looking for someone who has shipped a macOS app. Pixel discipline matters.' },
+  { id: 11, ox:-300, oy:-190, oz: 150, baseSize: 8, kind:'hub', sentiment:0.62, label:'Onboarding flow', preview:'Surface the Refine rule builder in week-one flow. Reduces churn significantly.' },
+  { id: 12, ox: 200, oy: 310, oz:-180, baseSize: 7, kind:'hub', sentiment:0.45, label:'Design system audit', preview:'Consolidate shadow tokens into elevation.medium across all card components.' },
+  { id: 13, ox:-200, oy: 300, oz: 120, baseSize: 6, kind:'hub', sentiment:0.59, label:'Q2 retrospective', preview:'Public soft-launch Friday → announcement Monday. Discovery attribution doubled.' },
+  { id: 14, ox: 360, oy: 140, oz:-160, baseSize: 7, kind:'hub', sentiment:0.35, label:'Pricing experiments', preview:'Pro tier bundles Reso Engine credits. BYOK free. Friction reversed from v1.' },
+  { id: 15, ox:-360, oy: -80, oz: -80, baseSize: 6, kind:'hub', sentiment:0.65, label:'Late-night journals', preview:'A thought-processor, not a recorder. Differentiation is grounding, not transcription.' },
+  { id: 16, ox: 120, oy:-340, oz: 160, baseSize: 6, kind:'hub', sentiment:0.30, label:'Voice action ideas', preview:'Result Card needs an explicit Save to Diary branch for longform notes.' },
+  { id: 17, ox:-130, oy: 360, oz:-160, baseSize: 6, kind:'hub', sentiment:0.70, label:'Customer feedback', preview:'Most common request: export to Notion. Second: Apple Shortcuts trigger.' },
+  { id: 18, ox: 380, oy:-320, oz:  60, baseSize: 5, kind:'hub', sentiment:0.28, label:'Roadmap planning', preview:'Q3: Smart Format GA, Translate improvements, Nebula search redesign.' },
+  { id: 19, ox:-380, oy: 280, oz: 100, baseSize: 5, kind:'hub', sentiment:0.72, label:'Reading notes · ML', preview:'Draft model can be 5× smaller if accept rate stays above 0.7.' },
+  { id: 20, ox: 280, oy: 360, oz: 200, baseSize: 5, kind:'hub', sentiment:0.40, label:'Engine router', preview:'Drop the provider switch behind the existing flag.' },
+  { id: 21, ox:-270, oy:-350, oz:-160, baseSize: 5, kind:'hub', sentiment:0.60, label:'Capsule rewrite', preview:'New stage model: recording → transcribing → processing → cleaning → inserted.' },
+
+  // ── Cluster B  (cold cyan, upper-left) — tight group ────────────────────
+  { id: 22, ox:-560, oy:-440, oz: 180, baseSize:15, kind:'superHub', sentiment:0.14,
+    label:'Architecture', preview:'Move provider switch behind the existing flag. Canary must hold 7 days before retiring.' },
+  { id: 23, ox:-470, oy:-520, oz: 130, baseSize: 8, kind:'hub', sentiment:0.10, label:'Code review notes', preview:'Enforce single-direction data flow. No circular dependency between service layers.' },
+  { id: 24, ox:-650, oy:-380, oz: 220, baseSize: 7, kind:'hub', sentiment:0.18, label:'Performance profiling', preview:'Startup time dominated by embedding model load. Lazy-init after first use.' },
+  { id: 25, ox:-620, oy:-490, oz: 100, baseSize: 6, kind:'hub', sentiment:0.12, label:'Test coverage gaps', preview:'Integration tests missing for the revise flow when context window is near limit.' },
+  { id: 26, ox:-500, oy:-420, oz: 260, baseSize: 5, kind:'hub', sentiment:0.20, label:'Dependency audit', preview:'Three packages ship their own copy of lodash. Replace with native equivalents.' },
+
+  // ── Cluster C  (warm gold, lower-right) — tight group ───────────────────
+  { id: 27, ox: 520, oy: 430, oz:-150, baseSize:14, kind:'superHub', sentiment:0.92,
+    label:'Reading & learning', preview:'Draft model can be 5× smaller if accept rate stays above 0.7. Revisit for capsule latency.' },
+  { id: 28, ox: 610, oy: 360, oz: -90, baseSize: 8, kind:'hub', sentiment:0.96, label:'Book highlights', preview:'The best tools disappear into the workflow. Reso should feel like thinking out loud.' },
+  { id: 29, ox: 430, oy: 510, oz:-200, baseSize: 8, kind:'hub', sentiment:0.88, label:'Research papers', preview:'Speculative decoding accept rate correlates strongly with domain vocabulary match.' },
+  { id: 30, ox: 600, oy: 470, oz:-220, baseSize: 6, kind:'hub', sentiment:0.94, label:'Course notes', preview:'Transformer attention is O(n²) — the reason streaming works better for long transcripts.' },
+  { id: 31, ox: 460, oy: 380, oz:-120, baseSize: 5, kind:'hub', sentiment:0.85, label:'Podcast insights', preview:'Every great product has a 10-second pitch. Reso: speak and it is already done.' },
+
+  // ── Star dust — scattered wide ────────────────────────────────────────────
+  { id: 32, ox: 620, oy:-200, oz: 100, baseSize:2.8, kind:'dust', sentiment:0.25 },
+  { id: 33, ox:-620, oy:-300, oz:-150, baseSize:2.2, kind:'dust', sentiment:0.12 },
+  { id: 34, ox: 200, oy:-560, oz:  80, baseSize:2.5, kind:'dust', sentiment:0.60 },
+  { id: 35, ox:-180, oy: 600, oz:-160, baseSize:2.0, kind:'dust', sentiment:0.78 },
+  { id: 36, ox: 680, oy: 120, oz:-100, baseSize:1.8, kind:'dust', sentiment:0.35 },
+  { id: 37, ox:-680, oy: 120, oz: 180, baseSize:2.2, kind:'dust', sentiment:0.20 },
+  { id: 38, ox: 300, oy: 620, oz: 120, baseSize:2.0, kind:'dust', sentiment:0.88 },
+  { id: 39, ox:-260, oy:-620, oz:  60, baseSize:2.4, kind:'dust', sentiment:0.50 },
+  { id: 40, ox: 460, oy:-440, oz:-240, baseSize:1.6, kind:'dust', sentiment:0.15 },
+  { id: 41, ox:-460, oy: 460, oz: 240, baseSize:1.8, kind:'dust', sentiment:0.68 },
+  { id: 42, ox: 720, oy:-320, oz: 140, baseSize:1.4, kind:'dust', sentiment:0.30 },
+  { id: 43, ox:-720, oy: 260, oz:-120, baseSize:1.6, kind:'dust', sentiment:0.42 },
+  { id: 44, ox:  80, oy: 720, oz: -80, baseSize:1.5, kind:'dust', sentiment:0.75 },
+  { id: 45, ox: -80, oy:-720, oz: 100, baseSize:1.8, kind:'dust', sentiment:0.08 },
+  { id: 46, ox: 400, oy: 680, oz: 240, baseSize:1.4, kind:'dust', sentiment:0.95 },
+  { id: 47, ox:-400, oy:-680, oz:-240, baseSize:1.6, kind:'dust', sentiment:0.05 },
+  { id: 48, ox: 760, oy:  80, oz:-160, baseSize:1.3, kind:'dust', sentiment:0.38 },
+  { id: 49, ox:-760, oy: -80, oz: 160, baseSize:1.5, kind:'dust', sentiment:0.55 },
+  { id: 50, ox: 220, oy:-760, oz: 220, baseSize:1.4, kind:'dust', sentiment:0.22 },
+  { id: 51, ox:-220, oy: 760, oz:-220, baseSize:1.3, kind:'dust', sentiment:0.82 },
+  { id: 52, ox: 560, oy: 560, oz:-360, baseSize:1.2, kind:'dust', sentiment:0.65 },
+  { id: 53, ox:-560, oy:-560, oz: 360, baseSize:1.4, kind:'dust', sentiment:0.32 },
+  { id: 54, ox: 820, oy:-420, oz: 100, baseSize:1.1, kind:'dust', sentiment:0.18 },
+  { id: 55, ox:-820, oy: 420, oz:-100, baseSize:1.2, kind:'dust', sentiment:0.72 },
+  { id: 56, ox: 360, oy:-820, oz:-180, baseSize:1.0, kind:'dust', sentiment:0.48 },
+  { id: 57, ox:-360, oy: 820, oz: 180, baseSize:1.1, kind:'dust', sentiment:0.90 },
+  { id: 58, ox: 880, oy: 160, oz: 240, baseSize:1.0, kind:'dust', sentiment:0.28 },
+  { id: 59, ox:-880, oy:-160, oz:-240, baseSize:1.2, kind:'dust', sentiment:0.60 },
 ];
 
-// Tiny background dust particles for the depth illusion
-const DUST = Array.from({ length: 80 }).map((_, i) => {
-  const seed = (i * 9301 + 49297) % 233280;
-  const r = seed / 233280;
-  const r2 = ((i * 49297 + 9301) % 233280) / 233280;
-  const r3 = ((i * 31337 + 12345) % 233280) / 233280;
-  return {
-    x: r * 100,
-    y: r2 * 100,
-    size: 0.4 + r3 * 1.2,
-    opacity: 0.18 + r3 * 0.42,
-  };
-});
+// No hardcoded EDGES — auto-generated in render loop (same as the real app):
+// every pair of hub/superHub nodes within MAX_EDGE_DIST connects automatically.
+const MAX_EDGE_DIST = 520;
 
-const nebulaKeyframes = `
-@keyframes resoNebulaPulse {
-  0%, 100% { opacity: 0.55; transform: scale(1); }
-  50% { opacity: 1; transform: scale(1.4); }
+function rotateY(x, y, z, angle) {
+  const cos = Math.cos(angle), sin = Math.sin(angle);
+  return { x: x * cos + z * sin, y, z: -x * sin + z * cos };
 }
-@keyframes resoNebulaTwinkle {
-  0%, 100% { opacity: 0.2; }
-  50% { opacity: 0.8; }
+function rotateX(x, y, z, angle) {
+  const cos = Math.cos(angle), sin = Math.sin(angle);
+  return { x, y: y * cos - z * sin, z: y * sin + z * cos };
 }
-@keyframes resoNebulaDrift {
-  0% { transform: translate(0, 0); }
-  50% { transform: translate(-6px, 4px); }
-  100% { transform: translate(0, 0); }
-}
-@keyframes resoNebulaCardIn {
-  from { opacity: 0; transform: translate(-50%, -4px); }
-  to   { opacity: 1; transform: translate(-50%, 0); }
-}
-`;
 
-export const NebulaShowcase = ({
-  width = 760,
-  height = 420,
-  showHint = true,
-}) => {
-  const [activeIdx, setActiveIdx] = useState(null);
-  const activeCluster = activeIdx != null ? CLUSTERS[activeIdx] : null;
+// Pre-build sprite canvases for hub nodes (same as createNodeSprite in the app)
+function buildSprite(color, size = 128) {
+  const c = document.createElement('canvas');
+  c.width = size; c.height = size;
+  const sctx = c.getContext('2d');
+  const center = size / 2;
+  const grad = sctx.createRadialGradient(center, center, 0, center, center, center);
+  grad.addColorStop(0, cs(color, 0.85));
+  grad.addColorStop(0.5, cs(color, 0.32));
+  grad.addColorStop(1, 'rgba(0,0,0,0)');
+  sctx.fillStyle = grad;
+  sctx.fillRect(0, 0, size, size);
+  sctx.beginPath();
+  sctx.arc(center, center, center * 0.28, 0, Math.PI * 2);
+  sctx.fillStyle = 'rgba(240,248,255,0.85)';
+  sctx.fill();
+  return c;
+}
+
+export const NebulaShowcase = ({ width = 760, height = 420 }) => {
+  const canvasRef = useRef(null);
+  const stateRef = useRef({ rotY: 0, rotX: 0 });
+  const spritesRef = useRef(null);
+  const rafRef = useRef(null);
+  const [hovered, setHovered] = useState(null); // { node, screenX, screenY }
+
+  // Build sprites once
+  useEffect(() => {
+    spritesRef.current = {};
+    NODES.forEach(n => {
+      if (n.kind === 'hub') {
+        spritesRef.current[n.id] = buildSprite(colorAtT(n.sentiment));
+      }
+    });
+  }, []);
+
+  const handleMouseMove = useCallback((e) => {
+    const canvas = canvasRef.current;
+    if (!canvas) return;
+    const rect = canvas.getBoundingClientRect();
+    const scaleX = canvas.width / rect.width;
+    const scaleY = canvas.height / rect.height;
+    const mx = (e.clientX - rect.left) * scaleX;
+    const my = (e.clientY - rect.top) * scaleY;
+
+    const w = canvas.width, h = canvas.height;
+    const FOV = 400, CAM_Z = 700;
+    const { rotY, rotX } = stateRef.current;
+    const now = Date.now();
+
+    let best = null, bestDist = Infinity;
+    for (const n of NODES) {
+      if (n.kind === 'dust') continue;
+      const noise = n.kind === 'superHub' ? 18 : 10;
+      const nx = n.ox + Math.sin(now * 0.0002 + n.id) * noise;
+      const ny = n.oy + Math.cos(now * 0.00027 + n.id) * noise;
+      const nz = n.oz + Math.sin(now * 0.00031 + n.id) * noise;
+      let r = rotateY(nx, ny, nz, rotY);
+      r = rotateX(r.x, r.y, r.z, rotX);
+      const z = r.z + CAM_Z;
+      if (z <= 1) continue;
+      const s = FOV / z;
+      const px = r.x * s + w / 2;
+      const py = r.y * s + h / 2;
+      const drawRad = n.baseSize * s * (n.kind === 'superHub' ? 4.5 : 2.8);
+      const dx = mx - px, dy = my - py;
+      const dist = Math.sqrt(dx * dx + dy * dy);
+      if (dist < Math.max(drawRad, 14) && dist < bestDist) {
+        bestDist = dist;
+        best = { node: n, screenX: px / scaleX + rect.left, screenY: py / scaleY + rect.top };
+      }
+    }
+    setHovered(best);
+  }, []);
+
+  const handleMouseLeave = useCallback(() => setHovered(null), []);
+
+  useEffect(() => {
+    const canvas = canvasRef.current;
+    if (!canvas) return;
+    const ctx = canvas.getContext('2d', { alpha: false });
+    const w = canvas.width, h = canvas.height;
+    const FOV = 400, CAM_Z = 700;
+    const sprites = spritesRef.current || {};
+
+    const loop = () => {
+      const now = Date.now();
+      stateRef.current.rotY += 0.00012;
+      stateRef.current.rotX += 0.000036;
+      const { rotY, rotX } = stateRef.current;
+
+      // --- Background ---
+      ctx.globalCompositeOperation = 'source-over';
+      ctx.globalAlpha = 1;
+      ctx.fillStyle = '#000000';
+      ctx.fillRect(0, 0, w, h);
+
+      // Screen blending — additive glow (key to the JWST nebula look)
+      ctx.globalCompositeOperation = 'screen';
+
+      // Project all nodes
+      const proj = [];
+      for (const n of NODES) {
+        const noise = n.kind === 'superHub' ? 18 : n.kind === 'hub' ? 10 : 4;
+        const nx = n.ox + Math.sin(now * 0.0002 + n.id) * noise;
+        const ny = n.oy + Math.cos(now * 0.00027 + n.id) * noise;
+        const nz = n.oz + Math.sin(now * 0.00031 + n.id) * noise;
+        let r = rotateY(nx, ny, nz, rotY);
+        r = rotateX(r.x, r.y, r.z, rotX);
+        const z = r.z + CAM_Z;
+        if (z <= 1) continue;
+        const s = FOV / z;
+        const px = r.x * s + w / 2;
+        const py = r.y * s + h / 2;
+        const pulse = 1 + Math.sin(now * 0.0008 + n.ox) * (n.kind === 'superHub' ? 0.07 : 0.04);
+        const radius = n.baseSize * s * pulse;
+        const alpha = Math.max(0.05, Math.min(1, Math.pow(FOV / z, 1.8) * 2.5));
+        const color = colorAtT(n.sentiment);
+        proj.push({ n, px, py, z, s, radius, alpha, color });
+      }
+      proj.sort((a, b) => b.z - a.z);
+
+      // --- Edges — auto-generated (same as real app) ---
+      // Connect every hub/superHub pair within MAX_EDGE_DIST in 3-D space.
+      const hubProj = proj.filter(p => p.n.kind !== 'dust');
+      for (let ei = 0; ei < hubProj.length; ei++) {
+        for (let ej = ei + 1; ej < hubProj.length; ej++) {
+          const pa = hubProj[ei], pb = hubProj[ej];
+          const dx = pa.n.ox - pb.n.ox, dy = pa.n.oy - pb.n.oy, dz = pa.n.oz - pb.n.oz;
+          const dist = Math.sqrt(dx * dx + dy * dy + dz * dz);
+          if (dist >= MAX_EDGE_DIST) continue;
+          const aD = 1 - dist / MAX_EDGE_DIST;
+          const aZ = Math.max(0.02, Math.min(1, FOV / ((pa.z + pb.z) * 0.5)));
+          const edgeAlpha = aD * aZ * 0.45;
+          if (edgeAlpha < 0.015) continue;
+          ctx.lineWidth = Math.max(0.4, Math.min(1.5, (FOV / ((pa.z + pb.z) * 0.5)) * 1.2));
+          ctx.beginPath();
+          ctx.moveTo(pa.px, pa.py);
+          ctx.lineTo(pb.px, pb.py);
+          const grad = ctx.createLinearGradient(pa.px, pa.py, pb.px, pb.py);
+          grad.addColorStop(0, cs(pa.color, edgeAlpha));
+          grad.addColorStop(1, cs(pb.color, edgeAlpha));
+          ctx.strokeStyle = grad;
+          ctx.stroke();
+        }
+      }
+
+      // --- Nodes ---
+      for (const { n, px, py, radius, alpha, color } of proj) {
+        const isHov = hovered?.node.id === n.id;
+        const r = isHov ? radius * 1.5 : radius;
+        const a = isHov ? 1 : alpha;
+
+        if (n.kind === 'superHub') {
+          const drawRad = r * 4.5;
+          ctx.globalAlpha = a;
+          const g = ctx.createRadialGradient(px, py, 0, px, py, drawRad);
+          g.addColorStop(0, cs(color, 1.0));
+          g.addColorStop(0.4, cs(color, 0.5));
+          g.addColorStop(1, 'rgba(0,0,0,0)');
+          ctx.fillStyle = g;
+          ctx.fillRect(px - drawRad, py - drawRad, drawRad * 2, drawRad * 2);
+          ctx.beginPath();
+          ctx.arc(px, py, drawRad * 0.26, 0, Math.PI * 2);
+          ctx.fillStyle = 'rgba(255,255,255,0.95)';
+          ctx.fill();
+        } else if (n.kind === 'hub') {
+          const sprite = sprites[n.id];
+          if (sprite) {
+            const drawRad = r * 2.8;
+            ctx.globalAlpha = a;
+            ctx.drawImage(sprite, px - drawRad, py - drawRad, drawRad * 2, drawRad * 2);
+          }
+        } else {
+          // Star dust
+          ctx.globalAlpha = 1.0;
+          const dustR = Math.max(0.5, r * a * 1.2);
+          ctx.beginPath();
+          ctx.arc(px, py, dustR, 0, Math.PI * 2);
+          ctx.fillStyle = a > 0.6
+            ? `rgba(220,240,255,${a})`
+            : cs(color, a * 0.7);
+          ctx.fill();
+        }
+      }
+
+      ctx.globalAlpha = 1;
+      ctx.globalCompositeOperation = 'source-over';
+      rafRef.current = requestAnimationFrame(loop);
+    };
+
+    rafRef.current = requestAnimationFrame(loop);
+    return () => cancelAnimationFrame(rafRef.current);
+  }, [hovered]);
+
   return (
     <div
       style={{
@@ -130,220 +338,46 @@ export const NebulaShowcase = ({
         aspectRatio: `${width} / ${height}`,
         borderRadius: 18,
         overflow: 'hidden',
-        background: 'radial-gradient(ellipse at 30% 30%, #0a0820 0%, #050510 30%, #000000 80%)',
-        cursor: 'grab',
+        background: '#000',
+        cursor: hovered ? 'pointer' : 'default',
       }}
     >
-      <style>{nebulaKeyframes}</style>
-
-      {/* Background nebula glow */}
-      <div
-        aria-hidden
-        style={{
-          position: 'absolute',
-          top: '15%',
-          left: '20%',
-          width: '60%',
-          height: '60%',
-          background: 'radial-gradient(circle, rgba(84,35,231,0.18) 0%, transparent 60%)',
-          filter: 'blur(40px)',
-        }}
-      />
-      <div
-        aria-hidden
-        style={{
-          position: 'absolute',
-          top: '40%',
-          left: '50%',
-          width: '40%',
-          height: '40%',
-          background: 'radial-gradient(circle, rgba(80,180,255,0.14) 0%, transparent 65%)',
-          filter: 'blur(40px)',
-        }}
+      <canvas
+        ref={canvasRef}
+        width={width}
+        height={height}
+        style={{ display: 'block', width: '100%', height: '100%' }}
+        onMouseMove={handleMouseMove}
+        onMouseLeave={handleMouseLeave}
       />
 
-      {/* Dust */}
-      {DUST.map((d, i) => (
-        <div
-          key={`dust-${i}`}
-          style={{
-            position: 'absolute',
-            left: `${d.x}%`,
-            top: `${d.y}%`,
-            width: d.size,
-            height: d.size,
-            borderRadius: '50%',
-            background: '#fff',
-            opacity: d.opacity,
-            animation: `resoNebulaTwinkle ${3 + (i % 5)}s ease-in-out infinite`,
-            animationDelay: `${(i % 7) * 0.3}s`,
-            willChange: 'opacity',
-            transform: 'translateZ(0)',
-          }}
-        />
-      ))}
-
-      {/* Edges (drawn first so nodes sit on top) */}
-      <svg
-        viewBox="0 0 100 100"
-        preserveAspectRatio="none"
-        style={{
-          position: 'absolute',
-          inset: 0,
-          width: '100%',
-          height: '100%',
-          pointerEvents: 'none',
-        }}
-      >
-        <defs>
-          <linearGradient id="nebulaEdge" x1="0" y1="0" x2="1" y2="1">
-            <stop offset="0%" stopColor="rgba(106,208,255,0.45)" />
-            <stop offset="100%" stopColor="rgba(154,166,255,0.18)" />
-          </linearGradient>
-        </defs>
-        {EDGES.map(([a, b], i) => {
-          const A = CLUSTERS[a];
-          const B = CLUSTERS[b];
-          return (
-            <line
-              key={`edge-${i}`}
-              x1={A.x}
-              y1={A.y}
-              x2={B.x}
-              y2={B.y}
-              stroke="url(#nebulaEdge)"
-              strokeWidth="0.12"
-              opacity="0.6"
-              vectorEffect="non-scaling-stroke"
-            />
-          );
-        })}
-      </svg>
-
-      {/* Cluster nodes + labels — clickable */}
-      {CLUSTERS.map((c, i) => {
-        const isActive = activeIdx === i;
-        return (
-          <button
-            key={`node-${i}`}
-            type="button"
-            onClick={(e) => {
-              e.stopPropagation();
-              setActiveIdx(isActive ? null : i);
-            }}
-            style={{
-              position: 'absolute',
-              left: `${c.x}%`,
-              top: `${c.y}%`,
-              transform: 'translate(-50%, -50%)',
-              animation: `resoNebulaDrift ${10 + (i % 4)}s ease-in-out infinite`,
-              animationDelay: `${i * 0.4}s`,
-              willChange: 'transform',
-              background: 'transparent',
-              border: 'none',
-              padding: 4,
-              cursor: 'pointer',
-              fontFamily: 'inherit',
-            }}
-          >
-            <div
-              style={{
-                position: 'relative',
-                width: isActive ? 9 : 6,
-                height: isActive ? 9 : 6,
-                borderRadius: '50%',
-                background: c.color,
-                boxShadow: isActive
-                  ? `0 0 14px ${c.color}, 0 0 28px ${c.color}, 0 0 42px ${c.color}80`
-                  : `0 0 8px ${c.color}, 0 0 18px ${c.color}80`,
-                animation: `resoNebulaPulse ${4 + (i % 3)}s ease-in-out infinite`,
-                animationDelay: `${i * 0.2}s`,
-                transition: 'width 0.18s, height 0.18s, box-shadow 0.18s',
-              }}
-            />
-            <div
-              style={{
-                position: 'absolute',
-                left: isActive ? 16 : 12,
-                top: -2,
-                whiteSpace: 'nowrap',
-                fontSize: isActive ? 10.5 : 9.5,
-                letterSpacing: 0.2,
-                color: isActive ? 'rgba(255,255,255,1)' : 'rgba(255,255,255,0.78)',
-                textShadow: '0 0 8px rgba(0,0,0,0.85)',
-                fontWeight: isActive ? 600 : 500,
-                transition: 'left 0.18s, font-size 0.18s, color 0.18s',
-              }}
-            >
-              {c.label}
-            </div>
-          </button>
-        );
-      })}
-
-      {/* Note preview popover */}
-      {activeCluster && (
+      {/* Hover tooltip — HTML overlay, same glass style as the app */}
+      {hovered?.node.label && (
         <div
           style={{
             position: 'absolute',
-            left: `${Math.min(Math.max(activeCluster.x, 24), 70)}%`,
-            top: `${Math.min(Math.max(activeCluster.y + 8, 18), 60)}%`,
-            transform: 'translate(-50%, 0)',
-            width: 246,
-            padding: '12px 14px',
-            borderRadius: 12,
-            background: 'linear-gradient(180deg, rgba(28,28,32,0.96) 0%, rgba(18,18,22,0.96) 100%)',
-            backdropFilter: 'blur(20px)',
-            border: `1px solid ${activeCluster.color}55`,
-            boxShadow: `0 18px 40px -12px rgba(0,0,0,0.85), 0 0 0 1px rgba(255,255,255,0.04), 0 0 22px ${activeCluster.color}25`,
+            left: Math.min(hovered.screenX - canvasRef.current?.getBoundingClientRect().left + 16, width - 260),
+            top: Math.max(hovered.screenY - canvasRef.current?.getBoundingClientRect().top - 20, 8),
+            width: 240,
+            padding: '11px 13px',
+            borderRadius: 13,
+            background: 'linear-gradient(180deg, rgba(28,28,26,0.96) 0%, rgba(14,14,12,0.97) 100%)',
+            backdropFilter: 'blur(24px)',
+            border: `1px solid rgba(255,255,255,0.08)`,
+            boxShadow: '0 18px 48px rgba(0,0,0,0.9), inset 0 1px 0 rgba(255,255,255,0.06)',
             color: 'rgba(255,255,255,0.95)',
-            fontSize: 11,
-            fontWeight: 500,
-            zIndex: 5,
-            animation: 'resoNebulaCardIn 0.22s ease-out',
-            transformOrigin: 'top',
+            pointerEvents: 'none',
+            zIndex: 10,
+            animation: 'nebulaCardIn 0.15s ease-out',
           }}
         >
-          <div className="flex items-center" style={{ gap: 6, marginBottom: 6 }}>
-            <span
-              style={{
-                width: 6,
-                height: 6,
-                borderRadius: '50%',
-                background: activeCluster.color,
-                boxShadow: `0 0 6px ${activeCluster.color}`,
-              }}
-            />
-            <span style={{ fontSize: 9, fontWeight: 600, color: activeCluster.color, letterSpacing: 0.2, textTransform: 'uppercase' }}>
-              {activeCluster.label}
-            </span>
-            <span style={{ marginLeft: 'auto', fontSize: 9, color: 'rgba(255,255,255,0.4)' }}>
-              {activeCluster.preview.date}
-            </span>
+          <style>{`@keyframes nebulaCardIn{from{opacity:0;transform:translateY(5px)}to{opacity:1;transform:translateY(0)}}`}</style>
+          <div style={{ fontSize: 10, fontWeight: 700, letterSpacing: 0.8, textTransform: 'uppercase', color: 'rgba(255,255,255,0.45)', marginBottom: 5 }}>
+            {hovered.node.label}
           </div>
-          <div style={{ fontSize: 12, fontWeight: 600, color: 'rgba(255,255,255,0.95)', marginBottom: 4 }}>
-            {activeCluster.preview.title}
+          <div style={{ fontSize: 11.5, lineHeight: 1.55, color: 'rgba(255,255,255,0.75)' }}>
+            {hovered.node.preview}
           </div>
-          <div style={{ fontSize: 10.5, color: 'rgba(255,255,255,0.7)', lineHeight: 1.5 }}>
-            {activeCluster.preview.body}
-          </div>
-        </div>
-      )}
-
-      {showHint && !activeCluster && (
-        <div
-          style={{
-            position: 'absolute',
-            bottom: 14,
-            left: 0,
-            right: 0,
-            textAlign: 'center',
-            fontSize: 10,
-            color: 'rgba(255,255,255,0.32)',
-            letterSpacing: 0.5,
-          }}
-        >
-          Tap any star to peek at the cluster's notes
         </div>
       )}
     </div>

@@ -8,7 +8,7 @@
  *   (Voice Workflow nodes: Voice Input, Revise Last Result, Context Awareness, Clean, Refine,
  *   Translate, Auto Insert, Result Card; bezier connections; INPUT/RULES/DELIVER column labels)
  */
-import React from 'react';
+import React, { useState, useCallback } from 'react';
 import {
   RESO_TOKENS,
   ResoWindowShell,
@@ -160,7 +160,7 @@ const buildPath = (a, b, curve) => {
     const occupiedMaxY = NODES
       .filter((node) => node.id !== a.id && node.id !== b.id && node.kind !== 'junction')
       .reduce((maxY, node) => Math.max(maxY, node.y + NODE_HEIGHT), Math.max(ay, by));
-    const routeY = Math.max(occupiedMaxY + 34, ay + 36, by + 22);
+    const routeY = Math.max(occupiedMaxY + 58, ay + 60, by + 40);
     const span = Math.max(1, bx - ax);
     const startPull = Math.min(170, Math.max(72, span * 0.28));
     const endPull = Math.min(190, Math.max(84, span * 0.3));
@@ -202,7 +202,7 @@ const SvgCog = ({ x, y }) => (
   </g>
 );
 
-const SvgWorkflowNode = ({ node }) => {
+const SvgWorkflowNode = ({ node, isDisabled, onToggle }) => {
   // Junction merge dot — small filled circle with no label, sits on its center.
   if (node.kind === 'junction') {
     return (
@@ -220,18 +220,21 @@ const SvgWorkflowNode = ({ node }) => {
     );
   }
 
-  const opacity = node.disabled ? 0.42 : 1;
-  const greenColor = node.disabled
+  const disabled = isDisabled;
+  const opacity = disabled ? 0.42 : 1;
+  const greenColor = disabled
     ? 'rgba(34, 197, 94, 0.35)'
     : RESO_TOKENS.workflowGreen;
   const borderColor = RESO_TOKENS.border;
   const borderWidth = 1;
   const cardFill = RESO_TOKENS.bgCard;
+  const canToggle = node.id !== 'voice-input' && node.kind !== 'junction';
   return (
     <g
       transform={`translate(${node.x},${node.y})`}
       opacity={opacity}
-      style={{ cursor: 'default' }}
+      style={{ cursor: canToggle ? 'pointer' : 'default', transition: 'opacity 0.25s ease' }}
+      onClick={canToggle ? () => onToggle(node.id) : undefined}
     >
       {/* Card background */}
       <rect
@@ -254,7 +257,7 @@ const SvgWorkflowNode = ({ node }) => {
         height={NODE_HEIGHT - 16}
         rx="1.5"
         fill={greenColor}
-        style={{ transition: 'fill 0.18s' }}
+        style={{ transition: 'fill 0.25s' }}
       />
       {/* Title */}
       <text
@@ -301,6 +304,22 @@ const SvgColumnLabel = ({ text, x, y }) => (
  * Static by design to mirror the app screenshot state.
  */
 export const WorkflowCanvas = ({ maxWidth }) => {
+  // Default disabled set matches the app's initial state (Translate off by default)
+  const [disabledSet, setDisabledSet] = useState(() => {
+    const initial = new Set();
+    NODES.forEach((n) => { if (n.disabled) initial.add(n.id); });
+    return initial;
+  });
+
+  const handleToggle = useCallback((id) => {
+    setDisabledSet((prev) => {
+      const next = new Set(prev);
+      if (next.has(id)) next.delete(id);
+      else next.add(id);
+      return next;
+    });
+  }, []);
+
   return (
     <svg
       viewBox={`0 0 ${VIEW_BOX_WIDTH} ${VIEW_BOX_HEIGHT}`}
@@ -325,6 +344,7 @@ export const WorkflowCanvas = ({ maxWidth }) => {
         const a = lookupNode(c.from);
         const b = lookupNode(c.to);
         if (!a || !b) return null;
+        const edgeDim = disabledSet.has(c.from) || disabledSet.has(c.to);
         return (
           <path
             key={i}
@@ -332,22 +352,26 @@ export const WorkflowCanvas = ({ maxWidth }) => {
             fill="none"
             stroke="url(#connStroke)"
             strokeWidth={1.1}
-            opacity={c.dim ? 0.18 : 0.6}
+            opacity={edgeDim ? 0.18 : 0.6}
             strokeLinecap="round"
-            style={{ transition: 'stroke-width 0.18s, opacity 0.18s' }}
+            style={{ transition: 'opacity 0.25s ease' }}
           />
         );
       })}
 
-      {/* Column labels — branch (Context+Revise) and junction columns intentionally have no label.
-          Each label sits ~22pt above its column's topmost node, exactly like the real app. */}
+      {/* Column labels */}
       <SvgColumnLabel text="INPUT" x={30 + NODE_WIDTH / 2 - 14} y={173} />
       <SvgColumnLabel text="RULES" x={478 + NODE_WIDTH / 2 - 14} y={111} />
       <SvgColumnLabel text="DELIVER" x={720 + NODE_WIDTH / 2 - 22} y={142} />
 
       {/* Nodes */}
       {NODES.map((node) => (
-        <SvgWorkflowNode key={node.id} node={node} />
+        <SvgWorkflowNode
+          key={node.id}
+          node={node}
+          isDisabled={disabledSet.has(node.id)}
+          onToggle={handleToggle}
+        />
       ))}
     </svg>
   );

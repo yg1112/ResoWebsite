@@ -26,103 +26,6 @@ export const HERO_INTERNAL_HEIGHT = 640;
 /* Scene 1: Capture — desktop fragment with the floating capsule + result card */
 /* ────────────────────────────────────────────────────────────────────────── */
 
-const ResultCardPreview = () => (
-  <div
-    style={{
-      width: 308,
-      borderRadius: 16,
-      background: 'linear-gradient(180deg, rgba(28,28,32,0.96) 0%, rgba(18,18,22,0.96) 100%)',
-      backdropFilter: 'blur(24px)',
-      border: '1px solid rgba(255,255,255,0.1)',
-      boxShadow: '0 24px 60px -16px rgba(0,0,0,0.85), inset 0 1px 0 rgba(255,255,255,0.06)',
-      padding: '14px 16px',
-      color: RESO_TOKENS.textPrimary,
-    }}
-  >
-    {/* Header row */}
-    <div className="flex items-center" style={{ gap: 8, marginBottom: 10 }}>
-      <div
-        className="flex items-center justify-center"
-        style={{
-          width: 22,
-          height: 22,
-          borderRadius: 6,
-          background: 'rgba(84,35,231,0.22)',
-          border: '1px solid rgba(84,35,231,0.45)',
-        }}
-      >
-        <svg width="11" height="11" viewBox="0 0 14 14" fill="none">
-          <path d="M3 7l3 3 5-6" stroke="#c4b6ff" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round" fill="none" />
-        </svg>
-      </div>
-      <div style={{ fontSize: 11, fontWeight: 600, color: RESO_TOKENS.textPrimary }}>
-        Result Card
-      </div>
-      <div style={{ fontSize: 9, color: RESO_TOKENS.textTertiary, marginLeft: 'auto', letterSpacing: 0.3 }}>
-        REFINE · 1.4s
-      </div>
-    </div>
-    {/* Body text */}
-    <div
-      style={{
-        fontSize: 12,
-        lineHeight: 1.55,
-        color: 'rgba(255,255,255,0.85)',
-        marginBottom: 12,
-      }}
-    >
-      Saturday rebuild plan: drop the engine router into a single seam so the
-      provider switch lands behind the existing flag. Re-run the smoke pack
-      against the canary build before merging.
-    </div>
-    {/* Action row */}
-    <div className="flex items-center" style={{ gap: 6 }}>
-      <div
-        style={{
-          fontSize: 10,
-          fontWeight: 600,
-          padding: '4px 10px',
-          borderRadius: 999,
-          background: 'rgba(255,255,255,0.08)',
-          border: '1px solid rgba(255,255,255,0.14)',
-          color: RESO_TOKENS.textPrimary,
-        }}
-      >
-        Insert
-      </div>
-      <div
-        style={{
-          fontSize: 10,
-          fontWeight: 600,
-          padding: '4px 10px',
-          borderRadius: 999,
-          background: 'rgba(255,255,255,0.04)',
-          border: '1px solid rgba(255,255,255,0.1)',
-          color: RESO_TOKENS.textSecondary,
-        }}
-      >
-        Save to Diary
-      </div>
-      <div
-        style={{
-          fontSize: 10,
-          fontWeight: 600,
-          padding: '4px 10px',
-          borderRadius: 999,
-          background: 'rgba(255,255,255,0.04)',
-          border: '1px solid rgba(255,255,255,0.1)',
-          color: RESO_TOKENS.textSecondary,
-        }}
-      >
-        Refine
-      </div>
-      <div style={{ marginLeft: 'auto', fontSize: 10, color: RESO_TOKENS.textDim }}>
-        ⌥+R
-      </div>
-    </div>
-  </div>
-);
-
 const NotchBar = () => (
   <div
     style={{
@@ -177,7 +80,28 @@ const NotchBar = () => (
   </div>
 );
 
-const FauxNotesDocument = () => (
+const DICTATION_LINES = [
+  'Can we retire the legacy fallback after a full canary week?',
+  'Need the provider switch behind one seam before merge.',
+  'Smoke pack should run on staging for every PR.',
+  'Confirm rollout notes and owner by Monday standup',
+];
+
+const BlinkingCursor = () => (
+  <span
+    style={{
+      display: 'inline-block',
+      width: 2,
+      height: '1.1em',
+      background: 'rgba(255,255,255,0.92)',
+      boxShadow: '0 0 8px rgba(255,255,255,0.35)',
+      verticalAlign: 'text-bottom',
+      animation: 'cursorBlink 1s step-end infinite',
+    }}
+  />
+);
+
+const FauxNotesDocument = ({ inserted = false }) => (
   <div
     style={{
       position: 'absolute',
@@ -207,9 +131,11 @@ const FauxNotesDocument = () => (
       >
         Draft Input
       </div>
-      <div style={{ fontSize: 10, color: 'rgba(150,255,186,0.82)', letterSpacing: 0.2 }}>
-        Typing...
-      </div>
+      {inserted && (
+        <div style={{ fontSize: 10, color: 'rgba(150,255,186,0.82)', letterSpacing: 0.2 }}>
+          Inserted
+        </div>
+      )}
     </div>
     <div
       style={{
@@ -231,32 +157,57 @@ const FauxNotesDocument = () => (
       <div style={{ fontSize: 10, color: 'rgba(255,255,255,0.42)', marginBottom: 8 }}>
         April 9 · live dictation
       </div>
-      <div>Can we retire the legacy fallback after a full canary week?</div>
-      <div>Need the provider switch behind one seam before merge.</div>
-      <div>Smoke pack should run on staging for every PR.</div>
-      <div className="flex items-center" style={{ gap: 4 }}>
-        <span>Confirm rollout notes and owner by Monday standup</span>
-        <span style={{ color: 'rgba(255,255,255,0.92)', textShadow: '0 0 8px rgba(255,255,255,0.35)' }}>▍</span>
-      </div>
+      {!inserted && (
+        <div><BlinkingCursor /></div>
+      )}
+      {inserted && (
+        <div style={{ opacity: 0, animation: 'textAppear 0.35s ease forwards' }}>
+          {DICTATION_LINES.map((line, i) => (
+            <div key={i}>
+              {i === DICTATION_LINES.length - 1 ? (
+                <span>{line}<BlinkingCursor /></span>
+              ) : (
+                line
+              )}
+            </div>
+          ))}
+        </div>
+      )}
     </div>
+    <style>{`
+      @keyframes cursorBlink {
+        0%, 100% { opacity: 1; }
+        50% { opacity: 0; }
+      }
+      @keyframes textAppear {
+        from { opacity: 0; }
+        to { opacity: 1; }
+      }
+    `}</style>
   </div>
 );
 
 const CAPSULE_STAGES = ['recording', 'transcribing', 'processing', 'cleaning', 'inserted'];
+// 5 capsule stages + 1 extra tick to hold the inserted state, then loop
+const TOTAL_TICKS = CAPSULE_STAGES.length + 2;
 
 const CaptureScene = () => {
-  const [stageIndex, setStageIndex] = useState(0);
+  const [tick, setTick] = useState(0);
 
   useEffect(() => {
     if (typeof window === 'undefined') return undefined;
     const reduce = window.matchMedia('(prefers-reduced-motion: reduce)');
     if (reduce.matches) return undefined;
     const id = window.setInterval(
-      () => setStageIndex((i) => (i + 1) % CAPSULE_STAGES.length),
+      () => setTick((t) => (t + 1) % TOTAL_TICKS),
       2200,
     );
     return () => window.clearInterval(id);
   }, []);
+
+  const capsuleStageIndex = Math.min(tick, CAPSULE_STAGES.length - 1);
+  const inserted = tick >= CAPSULE_STAGES.length;
+  const capsuleDone = inserted;
 
   return (
     <div
@@ -282,7 +233,7 @@ const CaptureScene = () => {
           opacity: 0.4,
         }}
       />
-      {/* Purple ambient — rises from where the capsule lives (bottom-center) */}
+      {/* Purple ambient */}
       <div
         aria-hidden
         style={{
@@ -298,31 +249,21 @@ const CaptureScene = () => {
       />
 
       <NotchBar />
-      <FauxNotesDocument />
+      <FauxNotesDocument inserted={inserted} />
 
-      {/* Capsule floating near the bottom of the screen, above the result card */}
+      {/* Capsule — fades out after insertion completes */}
       <div
         style={{
           position: 'absolute',
           left: '50%',
-          bottom: 220,
+          bottom: 140,
           transform: 'translateX(-50%)',
           zIndex: 3,
+          opacity: capsuleDone ? 0.3 : 1,
+          transition: 'opacity 0.6s ease',
         }}
       >
-        <FloatingCapsule scale={1.7} state={CAPSULE_STAGES[stageIndex]} />
-      </div>
-
-      {/* Result card peeking from right */}
-      <div
-        style={{
-          position: 'absolute',
-          right: 36,
-          bottom: 36,
-          zIndex: 2,
-        }}
-      >
-        <ResultCardPreview />
+        <FloatingCapsule scale={1.7} state={CAPSULE_STAGES[capsuleStageIndex]} />
       </div>
     </div>
   );

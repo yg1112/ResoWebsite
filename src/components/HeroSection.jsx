@@ -9,19 +9,19 @@ const ResoHeroMockup = lazy(() => import('./mockups/ResoHeroMockup'));
 const heroCopy = {
   en: {
     title: 'Think out loud. Work takes shape.',
-    subtitle: 'Hold Option anywhere to speak. Everything stays local. Flow stays unbroken.',
+    subtitle: '',
     download: 'Download for macOS',
     worksWith: 'Integrates with',
   },
   zh: {
     title: '思考出声，工作成型。',
-    subtitle: '按住 Option，脱口而出。全在本地，心流不断。',
+    subtitle: '',
     download: '下载 macOS 版',
     worksWith: '轻松接入',
   },
   ja: {
     title: '声で考え、仕事が形になる。',
-    subtitle: 'Option を押して話すだけ。すべてローカル処理、フローは途切れない。',
+    subtitle: '',
     download: 'macOS 版をダウンロード',
     worksWith: '対応アプリ',
   },
@@ -120,9 +120,11 @@ const HeroSection = () => {
           <h1 className="text-4xl md:text-6xl font-medium tracking-tight leading-[1.1] mb-6 text-black dark:text-white">
             {copy.title}
           </h1>
-          <p className="text-lg md:text-xl text-gray-600 dark:text-gray-400 leading-relaxed mb-8 max-w-2xl">
-            {copy.subtitle}
-          </p>
+          {copy.subtitle && (
+            <p className="text-lg md:text-xl text-gray-600 dark:text-gray-400 leading-relaxed mb-8 max-w-2xl">
+              {copy.subtitle}
+            </p>
+          )}
 
           <a
             href="https://github.com/yg1112/reso-releases/releases/latest/download/Reso.dmg"
