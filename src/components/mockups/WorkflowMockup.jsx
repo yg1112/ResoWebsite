@@ -20,9 +20,14 @@ import {
  * Layout reverse-engineered from the original macOS app screenshot.
  */
 
-const NODE_WIDTH = 174;
 const NODE_HEIGHT = 54;
 const CHART_CENTER_Y = 222;
+const NODE_WIDTHS = {
+  input: 174,
+  branch: 220,
+  rules: 220,
+  deliver: 220,
+};
 
 // Layout matches Reso2/Models/WorkflowBuilder/PipelineGraph.swift:
 //   INPUT (Voice Input) → BRANCH (Context + Revise stacked) → RULES → merge → DELIVER
@@ -36,6 +41,7 @@ const NODES = [
     subtitle: 'Hold Option · capture + transcribe',
     x: 30,
     y: 195,
+    width: NODE_WIDTHS.input,
     column: 'INPUT',
   },
   // BRANCH column (no label) — Context Awareness + Revise stacked, 44pt apart
@@ -43,16 +49,18 @@ const NODES = [
     id: 'context',
     title: 'Context Awareness',
     subtitle: 'Bring in live app and text context',
-    x: 254,
+    x: 250,
     y: 146,
+    width: NODE_WIDTHS.branch,
     column: '',
   },
   {
     id: 'revise',
     title: 'Revise Last Result',
     subtitle: 'Update the previous result',
-    x: 254,
+    x: 250,
     y: 244,
+    width: NODE_WIDTHS.branch,
     column: '',
   },
   // RULES column — Clean / Refine / Translate, 8pt apart
@@ -60,8 +68,9 @@ const NODES = [
     id: 'clean',
     title: 'Clean',
     subtitle: 'Faithful dictation cleanup rule',
-    x: 478,
+    x: 500,
     y: 133,
+    width: NODE_WIDTHS.rules,
     column: 'RULES',
     cog: false,
   },
@@ -69,8 +78,9 @@ const NODES = [
     id: 'refine',
     title: 'Refine',
     subtitle: 'Add structure and clarity in one pass',
-    x: 478,
+    x: 500,
     y: 195,
+    width: NODE_WIDTHS.rules,
     column: 'RULES',
     cog: true,
   },
@@ -78,8 +88,9 @@ const NODES = [
     id: 'translate',
     title: 'Translate',
     subtitle: 'Language rule inside the same pass',
-    x: 478,
+    x: 500,
     y: 257,
+    width: NODE_WIDTHS.rules,
     column: 'RULES',
     cog: true,
     disabled: true,
@@ -88,7 +99,7 @@ const NODES = [
   {
     id: 'merge',
     kind: 'junction',
-    x: 690,
+    x: 750,
     y: CHART_CENTER_Y,
   },
   // DELIVER column — Auto Insert / Result Card, 8pt apart
@@ -96,16 +107,18 @@ const NODES = [
     id: 'auto-insert',
     title: 'Auto Insert',
     subtitle: 'Insert at cursor when safe',
-    x: 720,
+    x: 780,
     y: 164,
+    width: NODE_WIDTHS.deliver,
     column: 'DELIVER',
   },
   {
     id: 'result-card',
     title: 'Result Card',
     subtitle: 'Show result card',
-    x: 720,
+    x: 780,
     y: 226,
+    width: NODE_WIDTHS.deliver,
     column: 'DELIVER',
     cog: true,
   },
@@ -131,6 +144,7 @@ const CONNECTIONS = [
 ];
 
 const lookupNode = (id) => NODES.find((n) => n.id === id);
+const nodeWidth = (node) => node.width || NODE_WIDTHS.branch;
 
 const JUNCTION_RADIUS = 6;
 
@@ -138,7 +152,7 @@ const JUNCTION_RADIUS = 6;
 const rightAnchor = (node) =>
   node.kind === 'junction'
     ? { x: node.x + JUNCTION_RADIUS, y: node.y }
-    : { x: node.x + NODE_WIDTH, y: node.y + NODE_HEIGHT / 2 };
+    : { x: node.x + nodeWidth(node), y: node.y + NODE_HEIGHT / 2 };
 
 /** Left-edge anchor (where incoming edges enter a node). */
 const leftAnchor = (node) =>
@@ -183,10 +197,10 @@ const Cog = () => (
 );
 
 /**
- * Pure-SVG workflow chart. Uses a fixed 920×460 viewBox so it scales
+ * Pure-SVG workflow chart. Uses a fixed 1030x460 viewBox so it scales
  * crisply at any container width without manual transform math.
  */
-const VIEW_BOX_WIDTH = 920;
+const VIEW_BOX_WIDTH = 1030;
 const VIEW_BOX_HEIGHT = 460;
 
 const SvgCog = ({ x, y }) => (
@@ -221,6 +235,7 @@ const SvgWorkflowNode = ({ node, isDisabled, onToggle }) => {
   }
 
   const disabled = isDisabled;
+  const width = nodeWidth(node);
   const opacity = disabled ? 0.42 : 1;
   const greenColor = disabled
     ? 'rgba(34, 197, 94, 0.35)'
@@ -240,7 +255,7 @@ const SvgWorkflowNode = ({ node, isDisabled, onToggle }) => {
       <rect
         x="0"
         y="0"
-        width={NODE_WIDTH}
+        width={width}
         height={NODE_HEIGHT}
         rx="10"
         ry="10"
@@ -264,7 +279,7 @@ const SvgWorkflowNode = ({ node, isDisabled, onToggle }) => {
         x="18"
         y="22"
         fontSize="12"
-        fontWeight="600"
+        fontWeight="500"
         fill={RESO_TOKENS.textPrimary}
         letterSpacing="-0.1"
         style={{ pointerEvents: 'none' }}
@@ -275,13 +290,13 @@ const SvgWorkflowNode = ({ node, isDisabled, onToggle }) => {
       <text
         x="18"
         y="38"
-        fontSize="10"
+        fontSize="9"
         fill={RESO_TOKENS.textTertiary}
         style={{ pointerEvents: 'none' }}
       >
         {node.subtitle}
       </text>
-      {node.cog && <SvgCog x={NODE_WIDTH - 14} y={NODE_HEIGHT / 2} />}
+      {node.cog && <SvgCog x={width - 14} y={NODE_HEIGHT / 2} />}
     </g>
   );
 };
@@ -360,9 +375,9 @@ export const WorkflowCanvas = ({ maxWidth }) => {
       })}
 
       {/* Column labels */}
-      <SvgColumnLabel text="INPUT" x={30 + NODE_WIDTH / 2 - 14} y={173} />
-      <SvgColumnLabel text="RULES" x={478 + NODE_WIDTH / 2 - 14} y={111} />
-      <SvgColumnLabel text="DELIVER" x={720 + NODE_WIDTH / 2 - 22} y={142} />
+      <SvgColumnLabel text="INPUT" x={30 + NODE_WIDTHS.input / 2 - 14} y={173} />
+      <SvgColumnLabel text="RULES" x={500 + NODE_WIDTHS.rules / 2 - 14} y={111} />
+      <SvgColumnLabel text="DELIVER" x={780 + NODE_WIDTHS.deliver / 2 - 22} y={142} />
 
       {/* Nodes */}
       {NODES.map((node) => (

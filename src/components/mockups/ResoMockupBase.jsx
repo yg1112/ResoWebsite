@@ -101,7 +101,14 @@ export const SETTINGS_TABS = [
  */
 export const ResoTopTabBar = ({ active = 'workflow', onChange, compact = false }) => {
   return (
-    <div className="flex items-center" style={{ gap: 2 }}>
+    <div
+      className="inline-flex items-center"
+      style={{
+        gap: compact ? 1 : 2,
+        flexWrap: 'nowrap',
+        whiteSpace: 'nowrap',
+      }}
+    >
       {SETTINGS_TABS.map((tab) => {
         const isActive = tab.id === active;
         return (
@@ -114,18 +121,20 @@ export const ResoTopTabBar = ({ active = 'workflow', onChange, compact = false }
             }}
             className="flex items-center"
             style={{
-              gap: compact ? 4 : 6,
-              padding: compact ? '4px 8px' : '6px 12px',
+              gap: compact ? 3 : 6,
+              padding: compact ? '4px 6px' : '6px 12px',
               borderRadius: 8,
               background: isActive ? 'rgba(255,255,255,0.08)' : 'transparent',
               color: isActive ? RESO_TOKENS.textPrimary : RESO_TOKENS.textSecondary,
-              fontSize: compact ? 11 : 12,
+              fontSize: compact ? 10 : 12,
               fontWeight: isActive ? 600 : 500,
               letterSpacing: -0.1,
               transition: 'background 0.18s ease, color 0.18s ease',
               border: 'none',
               cursor: 'pointer',
               fontFamily: 'inherit',
+              flexShrink: 0,
+              whiteSpace: 'nowrap',
             }}
             onMouseEnter={(e) => {
               if (!isActive) e.currentTarget.style.background = 'rgba(255,255,255,0.04)';
@@ -135,7 +144,7 @@ export const ResoTopTabBar = ({ active = 'workflow', onChange, compact = false }
             }}
           >
             <TabIcon name={tab.id} />
-            <span>{tab.label}</span>
+            <span style={{ whiteSpace: 'nowrap', lineHeight: 1.1 }}>{tab.label}</span>
           </button>
         );
       })}
@@ -164,8 +173,19 @@ export const ResoWindowHeader = ({
     }}
   >
     <TrafficLights size={compact ? 10 : 12} gap={compact ? 6 : 8} />
-    <div className="absolute left-1/2 -translate-x-1/2">
-      <ResoTopTabBar active={activeTab} onChange={onTabChange} compact={compact} />
+    <div
+      style={{
+        position: 'absolute',
+        left: compact ? 66 : 94,
+        right: compact ? 12 : 16,
+        display: 'flex',
+        justifyContent: 'center',
+        pointerEvents: 'none',
+      }}
+    >
+      <div style={{ pointerEvents: 'auto' }}>
+        <ResoTopTabBar active={activeTab} onChange={onTabChange} compact={compact} />
+      </div>
     </div>
   </div>
 );
